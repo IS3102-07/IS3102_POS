@@ -3,7 +3,6 @@ package is3102_pos;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Toolkit;
-import javax.swing.ImageIcon;
 
 public class LoginUI extends javax.swing.JFrame {
 
@@ -104,7 +103,7 @@ public class LoginUI extends javax.swing.JFrame {
                 .addGap(56, 56, 56))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is3102_pos/logo.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
 
         btnLogin.setBackground(new java.awt.Color(255, 102, 102));
         btnLogin.setFont(new java.awt.Font("Dekar", 0, 24)); // NOI18N
@@ -139,10 +138,6 @@ public class LoginUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 870, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(261, 261, 261)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -159,7 +154,11 @@ public class LoginUI extends javax.swing.JFrame {
                         .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
