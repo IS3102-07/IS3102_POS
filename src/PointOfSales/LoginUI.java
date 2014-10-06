@@ -1,8 +1,7 @@
-package is3102_pos;
+package PointOfSales;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Toolkit;
 
 public class LoginUI extends javax.swing.JFrame {
 
@@ -13,10 +12,6 @@ public class LoginUI extends javax.swing.JFrame {
 
         cp = getContentPane();
         cp.setBackground(Color.white);
-
-        Toolkit tk = Toolkit.getDefaultToolkit();
-//        int xSize = ((int) tk.getScreenSize().getWidth());
-//        int ySize = ((int) tk.getScreenSize().getHeight());
         this.setSize(1280, 960);
 
     }
@@ -36,8 +31,8 @@ public class LoginUI extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         txtEmail = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -78,10 +73,10 @@ public class LoginUI extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 1280, 960));
         setForeground(java.awt.Color.white);
 
-        pnlHader.setBackground(new java.awt.Color(255, 51, 51));
+        pnlHader.setBackground(new java.awt.Color(153, 0, 0));
         pnlHader.setToolTipText("");
 
-        lblHeader.setFont(new java.awt.Font("Castellar", 1, 72)); // NOI18N
+        lblHeader.setFont(new java.awt.Font("Tahoma", 1, 82)); // NOI18N
         lblHeader.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeader.setText("Island Furniture");
@@ -93,7 +88,7 @@ public class LoginUI extends javax.swing.JFrame {
             .addGroup(pnlHaderLayout.createSequentialGroup()
                 .addGap(253, 253, 253)
                 .addComponent(lblHeader)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(359, Short.MAX_VALUE))
         );
         pnlHaderLayout.setVerticalGroup(
             pnlHaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,32 +100,46 @@ public class LoginUI extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
 
-        btnLogin.setBackground(new java.awt.Color(255, 102, 102));
-        btnLogin.setFont(new java.awt.Font("Dekar", 0, 24)); // NOI18N
+        btnLogin.setBackground(new java.awt.Color(153, 0, 0));
+        btnLogin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
 
-        btnClear.setBackground(new java.awt.Color(255, 102, 102));
-        btnClear.setFont(new java.awt.Font("Dekar", 0, 24)); // NOI18N
+        btnClear.setBackground(new java.awt.Color(153, 0, 0));
+        btnClear.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnClear.setForeground(new java.awt.Color(255, 255, 255));
         btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
-        btnExit.setBackground(new java.awt.Color(255, 102, 102));
-        btnExit.setFont(new java.awt.Font("Dekar", 0, 24)); // NOI18N
+        btnExit.setBackground(new java.awt.Color(153, 0, 0));
+        btnExit.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
+        txtEmail.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
             }
         });
 
-        lblEmail.setFont(new java.awt.Font("Dekar", 0, 24)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblEmail.setText("Email");
 
-        lblPassword.setFont(new java.awt.Font("Dekar", 0, 24)); // NOI18N
+        lblPassword.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblPassword.setText("Password");
+
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtPassword.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,18 +175,18 @@ public class LoginUI extends javax.swing.JFrame {
                 .addComponent(pnlHader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(146, 146, 146)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPassword))
-                .addGap(83, 83, 83)
+                    .addComponent(lblPassword)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -188,6 +197,15 @@ public class LoginUI extends javax.swing.JFrame {
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        txtEmail.setText("");
+        txtPassword.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -234,6 +252,7 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblPassword;
     private javax.swing.JPanel pnlHader;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
+
 }
