@@ -16,9 +16,9 @@ public class LoginUI extends javax.swing.JFrame {
         cp.setBackground(Color.white);
 
         Toolkit tk = Toolkit.getDefaultToolkit();
-        int xSize = ((int) tk.getScreenSize().getWidth());
-        int ySize = ((int) tk.getScreenSize().getHeight());
-        this.setSize(xSize, ySize);
+//        int xSize = ((int) tk.getScreenSize().getWidth());
+//        int ySize = ((int) tk.getScreenSize().getHeight());
+        this.setSize(1280, 960);
 
     }
 
@@ -92,16 +92,16 @@ public class LoginUI extends javax.swing.JFrame {
         pnlHaderLayout.setHorizontalGroup(
             pnlHaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHaderLayout.createSequentialGroup()
-                .addGap(242, 242, 242)
-                .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 886, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(253, 253, 253)
+                .addComponent(lblHeader)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlHaderLayout.setVerticalGroup(
             pnlHaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHaderLayout.createSequentialGroup()
-                .addContainerGap(99, Short.MAX_VALUE)
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                .addGap(56, 56, 56))
         );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is3102_pos/logo.png"))); // NOI18N
