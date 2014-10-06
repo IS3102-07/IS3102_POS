@@ -5,15 +5,14 @@ import java.awt.Container;
 
 public class LoginUI extends javax.swing.JFrame {
 
+    LoginUI loginGUI = this;
     private Container cp;
 
     public LoginUI() {
         initComponents();
-
         cp = getContentPane();
         cp.setBackground(Color.white);
         this.setSize(1280, 960);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -79,23 +78,23 @@ public class LoginUI extends javax.swing.JFrame {
         lblHeader.setFont(new java.awt.Font("Tahoma", 1, 82)); // NOI18N
         lblHeader.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHeader.setText("Island Furniture");
+        lblHeader.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-label.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlHaderLayout = new javax.swing.GroupLayout(pnlHader);
         pnlHader.setLayout(pnlHaderLayout);
         pnlHaderLayout.setHorizontalGroup(
             pnlHaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHaderLayout.createSequentialGroup()
-                .addGap(253, 253, 253)
-                .addComponent(lblHeader)
-                .addContainerGap(359, Short.MAX_VALUE))
+                .addGap(162, 162, 162)
+                .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlHaderLayout.setVerticalGroup(
             pnlHaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHaderLayout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
-                .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addComponent(lblHeader)
+                .addGap(45, 45, 45))
         );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
@@ -104,6 +103,11 @@ public class LoginUI extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         btnClear.setBackground(new java.awt.Color(153, 0, 0));
         btnClear.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -163,7 +167,7 @@ public class LoginUI extends javax.swing.JFrame {
                         .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 355, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -206,6 +210,10 @@ public class LoginUI extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+       // MainMenuUI mainMenuUI = MainMenuUI();
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
