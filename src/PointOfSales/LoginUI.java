@@ -13,6 +13,7 @@ public class LoginUI extends javax.swing.JFrame {
         cp = getContentPane();
         cp.setBackground(Color.white);
         this.setSize(1280, 960);
+        ReadFile readFile = new ReadFile();
     }
 
     @SuppressWarnings("unchecked")
@@ -233,7 +234,7 @@ public class LoginUI extends javax.swing.JFrame {
         } else {
             try {
                 if (posLoginStaff(txtEmail.getText(), passText) == null) {
-                    lblMessage.setText("Error: Account does not exist. Please try again.");
+                    lblMessage.setText("Invalid credential. Please try again.");
                 } else {
                     MainMenuUI mainMenuUI = new MainMenuUI();
                     mainMenuUI.setVisible(true);

@@ -7,17 +7,18 @@ import java.util.StringTokenizer;
 
 public class ReadFile {
 
-    public void readFile(String filename) {
+    public int storeID;
+    //public 
+
+    public ReadFile() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Documents and Settings\\p0733599\\Desktop\\latest ajp\\AJP_assignment01\\SampleTextFiles\\" + filename));
+            BufferedReader br = new BufferedReader(new FileReader("C:\\IS3102_POS\\src\\PointOfSales\\setup.txt"));
             String data;
-            String storeFileText = "";
-            String word = "";
 
             while ((data = br.readLine()) != null) {
-                storeFileText += data;
-                StringTokenizer st = new StringTokenizer(data, " ");
-                // total = st.countTokens();
+                StringTokenizer st = new StringTokenizer(data, ",");
+                Store.storeID = st.nextToken();
+                Store.storeName = st.nextToken();
             }
             br.close();
 
@@ -26,6 +27,5 @@ public class ReadFile {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
     }
 }
