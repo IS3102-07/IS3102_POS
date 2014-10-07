@@ -2,19 +2,23 @@ package PointOfSales;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 public class SelfCheckOutUI extends javax.swing.JFrame {
 
+    SelfCheckOutUI selfCheckOutUI;
     private Container cp;
     private List<ItemEntity> itemEntity = new ArrayList<>();
 
     public SelfCheckOutUI() {
         initComponents();
+        this.setTitle("Island Furniture Self Checkout");
         cp = getContentPane();
         cp.setBackground(Color.white);
         this.setSize(1280, 960);
@@ -40,9 +44,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblLineItem = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnLoyaltyCard = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         pnlHader.setBackground(new java.awt.Color(153, 0, 0));
         pnlHader.setToolTipText("");
@@ -134,13 +139,13 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             tblLineItem.getColumnModel().getColumn(2).setPreferredWidth(50);
         }
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("<html>\t\n<h2 align='center'>Swipe Loyalty Card<h2>\n</htm>");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLoyaltyCard.setBackground(new java.awt.Color(153, 0, 0));
+        btnLoyaltyCard.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnLoyaltyCard.setForeground(new java.awt.Color(255, 255, 255));
+        btnLoyaltyCard.setText("<html>\t\n<h2 align='center'>Loyalty Card<h2>\n</htm>");
+        btnLoyaltyCard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoyaltyCardActionPerformed(evt);
             }
         });
 
@@ -175,7 +180,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                         .addComponent(btnPay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLoyaltyCard, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -185,7 +190,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLoyaltyCard, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -213,12 +218,26 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
-        // TODO add your handling code here:
+        JDialog dialog = new JDialog(selfCheckOutUI);
+        //dialog.setLocationRelativeTo(null);
+        dialog.setModal(true);
+        dialog.setUndecorated(true);
+        dialog.add(new JLabel("Test"));
+        dialog.pack();
+        dialog.getContentPane().setBackground(Color.white);
+        Dimension size = getSize();
+        size.width = 640;
+        size.height = 480;
+        dialog.setSize(size);
+        dialog.setVisible(true);
+
+        dialog.pack();
+
     }//GEN-LAST:event_btnPayActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoyaltyCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoyaltyCardActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLoyaltyCardActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -253,8 +272,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLoyaltyCard;
     private javax.swing.JButton btnPay;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

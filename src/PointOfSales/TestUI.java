@@ -98,6 +98,11 @@ public class TestUI extends javax.swing.JFrame {
             }
         });
 
+        txtSwipeInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSwipeInputActionPerformed(evt);
+            }
+        });
         txtSwipeInput.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSwipeInputKeyReleased(evt);
@@ -267,6 +272,10 @@ public class TestUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtSwipeInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSwipeInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSwipeInputActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

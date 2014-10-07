@@ -76,6 +76,7 @@ public class LoginUI extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 255, 153));
         setBounds(new java.awt.Rectangle(0, 0, 1280, 960));
         setForeground(java.awt.Color.white);
+        setUndecorated(true);
 
         pnlHader.setBackground(new java.awt.Color(153, 0, 0));
         pnlHader.setToolTipText("");
