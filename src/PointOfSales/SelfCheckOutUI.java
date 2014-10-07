@@ -11,7 +11,6 @@ import javax.swing.table.TableModel;
 public class SelfCheckOutUI extends javax.swing.JFrame {
 
     private Container cp;
-    private MainMenuUI mainMenuUI = null;
     private List<ItemEntity> itemEntity = new ArrayList<>();
 
     public SelfCheckOutUI() {
@@ -20,10 +19,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         cp.setBackground(Color.white);
         this.setSize(1280, 960);
 
-    }
-
-    public SelfCheckOutUI(MainMenuUI mainMenuUI) {
-        this.mainMenuUI = mainMenuUI;
     }
 
     @SuppressWarnings("unchecked")

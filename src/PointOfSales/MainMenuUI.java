@@ -138,9 +138,9 @@ public class MainMenuUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblSelfCheckOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSelfCheckOutMouseClicked
-        SelfCheckOutUI selfCheckOutUI = new SelfCheckOutUI(this);
+        SelfCheckOutUI selfCheckOutUI = new SelfCheckOutUI();
         selfCheckOutUI.setVisible(true);
-        selfCheckOutUI.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setVisible(false);
     }//GEN-LAST:event_lblSelfCheckOutMouseClicked
 
     public static void main(String args[]) {

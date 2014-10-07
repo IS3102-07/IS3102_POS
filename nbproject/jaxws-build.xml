@@ -33,5 +33,22 @@
         <delete dir="${build.generated.dir}/jax-wsCache/POSWebServiceBean"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/PointOfSales"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-POSWebServiceBean"/>
+    <target name="wsimport-client-WebServiceBean" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/WebServiceBean"/>
+        <property name="wsdl-WebServiceBean" location="xml-resources/web-service-references/WebServiceBean/wsdl/Hello_8080/WebServiceBean/WebServiceBean.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WebServiceBean" destdir="${build.generated.dir}/jax-wsCache/WebServiceBean" wsdl="${wsdl-WebServiceBean}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://Hello:8080/WebServiceBean/WebServiceBean?wsdl" xnocompile="true" xendorsed="true" package="PointOfSales">
+            <depends file="${wsdl-WebServiceBean}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/WebServiceBean"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/WebServiceBean">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-WebServiceBean" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/WebServiceBean"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/PointOfSales"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-POSWebServiceBean, wsimport-client-WebServiceBean"/>
 </project>

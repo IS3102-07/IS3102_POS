@@ -2,4 +2,6 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://Hello:8080/POSWebServiceBean/POSWebServiceBean?wsdl" uri="wsdl/Hello_8080/POSWebServiceBean/POSWebServiceBean.wsdl"/>
     <system systemId="http://Hello:8080/POSWebServiceBean/POSWebServiceBean?xsd=1" uri="wsdl/Hello_8080/POSWebServiceBean/POSWebServiceBean.xsd_1.xsd"/>
+    <system systemId="http://Hello:8080/WebServiceBean/WebServiceBean?wsdl" uri="wsdl/Hello_8080/WebServiceBean/WebServiceBean.wsdl"/>
+    <system systemId="http://Hello:8080/WebServiceBean/WebServiceBean?xsd=1" uri="wsdl/Hello_8080/WebServiceBean/WebServiceBean.xsd_1.xsd"/>
 </catalog>
