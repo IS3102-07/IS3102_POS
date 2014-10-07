@@ -13,7 +13,10 @@ public class LoginUI extends javax.swing.JFrame {
         cp = getContentPane();
         cp.setBackground(Color.white);
         this.setSize(1280, 960);
+
         ReadFile readFile = new ReadFile();
+//        System.out.println("111>" + Store.storeID);
+//        System.out.println("222>" + Store.storeName);
     }
 
     @SuppressWarnings("unchecked")
