@@ -221,9 +221,7 @@ public class LoginUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
         String passText = new String(txtPassword.getPassword());
-        //lblMessage.setText("testing : " + passText);
 
         lblMessage.setText("testing : " + posLoginStaff("admin@if.com", "admin"));
         if (txtEmail.getText().isEmpty() && txtPassword.getPassword().length == 0) {
@@ -234,10 +232,13 @@ public class LoginUI extends javax.swing.JFrame {
             lblMessage.setText("Error: Password cannot be blank.");
         } else {
             try {
-                posLoginStaff(txtEmail.getText(), passText);
-                MainMenuUI mainMenuUI = new MainMenuUI();
-                mainMenuUI.setVisible(true);
-                this.setVisible(false);
+                if (posLoginStaff(txtEmail.getText(), passText) == null) {
+                    lblMessage.setText("Error: Account does not exist. Please try again.");
+                } else {
+                    MainMenuUI mainMenuUI = new MainMenuUI();
+                    mainMenuUI.setVisible(true);
+                    this.setVisible(false);
+                }
             } catch (Exception ex) {
                 lblMessage.setText("Error: Account does not exist. Please try again.");
             }
@@ -292,12 +293,6 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
-
-    private static ItemEntity getItemBySKU(java.lang.String sku) {
-        PointOfSales.POSWebServiceBean_Service service = new PointOfSales.POSWebServiceBean_Service();
-        PointOfSales.POSWebServiceBean port = service.getPOSWebServiceBeanPort();
-        return port.getItemBySKU(sku);
-    }
 
     private static Long posLoginStaff(java.lang.String email, java.lang.String password) {
         PointOfSales.WebServiceBean_Service service = new PointOfSales.WebServiceBean_Service();

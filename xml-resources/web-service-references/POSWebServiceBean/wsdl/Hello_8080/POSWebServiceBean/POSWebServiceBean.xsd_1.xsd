@@ -4,29 +4,24 @@
 
 <xs:element name="getItemBySKUResponse" type="tns:getItemBySKUResponse"/>
 
-<xs:complexType name="getItemBySKU">
+<xs:element name="getItemCountryBySKU" type="tns:getItemCountryBySKU"/>
+
+<xs:element name="getItemCountryBySKUResponse" type="tns:getItemCountryBySKUResponse"/>
+
+<xs:element name="getMemberLoyaltyPointsAmount" type="tns:getMemberLoyaltyPointsAmount"/>
+
+<xs:element name="getMemberLoyaltyPointsAmountResponse" type="tns:getMemberLoyaltyPointsAmountResponse"/>
+
+<xs:complexType name="getItemCountryBySKU">
 <xs:sequence>
 <xs:element name="SKU" type="xs:string" minOccurs="0"/>
+<xs:element name="storeID" type="xs:long" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getItemBySKUResponse">
+<xs:complexType name="getItemCountryBySKUResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:itemEntity" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="itemEntity" abstract="true">
-<xs:sequence>
-<xs:element name="batch" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="isDeleted" type="xs:boolean" minOccurs="0"/>
-<xs:element name="itemCountryList" type="tns:itemCountryEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
-<xs:element name="price" type="xs:double" minOccurs="0"/>
-<xs:element name="supplier" type="tns:supplierEntity" minOccurs="0"/>
-<xs:element name="type" type="xs:string" minOccurs="0"/>
-<xs:element name="warehouses" type="tns:warehouseEntity" minOccurs="0"/>
+<xs:element name="return" type="tns:itemCountryEntity" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -66,42 +61,17 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="purchaseOrderEntity">
+<xs:complexType name="itemEntity" abstract="true">
 <xs:sequence>
-<xs:element name="expectedReceivedDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="batch" type="xs:string" minOccurs="0"/>
 <xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="lineItems" type="tns:lineItemEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="receivedWarehouse" type="tns:warehouseEntity" minOccurs="0"/>
-<xs:element name="status" type="xs:string" minOccurs="0"/>
-<xs:element name="submittedBy" type="xs:string" minOccurs="0"/>
+<xs:element name="isDeleted" type="xs:boolean" minOccurs="0"/>
+<xs:element name="itemCountryList" type="tns:itemCountryEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="price" type="xs:double" minOccurs="0"/>
 <xs:element name="supplier" type="tns:supplierEntity" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="lineItemEntity">
-<xs:sequence>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="item" type="tns:itemEntity" minOccurs="0"/>
-<xs:element name="packType" type="xs:string" minOccurs="0"/>
-<xs:element name="purchaseOrder" type="tns:purchaseOrderEntity" minOccurs="0"/>
-<xs:element name="quantity" type="xs:int" minOccurs="0"/>
-<xs:element name="shippingOrder" type="tns:shippingOrderEntity" minOccurs="0"/>
-<xs:element name="storageBin" type="tns:storageBinEntity" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="shippingOrderEntity">
-<xs:sequence>
-<xs:element name="createdDate" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="destination" type="tns:warehouseEntity" minOccurs="0"/>
-<xs:element name="expectedReceivedDate" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="lineItems" type="tns:lineItemEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="origin" type="tns:warehouseEntity" minOccurs="0"/>
-<xs:element name="receivedDate" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="shippedDate" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="status" type="xs:string" minOccurs="0"/>
-<xs:element name="submittedBy" type="xs:string" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+<xs:element name="warehouses" type="tns:warehouseEntity" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -233,6 +203,58 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="lineItemEntity">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="item" type="tns:itemEntity" minOccurs="0"/>
+<xs:element name="packType" type="xs:string" minOccurs="0"/>
+<xs:element name="purchaseOrder" type="tns:purchaseOrderEntity" minOccurs="0"/>
+<xs:element name="quantity" type="xs:int" minOccurs="0"/>
+<xs:element name="shippingOrder" type="tns:shippingOrderEntity" minOccurs="0"/>
+<xs:element name="storageBin" type="tns:storageBinEntity" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="purchaseOrderEntity">
+<xs:sequence>
+<xs:element name="expectedReceivedDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="lineItems" type="tns:lineItemEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="receivedWarehouse" type="tns:warehouseEntity" minOccurs="0"/>
+<xs:element name="status" type="xs:string" minOccurs="0"/>
+<xs:element name="submittedBy" type="xs:string" minOccurs="0"/>
+<xs:element name="supplier" type="tns:supplierEntity" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="shippingOrderEntity">
+<xs:sequence>
+<xs:element name="createdDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="destination" type="tns:warehouseEntity" minOccurs="0"/>
+<xs:element name="expectedReceivedDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="lineItems" type="tns:lineItemEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="origin" type="tns:warehouseEntity" minOccurs="0"/>
+<xs:element name="receivedDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="shippedDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="status" type="xs:string" minOccurs="0"/>
+<xs:element name="submittedBy" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="storageBinEntity">
+<xs:sequence>
+<xs:element name="freeVolume" type="xs:int" minOccurs="0"/>
+<xs:element name="height" type="xs:int" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="length" type="xs:int" minOccurs="0"/>
+<xs:element name="listOfLineItems" type="tns:lineItemEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+<xs:element name="warehouse" type="tns:warehouseEntity" minOccurs="0"/>
+<xs:element name="width" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="saleForecastEntity">
 <xs:sequence>
 <xs:element name="id" type="xs:long" minOccurs="0"/>
@@ -263,19 +285,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="storageBinEntity">
-<xs:sequence>
-<xs:element name="freeVolume" type="xs:int" minOccurs="0"/>
-<xs:element name="height" type="xs:int" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="length" type="xs:int" minOccurs="0"/>
-<xs:element name="listOfLineItems" type="tns:lineItemEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="type" type="xs:string" minOccurs="0"/>
-<xs:element name="warehouse" type="tns:warehouseEntity" minOccurs="0"/>
-<xs:element name="width" type="xs:int" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="transferOrderEntity">
 <xs:sequence>
 <xs:element name="dateCreated" type="xs:dateTime" minOccurs="0"/>
@@ -288,6 +297,30 @@
 <xs:element name="submittedBy" type="xs:string" minOccurs="0"/>
 <xs:element name="target" type="tns:storageBinEntity" minOccurs="0"/>
 <xs:element name="warehouse" type="tns:warehouseEntity" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getItemBySKU">
+<xs:sequence>
+<xs:element name="SKU" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getItemBySKUResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:itemEntity" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMemberLoyaltyPointsAmount">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMemberLoyaltyPointsAmountResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>
