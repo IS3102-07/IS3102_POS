@@ -19,6 +19,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         cp.setBackground(Color.white);
         this.setSize(1280, 960);
 
+        DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
+        model.addRow(new Object[]{"Table", "20.00", "1"});
+        model.addRow(new Object[]{"Ladder", "20.00", "1"});
+        model.addRow(new Object[]{"Chair", "20.00", "1"});
     }
 
     @SuppressWarnings("unchecked")
@@ -35,7 +39,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        tblLineItem = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,18 +96,43 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("0.00");
 
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        tblLineItem.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tblLineItem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Product Description", "Price", "Quantity"
             }
-        ));
-        jScrollPane2.setViewportView(jTable);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblLineItem.setAutoscrolls(false);
+        tblLineItem.setGridColor(new java.awt.Color(153, 0, 0));
+        tblLineItem.setRowHeight(50);
+        tblLineItem.setSelectionBackground(new java.awt.Color(153, 0, 0));
+        tblLineItem.getTableHeader().setReorderingAllowed(false);
+        tblLineItem.setUpdateSelectionOnSort(false);
+        jScrollPane2.setViewportView(tblLineItem);
+        tblLineItem.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (tblLineItem.getColumnModel().getColumnCount() > 0) {
+            tblLineItem.getColumnModel().getColumn(0).setPreferredWidth(500);
+            tblLineItem.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tblLineItem.getColumnModel().getColumn(2).setPreferredWidth(50);
+        }
 
         jButton1.setBackground(new java.awt.Color(153, 0, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -233,9 +262,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable;
     private javax.swing.JLabel lblHeader1;
     private javax.swing.JPanel pnlHader;
+    private javax.swing.JTable tblLineItem;
     // End of variables declaration//GEN-END:variables
 
     private void loadTable() {

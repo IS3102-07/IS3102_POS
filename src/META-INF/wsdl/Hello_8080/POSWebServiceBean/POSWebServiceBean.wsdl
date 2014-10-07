@@ -4,11 +4,11 @@
 <xsd:import namespace="http://RetailInventoryControl.Store_InventoryManagement/" schemaLocation="http://Hello:8080/POSWebServiceBean/POSWebServiceBean?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="getItemBySKU">
-<part name="parameters" element="tns:getItemBySKU"/>
+<message name="getMemberLoyaltyPointsAmount">
+<part name="parameters" element="tns:getMemberLoyaltyPointsAmount"/>
 </message>
-<message name="getItemBySKUResponse">
-<part name="parameters" element="tns:getItemBySKUResponse"/>
+<message name="getMemberLoyaltyPointsAmountResponse">
+<part name="parameters" element="tns:getMemberLoyaltyPointsAmountResponse"/>
 </message>
 <message name="getItemCountryBySKU">
 <part name="parameters" element="tns:getItemCountryBySKU"/>
@@ -16,29 +16,39 @@
 <message name="getItemCountryBySKUResponse">
 <part name="parameters" element="tns:getItemCountryBySKUResponse"/>
 </message>
-<message name="getMemberLoyaltyPointsAmount">
-<part name="parameters" element="tns:getMemberLoyaltyPointsAmount"/>
+<message name="getItemBySKU">
+<part name="parameters" element="tns:getItemBySKU"/>
 </message>
-<message name="getMemberLoyaltyPointsAmountResponse">
-<part name="parameters" element="tns:getMemberLoyaltyPointsAmountResponse"/>
+<message name="getItemBySKUResponse">
+<part name="parameters" element="tns:getItemBySKUResponse"/>
+</message>
+<message name="createSalesRecord">
+<part name="parameters" element="tns:createSalesRecord"/>
+</message>
+<message name="createSalesRecordResponse">
+<part name="parameters" element="tns:createSalesRecordResponse"/>
 </message>
 <portType name="POSWebServiceBean">
-<operation name="getItemBySKU">
-<input wsam:Action="http://RetailInventoryControl.Store_InventoryManagement/POSWebServiceBean/getItemBySKURequest" message="tns:getItemBySKU"/>
-<output wsam:Action="http://RetailInventoryControl.Store_InventoryManagement/POSWebServiceBean/getItemBySKUResponse" message="tns:getItemBySKUResponse"/>
+<operation name="getMemberLoyaltyPointsAmount">
+<input wsam:Action="http://RetailInventoryControl.Store_InventoryManagement/POSWebServiceBean/getMemberLoyaltyPointsAmountRequest" message="tns:getMemberLoyaltyPointsAmount"/>
+<output wsam:Action="http://RetailInventoryControl.Store_InventoryManagement/POSWebServiceBean/getMemberLoyaltyPointsAmountResponse" message="tns:getMemberLoyaltyPointsAmountResponse"/>
 </operation>
 <operation name="getItemCountryBySKU">
 <input wsam:Action="http://RetailInventoryControl.Store_InventoryManagement/POSWebServiceBean/getItemCountryBySKURequest" message="tns:getItemCountryBySKU"/>
 <output wsam:Action="http://RetailInventoryControl.Store_InventoryManagement/POSWebServiceBean/getItemCountryBySKUResponse" message="tns:getItemCountryBySKUResponse"/>
 </operation>
-<operation name="getMemberLoyaltyPointsAmount">
-<input wsam:Action="http://RetailInventoryControl.Store_InventoryManagement/POSWebServiceBean/getMemberLoyaltyPointsAmountRequest" message="tns:getMemberLoyaltyPointsAmount"/>
-<output wsam:Action="http://RetailInventoryControl.Store_InventoryManagement/POSWebServiceBean/getMemberLoyaltyPointsAmountResponse" message="tns:getMemberLoyaltyPointsAmountResponse"/>
+<operation name="getItemBySKU">
+<input wsam:Action="http://RetailInventoryControl.Store_InventoryManagement/POSWebServiceBean/getItemBySKURequest" message="tns:getItemBySKU"/>
+<output wsam:Action="http://RetailInventoryControl.Store_InventoryManagement/POSWebServiceBean/getItemBySKUResponse" message="tns:getItemBySKUResponse"/>
+</operation>
+<operation name="createSalesRecord">
+<input wsam:Action="http://RetailInventoryControl.Store_InventoryManagement/POSWebServiceBean/createSalesRecordRequest" message="tns:createSalesRecord"/>
+<output wsam:Action="http://RetailInventoryControl.Store_InventoryManagement/POSWebServiceBean/createSalesRecordResponse" message="tns:createSalesRecordResponse"/>
 </operation>
 </portType>
 <binding name="POSWebServiceBeanPortBinding" type="tns:POSWebServiceBean">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="getItemBySKU">
+<operation name="getMemberLoyaltyPointsAmount">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -56,7 +66,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getMemberLoyaltyPointsAmount">
+<operation name="getItemBySKU">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="createSalesRecord">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
