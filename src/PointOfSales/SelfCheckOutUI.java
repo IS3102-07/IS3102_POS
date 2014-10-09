@@ -8,38 +8,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class SelfCheckOutUI extends javax.swing.JFrame {
 
-    SelfCheckOutUI selfCheckOutUI;
     private Container cp;
 
     public SelfCheckOutUI() {
         initComponents();
         this.setTitle("Island Furniture Self Checkout");
+        this.setSize(1280, 960);
         cp = getContentPane();
         cp.setBackground(Color.white);
-        this.setSize(1280, 960);
-
-        DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
-        model.addRow(new Object[]{"Table", "20.00", "1"});
-        model.addRow(new Object[]{"Ladder", "20.00", "1"});
-        model.addRow(new Object[]{"Chair", "20.00", "1"});
-        model.addRow(new Object[]{"Table", "20.00", "1"});
-        model.addRow(new Object[]{"Ladder", "20.00", "1"});
-        model.addRow(new Object[]{"Chair", "20.00", "1"});
-        model.addRow(new Object[]{"Table", "20.00", "1"});
-        model.addRow(new Object[]{"Ladder", "20.00", "1"});
-        model.addRow(new Object[]{"Chair", "20.00", "1"});
-        model.addRow(new Object[]{"Table", "20.00", "1"});
-        model.addRow(new Object[]{"Ladder", "20.00", "1"});
-        model.addRow(new Object[]{"Chair", "20.00", "1"});
-        model.addRow(new Object[]{"Table", "20.00", "1"});
-        model.addRow(new Object[]{"Ladder", "20.00", "1"});
-        model.addRow(new Object[]{"Chair", "20.00", "1"});
-        model.addRow(new Object[]{"Table", "20.00", "1"});
-        model.addRow(new Object[]{"Ladder", "20.00", "1"});
-        model.addRow(new Object[]{"Chair", "20.00", "1"});
-        model.addRow(new Object[]{"Table", "20.00", "1"});
-        model.addRow(new Object[]{"Ladder", "20.00", "1"});
-        model.addRow(new Object[]{"Chair", "20.00", "1"});
     }
 
     @SuppressWarnings("unchecked")
@@ -66,6 +42,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1280, 960));
 
         pnlHader.setBackground(new java.awt.Color(153, 0, 0));
         pnlHader.setToolTipText("");
@@ -82,7 +59,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHaderLayout.createSequentialGroup()
                 .addGap(162, 162, 162)
                 .addComponent(lblHeader1)
-                .addGap(186, 186, 186))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlHaderLayout.setVerticalGroup(
             pnlHaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,19 +79,19 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("N: Items");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Total:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Discount:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("0.00");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("0.00");
 
         tblLineItem.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -148,8 +125,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         tblLineItem.getTableHeader().setReorderingAllowed(false);
         tblLineItem.setUpdateSelectionOnSort(false);
         tblLineItem.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tblLineItemKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblLineItemKeyReleased(evt);
             }
         });
         jScrollPane2.setViewportView(tblLineItem);
@@ -161,9 +138,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         }
 
         btnLoyaltyCard.setBackground(new java.awt.Color(153, 0, 0));
-        btnLoyaltyCard.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnLoyaltyCard.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnLoyaltyCard.setForeground(new java.awt.Color(255, 255, 255));
-        btnLoyaltyCard.setText("<html><h2 align='center'>Loyalty Card</h2></htm>");
+        btnLoyaltyCard.setText("Loyalty Card");
         btnLoyaltyCard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoyaltyCardActionPerformed(evt);
@@ -171,9 +148,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         });
 
         btnDelete.setBackground(new java.awt.Color(153, 0, 0));
-        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete.setText("<html><h2 align='center'>Delete Item</h2></htm>");
+        btnDelete.setText("Delete Item");
         btnDelete.setToolTipText("");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,9 +159,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         });
 
         btnCancel.setBackground(new java.awt.Color(153, 0, 0));
-        btnCancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancel.setText("<html><h2 align='center'>Cancel<h2></htm>");
+        btnCancel.setText("Cancel");
+        btnCancel.setToolTipText("");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -201,9 +179,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         });
 
         btnUpdateQuantity.setBackground(new java.awt.Color(153, 0, 0));
-        btnUpdateQuantity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnUpdateQuantity.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnUpdateQuantity.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdateQuantity.setText("<html><h2 align='center'>Update Quantity</h2></htm>");
+        btnUpdateQuantity.setText("Update Quantity");
         btnUpdateQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateQuantityActionPerformed(evt);
@@ -220,7 +198,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -230,59 +207,44 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblMessage))
+                            .addComponent(lblMessage)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel6)))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(26, 26, 26)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnUpdateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnLoyaltyCard, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnLoyaltyCard1))
-                .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnLoyaltyCard1)
+                        .addComponent(btnPay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnLoyaltyCard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnUpdateQuantity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlHader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUpdateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLoyaltyCard, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLoyaltyCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -294,15 +256,29 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblMessage)
-                        .addGap(51, 51, 51))))
+                        .addComponent(lblMessage))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnUpdateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnLoyaltyCard, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLoyaltyCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
-        JDialog dialog = new JDialog(selfCheckOutUI);
+        JDialog dialog = new JDialog();
         dialog.setLocationRelativeTo(null);
 //        final Toolkit toolkit = Toolkit.getDefaultToolkit();
 //        final Dimension screenSize = toolkit.getScreenSize();
@@ -314,12 +290,16 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         dialog.add(new PaymentUI());
         dialog.pack();
         dialog.setVisible(true);
-
-
     }//GEN-LAST:event_btnPayActionPerformed
 
     private void btnLoyaltyCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoyaltyCardActionPerformed
-
+        JDialog dialog = new JDialog();
+        dialog.setLocationRelativeTo(null);
+        dialog.setModal(true);
+        dialog.setUndecorated(true);
+        dialog.add(new ScanLoyaltyCardUI());
+        dialog.pack();
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnLoyaltyCardActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -343,23 +323,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLoyaltyCard1ActionPerformed
 
-    private void tblLineItemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblLineItemKeyPressed
-
-        //this is for barcode scanner
-        //go webservice getItemBySKU with the scanned sku via evt.getKeyChar().
-        //if valid SKU, loadTable()
-//        DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
-//
-//        int selectedRowIndex = tblLineItem.getSelectedRow();
-//        int selectedColumnIndex = tblLineItem.getSelectedColumn();
-//        Object selectedObject = (Object) tblLineItem.getModel().getValueAt(selectedRowIndex, selectedColumnIndex);
-//
-//        System.out.println("test " + selectedObject);
-//        if (tblLineItem.getSelectedColumn() != -1) {
-//            JOptionPane.showMessageDialog(rootPane, "Key called ");
-//        }
-    }//GEN-LAST:event_tblLineItemKeyPressed
-
     private void btnUpdateQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateQuantityActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
         if (tblLineItem.getSelectedRow() == -1) {
@@ -374,6 +337,23 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             model.setValueAt("2", tblLineItem.getSelectedRow(), 2);
         }
     }//GEN-LAST:event_btnUpdateQuantityActionPerformed
+
+    private void tblLineItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblLineItemKeyReleased
+        //this is for barcode scanner
+
+        //go webservice getItemBySKU with the scanned sku via evt.getKeyChar().
+        //if valid SKU, loadTable()
+//        DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
+//
+//        int selectedRowIndex = tblLineItem.getSelectedRow();
+//        int selectedColumnIndex = tblLineItem.getSelectedColumn();
+//        Object selectedObject = (Object) tblLineItem.getModel().getValueAt(selectedRowIndex, selectedColumnIndex);
+//
+//        System.out.println("test " + selectedObject);
+//        if (tblLineItem.getSelectedColumn() != -1) {
+//            JOptionPane.showMessageDialog(rootPane, "Key called ");
+//        }
+    }//GEN-LAST:event_tblLineItemKeyReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

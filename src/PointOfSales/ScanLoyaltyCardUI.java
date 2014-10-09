@@ -1,14 +1,12 @@
 package PointOfSales;
 
-import javax.swing.JOptionPane;
+import java.awt.Window;
+import javax.swing.SwingUtilities;
 
-public class PaymentUI extends javax.swing.JPanel {
+public class ScanLoyaltyCardUI extends javax.swing.JPanel {
 
-    private Boolean startCreditCardMSR = false;
-
-    public PaymentUI() {
+    public ScanLoyaltyCardUI() {
         initComponents();
-        this.setSize(640, 480);
     }
 
     @SuppressWarnings("unchecked")
@@ -16,7 +14,7 @@ public class PaymentUI extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        txtCreditNumber = new javax.swing.JTextField();
+        txtMemberEmail = new javax.swing.JTextField();
         btnClear = new javax.swing.JButton();
         btnConfirm = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -24,11 +22,11 @@ public class PaymentUI extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Credit Card Number:");
+        jLabel2.setText("Member Email");
 
-        txtCreditNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtMemberEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCreditNumberKeyReleased(evt);
+                txtMemberEmailKeyReleased(evt);
             }
         });
 
@@ -45,7 +43,7 @@ public class PaymentUI extends javax.swing.JPanel {
         btnConfirm.setBackground(new java.awt.Color(255, 153, 51));
         btnConfirm.setFont(new java.awt.Font("Tahoma", 0, 62)); // NOI18N
         btnConfirm.setForeground(new java.awt.Color(255, 255, 255));
-        btnConfirm.setText("Confirm Purchase");
+        btnConfirm.setText("Confirm");
         btnConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmActionPerformed(evt);
@@ -65,7 +63,7 @@ public class PaymentUI extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtCreditNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMemberEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -78,7 +76,7 @@ public class PaymentUI extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCreditNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMemberEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
                 .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,41 +86,42 @@ public class PaymentUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCreditNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditNumberKeyReleased
-        String kbValue = txtCreditNumber.getText();
-
-        if (!startCreditCardMSR) {
-            if (kbValue != null && kbValue.trim().length() > 0) {
-                kbValue = kbValue.trim();
-
-                if (kbValue.length() >= 2) {
-                    if (kbValue.startsWith("%B")) {
-                        startCreditCardMSR = true;
-                    }
-                }
-            }
-        } else {
-            if (kbValue != null && kbValue.trim().length() > 0) {
-                kbValue = kbValue.trim();
-
-                if (kbValue.length() >= 2) {
-                    if (kbValue.endsWith("?")) {
-                        startCreditCardMSR = false;
-                        JOptionPane.showMessageDialog(null, kbValue, "Detected Credit Card MSR Input", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_txtCreditNumberKeyReleased
+    private void txtMemberEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMemberEmailKeyReleased
+//        String kbValue = txtCreditNumber.getText();
+//
+//        if (!startCreditCardMSR) {
+//            if (kbValue != null && kbValue.trim().length() > 0) {
+//                kbValue = kbValue.trim();
+//
+//                if (kbValue.length() >= 2) {
+//                    if (kbValue.startsWith("%B")) {
+//                        startCreditCardMSR = true;
+//                    }
+//                }
+//            }
+//        } else {
+//            if (kbValue != null && kbValue.trim().length() > 0) {
+//                kbValue = kbValue.trim();
+//
+//                if (kbValue.length() >= 2) {
+//                    if (kbValue.endsWith("?")) {
+//                        startCreditCardMSR = false;
+//                        JOptionPane.showMessageDialog(null, kbValue, "Detected Credit Card MSR Input", JOptionPane.INFORMATION_MESSAGE);
+//                    }
+//                }
+//            }
+//        }
+    }//GEN-LAST:event_txtMemberEmailKeyReleased
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        txtCreditNumber.setText("");
+        txtMemberEmail.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-        //create Sakes Record
-
-
+        POS.memberEmail = txtMemberEmail.getText();
+        txtMemberEmail.setText("");
+        Window w = SwingUtilities.getWindowAncestor(ScanLoyaltyCardUI.this);
+        w.setVisible(false);
     }//GEN-LAST:event_btnConfirmActionPerformed
 
 
@@ -131,6 +130,6 @@ public class PaymentUI extends javax.swing.JPanel {
     private javax.swing.JButton btnConfirm;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtCreditNumber;
+    private javax.swing.JTextField txtMemberEmail;
     // End of variables declaration//GEN-END:variables
 }
