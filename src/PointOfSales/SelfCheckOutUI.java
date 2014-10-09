@@ -2,8 +2,6 @@ package PointOfSales;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -12,7 +10,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
     SelfCheckOutUI selfCheckOutUI;
     private Container cp;
-    private List<ItemEntity> itemEntity = new ArrayList<>();
 
     public SelfCheckOutUI() {
         initComponents();
@@ -306,7 +303,12 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
         JDialog dialog = new JDialog(selfCheckOutUI);
-        //dialog.setLocationRelativeTo(null);
+        dialog.setLocationRelativeTo(null);
+//        final Toolkit toolkit = Toolkit.getDefaultToolkit();
+//        final Dimension screenSize = toolkit.getScreenSize();
+//        final int x = (screenSize.width - dialog.getWidth()) / 2;
+//        final int y = (screenSize.height - dialog.getHeight()) / 2;
+//        dialog.setLocation(x, y);
         dialog.setModal(true);
         dialog.setUndecorated(true);
         dialog.add(new PaymentUI());
