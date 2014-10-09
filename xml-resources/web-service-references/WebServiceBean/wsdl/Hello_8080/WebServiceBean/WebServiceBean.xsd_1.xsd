@@ -97,8 +97,9 @@
 <xs:sequence>
 <xs:element name="country" type="tns:countryEntity" minOccurs="0"/>
 <xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="isDeleted" type="xs:boolean" minOccurs="0"/>
 <xs:element name="item" type="tns:itemEntity" minOccurs="0"/>
-<xs:element name="retailPrice" type="xs:int" minOccurs="0"/>
+<xs:element name="retailPrice" type="xs:double" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -280,9 +281,9 @@
 <xs:complexType name="saleForecastEntity">
 <xs:sequence>
 <xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="month" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="productGroup" type="tns:productGroupEntity" minOccurs="0"/>
 <xs:element name="quantity" type="xs:int" minOccurs="0"/>
+<xs:element name="schedule" type="tns:monthScheduleEntity" minOccurs="0"/>
 <xs:element name="store" type="tns:storeEntity" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
@@ -315,9 +316,9 @@
 <xs:complexType name="salesFigureEntity">
 <xs:sequence>
 <xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="item" type="tns:itemEntity" minOccurs="0"/>
-<xs:element name="month" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="productGroup" type="tns:productGroupEntity" minOccurs="0"/>
 <xs:element name="quantity" type="xs:int" minOccurs="0"/>
+<xs:element name="schedule" type="tns:monthScheduleEntity" minOccurs="0"/>
 <xs:element name="store" type="tns:storeEntity" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>

@@ -1,5 +1,6 @@
 package PointOfSales;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class PaymentUI extends javax.swing.JPanel {
@@ -26,6 +27,7 @@ public class PaymentUI extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Credit Card Number:");
 
+        txtCreditNumber.setEnabled(false);
         txtCreditNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCreditNumberKeyReleased(evt);
@@ -79,7 +81,7 @@ public class PaymentUI extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCreditNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
@@ -121,7 +123,7 @@ public class PaymentUI extends javax.swing.JPanel {
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         //create Sakes Record
-
+       // POS.items = new ArrayList<ItemEntity>();
 
     }//GEN-LAST:event_btnConfirmActionPerformed
 

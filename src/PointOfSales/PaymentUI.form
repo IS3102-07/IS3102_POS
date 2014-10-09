@@ -47,7 +47,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtCreditNumber" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="btnClear" alignment="3" pref="39" max="32767" attributes="0"/>
+                  <Component id="btnClear" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="btnConfirm" min="-2" pref="191" max="-2" attributes="0"/>
@@ -68,6 +68,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCreditNumber">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCreditNumberKeyReleased"/>
       </Events>
