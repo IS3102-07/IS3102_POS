@@ -3,9 +3,9 @@ package PointOfSales;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
 
-public class ScanLoyaltyCardUI extends javax.swing.JPanel {
+public class LoyaltyCardUI extends javax.swing.JPanel {
 
-    public ScanLoyaltyCardUI() {
+    public LoyaltyCardUI() {
         initComponents();
     }
 
@@ -121,7 +121,7 @@ public class ScanLoyaltyCardUI extends javax.swing.JPanel {
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         POS.memberEmail = txtMemberEmail.getText();
         txtMemberEmail.setText("");
-        Window w = SwingUtilities.getWindowAncestor(ScanLoyaltyCardUI.this);
+        Window w = SwingUtilities.getWindowAncestor(LoyaltyCardUI.this);
         w.setVisible(false);
     }//GEN-LAST:event_btnConfirmActionPerformed
 

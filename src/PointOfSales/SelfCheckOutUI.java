@@ -2,16 +2,15 @@ package PointOfSales;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class SelfCheckOutUI extends javax.swing.JFrame {
 
     private Container cp;
+    private List<LineItem> lineItems;
     private LineItem lineItem;
     private ItemEntity item;
     private ItemCountryEntity itemCountry;
@@ -23,11 +22,12 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         cp = getContentPane();
         cp.setBackground(Color.white);
 
-        POS.items = new ArrayList<LineItem>();
-        DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
-        model.addRow(new Object[]{"Table", "20.00", "1"});
-        model.addRow(new Object[]{"Ladder", "20.00", "1"});
-        model.addRow(new Object[]{"Chair", "20.00", "1"});
+        POS.transaction = new Transaction();
+        lineItems = POS.transaction.getLineItems();
+//        DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
+//        model.addRow(new Object[]{"Table", "20.00", "1"});
+//        model.addRow(new Object[]{"Ladder", "20.00", "1"});
+//        model.addRow(new Object[]{"Chair", "20.00", "1"});
     }
 
     @SuppressWarnings("unchecked")
@@ -46,20 +46,19 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         tblLineItem = new javax.swing.JTable();
         btnLoyaltyCard = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
-        btnLoyaltyCard1 = new javax.swing.JButton();
+        btnHelp = new javax.swing.JButton();
         btnUpdateQuantity = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblMessage = new javax.swing.JLabel();
-        btnTest = new javax.swing.JButton();
         btnTest1 = new javax.swing.JButton();
+        btnTestContent = new javax.swing.JButton();
+        btnTest2 = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1280, 960));
 
         pnlHader.setBackground(new java.awt.Color(153, 0, 0));
-        pnlHader.setToolTipText("");
 
         lblHeader1.setFont(new java.awt.Font("Tahoma", 1, 82)); // NOI18N
         lblHeader1.setForeground(new java.awt.Color(255, 255, 255));
@@ -87,6 +86,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         btnPay.setFont(new java.awt.Font("Tahoma", 0, 72)); // NOI18N
         btnPay.setForeground(new java.awt.Color(255, 255, 255));
         btnPay.setText("PAY");
+        btnPay.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPayActionPerformed(evt);
@@ -155,6 +155,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         btnLoyaltyCard.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnLoyaltyCard.setForeground(new java.awt.Color(255, 255, 255));
         btnLoyaltyCard.setText("Loyalty Card");
+        btnLoyaltyCard.setBorder(new javax.swing.border.MatteBorder(null));
         btnLoyaltyCard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoyaltyCardActionPerformed(evt);
@@ -165,30 +166,20 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         btnDelete.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Delete Item");
-        btnDelete.setToolTipText("");
+        btnDelete.setBorder(new javax.swing.border.MatteBorder(null));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
 
-        btnCancel.setBackground(new java.awt.Color(153, 0, 0));
-        btnCancel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancel.setText("Cancel");
-        btnCancel.setToolTipText("");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+        btnHelp.setBackground(new java.awt.Color(204, 204, 204));
+        btnHelp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnHelp.setText("<html><h3 align='center'>Help</h3></htm>");
+        btnHelp.setBorder(new javax.swing.border.MatteBorder(null));
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-
-        btnLoyaltyCard1.setBackground(new java.awt.Color(204, 204, 204));
-        btnLoyaltyCard1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnLoyaltyCard1.setText("<html><h3 align='center'>Help</h3></htm>");
-        btnLoyaltyCard1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoyaltyCard1ActionPerformed(evt);
+                btnHelpActionPerformed(evt);
             }
         });
 
@@ -196,6 +187,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         btnUpdateQuantity.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnUpdateQuantity.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateQuantity.setText("Update Quantity");
+        btnUpdateQuantity.setBorder(new javax.swing.border.MatteBorder(null));
         btnUpdateQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateQuantityActionPerformed(evt);
@@ -208,17 +200,35 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lblMessage.setForeground(new java.awt.Color(153, 0, 0));
         lblMessage.setText(" ");
 
-        btnTest.setText("test add");
-        btnTest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTestActionPerformed(evt);
-            }
-        });
-
-        btnTest1.setText("Test Content");
+        btnTest1.setText("test add F1");
         btnTest1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTest1ActionPerformed(evt);
+            }
+        });
+
+        btnTestContent.setText("Test Content");
+        btnTestContent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestContentActionPerformed(evt);
+            }
+        });
+
+        btnTest2.setText("test add F2");
+        btnTest2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTest2ActionPerformed(evt);
+            }
+        });
+
+        btnCancel.setBackground(new java.awt.Color(153, 0, 0));
+        btnCancel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancel.setText("Cancel");
+        btnCancel.setBorder(new javax.swing.border.MatteBorder(null));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
             }
         });
 
@@ -229,19 +239,22 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addContainerGap(23, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 507, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jLabel3))
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(9, 9, 9))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -249,15 +262,17 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                                 .addComponent(lblMessage))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
-                                .addComponent(btnTest)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnTest1)))
+                                .addComponent(btnTest1)
+                                .addGap(5, 5, 5)
+                                .addComponent(btnTest2)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTestContent)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnLoyaltyCard1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnHelp, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnPay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -265,8 +280,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                                 .addComponent(btnUpdateQuantity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                                .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -289,25 +304,28 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLoyaltyCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))
-                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6))))
+                        .addGap(19, 19, 19)
                         .addComponent(lblMessage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnTest)
-                            .addComponent(btnTest1))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnTest1)
+                            .addComponent(btnTestContent)
+                            .addComponent(btnTest2))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -316,11 +334,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
         JDialog dialog = new JDialog();
         dialog.setLocationRelativeTo(null);
-//        final Toolkit toolkit = Toolkit.getDefaultToolkit();
-//        final Dimension screenSize = toolkit.getScreenSize();
-//        final int x = (screenSize.width - dialog.getWidth()) / 2;
-//        final int y = (screenSize.height - dialog.getHeight()) / 2;
-//        dialog.setLocation(x, y);
         dialog.setModal(true);
         dialog.setUndecorated(true);
         dialog.add(new PaymentUI());
@@ -333,7 +346,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         dialog.setLocationRelativeTo(null);
         dialog.setModal(true);
         dialog.setUndecorated(true);
-        dialog.add(new ScanLoyaltyCardUI());
+        dialog.add(new LoyaltyCardUI());
         dialog.pack();
         dialog.setVisible(true);
     }//GEN-LAST:event_btnLoyaltyCardActionPerformed
@@ -347,22 +360,14 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 lblMessage.setText("You must select a product");
             }
         } else {
+            lineItems.remove(tblLineItem.getSelectedRow());
             model.removeRow(tblLineItem.getSelectedRow());
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
-        int rows = model.getRowCount();
-        for (int i = rows - 1; i >= 0; i--) {
-            model.removeRow(i);
-        }
-        POS.items = new ArrayList<LineItem>();
-    }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void btnLoyaltyCard1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoyaltyCard1ActionPerformed
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoyaltyCard1ActionPerformed
+    }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnUpdateQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateQuantityActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
@@ -373,9 +378,17 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 lblMessage.setText("You must select a product");
             }
         } else {
-            model.setValueAt("Test", tblLineItem.getSelectedRow(), 0);
-            model.setValueAt("99.00", tblLineItem.getSelectedRow(), 1);
-            model.setValueAt("2", tblLineItem.getSelectedRow(), 2);
+
+            JDialog dialog = new JDialog();
+            dialog.setLocationRelativeTo(null);
+            dialog.setModal(true);
+            dialog.setUndecorated(true);
+            dialog.add(new QuantityUI(lineItems.get(tblLineItem.getSelectedRow()).getQuantity()));
+            dialog.pack();
+            dialog.setVisible(true);
+
+            lineItems.get(tblLineItem.getSelectedRow()).setQuantity(POS.tmpQty);
+            model.setValueAt(POS.tmpQty, tblLineItem.getSelectedRow(), 2);
         }
     }//GEN-LAST:event_btnUpdateQuantityActionPerformed
 
@@ -421,42 +434,98 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_tblLineItemKeyReleased
 
-    private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
-        //check arraylist if this lineitem exist, if have increase quantity, else add new lineitem to the list
+    private void btnTest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest1ActionPerformed
+
+        //hard code can delete when done
         String SKU = "F1";
+        String description = "Table";
+        POS.storeID = 1 + "";
 
         boolean isExist = false;
-        for (int i = 0; i < POS.items.size(); i++) {
-            if (POS.items.get(i).getSKU().equals(SKU)) {
-                int quantity = POS.items.get(i).getQuantity();
-                POS.items.get(i).setQuantity(++quantity);
-                isExist = true;
+
+        item = getItemBySKU(SKU);
+        if (item != null) {
+            itemCountry = getItemCountryBySKU(SKU, Long.parseLong(POS.storeID));
+            //   if (itemCountry != null) {
+            //check arraylist if this lineitem exist, if have increase quantity, 
+            for (int i = 0; i < lineItems.size(); i++) {
+                if (lineItems.get(i).getSKU().equals(SKU)) {
+                    int quantity = lineItems.get(i).getQuantity();
+                    lineItems.get(i).setQuantity(++quantity);
+                    isExist = true;
+                }
+            }
+            //else add new lineitem to the list
+            if (!isExist) {
+                lineItem = new LineItem(SKU, description, 20.00, 1);
+                //lineItem = new LineItem(SKU, item.getName(), itemCountry.getRetailPrice(), 1);
+                lineItems.add(lineItem);
+            }
+
+            //done with adding to List, update the table
+            refreshTable();
+            // }
+        }
+    }//GEN-LAST:event_btnTest1ActionPerformed
+
+    private void btnTestContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestContentActionPerformed
+        if (lineItems == null || lineItems.isEmpty()) {
+            System.out.println("LineItems is empty");
+        } else {
+            for (int i = 0; i < lineItems.size(); i++) {
+                System.out.println("--------");
+                System.out.println("Description " + lineItems.get(i).getDescription());
+                System.out.println("SKU " + lineItems.get(i).getSKU());
+                System.out.println("Price " + lineItems.get(i).getPrice());
+                System.out.println("Qty " + lineItems.get(i).getQuantity());
+                System.out.println("--------\n\n");
             }
         }
 
-        if (!isExist) {
-            lineItem = new LineItem(SKU, "Table", 20.00, 1);
-            //lineItem = new LineItem(SKU, item.getName(), itemCountry.getRetailPrice(), 1);
-            POS.items.add(lineItem);
+    }//GEN-LAST:event_btnTestContentActionPerformed
+
+    private void btnTest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest2ActionPerformed
+        //hard code can delete when done
+        String SKU = "F2";
+        String description = "Chair";
+        POS.storeID = 1 + "";
+
+        boolean isExist = false;
+
+        item = getItemBySKU(SKU);
+        if (item != null) {
+            itemCountry = getItemCountryBySKU(SKU, Long.parseLong(POS.storeID));
+            //   if (itemCountry != null) {
+            //check arraylist if this lineitem exist, if have increase quantity, 
+            for (int i = 0; i < lineItems.size(); i++) {
+                if (lineItems.get(i).getSKU().equals(SKU)) {
+                    int quantity = lineItems.get(i).getQuantity();
+                    lineItems.get(i).setQuantity(++quantity);
+                    isExist = true;
+                }
+            }
+            //else add new lineitem to the list
+            if (!isExist) {
+                lineItem = new LineItem(SKU, description, 20.00, 1);
+                //lineItem = new LineItem(SKU, item.getName(), itemCountry.getRetailPrice(), 1);
+                lineItems.add(lineItem);
+            }
+
+            //done with adding to List, update the table
+            refreshTable();
+            // }
         }
+    }//GEN-LAST:event_btnTest2ActionPerformed
 
-        //done with adding to List
-        isExist = false;
-        loadTable();
-    }//GEN-LAST:event_btnTestActionPerformed
-
-    private void btnTest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest1ActionPerformed
-
-        System.out.println("pos item size: " + POS.items.size());
-        for (int i = 0; i < POS.items.size(); i++) {
-            System.out.println("--------");
-            System.out.println("Description " + POS.items.get(i).getDescription());
-            System.out.println("SKU " + POS.items.get(i).getSKU());
-            System.out.println("Price " + POS.items.get(i).getPrice());
-            System.out.println("Qty " + POS.items.get(i).getQuantity());
-            System.out.println("--------\n");
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
+        int rows = model.getRowCount();
+        for (int i = rows - 1; i >= 0; i--) {
+            model.removeRow(i);
         }
-    }//GEN-LAST:event_btnTest1ActionPerformed
+        POS.transaction = new Transaction();
+        lineItems = POS.transaction.getLineItems();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -493,11 +562,12 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnLoyaltyCard;
-    private javax.swing.JButton btnLoyaltyCard1;
     private javax.swing.JButton btnPay;
-    private javax.swing.JButton btnTest;
     private javax.swing.JButton btnTest1;
+    private javax.swing.JButton btnTest2;
+    private javax.swing.JButton btnTestContent;
     private javax.swing.JButton btnUpdateQuantity;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -512,13 +582,16 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private javax.swing.JTable tblLineItem;
     // End of variables declaration//GEN-END:variables
 
-    private void loadTable() {
+    private void refreshTable() {
         try {
-            //new the data model
-            //DefaultTableModel model = new DefaultTableModel();
             DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
-            for (int i = 0; i < POS.items.size(); i++) {
-                // model.addRow(new Object[]{POS.items.get(i).getName(), "20.00", "1"});
+            int rows = model.getRowCount();
+            for (int i = rows - 1; i >= 0; i--) {
+                model.removeRow(i);
+            }
+
+            for (int i = 0; i < lineItems.size(); i++) {
+                model.addRow(new Object[]{lineItems.get(i).getDescription(), lineItems.get(i).getPrice(), lineItems.get(i).getQuantity()});
             }
 
         } catch (Exception ex) {
@@ -527,14 +600,15 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     }
 
     private static ItemEntity getItemBySKU(java.lang.String sku) {
-        PointOfSales.POSWebServiceBean_Service service = new PointOfSales.POSWebServiceBean_Service();
-        PointOfSales.POSWebServiceBean port = service.getPOSWebServiceBeanPort();
+        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
+        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
         return port.getItemBySKU(sku);
     }
 
     private static ItemCountryEntity getItemCountryBySKU(java.lang.String sku, java.lang.Long storeID) {
-        PointOfSales.POSWebServiceBean_Service service = new PointOfSales.POSWebServiceBean_Service();
-        PointOfSales.POSWebServiceBean port = service.getPOSWebServiceBeanPort();
+        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
+        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
         return port.getItemCountryBySKU(sku, storeID);
     }
+
 }

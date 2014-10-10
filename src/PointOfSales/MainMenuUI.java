@@ -69,7 +69,6 @@ public class MainMenuUI extends javax.swing.JFrame {
         setUndecorated(true);
 
         pnlHader.setBackground(new java.awt.Color(153, 0, 0));
-        pnlHader.setToolTipText("");
 
         lblHeader1.setFont(new java.awt.Font("Tahoma", 1, 82)); // NOI18N
         lblHeader1.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,7 +103,6 @@ public class MainMenuUI extends javax.swing.JFrame {
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cashiercheckout.png"))); // NOI18N
-        jLabel2.setToolTipText("");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

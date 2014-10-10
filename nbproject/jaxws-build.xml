@@ -16,39 +16,39 @@
             <classpath path="${libs.jaxws21.classpath}"/>
         </taskdef>
     </target>
-    <target name="wsimport-client-POSWebServiceBean" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/POSWebServiceBean"/>
-        <property name="wsdl-POSWebServiceBean" location="xml-resources/web-service-references/POSWebServiceBean/wsdl/Hello_8080/POSWebServiceBean/POSWebServiceBean.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/POSWebServiceBean" destdir="${build.generated.dir}/jax-wsCache/POSWebServiceBean" wsdl="${wsdl-POSWebServiceBean}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://Hello:8080/POSWebServiceBean/POSWebServiceBean?wsdl" xnocompile="true" xendorsed="true" package="PointOfSales">
-            <depends file="${wsdl-POSWebServiceBean}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/POSWebServiceBean"/>
+    <target name="wsimport-client-HQWebServiceBean" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/HQWebServiceBean"/>
+        <property name="wsdl-HQWebServiceBean" location="xml-resources/web-service-references/HQWebServiceBean/wsdl/Hello_8080/HQWebServiceBean/HQWebServiceBean.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/HQWebServiceBean" destdir="${build.generated.dir}/jax-wsCache/HQWebServiceBean" wsdl="${wsdl-HQWebServiceBean}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://Hello:8080/HQWebServiceBean/HQWebServiceBean?wsdl" xnocompile="true" xendorsed="true" package="PointOfSales">
+            <depends file="${wsdl-HQWebServiceBean}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/HQWebServiceBean"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/POSWebServiceBean">
+            <fileset dir="${build.generated.dir}/jax-wsCache/HQWebServiceBean">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-POSWebServiceBean" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/POSWebServiceBean"/>
+    <target name="wsimport-client-clean-HQWebServiceBean" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/HQWebServiceBean"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/PointOfSales"/>
     </target>
-    <target name="wsimport-client-WebServiceBean" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/WebServiceBean"/>
-        <property name="wsdl-WebServiceBean" location="xml-resources/web-service-references/WebServiceBean/wsdl/Hello_8080/WebServiceBean/WebServiceBean.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WebServiceBean" destdir="${build.generated.dir}/jax-wsCache/WebServiceBean" wsdl="${wsdl-WebServiceBean}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://Hello:8080/WebServiceBean/WebServiceBean?wsdl" xnocompile="true" xendorsed="true" package="PointOfSales">
-            <depends file="${wsdl-WebServiceBean}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/WebServiceBean"/>
+    <target name="wsimport-client-StoreWebServiceBean" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/StoreWebServiceBean"/>
+        <property name="wsdl-StoreWebServiceBean" location="xml-resources/web-service-references/StoreWebServiceBean/wsdl/Hello_8080/StoreWebServiceBean/StoreWebServiceBean.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/StoreWebServiceBean" destdir="${build.generated.dir}/jax-wsCache/StoreWebServiceBean" wsdl="${wsdl-StoreWebServiceBean}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://Hello:8080/StoreWebServiceBean/StoreWebServiceBean?wsdl" xnocompile="true" xendorsed="true" package="PointOfSales">
+            <depends file="${wsdl-StoreWebServiceBean}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/StoreWebServiceBean"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/WebServiceBean">
+            <fileset dir="${build.generated.dir}/jax-wsCache/StoreWebServiceBean">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-WebServiceBean" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/WebServiceBean"/>
+    <target name="wsimport-client-clean-StoreWebServiceBean" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/StoreWebServiceBean"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/PointOfSales"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-POSWebServiceBean, wsimport-client-WebServiceBean"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-HQWebServiceBean, wsimport-client-StoreWebServiceBean"/>
 </project>

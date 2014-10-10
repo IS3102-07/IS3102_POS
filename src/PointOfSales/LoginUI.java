@@ -13,10 +13,6 @@ public class LoginUI extends javax.swing.JFrame {
         cp = getContentPane();
         cp.setBackground(Color.white);
         this.setSize(1280, 960);
-
-        ReadFile readFile = new ReadFile();
-//        System.out.println("111>" + Store.storeID);
-//        System.out.println("222>" + Store.storeName);
     }
 
     @SuppressWarnings("unchecked")
@@ -81,7 +77,6 @@ public class LoginUI extends javax.swing.JFrame {
         setUndecorated(true);
 
         pnlHader.setBackground(new java.awt.Color(153, 0, 0));
-        pnlHader.setToolTipText("");
 
         lblHeader.setFont(new java.awt.Font("Tahoma", 1, 82)); // NOI18N
         lblHeader.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,7 +146,6 @@ public class LoginUI extends javax.swing.JFrame {
         lblPassword.setText("Password");
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtPassword.setToolTipText("");
 
         lblMessage.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblMessage.setForeground(new java.awt.Color(255, 51, 51));
@@ -259,10 +253,14 @@ public class LoginUI extends javax.swing.JFrame {
                 if (posLoginStaff(txtEmail.getText(), passText) == null) {
                     lblMessage.setText("Invalid credential. Please try again.");
                 } else {
+                    ReadFile readFile = new ReadFile();
+                    POS.supervisorContactNo = Integer.parseInt(txtContact.getText());
                     MainMenuUI mainMenuUI = new MainMenuUI();
                     mainMenuUI.setVisible(true);
                     this.setVisible(false);
                 }
+            } catch (NumberFormatException ex) {
+                lblMessage.setText("Invalid Phone number");
             } catch (Exception ex) {
                 lblMessage.setText("Error: Unable to connect to server.");
             }
@@ -326,8 +324,8 @@ public class LoginUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static Long posLoginStaff(java.lang.String email, java.lang.String password) {
-        PointOfSales.WebServiceBean_Service service = new PointOfSales.WebServiceBean_Service();
-        PointOfSales.WebServiceBean port = service.getWebServiceBeanPort();
+        PointOfSales.HQWebServiceBean_Service service = new PointOfSales.HQWebServiceBean_Service();
+        PointOfSales.HQWebServiceBean port = service.getHQWebServiceBeanPort();
         return port.posLoginStaff(email, password);
     }
 

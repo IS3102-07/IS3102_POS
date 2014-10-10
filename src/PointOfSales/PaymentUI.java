@@ -1,6 +1,5 @@
 package PointOfSales;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class PaymentUI extends javax.swing.JPanel {
