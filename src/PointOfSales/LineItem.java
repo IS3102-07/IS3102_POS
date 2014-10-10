@@ -2,10 +2,10 @@ package PointOfSales;
 
 public class LineItem {
 
+    private String SKU;
     private String description;
     private int quantity;
     private Double price;
-    private String SKU;
 
     public LineItem(String SKU, String description, Double price, int quantity) {
         this.SKU = SKU;
