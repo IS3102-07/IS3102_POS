@@ -10,14 +10,14 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class SelfCheckOutUI extends javax.swing.JFrame {
-
+    
     private Container cp;
     private List<LineItem> lineItems;
     private LineItem lineItem;
     private ItemEntity item;
     private ItemCountryEntity itemCountry;
     private String SKUString;
-
+    
     public SelfCheckOutUI() {
         initComponents();
         this.setTitle("Island Furniture Self Checkout");
@@ -28,7 +28,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -36,10 +36,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         pnlHader = new javax.swing.JPanel();
         lblHeader1 = new javax.swing.JLabel();
         btnPay = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblTotalItems = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblTotalPrice = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblLineItem = new javax.swing.JTable();
@@ -53,14 +53,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         btnTestContent = new javax.swing.JButton();
         btnTest2 = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                formKeyReleased(evt);
-            }
-        });
 
         pnlHader.setBackground(new java.awt.Color(153, 0, 0));
 
@@ -97,8 +93,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("N: Items");
+        lblTotalItems.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        lblTotalItems.setText("0");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Total:");
@@ -106,8 +102,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Discount:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel5.setText("0.00");
+        lblTotalPrice.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblTotalPrice.setText("0.00");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("0.00");
@@ -202,7 +198,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         lblMessage.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblMessage.setForeground(new java.awt.Color(153, 0, 0));
-        lblMessage.setText("lable");
+        lblMessage.setText("Label");
 
         btnTest1.setText("test add F1");
         btnTest1.addActionListener(new java.awt.event.ActionListener() {
@@ -236,38 +232,48 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel7.setText(" : items");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btnTest1)
-                        .addGap(5, 5, 5)
-                        .addComponent(btnTest2)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTestContent)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblMessage)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblTotalPrice, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(9, 9, 9)))
-                        .addGap(18, 18, 18)))
+                                .addGap(27, 27, 27))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTotalItems)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnTest1)
+                                .addGap(5, 5, 5)
+                                .addComponent(btnTest2)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTestContent)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblMessage)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -308,23 +314,21 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(lblTotalPrice)
+                            .addComponent(lblTotalItems)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnTest1)
                             .addComponent(btnTestContent)
                             .addComponent(btnTest2)
-                            .addComponent(lblMessage))))
-                .addGap(11, 11, 11))
+                            .addComponent(lblMessage)))))
         );
 
         pack();
@@ -366,6 +370,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             lineItems.remove(tblLineItem.getSelectedRow());
             model.removeRow(tblLineItem.getSelectedRow());
         }
+        refreshTotalQuantity();
         tblLineItem.requestFocus();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -383,27 +388,43 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             dialog.add(new QuantityUI(lineItems.get(tblLineItem.getSelectedRow()).getQuantity()));
             dialog.pack();
             dialog.setVisible(true);
-
+            
             lineItems.get(tblLineItem.getSelectedRow()).setQuantity(POS.tmpQty);
             model.setValueAt(POS.tmpQty, tblLineItem.getSelectedRow(), 2);
         }
+        refreshTotalQuantity();
         tblLineItem.requestFocus();
     }//GEN-LAST:event_btnUpdateQuantityActionPerformed
-
+    
 
     private void tblLineItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblLineItemKeyReleased
-        //this is for barcode scanner
-        //SKUString= evt.getKeyCode()+ "|"+evt.getKeyChar();
-        String currentKeyCode = evt.getKeyCode() + "";
+        //----------barcode scanner--------------
+//        String currentKeyCode = evt.getKeyCode() + "";
+//        System.out.println(currentKeyCode);
+//        if (currentKeyCode.equals("16") || currentKeyCode.equals("17") || currentKeyCode.equals("74")) {
+//            //ignore
+//        } else if (currentKeyCode.equals("10")) {
+//            submitSKU(SKUString);
+//            SKUString = "";
+//        } else {
+//            SKUString += evt.getKeyChar() + "";
+//        }
+        Integer currentKeyCode = evt.getKeyCode();
         System.out.println(currentKeyCode);
-        if (currentKeyCode.equals("16") || currentKeyCode.equals("17") || currentKeyCode.equals("74")) {
-            //ignore
-        } else if (currentKeyCode.equals("10")) {
-            submitSKU(SKUString);
-            SKUString = "";
-        } else {
-            SKUString += evt.getKeyChar() + "";
+        
+        try {
+            if (!((currentKeyCode >= 48) && (currentKeyCode >= 57)) || !((currentKeyCode >= 65) && (currentKeyCode <= 90)) || !((currentKeyCode >= 97) && (currentKeyCode <= 122))) {
+                //ignore
+            } else if (currentKeyCode == 10) {
+                submitSKU(SKUString);
+                SKUString = "";
+            } else {
+                SKUString += evt.getKeyChar() + "";
+            }
+        } catch (Exception ex) {
+            lblMessage.setText("Lost Connection with the server...");
         }
+
     }//GEN-LAST:event_tblLineItemKeyReleased
 
     private void btnTest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest1ActionPerformed
@@ -411,12 +432,12 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         //hard code can delete when done
         String SKU = "F1";
         POS.storeID = 1 + "";
-
+        
         boolean isExist = false;
-
+        
         item = getItemBySKU(SKU);
         if (item != null) {
-
+            
             itemCountry = getItemCountryBySKU(SKU, Long.parseLong(POS.storeID));
             //   if (itemCountry != null) {
             //check arraylist if this lineitem exist, if have increase quantity, 
@@ -436,6 +457,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
             //done with adding to List, update the table
             refreshTable();
+            refreshTotalQuantity();
             // }
         }
     }//GEN-LAST:event_btnTest1ActionPerformed
@@ -460,9 +482,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         //hard code can delete when done
         String SKU = "F2";
         POS.storeID = 1 + "";
-
+        
         boolean isExist = false;
-
+        
         item = getItemBySKU(SKU);
         if (item != null) {
             itemCountry = getItemCountryBySKU(SKU, Long.parseLong(POS.storeID));
@@ -484,6 +506,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
             //done with adding to List, update the table
             refreshTable();
+            refreshTotalQuantity();
             // }
         }
     }//GEN-LAST:event_btnTest2ActionPerformed
@@ -496,22 +519,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         }
         POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
+        refreshTotalQuantity();
         tblLineItem.requestFocus();
     }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
-        Integer currentKeyCode = evt.getKeyCode();
-        System.out.println(currentKeyCode);
-        if (!((currentKeyCode>=48) && (currentKeyCode>=57)) || !((currentKeyCode>=65) && (currentKeyCode<=90)) || !((currentKeyCode>=97) && (currentKeyCode<=122))) {
-            //ignore
-        } else if (currentKeyCode==10) {
-            submitSKU(SKUString);
-            SKUString = "";
-        } else {
-            SKUString += evt.getKeyChar() + "";
-        }
-    }//GEN-LAST:event_formKeyReleased
-
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -555,14 +566,15 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private javax.swing.JButton btnTestContent;
     private javax.swing.JButton btnUpdateQuantity;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblHeader1;
     private javax.swing.JLabel lblMessage;
+    private javax.swing.JLabel lblTotalItems;
+    private javax.swing.JLabel lblTotalPrice;
     private javax.swing.JPanel pnlHader;
     private javax.swing.JTable tblLineItem;
     // End of variables declaration//GEN-END:variables
@@ -574,24 +586,21 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             for (int i = rows - 1; i >= 0; i--) {
                 model.removeRow(i);
             }
-
             for (int i = 0; i < lineItems.size(); i++) {
                 model.addRow(new Object[]{lineItems.get(i).getDescription(), lineItems.get(i).getPrice(), lineItems.get(i).getQuantity()});
             }
-
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "An unknown error has occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
     }
-
+    
     private void submitSKU(String SKU) {
         //this is for barcode scanner
-        POS.storeID = 1 + "";
-
+        POS.storeID = 1 + ""; //need to remove this
         System.out.println("SKU " + SKU);
-
+        
         boolean isExist = false;
-
+        
         item = getItemBySKU(SKU);
         if (item != null) {
             itemCountry = getItemCountryBySKU(SKU, Long.parseLong(POS.storeID));
@@ -607,25 +616,37 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             //else add new lineitem to the list
             if (!isExist) {
                 lineItem = new LineItem(SKU, item.getName(), 20.00, 1);
+                // lineItem = new LineItem(SKU, item.getName(), itemCountry.getRetailPrice(), 1);
                 lineItems.add(lineItem);
             }
 
             //done with adding to List, update the table
             refreshTable();
+            refreshTotalQuantity();
             // }
         }
     }
-
+    
+    private void refreshTotalQuantity() {
+        int totalQuantity = 0;
+        
+        for (int i = 0; i < lineItems.size(); i++) {
+            totalQuantity += lineItems.get(i).getQuantity();
+        }
+        POS.transaction.setTotalItems(totalQuantity);
+        lblTotalItems.setText(totalQuantity + "");
+    }
+    
     private static ItemEntity getItemBySKU(java.lang.String sku) {
         PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
         PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
         return port.getItemBySKU(sku);
     }
-
+    
     private static ItemCountryEntity getItemCountryBySKU(java.lang.String sku, java.lang.Long storeID) {
         PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
         PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
         return port.getItemCountryBySKU(sku, storeID);
     }
-
+    
 }

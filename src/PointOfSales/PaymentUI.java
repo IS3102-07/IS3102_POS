@@ -1,6 +1,8 @@
 package PointOfSales;
 
+import java.awt.Window;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class PaymentUI extends javax.swing.JPanel {
 
@@ -17,7 +19,7 @@ public class PaymentUI extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         txtCreditNumber = new javax.swing.JTextField();
-        btnClear = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         btnConfirm = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -33,13 +35,13 @@ public class PaymentUI extends javax.swing.JPanel {
             }
         });
 
-        btnClear.setBackground(new java.awt.Color(153, 0, 0));
-        btnClear.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnClear.setForeground(new java.awt.Color(255, 255, 255));
-        btnClear.setText("Clear");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setBackground(new java.awt.Color(153, 0, 0));
+        btnBack.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -68,7 +70,7 @@ public class PaymentUI extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(txtCreditNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -80,7 +82,7 @@ public class PaymentUI extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCreditNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
@@ -116,19 +118,21 @@ public class PaymentUI extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtCreditNumberKeyReleased
 
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         txtCreditNumber.setText("");
-    }//GEN-LAST:event_btnClearActionPerformed
+        Window w = SwingUtilities.getWindowAncestor(PaymentUI.this);
+        w.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         //create Sakes Record
-       // POS.items = new ArrayList<ItemEntity>();
+        // POS.items = new ArrayList<ItemEntity>();
 
     }//GEN-LAST:event_btnConfirmActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

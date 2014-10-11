@@ -30,7 +30,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="txtMemberEmail" min="-2" pref="510" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnClear" max="32767" attributes="0"/>
+                          <Component id="btnBack" max="32767" attributes="0"/>
                       </Group>
                       <Component id="btnConfirm" alignment="0" min="-2" pref="596" max="-2" attributes="0"/>
                   </Group>
@@ -47,7 +47,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtMemberEmail" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="btnClear" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="btnBack" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="btnConfirm" min="-2" pref="191" max="-2" attributes="0"/>
@@ -75,7 +75,7 @@
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMemberEmailKeyReleased"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnClear">
+    <Component class="javax.swing.JButton" name="btnBack">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="99" type="rgb"/>
@@ -86,10 +86,10 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Clear"/>
+        <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnConfirm">
