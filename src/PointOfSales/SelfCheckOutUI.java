@@ -374,6 +374,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+        alertSupervisor("POS Counter 1", 90033519);
+        //alertSupervisor(POS.storeName, POS.supervisorContactNo);
         tblLineItem.requestFocus();
     }//GEN-LAST:event_btnHelpActionPerformed
 
@@ -668,6 +670,12 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
         PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
         return port.getItemCountryBySKU(sku, storeID);
+    }
+
+    private static Boolean alertSupervisor(java.lang.String posName, java.lang.Integer supervisorTel) {
+        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
+        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
+        return port.alertSupervisor(posName, supervisorTel);
     }
 
 }
