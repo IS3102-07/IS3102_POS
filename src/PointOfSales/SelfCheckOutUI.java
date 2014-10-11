@@ -6,18 +6,17 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class SelfCheckOutUI extends javax.swing.JFrame {
-    
+
     private Container cp;
     private List<LineItem> lineItems;
     private LineItem lineItem;
     private ItemEntity item;
     private ItemCountryEntity itemCountry;
     private String SKUString;
-    
+
     public SelfCheckOutUI() {
         initComponents();
         this.setTitle("Island Furniture Self Checkout");
@@ -28,7 +27,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -262,7 +261,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblTotalItems)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(0, 0, 0)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
@@ -370,7 +369,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             lineItems.remove(tblLineItem.getSelectedRow());
             model.removeRow(tblLineItem.getSelectedRow());
         }
-        refreshTotalQuantity();
+        refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -388,14 +387,14 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             dialog.add(new QuantityUI(lineItems.get(tblLineItem.getSelectedRow()).getQuantity()));
             dialog.pack();
             dialog.setVisible(true);
-            
+
             lineItems.get(tblLineItem.getSelectedRow()).setQuantity(POS.tmpQty);
             model.setValueAt(POS.tmpQty, tblLineItem.getSelectedRow(), 2);
         }
-        refreshTotalQuantity();
+        refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
     }//GEN-LAST:event_btnUpdateQuantityActionPerformed
-    
+
 
     private void tblLineItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblLineItemKeyReleased
         //----------barcode scanner--------------
@@ -411,18 +410,14 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 //        }
         Integer currentKeyCode = evt.getKeyCode();
         System.out.println(currentKeyCode);
-        
-        try {
-            if (!((currentKeyCode >= 48) && (currentKeyCode >= 57)) || !((currentKeyCode >= 65) && (currentKeyCode <= 90)) || !((currentKeyCode >= 97) && (currentKeyCode <= 122))) {
-                //ignore
-            } else if (currentKeyCode == 10) {
-                submitSKU(SKUString);
-                SKUString = "";
-            } else {
-                SKUString += evt.getKeyChar() + "";
-            }
-        } catch (Exception ex) {
-            lblMessage.setText("Lost Connection with the server...");
+
+        if (!((currentKeyCode >= 48) && (currentKeyCode >= 57)) || !((currentKeyCode >= 65) && (currentKeyCode <= 90)) || !((currentKeyCode >= 97) && (currentKeyCode <= 122))) {
+            //ignore
+        } else if (currentKeyCode == 10) {
+            submitSKU(SKUString);
+            SKUString = "";
+        } else {
+            SKUString += evt.getKeyChar() + "";
         }
 
     }//GEN-LAST:event_tblLineItemKeyReleased
@@ -432,33 +427,38 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         //hard code can delete when done
         String SKU = "F1";
         POS.storeID = 1 + "";
-        
-        boolean isExist = false;
-        
-        item = getItemBySKU(SKU);
-        if (item != null) {
-            
-            itemCountry = getItemCountryBySKU(SKU, Long.parseLong(POS.storeID));
-            //   if (itemCountry != null) {
-            //check arraylist if this lineitem exist, if have increase quantity, 
-            for (int i = 0; i < lineItems.size(); i++) {
-                if (lineItems.get(i).getSKU().equals(SKU)) {
-                    int quantity = lineItems.get(i).getQuantity();
-                    lineItems.get(i).setQuantity(++quantity);
-                    isExist = true;
-                }
-            }
-            //else add new lineitem to the list
-            if (!isExist) {
-                lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
-                //lineItem = new LineItem(SKU, item.getName(), itemCountry.getRetailPrice(), 1);
-                lineItems.add(lineItem);
-            }
 
-            //done with adding to List, update the table
-            refreshTable();
-            refreshTotalQuantity();
-            // }
+        boolean isExist = false;
+        try {
+            item = getItemBySKU(SKU);
+            if (item != null) {
+                itemCountry = getItemCountryBySKU(SKU, Long.parseLong(POS.storeID));
+                //   if (itemCountry != null) {
+                //check arraylist if this lineitem exist, if have increase quantity, 
+                for (int i = 0; i < lineItems.size(); i++) {
+                    if (lineItems.get(i).getSKU().equals(SKU)) {
+                        int quantity = lineItems.get(i).getQuantity();
+                        lineItems.get(i).setQuantity(++quantity);
+
+                        double price = quantity * itemCountry.getRetailPrice();
+                        lineItems.get(i).setPrice(price);
+                        isExist = true;
+                    }
+                }
+                //else add new lineitem to the list
+                if (!isExist) {
+                    lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
+                    //lineItem = new LineItem(SKU, item.getName(), itemCountry.getRetailPrice(), 1);
+                    lineItems.add(lineItem);
+                }
+
+                //done with adding to List, update the table
+                refreshTable();
+                refreshTotalQuantityAndPrice();
+                // }
+            }
+        } catch (Exception ex) {
+            lblMessage.setText("Test 1: Lost Connection with the server...");
         }
     }//GEN-LAST:event_btnTest1ActionPerformed
 
@@ -482,32 +482,40 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         //hard code can delete when done
         String SKU = "F2";
         POS.storeID = 1 + "";
-        
-        boolean isExist = false;
-        
-        item = getItemBySKU(SKU);
-        if (item != null) {
-            itemCountry = getItemCountryBySKU(SKU, Long.parseLong(POS.storeID));
-            //   if (itemCountry != null) {
-            //check arraylist if this lineitem exist, if have increase quantity, 
-            for (int i = 0; i < lineItems.size(); i++) {
-                if (lineItems.get(i).getSKU().equals(SKU)) {
-                    int quantity = lineItems.get(i).getQuantity();
-                    lineItems.get(i).setQuantity(++quantity);
-                    isExist = true;
-                }
-            }
-            //else add new lineitem to the list
-            if (!isExist) {
-                lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
-                //lineItem = new LineItem(SKU, item.getName(), itemCountry.getRetailPrice(), 1);
-                lineItems.add(lineItem);
-            }
 
-            //done with adding to List, update the table
-            refreshTable();
-            refreshTotalQuantity();
-            // }
+        boolean isExist = false;
+        try {
+            item = getItemBySKU(SKU);
+            if (item != null) {
+                itemCountry = getItemCountryBySKU(SKU, Long.parseLong(POS.storeID));
+                //   if (itemCountry != null) {
+                //check arraylist if this lineitem exist, if have increase quantity, 
+                for (int i = 0; i < lineItems.size(); i++) {
+                    if (lineItems.get(i).getSKU().equals(SKU)) {
+                        int quantity = lineItems.get(i).getQuantity();
+                        lineItems.get(i).setQuantity(++quantity);
+
+                        System.out.println("getRetailPrice " + itemCountry.getRetailPrice());
+                        double price = quantity * itemCountry.getRetailPrice();
+                        System.out.println("Price " + price);
+                        lineItems.get(i).setPrice(price);
+                        isExist = true;
+                    }
+                }
+                //else add new lineitem to the list
+                if (!isExist) {
+                    lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
+                    //lineItem = new LineItem(SKU, item.getName(), itemCountry.getRetailPrice(), 1);
+                    lineItems.add(lineItem);
+                }
+
+                //done with adding to List, update the table
+                refreshTable();
+                refreshTotalQuantityAndPrice();
+                // }
+            }
+        } catch (Exception ex) {
+            lblMessage.setText("Test 2 : Lost Connection with the server...");
         }
     }//GEN-LAST:event_btnTest2ActionPerformed
 
@@ -519,10 +527,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         }
         POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
-        refreshTotalQuantity();
+        refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
     }//GEN-LAST:event_btnCancelActionPerformed
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -579,6 +587,48 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private javax.swing.JTable tblLineItem;
     // End of variables declaration//GEN-END:variables
 
+    private void submitSKU(String SKU) {
+        //this is for barcode scanner
+        POS.storeID = 1 + ""; //need to remove this
+        System.out.println("SKU " + SKU);
+
+        boolean isExist = false;
+        try {
+            item = getItemBySKU(SKU);
+            if (item != null) {
+                itemCountry = getItemCountryBySKU(SKU, Long.parseLong(POS.storeID));
+                //   if (itemCountry != null) {
+                //check arraylist if this lineitem exist, if have increase quantity, 
+                for (int i = 0; i < lineItems.size(); i++) {
+                    if (lineItems.get(i).getSKU().equals(SKU)) {
+                        int quantity = lineItems.get(i).getQuantity();
+                        lineItems.get(i).setQuantity(++quantity);
+
+                        System.out.println("getRetailPrice " + itemCountry.getRetailPrice());
+                        double price = quantity * itemCountry.getRetailPrice();
+                        System.out.println("Price " + price);
+                        lineItems.get(i).setPrice(price);
+                        isExist = true;
+                    }
+                }
+                //else add new lineitem to the list
+                if (!isExist) {
+                    lineItem = new LineItem(SKU, item.getName(), 20.00, 1);
+                    // lineItem = new LineItem(SKU, item.getName(), itemCountry.getRetailPrice(), 1);
+                    lineItems.add(lineItem);
+                }
+
+                //done with adding to List, update the table
+                refreshTable();
+                refreshTotalQuantityAndPrice();
+                // }
+            }
+        } catch (Exception ex) {
+            lblMessage.setText("Lost Connection with the server...");
+        }
+
+    }
+
     private void refreshTable() {
         try {
             DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
@@ -593,60 +643,31 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }
-    
-    private void submitSKU(String SKU) {
-        //this is for barcode scanner
-        POS.storeID = 1 + ""; //need to remove this
-        System.out.println("SKU " + SKU);
-        
-        boolean isExist = false;
-        
-        item = getItemBySKU(SKU);
-        if (item != null) {
-            itemCountry = getItemCountryBySKU(SKU, Long.parseLong(POS.storeID));
-            //   if (itemCountry != null) {
-            //check arraylist if this lineitem exist, if have increase quantity, 
-            for (int i = 0; i < lineItems.size(); i++) {
-                if (lineItems.get(i).getSKU().equals(SKU)) {
-                    int quantity = lineItems.get(i).getQuantity();
-                    lineItems.get(i).setQuantity(++quantity);
-                    isExist = true;
-                }
-            }
-            //else add new lineitem to the list
-            if (!isExist) {
-                lineItem = new LineItem(SKU, item.getName(), 20.00, 1);
-                // lineItem = new LineItem(SKU, item.getName(), itemCountry.getRetailPrice(), 1);
-                lineItems.add(lineItem);
-            }
 
-            //done with adding to List, update the table
-            refreshTable();
-            refreshTotalQuantity();
-            // }
-        }
-    }
-    
-    private void refreshTotalQuantity() {
+    private void refreshTotalQuantityAndPrice() {
         int totalQuantity = 0;
-        
+        double totalPrice = 0;
+
         for (int i = 0; i < lineItems.size(); i++) {
             totalQuantity += lineItems.get(i).getQuantity();
+            totalPrice += lineItems.get(i).getPrice();
         }
         POS.transaction.setTotalItems(totalQuantity);
+        POS.transaction.setTotalPrice(totalPrice);
         lblTotalItems.setText(totalQuantity + "");
+        lblTotalPrice.setText(totalPrice + "");
     }
-    
+
     private static ItemEntity getItemBySKU(java.lang.String sku) {
         PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
         PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
         return port.getItemBySKU(sku);
     }
-    
+
     private static ItemCountryEntity getItemCountryBySKU(java.lang.String sku, java.lang.Long storeID) {
         PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
         PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
         return port.getItemCountryBySKU(sku, storeID);
     }
-    
+
 }
