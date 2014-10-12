@@ -11,6 +11,7 @@ public class PaymentUI extends javax.swing.JPanel {
     public PaymentUI() {
         initComponents();
         this.setSize(640, 480);
+        txtCreditNumber.requestFocus();;
     }
 
     @SuppressWarnings("unchecked")

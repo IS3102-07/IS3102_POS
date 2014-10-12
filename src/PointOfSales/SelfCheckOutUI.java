@@ -37,9 +37,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         btnPay = new javax.swing.JButton();
         lblTotalItems = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         lblTotalPrice = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblLineItem = new javax.swing.JTable();
         btnLoyaltyCard = new javax.swing.JButton();
@@ -98,14 +96,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Total:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel4.setText("Discount:");
-
         lblTotalPrice.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblTotalPrice.setText("0.00");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel6.setText("0.00");
 
         tblLineItem.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tblLineItem.setModel(new javax.swing.table.DefaultTableModel(
@@ -239,31 +231,14 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTotalPrice, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(27, 27, 27))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTotalItems)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnTest1)
                                 .addGap(5, 5, 5)
@@ -271,8 +246,16 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnTestContent)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblMessage)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(lblMessage))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTotalItems)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel7)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblTotalPrice)
+                        .addGap(30, 30, 30)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -318,11 +301,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                             .addComponent(lblTotalPrice)
                             .addComponent(lblTotalItems)
                             .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))
-                        .addGap(35, 35, 35)
+                        .addGap(71, 71, 71)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnTest1)
                             .addComponent(btnTestContent)
@@ -393,6 +372,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             lineItems.get(tblLineItem.getSelectedRow()).setQuantity(POS.tmpQty);
             model.setValueAt(POS.tmpQty, tblLineItem.getSelectedRow(), 2);
         }
+
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
     }//GEN-LAST:event_btnUpdateQuantityActionPerformed
@@ -441,9 +421,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                     if (lineItems.get(i).getSKU().equals(SKU)) {
                         int quantity = lineItems.get(i).getQuantity();
                         lineItems.get(i).setQuantity(++quantity);
-
-                        double price = quantity * itemCountry.getRetailPrice();
-                        lineItems.get(i).setPrice(price);
                         isExist = true;
                     }
                 }
@@ -496,11 +473,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                     if (lineItems.get(i).getSKU().equals(SKU)) {
                         int quantity = lineItems.get(i).getQuantity();
                         lineItems.get(i).setQuantity(++quantity);
-
-                        System.out.println("getRetailPrice " + itemCountry.getRetailPrice());
-                        double price = quantity * itemCountry.getRetailPrice();
-                        System.out.println("Price " + price);
-                        lineItems.get(i).setPrice(price);
                         isExist = true;
                     }
                 }
@@ -577,8 +549,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdateQuantity;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblHeader1;
@@ -605,17 +575,12 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                     if (lineItems.get(i).getSKU().equals(SKU)) {
                         int quantity = lineItems.get(i).getQuantity();
                         lineItems.get(i).setQuantity(++quantity);
-
-                        System.out.println("getRetailPrice " + itemCountry.getRetailPrice());
-                        double price = quantity * itemCountry.getRetailPrice();
-                        System.out.println("Price " + price);
-                        lineItems.get(i).setPrice(price);
                         isExist = true;
                     }
                 }
                 //else add new lineitem to the list
                 if (!isExist) {
-                    lineItem = new LineItem(SKU, item.getName(), 20.00, 1);
+                    lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
                     // lineItem = new LineItem(SKU, item.getName(), itemCountry.getRetailPrice(), 1);
                     lineItems.add(lineItem);
                 }
@@ -628,7 +593,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         } catch (Exception ex) {
             lblMessage.setText("Lost Connection with the server...");
         }
-
     }
 
     private void refreshTable() {
@@ -652,8 +616,14 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         for (int i = 0; i < lineItems.size(); i++) {
             totalQuantity += lineItems.get(i).getQuantity();
-            totalPrice += lineItems.get(i).getPrice();
+            
+            
+            totalPrice += lineItems.get(i).getQuantity() * lineItems.get(i).getPrice();
+
+            //System.out.println("totalPrice: " + totalPrice + " += " + totalQuantity + " * " + lineItems.get(i).getPrice() + "\n");
+
         }
+
         POS.transaction.setTotalItems(totalQuantity);
         POS.transaction.setTotalPrice(totalPrice);
         lblTotalItems.setText(totalQuantity + "");

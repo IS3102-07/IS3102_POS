@@ -22,14 +22,13 @@ public class TestUI extends javax.swing.JFrame {
     private final String partnerPoleDisplayCOMPort = "COM4";
     private OutputStream partnerPoleDisplayOutputStream;
     SerialPort serialPort;
-
-    private Container cp2;
+    private String creditCardNo;
 
     public TestUI() {
         initComponents();
-        cp2 = getContentPane();
-        cp2.setBackground(Color.white);
         this.setSize(1280, 960);
+        creditCardNo = "%B5264710306692512^ /NEO WEI                 ^16092210000000000000  449      ?";
+        lbltest.setText(creditCardNo);
     }
 
     @SuppressWarnings("unchecked")
@@ -46,6 +45,8 @@ public class TestUI extends javax.swing.JFrame {
         txtReceiptMessage = new javax.swing.JTextField();
         btnClear = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnTestCard = new javax.swing.JButton();
+        lbltest = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -133,30 +134,49 @@ public class TestUI extends javax.swing.JFrame {
             }
         });
 
+        btnTestCard.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnTestCard.setText("Test Credit Card Saving");
+        btnTestCard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestCardActionPerformed(evt);
+            }
+        });
+
+        lbltest.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lbltest.setText("Test");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnTestPole, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnTestPrinter, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(101, 101, 101)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtReceiptMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
-                            .addComponent(txtSwipeInput))
-                        .addGap(68, 68, 68)
-                        .addComponent(btnClear)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(101, 101, 101)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtReceiptMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                                    .addComponent(txtSwipeInput))
+                                .addGap(68, 68, 68)
+                                .addComponent(btnClear))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnTestPole, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(40, 40, 40)
+                                    .addComponent(btnTestPrinter, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(302, 302, 302)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnTestCard, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbltest))))
                 .addContainerGap(287, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -176,9 +196,14 @@ public class TestUI extends javax.swing.JFrame {
                 .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnTestPrinter, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                    .addComponent(btnTestPole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 408, Short.MAX_VALUE))
+                    .addComponent(btnTestPole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
+                .addComponent(lbltest)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTestCard, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -277,6 +302,38 @@ public class TestUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSwipeInputActionPerformed
 
+    private void btnTestCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestCardActionPerformed
+        Boolean startCreditCardMSR1 = false;
+        String kbValue = lbltest.getText();
+
+        System.out.println("startCreditCardMSR1: " + startCreditCardMSR1);
+        System.out.println("kbValue: " + kbValue);
+
+        if (!startCreditCardMSR1) {
+            if (kbValue != null && kbValue.trim().length() > 0) {
+                kbValue = kbValue.trim();
+
+                if (kbValue.length() >= 2) {
+                    if (kbValue.startsWith("%B")) {
+                        startCreditCardMSR1 = true;
+                    }
+                }
+            }
+        }
+        if (startCreditCardMSR1) {
+            if (kbValue != null && kbValue.trim().length() > 0) {
+                kbValue = kbValue.trim();
+
+                if (kbValue.length() >= 2) {
+                    if (kbValue.endsWith("?")) {
+                        startCreditCardMSR1 = false;
+                        JOptionPane.showMessageDialog(null, kbValue, "Detected Credit Card MSR Input", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_btnTestCardActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -311,6 +368,7 @@ public class TestUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnTestCard;
     private javax.swing.JButton btnTestPole;
     private javax.swing.JButton btnTestPrinter;
     private javax.swing.JButton jButton1;
@@ -318,6 +376,7 @@ public class TestUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbltest;
     private javax.swing.JTextField txtReceiptMessage;
     private javax.swing.JTextField txtSwipeInput;
     // End of variables declaration//GEN-END:variables
