@@ -255,6 +255,8 @@ public class LoginUI extends javax.swing.JFrame {
                 } else {
                     ReadFile readFile = new ReadFile();
                     POS.supervisorContactNo = Integer.parseInt(txtContact.getText());
+                    POS.staffEmail = txtEmail.getText();
+                    POS.staffPassword = txtPassword.getPassword();
                     MainMenuUI mainMenuUI = new MainMenuUI();
                     mainMenuUI.setVisible(true);
                     this.setVisible(false);

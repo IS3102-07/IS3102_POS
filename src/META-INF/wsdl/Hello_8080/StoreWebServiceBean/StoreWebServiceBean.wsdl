@@ -4,30 +4,6 @@
 <xsd:import namespace="http://WebServices/" schemaLocation="http://Hello:8080/StoreWebServiceBean/StoreWebServiceBean?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="getItemBySKU">
-<part name="parameters" element="tns:getItemBySKU"/>
-</message>
-<message name="getItemBySKUResponse">
-<part name="parameters" element="tns:getItemBySKUResponse"/>
-</message>
-<message name="getItemCountryBySKU">
-<part name="parameters" element="tns:getItemCountryBySKU"/>
-</message>
-<message name="getItemCountryBySKUResponse">
-<part name="parameters" element="tns:getItemCountryBySKUResponse"/>
-</message>
-<message name="createSalesRecord">
-<part name="parameters" element="tns:createSalesRecord"/>
-</message>
-<message name="createSalesRecordResponse">
-<part name="parameters" element="tns:createSalesRecordResponse"/>
-</message>
-<message name="getMemberLoyaltyPointsAmount">
-<part name="parameters" element="tns:getMemberLoyaltyPointsAmount"/>
-</message>
-<message name="getMemberLoyaltyPointsAmountResponse">
-<part name="parameters" element="tns:getMemberLoyaltyPointsAmountResponse"/>
-</message>
 <message name="callSupervisor">
 <part name="parameters" element="tns:callSupervisor"/>
 </message>
@@ -40,23 +16,25 @@
 <message name="alertSupervisorResponse">
 <part name="parameters" element="tns:alertSupervisorResponse"/>
 </message>
+<message name="getItemBySKU">
+<part name="parameters" element="tns:getItemBySKU"/>
+</message>
+<message name="getItemBySKUResponse">
+<part name="parameters" element="tns:getItemBySKUResponse"/>
+</message>
+<message name="submitSalesRecord">
+<part name="parameters" element="tns:submitSalesRecord"/>
+</message>
+<message name="submitSalesRecordResponse">
+<part name="parameters" element="tns:submitSalesRecordResponse"/>
+</message>
+<message name="getItemCountryPriceBySKU">
+<part name="parameters" element="tns:getItemCountryPriceBySKU"/>
+</message>
+<message name="getItemCountryPriceBySKUResponse">
+<part name="parameters" element="tns:getItemCountryPriceBySKUResponse"/>
+</message>
 <portType name="StoreWebServiceBean">
-<operation name="getItemBySKU">
-<input wsam:Action="http://WebServices/StoreWebServiceBean/getItemBySKURequest" message="tns:getItemBySKU"/>
-<output wsam:Action="http://WebServices/StoreWebServiceBean/getItemBySKUResponse" message="tns:getItemBySKUResponse"/>
-</operation>
-<operation name="getItemCountryBySKU">
-<input wsam:Action="http://WebServices/StoreWebServiceBean/getItemCountryBySKURequest" message="tns:getItemCountryBySKU"/>
-<output wsam:Action="http://WebServices/StoreWebServiceBean/getItemCountryBySKUResponse" message="tns:getItemCountryBySKUResponse"/>
-</operation>
-<operation name="createSalesRecord">
-<input wsam:Action="http://WebServices/StoreWebServiceBean/createSalesRecordRequest" message="tns:createSalesRecord"/>
-<output wsam:Action="http://WebServices/StoreWebServiceBean/createSalesRecordResponse" message="tns:createSalesRecordResponse"/>
-</operation>
-<operation name="getMemberLoyaltyPointsAmount">
-<input wsam:Action="http://WebServices/StoreWebServiceBean/getMemberLoyaltyPointsAmountRequest" message="tns:getMemberLoyaltyPointsAmount"/>
-<output wsam:Action="http://WebServices/StoreWebServiceBean/getMemberLoyaltyPointsAmountResponse" message="tns:getMemberLoyaltyPointsAmountResponse"/>
-</operation>
 <operation name="callSupervisor">
 <input wsam:Action="http://WebServices/StoreWebServiceBean/callSupervisorRequest" message="tns:callSupervisor"/>
 <output wsam:Action="http://WebServices/StoreWebServiceBean/callSupervisorResponse" message="tns:callSupervisorResponse"/>
@@ -65,45 +43,21 @@
 <input wsam:Action="http://WebServices/StoreWebServiceBean/alertSupervisorRequest" message="tns:alertSupervisor"/>
 <output wsam:Action="http://WebServices/StoreWebServiceBean/alertSupervisorResponse" message="tns:alertSupervisorResponse"/>
 </operation>
+<operation name="getItemBySKU">
+<input wsam:Action="http://WebServices/StoreWebServiceBean/getItemBySKURequest" message="tns:getItemBySKU"/>
+<output wsam:Action="http://WebServices/StoreWebServiceBean/getItemBySKUResponse" message="tns:getItemBySKUResponse"/>
+</operation>
+<operation name="submitSalesRecord">
+<input wsam:Action="http://WebServices/StoreWebServiceBean/submitSalesRecordRequest" message="tns:submitSalesRecord"/>
+<output wsam:Action="http://WebServices/StoreWebServiceBean/submitSalesRecordResponse" message="tns:submitSalesRecordResponse"/>
+</operation>
+<operation name="getItemCountryPriceBySKU">
+<input wsam:Action="http://WebServices/StoreWebServiceBean/getItemCountryPriceBySKURequest" message="tns:getItemCountryPriceBySKU"/>
+<output wsam:Action="http://WebServices/StoreWebServiceBean/getItemCountryPriceBySKUResponse" message="tns:getItemCountryPriceBySKUResponse"/>
+</operation>
 </portType>
 <binding name="StoreWebServiceBeanPortBinding" type="tns:StoreWebServiceBean">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="getItemBySKU">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getItemCountryBySKU">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="createSalesRecord">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getMemberLoyaltyPointsAmount">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="callSupervisor">
 <soap:operation soapAction=""/>
 <input>
@@ -114,6 +68,33 @@
 </output>
 </operation>
 <operation name="alertSupervisor">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getItemBySKU">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="submitSalesRecord">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getItemCountryPriceBySKU">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

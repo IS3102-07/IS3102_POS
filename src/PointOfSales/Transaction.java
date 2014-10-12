@@ -7,9 +7,13 @@ public class Transaction {
 
     private List<LineItem> lineItems;
     private double totalPrice;
-    private double discount;
+    private int discountRate;
+    private double discountPrice;
+    private double netPrice;
+    private int pointsToDeduct;
     private int totalItems;
     private String memberEmail;
+    private int memberPoints;
 
     public Transaction() {
         lineItems = new ArrayList<LineItem>();
@@ -21,14 +25,6 @@ public class Transaction {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(double discount) {
-        this.discount = discount;
     }
 
     public int getTotalItems() {
@@ -53,6 +49,46 @@ public class Transaction {
 
     public void setLineItems(List<LineItem> lineItems) {
         this.lineItems = lineItems;
+    }
+
+    public double getNetPrice() {
+        return netPrice;
+    }
+
+    public void setNetPrice(double netPrice) {
+        this.netPrice = netPrice;
+    }
+
+    public int getPointsToDeduct() {
+        return pointsToDeduct;
+    }
+
+    public void setPointsToDeduct(int pointsToDeduct) {
+        this.pointsToDeduct = pointsToDeduct;
+    }
+
+    public int getMemberPoints() {
+        return memberPoints;
+    }
+
+    public void setMemberPoints(int memberPoints) {
+        this.memberPoints = memberPoints;
+    }
+
+    public int getDiscountRate() {
+        return discountRate;
+    }
+
+    public void setDiscountRate(int discountRate) {
+        this.discountRate = discountRate;
+    }
+
+    public double getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(double discountPrice) {
+        this.discountPrice = discountPrice;
     }
 
 }
