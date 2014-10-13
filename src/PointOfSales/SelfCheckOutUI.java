@@ -431,24 +431,24 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         //----------barcode scanner--------------
         String currentKeyCode = evt.getKeyCode() + "";
         System.out.println(currentKeyCode);
-        if (currentKeyCode.equals("16") || currentKeyCode.equals("17") || currentKeyCode.equals("74")) {
-            //ignore
-        } else if (currentKeyCode.equals("10")) {
-            submitSKU(SKUString);
-            SKUString = "";
-        } else {
-            SKUString += evt.getKeyChar() + "";
-        }
-//=======
-//        char c = evt.getKeyChar();
-//        if (Character.isLetterOrDigit(c)) {
-//            SKUString += evt.getKeyChar() + "";
-//        } else if (evt.getKeyCode() == 10) {
+//        if (currentKeyCode.equals("16") || currentKeyCode.equals("17") || currentKeyCode.equals("74")) {
+//            //ignore
+//        } else if (currentKeyCode.equals("10")) {
 //            submitSKU(SKUString);
 //            SKUString = "";
 //        } else {
-//            //ignore
+//            SKUString += evt.getKeyChar() + "";
 //        }
+//=======
+        char c = evt.getKeyChar();
+        if (Character.isLetterOrDigit(c)) {
+            SKUString += evt.getKeyChar() + "";
+        } else if (evt.getKeyCode() == 10) {
+            submitSKU(SKUString);
+            SKUString = "";
+        } else {
+            //ignore
+        }
 
 //========
 //        Integer currentKeyCode = evt.getKeyCode();
