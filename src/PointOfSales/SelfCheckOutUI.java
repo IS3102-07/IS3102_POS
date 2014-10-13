@@ -13,8 +13,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private Container cp;
     private List<LineItem> lineItems;
     private LineItem lineItem;
-    private ItemEntity item;
     private String SKUString;
+    private ItemHelper itemHelper;
 
     public SelfCheckOutUI() {
         initComponents();
@@ -472,11 +472,11 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         boolean isExist = false;
         try {
-            item = getItemBySKU(SKU);
-            if (item != null) {
+            itemHelper = getItemBySKU(SKU);
+            if (itemHelper != null) {
 
                 System.out.println("POS.storeID " + POS.storeID);
-                //itemCountryPrice = getItemCountryPriceBySKU(SKU, Long.parseLong(POS.storeID));
+                itemCountryPrice = getItemCountryPriceBySKU(SKU, Long.parseLong(POS.storeID));
                 //check arraylist if this lineitem exist, if have increase quantity, 
                 for (int i = 0; i < lineItems.size(); i++) {
                     if (lineItems.get(i).getSKU().equals(SKU)) {
@@ -487,8 +487,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 }
                 //else add new lineitem to the list
                 if (!isExist) {
-                    lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
-                    //lineItem = new LineItem(SKU, item.getName(), itemCountryPrice, 1);
+                    //lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
+                    lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
 
@@ -524,8 +524,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         boolean isExist = false;
         try {
-            item = getItemBySKU(SKU);
-            if (item != null) {
+            itemHelper = getItemBySKU(SKU);
+            if (itemHelper != null) {
                 itemCountryPrice = getItemCountryPriceBySKU(SKU, Long.parseLong(POS.storeID));
                 //check arraylist if this lineitem exist, if have increase quantity, 
                 for (int i = 0; i < lineItems.size(); i++) {
@@ -538,7 +538,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 //else add new lineitem to the list
                 if (!isExist) {
                     //lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
-                    lineItem = new LineItem(SKU, item.getName(), itemCountryPrice, 1);
+                    lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
 
@@ -627,10 +627,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         double itemCountryPrice;
 
         try {
-            item = getItemBySKU(SKU);
-            if (item != null) {
+            itemHelper = getItemBySKU(SKU);
+            if (itemHelper != null) {
                 itemCountryPrice = getItemCountryPriceBySKU(SKU, Long.parseLong(POS.storeID));
-                //   if (itemCountry != null) {
                 //check arraylist if this lineitem exist, if have increase quantity, 
                 for (int i = 0; i < lineItems.size(); i++) {
                     if (lineItems.get(i).getSKU().equals(SKU)) {
@@ -642,14 +641,14 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 //else add new lineitem to the list
                 if (!isExist) {
                     //lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
-                    lineItem = new LineItem(SKU, item.getName(), itemCountryPrice, 1);
+                    lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
 
                 //done with adding to List, update the table
                 refreshTable();
                 refreshTotalQuantityAndPrice();
-                // }
+
             }
         } catch (Exception ex) {
             lblMessage.setText("Item not available for checkout, contact customer service for assistance.");
@@ -701,7 +700,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             lblDiscount.setText("0.00");
         }
 
-         //total price label
+        //total price label
         if (totalPrice > 0) {
             netPrice = totalPrice - discounPrice;
             POS.transaction.setNetPrice(netPrice);
@@ -710,12 +709,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             lblTotalPrice.setText(totalPrice + "");
         }
 
-    }
-
-    private static ItemEntity getItemBySKU(java.lang.String sku) {
-        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
-        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
-        return port.getItemBySKU(sku);
     }
 
     private static Boolean alertSupervisor(java.lang.String posName, java.lang.Integer supervisorTel) {
@@ -728,6 +721,12 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
         PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
         return port.getItemCountryPriceBySKU(sku, storeID);
+    }
+
+    private static ItemHelper getItemBySKU(java.lang.String sku) {
+        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
+        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
+        return port.getItemBySKU(sku);
     }
 
 }
