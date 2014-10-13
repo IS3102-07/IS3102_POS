@@ -1,4 +1,4 @@
-package CardTest;
+package PointOfSales;
 
 import java.io.*;
 import java.util.*;
@@ -43,6 +43,7 @@ public class CardTest {
         ResponseAPDU response = channel.transmit(command);
 
         byte[] byteArray = response.getBytes();
+        
         System.out.println( bytesToHex( byteArray ) );
         Thread.sleep(1000);
       } catch (CardException e) {
