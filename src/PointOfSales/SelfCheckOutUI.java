@@ -471,6 +471,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 //done with adding to List, update the table
                 refreshTable();
                 refreshTotalQuantityAndPrice();
+                tblLineItem.requestFocus();
             }
         } catch (Exception ex) {
             lblMessage.setText("Test 1:  Item not available for checkout, contact customer service for assistance.");
@@ -521,6 +522,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 //done with adding to List, update the table
                 refreshTable();
                 refreshTotalQuantityAndPrice();
+                tblLineItem.requestFocus();
             }
         } catch (Exception ex) {
             lblMessage.setText("Test 2:  Item not available for checkout, contact customer service for assistance.");
