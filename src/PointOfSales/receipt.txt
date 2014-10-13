@@ -1,0 +1,70 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:0px 5px;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-u8t5{font-family:Tahoma, Geneva, sans-serif !important;;text-align:center}
+.tg .tg-0ord{text-align:right}
+.tg .tg-s6z2{text-align:center}
+.tg .tg-vyw9{font-family:"Courier New", Courier, monospace !important;}
+</style>
+<table class="tg" border="0">
+  <tr>
+    <td class="tg-s6z2" colspan="2">Logo</td>
+  </tr>
+  <tr>
+    <td class="tg-vyw9" colspan="2">-----------------------------------</td>
+  </tr>
+  <tr>
+    <td class="tg-u8t5" colspan="2">Island Furniture<br>317 Alexandra Rd<br>Singapore 159965</td>
+  </tr>
+  <tr>
+    <td class="tg-vyw9" colspan="2">-----------------------------------</td>
+  </tr>
+  <tr>
+    <td class="tg-s6z2" colspan="2">Member Card No SG30072239<br>Card Expiry 31/01/16</td>
+  </tr>
+  <tr>
+    <td class="tg-vyw9" colspan="2">-----------------------------------</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Description</td>
+    <td class="tg-0ord">Amount</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Payment Voc. NCR</td>
+    <td class="tg-0ord">2.95</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">  Members Discounts</td>
+    <td class="tg-0ord">-0.30</td>
+  </tr>
+  <tr>
+    <td class="tg-vyw9" colspan="2">-----------------------------------</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Total S$</td>
+    <td class="tg-0ord">2.65</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">NETS</td>
+    <td class="tg-0ord">-2.65</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Item Count</td>
+    <td class="tg-0ord">1</td>
+  </tr>
+  <tr>
+    <td class="tg-vyw9" colspan="2">-----------------------------------</td>
+  </tr>
+  <tr>
+    <td class="tg-s6z2" colspan="2">Receipt: CMP100000114463<br>Date/Time: 23-07-2014 07:56PM<br>POS: CMP1<br>Cashier: Jason Sim</td>
+  </tr>
+  <tr>
+    <td class="tg-vyw9" colspan="2">-----------------------------------</td>
+  </tr>
+  <tr>
+    <td class="tg-s6z2" colspan="2">Thank you <br>for shopping at Island Furniture!</td>
+  </tr>
+  <tr>
+    <td class="tg-vyw9" colspan="2">-----------------------------------</td>
+  </tr>
+</table>

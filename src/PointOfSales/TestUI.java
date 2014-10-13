@@ -47,6 +47,8 @@ public class TestUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnTestCard = new javax.swing.JButton();
         lbltest = new javax.swing.JLabel();
+        btnTestPole1 = new javax.swing.JButton();
+        btnTestPole2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -145,6 +147,24 @@ public class TestUI extends javax.swing.JFrame {
         lbltest.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbltest.setText("Test");
 
+        btnTestPole1.setBackground(new java.awt.Color(255, 255, 204));
+        btnTestPole1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnTestPole1.setText("Stop Poke");
+        btnTestPole1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestPole1ActionPerformed(evt);
+            }
+        });
+
+        btnTestPole2.setBackground(new java.awt.Color(255, 255, 204));
+        btnTestPole2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnTestPole2.setText("Test Pole");
+        btnTestPole2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestPole2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,24 +174,28 @@ public class TestUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(101, 101, 101)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtReceiptMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
-                                    .addComponent(txtSwipeInput))
-                                .addGap(68, 68, 68)
-                                .addComponent(btnClear))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnTestPole, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(40, 40, 40)
-                                    .addComponent(btnTestPrinter, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(302, 302, 302)))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3))
+                                    .addGap(101, 101, 101)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtReceiptMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                                        .addComponent(txtSwipeInput))
+                                    .addGap(68, 68, 68)
+                                    .addComponent(btnClear))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnTestPole, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnTestPole2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(btnTestPrinter, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(btnTestPole1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(113, 113, 113))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(148, 148, 148)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,17 +217,30 @@ public class TestUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtReceiptMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(78, 78, 78)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTestPrinter, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                    .addComponent(btnTestPole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTestPole1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(btnTestPole, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTestPrinter, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTestPole2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)))
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(94, 94, 94)
                 .addComponent(lbltest)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTestCard, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -214,7 +251,7 @@ public class TestUI extends javax.swing.JFrame {
         byte[] newLine = {0x0A};
         byte[] carriageReturn = {0x0D};
         byte[] message1 = new String("Hello World!").getBytes();
-        byte[] message2 = new String("How Are You?").getBytes();
+        byte[] message2 = new String("Jason SIM?").getBytes();
         try {
             partnerPoleDisplayOutputStream.write(clear);
             partnerPoleDisplayOutputStream.write(message1);
@@ -333,6 +370,36 @@ public class TestUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTestCardActionPerformed
 
+    private void btnTestPole1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestPole1ActionPerformed
+        if (serialPort != null) {
+            try {
+                byte[] clear = {0x0C};
+                partnerPoleDisplayOutputStream.write(clear);
+                partnerPoleDisplayOutputStream.close();
+                serialPort.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnTestPole1ActionPerformed
+
+    private void btnTestPole2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestPole2ActionPerformed
+        byte[] clear = {0x0C};
+        byte[] newLine = {0x0A};
+        byte[] carriageReturn = {0x0D};
+        byte[] message1 = new String("Yang!").getBytes();
+        byte[] message2 = new String("IS3102?").getBytes();
+        try {
+            partnerPoleDisplayOutputStream.write(clear);
+            partnerPoleDisplayOutputStream.write(message1);
+            partnerPoleDisplayOutputStream.write(newLine);
+            partnerPoleDisplayOutputStream.write(carriageReturn);
+            partnerPoleDisplayOutputStream.write(message2);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Unable to write to Partner Pole Display: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnTestPole2ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -369,6 +436,8 @@ public class TestUI extends javax.swing.JFrame {
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnTestCard;
     private javax.swing.JButton btnTestPole;
+    private javax.swing.JButton btnTestPole1;
+    private javax.swing.JButton btnTestPole2;
     private javax.swing.JButton btnTestPrinter;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -382,42 +451,44 @@ public class TestUI extends javax.swing.JFrame {
 
     private void initPartnerPoleDisplay() {
 
-        Enumeration<CommPortIdentifier> numPorts = CommPortIdentifier.getPortIdentifiers();
-
-        while (numPorts.hasMoreElements()) {
-            CommPortIdentifier commPortIdentifier = numPorts.nextElement();
-            System.out.println(commPortIdentifier.getName());
-        }
-
-//        Enumeration commPortList = CommPortIdentifier.getPortIdentifiers();
-//
-//        while (commPortList.hasMoreElements()) {
-//            CommPortIdentifier commPort = (CommPortIdentifier) commPortList.nextElement();
-//
-//            if (commPort.getPortType() == CommPortIdentifier.PORT_SERIAL
-//                    && commPort.getName().equals(partnerPoleDisplayCOMPort)) {
-//                try {
-//                    serialPort = (SerialPort) commPort.open("UnifiedPointOfSale", 5000);
-//                    partnerPoleDisplayOutputStream = serialPort.getOutputStream();
-//                } catch (PortInUseException | IOException ex) {
-//                    JOptionPane.showMessageDialog(null, "Unable to initialize Partner Pole Display: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
+        //  Enumeration<CommPortIdentifier> numPorts = CommPortIdentifier.getPortIdentifiers();
+//        while (numPorts.hasMoreElements()) {
+//            CommPortIdentifier commPortIdentifier = numPorts.nextElement();
+//            System.out.println(commPortIdentifier.getName());
 //        }
+        Enumeration<CommPortIdentifier> commPortList = CommPortIdentifier.getPortIdentifiers();
+
+        while (commPortList.hasMoreElements()) {
+            CommPortIdentifier commPort = (CommPortIdentifier) commPortList.nextElement();
+            //commPort.getPortType() == CommPortIdentifier.PORT_SERIAL && 
+            if (commPort.getName().equals(partnerPoleDisplayCOMPort)) {
+
+                try {
+                    serialPort = (SerialPort) commPort.open("UnifiedPointOfSale", 5000);
+                    partnerPoleDisplayOutputStream = serialPort.getOutputStream();
+                } catch (PortInUseException | IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Unable to initialize Partner Pole Display: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }
 
     private void testPartnerThermalPrinterAndCashBox() {
+        ReadReceipt pr = new ReadReceipt();
         try {
             Double margin = 1.0;
-            Integer lines = 8;
+            Integer lines = 16;
 
             PrinterJob printerJob = PrinterJob.getPrinterJob();
             PageFormat pageFormat = printerJob.defaultPage();
             Paper paper = new Paper();
-            paper.setSize(180.0, (double) (paper.getHeight() + lines * 10.0));
-            paper.setImageableArea(margin, margin, paper.getWidth() - margin * 2, paper.getHeight() - margin * 2);
+            paper.setSize(180.00, 200.00);
+            //paper.setSize(180.0, (double) (paper.getHeight() + 100));
+            paper.setImageableArea(margin, margin, paper.getWidth(), paper.getHeight() - margin * 2);
             pageFormat.setPaper(paper);
             pageFormat.setOrientation(PageFormat.PORTRAIT);
+            txtReceiptMessage.setText("12345678901234567890123456");
+    //txtReceiptMessage.setText(POS.test);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
             printerJob.print();
         } catch (PrinterException ex) {

@@ -6,20 +6,19 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.StringTokenizer;
 
-public class ReadFile {
+public class ReadReceipt {
 
-    public ReadFile() {
+    public ReadReceipt() {
         try {
             String filePath = new File("").getAbsolutePath();
-            BufferedReader br = new BufferedReader(new FileReader(filePath.concat("\\src\\PointOfSales\\setup.txt")));
-            String data;
+            BufferedReader br = new BufferedReader(new FileReader(filePath.concat("\\src\\PointOfSales\\receipt.txt")));
+            String data = "<style type=\"text/css\">";
 
-            while ((data = br.readLine()) != null) {
-                StringTokenizer st = new StringTokenizer(data, ",");
-                POS.storeID = st.nextToken();
-                POS.storeName = st.nextToken();
-                POS.PORT_Pole = st.nextToken();
+            while ((br.readLine()) != null) {
+                data += br.readLine();
             }
+            POS.test = data;
+            System.out.println(data + "");
             br.close();
 
         } catch (FileNotFoundException eek) {
