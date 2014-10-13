@@ -381,21 +381,29 @@ public class TestUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initPartnerPoleDisplay() {
-        Enumeration commPortList = CommPortIdentifier.getPortIdentifiers();
 
-        while (commPortList.hasMoreElements()) {
-            CommPortIdentifier commPort = (CommPortIdentifier) commPortList.nextElement();
+        Enumeration<CommPortIdentifier> numPorts = CommPortIdentifier.getPortIdentifiers();
 
-            if (commPort.getPortType() == CommPortIdentifier.PORT_SERIAL
-                    && commPort.getName().equals(partnerPoleDisplayCOMPort)) {
-                try {
-                    serialPort = (SerialPort) commPort.open("UnifiedPointOfSale", 5000);
-                    partnerPoleDisplayOutputStream = serialPort.getOutputStream();
-                } catch (PortInUseException | IOException ex) {
-                    JOptionPane.showMessageDialog(null, "Unable to initialize Partner Pole Display: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
+        while (numPorts.hasMoreElements()) {
+            CommPortIdentifier commPortIdentifier = numPorts.nextElement();
+            System.out.println(commPortIdentifier.getName());
         }
+
+//        Enumeration commPortList = CommPortIdentifier.getPortIdentifiers();
+//
+//        while (commPortList.hasMoreElements()) {
+//            CommPortIdentifier commPort = (CommPortIdentifier) commPortList.nextElement();
+//
+//            if (commPort.getPortType() == CommPortIdentifier.PORT_SERIAL
+//                    && commPort.getName().equals(partnerPoleDisplayCOMPort)) {
+//                try {
+//                    serialPort = (SerialPort) commPort.open("UnifiedPointOfSale", 5000);
+//                    partnerPoleDisplayOutputStream = serialPort.getOutputStream();
+//                } catch (PortInUseException | IOException ex) {
+//                    JOptionPane.showMessageDialog(null, "Unable to initialize Partner Pole Display: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//            }
+//        }
     }
 
     private void testPartnerThermalPrinterAndCashBox() {

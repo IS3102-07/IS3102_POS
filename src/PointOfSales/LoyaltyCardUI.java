@@ -13,8 +13,8 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     public LoyaltyCardUI() {
         initComponents();
 
-        memberPoints = 0;
-        pointsDeducting = 0;
+        memberPoints = POS.transaction.getMemberPoints();
+        pointsDeducting = POS.transaction.getPointsToDeduct();
         memberEmail = POS.transaction.getMemberEmail();
 
         if (memberEmail != null) {
@@ -29,14 +29,39 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
 
         if (pointsDeducting == 0) {
             lblRedeem.setText("-");
+            btn5.setEnabled(false);
+            btn10.setEnabled(false);
+            btn15.setEnabled(false);
+            btn20.setEnabled(false);
         } else {
             lblRedeem.setText(pointsDeducting + "");
+            if (pointsDeducting >= 500) {
+                btn5.setEnabled(true);
+                btn10.setEnabled(true);
+                btn15.setEnabled(true);
+                btn20.setEnabled(true);
+            } else if (pointsDeducting < 500 && pointsDeducting >= 300) {
+                btn5.setEnabled(true);
+                btn10.setEnabled(true);
+                btn15.setEnabled(true);
+                btn20.setEnabled(false);
+            } else if (pointsDeducting < 300 && pointsDeducting >= 150) {
+                btn5.setEnabled(true);
+                btn10.setEnabled(true);
+                btn15.setEnabled(false);
+                btn20.setEnabled(false);
+            } else if (pointsDeducting < 150 && pointsDeducting >= 50) {
+                btn5.setEnabled(true);
+                btn10.setEnabled(false);
+                btn15.setEnabled(false);
+                btn20.setEnabled(false);
+            } else if (pointsDeducting < 50) {
+                btn5.setEnabled(false);
+                btn10.setEnabled(false);
+                btn15.setEnabled(false);
+                btn20.setEnabled(false);
+            }
         }
-
-        btn5.setEnabled(false);
-        btn10.setEnabled(false);
-        btn15.setEnabled(false);
-        btn20.setEnabled(false);
 
     }
 
@@ -269,7 +294,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     private void txtMemberEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMemberEmailKeyReleased
         System.out.println("txtMemberEmailKeyReleased: " + evt.getKeyCode());
         //need to exract the email
-        //POS.transaction.setMemberEmail(???);
+        POS.transaction.setMemberEmail(evt.getKeyChar() + "");
         //memberPoints = getMemberLoyaltyPoints(memberEmail);
         memberPoints = 50;
 
