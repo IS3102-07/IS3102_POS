@@ -28,7 +28,74 @@
 
 <xs:complexType name="getItemBySKUResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:itemEntity" minOccurs="0"/>
+<xs:element name="return" type="tns:itemHelper" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="itemHelper">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="itemName" type="xs:string" minOccurs="0"/>
+<xs:element name="itemSKU" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getItemCountryPriceBySKU">
+<xs:sequence>
+<xs:element name="SKU" type="xs:string" minOccurs="0"/>
+<xs:element name="storeID" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getItemCountryPriceBySKUResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:double" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="callSupervisor">
+<xs:sequence>
+<xs:element name="contactNo" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="callSupervisorResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="alertSupervisor">
+<xs:sequence>
+<xs:element name="posName" type="xs:string" minOccurs="0"/>
+<xs:element name="supervisorTel" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="alertSupervisorResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="submitSalesRecord">
+<xs:sequence>
+<xs:element name="staffEmail" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="storeID" type="xs:long" minOccurs="0"/>
+<xs:element name="posName" type="xs:string" minOccurs="0"/>
+<xs:element name="itemsPurchased" type="tns:lineItemEntity" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="amountPaid" type="xs:double" minOccurs="0"/>
+<xs:element name="memberEmail" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="lineItemEntity">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="item" type="tns:itemEntity" minOccurs="0"/>
+<xs:element name="packType" type="xs:string" minOccurs="0"/>
+<xs:element name="quantity" type="xs:int" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -177,15 +244,6 @@
 <xs:element name="shippedDate" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="status" type="xs:string" minOccurs="0"/>
 <xs:element name="submittedBy" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="lineItemEntity">
-<xs:sequence>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="item" type="tns:itemEntity" minOccurs="0"/>
-<xs:element name="packType" type="xs:string" minOccurs="0"/>
-<xs:element name="quantity" type="xs:int" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -379,56 +437,6 @@
 
 <xs:complexType name="shoppingListEntity">
 <xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="getItemCountryPriceBySKU">
-<xs:sequence>
-<xs:element name="SKU" type="xs:string" minOccurs="0"/>
-<xs:element name="storeID" type="xs:long" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getItemCountryPriceBySKUResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:double" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="callSupervisor">
-<xs:sequence>
-<xs:element name="contactNo" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="callSupervisorResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="alertSupervisor">
-<xs:sequence>
-<xs:element name="posName" type="xs:string" minOccurs="0"/>
-<xs:element name="supervisorTel" type="xs:int" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="alertSupervisorResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="submitSalesRecord">
-<xs:sequence>
-<xs:element name="staffEmail" type="xs:string" minOccurs="0"/>
-<xs:element name="password" type="xs:string" minOccurs="0"/>
-<xs:element name="storeID" type="xs:long" minOccurs="0"/>
-<xs:element name="posName" type="xs:string" minOccurs="0"/>
-<xs:element name="itemsPurchased" type="tns:lineItemEntity" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="amountPaid" type="xs:double" minOccurs="0"/>
-<xs:element name="memberEmail" type="xs:string" minOccurs="0"/>
-</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="submitSalesRecordResponse">

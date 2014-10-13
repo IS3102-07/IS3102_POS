@@ -4,12 +4,6 @@
 <xsd:import namespace="http://WebServices/" schemaLocation="http://Hello:8080/HQWebServiceBean/HQWebServiceBean?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="getStoreByID">
-<part name="parameters" element="tns:getStoreByID"/>
-</message>
-<message name="getStoreByIDResponse">
-<part name="parameters" element="tns:getStoreByIDResponse"/>
-</message>
 <message name="createSalesRecord">
 <part name="parameters" element="tns:createSalesRecord"/>
 </message>
@@ -22,6 +16,12 @@
 <message name="getMemberLoyaltyPointsResponse">
 <part name="parameters" element="tns:getMemberLoyaltyPointsResponse"/>
 </message>
+<message name="getStoreByID">
+<part name="parameters" element="tns:getStoreByID"/>
+</message>
+<message name="getStoreByIDResponse">
+<part name="parameters" element="tns:getStoreByIDResponse"/>
+</message>
 <message name="posLoginStaff">
 <part name="parameters" element="tns:posLoginStaff"/>
 </message>
@@ -29,10 +29,6 @@
 <part name="parameters" element="tns:posLoginStaffResponse"/>
 </message>
 <portType name="HQWebServiceBean">
-<operation name="getStoreByID">
-<input wsam:Action="http://WebServices/HQWebServiceBean/getStoreByIDRequest" message="tns:getStoreByID"/>
-<output wsam:Action="http://WebServices/HQWebServiceBean/getStoreByIDResponse" message="tns:getStoreByIDResponse"/>
-</operation>
 <operation name="createSalesRecord">
 <input wsam:Action="http://WebServices/HQWebServiceBean/createSalesRecordRequest" message="tns:createSalesRecord"/>
 <output wsam:Action="http://WebServices/HQWebServiceBean/createSalesRecordResponse" message="tns:createSalesRecordResponse"/>
@@ -41,6 +37,10 @@
 <input wsam:Action="http://WebServices/HQWebServiceBean/getMemberLoyaltyPointsRequest" message="tns:getMemberLoyaltyPoints"/>
 <output wsam:Action="http://WebServices/HQWebServiceBean/getMemberLoyaltyPointsResponse" message="tns:getMemberLoyaltyPointsResponse"/>
 </operation>
+<operation name="getStoreByID">
+<input wsam:Action="http://WebServices/HQWebServiceBean/getStoreByIDRequest" message="tns:getStoreByID"/>
+<output wsam:Action="http://WebServices/HQWebServiceBean/getStoreByIDResponse" message="tns:getStoreByIDResponse"/>
+</operation>
 <operation name="posLoginStaff">
 <input wsam:Action="http://WebServices/HQWebServiceBean/posLoginStaffRequest" message="tns:posLoginStaff"/>
 <output wsam:Action="http://WebServices/HQWebServiceBean/posLoginStaffResponse" message="tns:posLoginStaffResponse"/>
@@ -48,15 +48,6 @@
 </portType>
 <binding name="HQWebServiceBeanPortBinding" type="tns:HQWebServiceBean">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="getStoreByID">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="createSalesRecord">
 <soap:operation soapAction=""/>
 <input>
@@ -67,6 +58,15 @@
 </output>
 </operation>
 <operation name="getMemberLoyaltyPoints">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getStoreByID">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
