@@ -1,19 +1,21 @@
 package PointOfSales;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.Window;
-import javax.swing.JOptionPane;
+import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
 public class PaymentUI extends javax.swing.JPanel {
-    
+
     private Boolean startCreditCardMSR = false;
-    
+
     public PaymentUI() {
         initComponents();
-        this.setSize(640, 480);
+        this.setSize(607, 400);
         txtCreditNumber.requestFocus();;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -117,30 +119,46 @@ public class PaymentUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCreditNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditNumberKeyReleased
-        String kbValue = txtCreditNumber.getText();
-        
-        if (!startCreditCardMSR) {
-            if (kbValue != null && kbValue.trim().length() > 0) {
-                kbValue = kbValue.trim();
-                
-                if (kbValue.length() >= 2) {
-                    if (kbValue.startsWith("%B")) {
-                        startCreditCardMSR = true;
-                    }
-                }
-            }
-        } else {
-            if (kbValue != null && kbValue.trim().length() > 0) {
-                kbValue = kbValue.trim();
-                
-                if (kbValue.length() >= 2) {
-                    if (kbValue.endsWith("?")) {
-                        startCreditCardMSR = false;
-                        txtCreditNumber.setText(kbValue);
-                    }
-                }
-            }
-        }
+        JDialog dialog = new JDialog();
+        final Toolkit toolkit = Toolkit.getDefaultToolkit();
+        final Dimension screenSize = toolkit.getScreenSize();
+        final int x = (screenSize.width - dialog.getWidth()) / 4;
+        final int y = (screenSize.height - dialog.getHeight()) / 4;
+        dialog.setLocation(x, y);
+        dialog.setModal(true);
+        dialog.setUndecorated(true);
+        dialog.add(new ProcessPaymentUI());
+        dialog.pack();
+        dialog.setVisible(true);
+
+        txtCreditNumber.setText("");
+        Window w = SwingUtilities.getWindowAncestor(PaymentUI.this);
+        w.setVisible(false);
+//        String kbValue = txtCreditNumber.getText();
+//        
+//        if (!startCreditCardMSR) {
+//            if (kbValue != null && kbValue.trim().length() > 0) {
+//                kbValue = kbValue.trim();
+//                
+//                if (kbValue.length() >= 2) {
+//                    if (kbValue.startsWith("%B")) {
+//                        startCreditCardMSR = true;
+//                    }
+//                }
+//            }
+//        } else {
+//            if (kbValue != null && kbValue.trim().length() > 0) {
+//                kbValue = kbValue.trim();
+//                
+//                if (kbValue.length() >= 2) {
+//                    if (kbValue.endsWith("?")) {
+//                        startCreditCardMSR = false;
+//                        txtCreditNumber.setText(kbValue);
+//                        
+//                    }
+//                }
+//            }
+//        }
     }//GEN-LAST:event_txtCreditNumberKeyReleased
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

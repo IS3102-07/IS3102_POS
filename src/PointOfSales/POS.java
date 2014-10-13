@@ -9,5 +9,6 @@ public class POS {
     public static int supervisorContactNo;
     public static Transaction transaction;
     public static int tmpQty = 0;
+    public static boolean transactionCompleted;
 
 }

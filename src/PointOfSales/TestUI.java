@@ -261,7 +261,6 @@ public class TestUI extends javax.swing.JFrame {
                 if (kbValue.length() >= 2) {
                     if (kbValue.endsWith("?")) {
                         startCreditCardMSR = false;
-                        JOptionPane.showMessageDialog(null, kbValue, "Detected Credit Card MSR Input", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }

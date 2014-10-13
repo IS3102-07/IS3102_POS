@@ -99,10 +99,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lblTotalItems.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblTotalItems.setText("0");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel3.setText("Sub total:");
 
-        lblTotalPrice.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblTotalPrice.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblTotalPrice.setText("0.00");
 
         tblLineItem.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -232,16 +232,16 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel7.setText(" : items");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel4.setText("Discount:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel5.setText("Total:");
 
-        lblDiscount.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblDiscount.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblDiscount.setText("0.00");
 
-        lblTotalNet.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblTotalNet.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblTotalNet.setText("0.00");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -255,35 +255,35 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnTest1)
+                                .addGap(5, 5, 5)
+                                .addComponent(btnTest2)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTestContent)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblMessage))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTotalItems)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel7)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel5))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
                                 .addComponent(jLabel4))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnTest1)
-                                        .addGap(5, 5, 5)
-                                        .addComponent(btnTest2)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnTestContent)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lblMessage)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel5))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblTotalItems)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 505, Short.MAX_VALUE)
-                                        .addComponent(jLabel3)))))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTotalPrice)
                             .addComponent(lblDiscount)
                             .addComponent(lblTotalNet))
-                        .addGap(30, 30, 30)))
+                        .addGap(41, 41, 41)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -360,6 +360,20 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         dialog.pack();
         dialog.setVisible(true);
         tblLineItem.requestFocus();
+
+        System.out.println("POS.transactionCompleted " + POS.transactionCompleted);
+        if (POS.transactionCompleted) {
+            DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
+            int rows = model.getRowCount();
+            for (int i = rows - 1; i >= 0; i--) {
+                model.removeRow(i);
+            }
+            POS.transaction = new Transaction();
+            lineItems = POS.transaction.getLineItems();
+            refreshTotalQuantityAndPrice();
+            tblLineItem.requestFocus();
+            POS.transactionCompleted = false;
+        }
     }//GEN-LAST:event_btnPayActionPerformed
 
     private void btnLoyaltyCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoyaltyCardActionPerformed
@@ -450,7 +464,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             if (item != null) {
 
                 System.out.println("POS.storeID " + POS.storeID);
-                itemCountryPrice = getItemCountryPriceBySKU(SKU, Long.parseLong(POS.storeID));
+                //itemCountryPrice = getItemCountryPriceBySKU(SKU, Long.parseLong(POS.storeID));
                 //check arraylist if this lineitem exist, if have increase quantity, 
                 for (int i = 0; i < lineItems.size(); i++) {
                     if (lineItems.get(i).getSKU().equals(SKU)) {
@@ -461,8 +475,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 }
                 //else add new lineitem to the list
                 if (!isExist) {
-                    // lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
-                    lineItem = new LineItem(SKU, item.getName(), itemCountryPrice, 1);
+                    lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
+                    //lineItem = new LineItem(SKU, item.getName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
 

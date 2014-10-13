@@ -381,18 +381,6 @@
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="callSupervisor">
-<xs:sequence>
-<xs:element name="contactNo" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="callSupervisorResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="getItemCountryPriceBySKU">
 <xs:sequence>
 <xs:element name="SKU" type="xs:string" minOccurs="0"/>
@@ -403,6 +391,18 @@
 <xs:complexType name="getItemCountryPriceBySKUResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:double" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="callSupervisor">
+<xs:sequence>
+<xs:element name="contactNo" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="callSupervisorResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

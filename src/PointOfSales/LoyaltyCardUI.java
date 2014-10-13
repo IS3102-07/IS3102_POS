@@ -8,15 +8,24 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     private int memberPoints;
     private int pointsDeducting;
     private int discountRate;
+    private String memberEmail;
 
     public LoyaltyCardUI() {
         initComponents();
-        //membersPoints = call web service
-        memberPoints = 65;
-        pointsDeducting = 0;
 
-        txtMemberEmail.setText(POS.transaction.getMemberEmail());
-        lblCurrentPoints.setText(memberPoints + "");
+        memberPoints = 0;
+        pointsDeducting = 0;
+        memberEmail = POS.transaction.getMemberEmail();
+
+        if (memberEmail != null) {
+            txtMemberEmail.setText(memberEmail);
+        }
+
+        if (memberPoints == 0) {
+            lblCurrentPoints.setText("-");
+        } else {
+            lblCurrentPoints.setText(memberPoints + "");
+        }
 
         if (pointsDeducting == 0) {
             lblRedeem.setText("-");
@@ -24,32 +33,11 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
             lblRedeem.setText(pointsDeducting + "");
         }
 
-        if (memberPoints >= 500) {
-            btn5.setEnabled(true);
-            btn10.setEnabled(true);
-            btn15.setEnabled(true);
-            btn20.setEnabled(true);
-        } else if (memberPoints < 500 && memberPoints >= 300) {
-            btn5.setEnabled(true);
-            btn10.setEnabled(true);
-            btn15.setEnabled(true);
-            btn20.setEnabled(false);
-        } else if (memberPoints < 300 && memberPoints >= 150) {
-            btn5.setEnabled(true);
-            btn10.setEnabled(true);
-            btn15.setEnabled(false);
-            btn20.setEnabled(false);
-        } else if (memberPoints < 150 && memberPoints >= 50) {
-            btn5.setEnabled(true);
-            btn10.setEnabled(false);
-            btn15.setEnabled(false);
-            btn20.setEnabled(false);
-        } else if (memberPoints < 50) {
-            btn5.setEnabled(false);
-            btn10.setEnabled(false);
-            btn15.setEnabled(false);
-            btn20.setEnabled(false);
-        }
+        btn5.setEnabled(false);
+        btn10.setEnabled(false);
+        btn15.setEnabled(false);
+        btn20.setEnabled(false);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -84,6 +72,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Scan Loyalty Card:");
 
+        txtMemberEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtMemberEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtMemberEmailKeyReleased(evt);
@@ -278,7 +267,41 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtMemberEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMemberEmailKeyReleased
-        System.out.println("txtMemberEmailKeyReleased");
+        System.out.println("txtMemberEmailKeyReleased: " + evt.getKeyCode());
+        //need to exract the email
+        //POS.transaction.setMemberEmail(???);
+        //memberPoints = getMemberLoyaltyPoints(memberEmail);
+        memberPoints = 50;
+
+        lblCurrentPoints.setText(memberPoints + "");
+        lblRedeem.setText(pointsDeducting + "");
+
+        if (memberPoints >= 500) {
+            btn5.setEnabled(true);
+            btn10.setEnabled(true);
+            btn15.setEnabled(true);
+            btn20.setEnabled(true);
+        } else if (memberPoints < 500 && memberPoints >= 300) {
+            btn5.setEnabled(true);
+            btn10.setEnabled(true);
+            btn15.setEnabled(true);
+            btn20.setEnabled(false);
+        } else if (memberPoints < 300 && memberPoints >= 150) {
+            btn5.setEnabled(true);
+            btn10.setEnabled(true);
+            btn15.setEnabled(false);
+            btn20.setEnabled(false);
+        } else if (memberPoints < 150 && memberPoints >= 50) {
+            btn5.setEnabled(true);
+            btn10.setEnabled(false);
+            btn15.setEnabled(false);
+            btn20.setEnabled(false);
+        } else if (memberPoints < 50) {
+            btn5.setEnabled(false);
+            btn10.setEnabled(false);
+            btn15.setEnabled(false);
+            btn20.setEnabled(false);
+        }
     }//GEN-LAST:event_txtMemberEmailKeyReleased
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -295,6 +318,9 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        POS.transaction.setMemberEmail("");
+        txtMemberEmail.setText("");
+        lblCurrentPoints.setText("-");
         lblRedeem.setText("-");
         pointsDeducting = 0;
         discountRate = 0;
@@ -340,4 +366,10 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     private javax.swing.JLabel lblRedeem;
     private javax.swing.JTextField txtMemberEmail;
     // End of variables declaration//GEN-END:variables
+
+    private static Integer getMemberLoyaltyPoints(java.lang.String memberEmail) {
+        PointOfSales.HQWebServiceBean_Service service = new PointOfSales.HQWebServiceBean_Service();
+        PointOfSales.HQWebServiceBean port = service.getHQWebServiceBeanPort();
+        return port.getMemberLoyaltyPoints(memberEmail);
+    }
 }

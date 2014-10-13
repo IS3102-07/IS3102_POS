@@ -4,18 +4,6 @@
 <xsd:import namespace="http://WebServices/" schemaLocation="http://Hello:8080/StoreWebServiceBean/StoreWebServiceBean?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="callSupervisor">
-<part name="parameters" element="tns:callSupervisor"/>
-</message>
-<message name="callSupervisorResponse">
-<part name="parameters" element="tns:callSupervisorResponse"/>
-</message>
-<message name="alertSupervisor">
-<part name="parameters" element="tns:alertSupervisor"/>
-</message>
-<message name="alertSupervisorResponse">
-<part name="parameters" element="tns:alertSupervisorResponse"/>
-</message>
 <message name="getItemBySKU">
 <part name="parameters" element="tns:getItemBySKU"/>
 </message>
@@ -34,15 +22,19 @@
 <message name="getItemCountryPriceBySKUResponse">
 <part name="parameters" element="tns:getItemCountryPriceBySKUResponse"/>
 </message>
+<message name="callSupervisor">
+<part name="parameters" element="tns:callSupervisor"/>
+</message>
+<message name="callSupervisorResponse">
+<part name="parameters" element="tns:callSupervisorResponse"/>
+</message>
+<message name="alertSupervisor">
+<part name="parameters" element="tns:alertSupervisor"/>
+</message>
+<message name="alertSupervisorResponse">
+<part name="parameters" element="tns:alertSupervisorResponse"/>
+</message>
 <portType name="StoreWebServiceBean">
-<operation name="callSupervisor">
-<input wsam:Action="http://WebServices/StoreWebServiceBean/callSupervisorRequest" message="tns:callSupervisor"/>
-<output wsam:Action="http://WebServices/StoreWebServiceBean/callSupervisorResponse" message="tns:callSupervisorResponse"/>
-</operation>
-<operation name="alertSupervisor">
-<input wsam:Action="http://WebServices/StoreWebServiceBean/alertSupervisorRequest" message="tns:alertSupervisor"/>
-<output wsam:Action="http://WebServices/StoreWebServiceBean/alertSupervisorResponse" message="tns:alertSupervisorResponse"/>
-</operation>
 <operation name="getItemBySKU">
 <input wsam:Action="http://WebServices/StoreWebServiceBean/getItemBySKURequest" message="tns:getItemBySKU"/>
 <output wsam:Action="http://WebServices/StoreWebServiceBean/getItemBySKUResponse" message="tns:getItemBySKUResponse"/>
@@ -55,27 +47,17 @@
 <input wsam:Action="http://WebServices/StoreWebServiceBean/getItemCountryPriceBySKURequest" message="tns:getItemCountryPriceBySKU"/>
 <output wsam:Action="http://WebServices/StoreWebServiceBean/getItemCountryPriceBySKUResponse" message="tns:getItemCountryPriceBySKUResponse"/>
 </operation>
+<operation name="callSupervisor">
+<input wsam:Action="http://WebServices/StoreWebServiceBean/callSupervisorRequest" message="tns:callSupervisor"/>
+<output wsam:Action="http://WebServices/StoreWebServiceBean/callSupervisorResponse" message="tns:callSupervisorResponse"/>
+</operation>
+<operation name="alertSupervisor">
+<input wsam:Action="http://WebServices/StoreWebServiceBean/alertSupervisorRequest" message="tns:alertSupervisor"/>
+<output wsam:Action="http://WebServices/StoreWebServiceBean/alertSupervisorResponse" message="tns:alertSupervisorResponse"/>
+</operation>
 </portType>
 <binding name="StoreWebServiceBeanPortBinding" type="tns:StoreWebServiceBean">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="callSupervisor">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="alertSupervisor">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="getItemBySKU">
 <soap:operation soapAction=""/>
 <input>
@@ -95,6 +77,24 @@
 </output>
 </operation>
 <operation name="getItemCountryPriceBySKU">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="callSupervisor">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="alertSupervisor">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
