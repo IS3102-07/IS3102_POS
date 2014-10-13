@@ -8,8 +8,6 @@ import javax.swing.SwingUtilities;
 
 public class PaymentUI extends javax.swing.JPanel {
 
-    private Boolean startCreditCardMSR = false;
-
     public PaymentUI() {
         initComponents();
         this.setSize(607, 400);
@@ -134,27 +132,31 @@ public class PaymentUI extends javax.swing.JPanel {
         txtCreditNumber.setText("");
         Window w = SwingUtilities.getWindowAncestor(PaymentUI.this);
         w.setVisible(false);
-//        String kbValue = txtCreditNumber.getText();
-//        
-//        if (!startCreditCardMSR) {
+//        Boolean startCreditCardMSR1 = false;
+//        String kbValue = lbltest.getText();
+//
+//        System.out.println("startCreditCardMSR1: " + startCreditCardMSR1);
+//        System.out.println("kbValue: " + kbValue);
+//
+//        if (!startCreditCardMSR1) {
 //            if (kbValue != null && kbValue.trim().length() > 0) {
 //                kbValue = kbValue.trim();
-//                
+//
 //                if (kbValue.length() >= 2) {
 //                    if (kbValue.startsWith("%B")) {
-//                        startCreditCardMSR = true;
+//                        startCreditCardMSR1 = true;
 //                    }
 //                }
 //            }
-//        } else {
+//        }
+//        if (startCreditCardMSR1) {
 //            if (kbValue != null && kbValue.trim().length() > 0) {
 //                kbValue = kbValue.trim();
-//                
+//
 //                if (kbValue.length() >= 2) {
 //                    if (kbValue.endsWith("?")) {
-//                        startCreditCardMSR = false;
-//                        txtCreditNumber.setText(kbValue);
-//                        
+//                        startCreditCardMSR1 = false;
+//                                //print
 //                    }
 //                }
 //            }

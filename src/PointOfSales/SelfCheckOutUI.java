@@ -663,7 +663,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         int totalQuantity = 0;
         double totalPrice = 0;
         double netPrice = 0;
-        double discounPricet = 0;
+        double discounPrice = 0;
         double discountRate = POS.transaction.getDiscountRate();
 
         for (int i = 0; i < lineItems.size(); i++) {
@@ -671,23 +671,27 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             totalPrice += lineItems.get(i).getQuantity() * lineItems.get(i).getPrice();
         }
 
+        //total item label
         POS.transaction.setTotalItems(totalQuantity);
         lblTotalItems.setText(totalQuantity + "");
 
+        //discount label
         POS.transaction.setTotalPrice(totalPrice);
         lblTotalPrice.setText(totalPrice + "");
 
+        //sub total label
         if (discountRate > 0) {
-            discounPricet = totalPrice * (discountRate / 100);
-            discounPricet = Math.round(discounPricet * 100.0) / 100.0;
+            discounPrice = totalPrice * (discountRate / 100);
+            discounPrice = Math.round(discounPrice * 100.0) / 100.0;
             POS.transaction.setDiscountPrice(totalPrice);
-            lblDiscount.setText(discounPricet + "");
+            lblDiscount.setText(discounPrice + "");
         } else {
             lblDiscount.setText("0.00");
         }
 
+         //total price label
         if (totalPrice > 0) {
-            netPrice = totalPrice - discounPricet;
+            netPrice = totalPrice - discounPrice;
             POS.transaction.setNetPrice(netPrice);
             lblTotalPrice.setText(netPrice + "");
         } else {

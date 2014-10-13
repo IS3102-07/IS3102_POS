@@ -1,0 +1,13 @@
+[driver backup information]
+driverdesc=Prolific USB-to-Serial Comm Port
+infpath=oem20.inf                                                                       
+infsection=ComPort.NT
+MatchingDeviceId=USB\VID_067B&PID_2303&REV_0300
+driverversion=2.0.2.1
+driverdate=11-4-2005
+providername=Prolific
+class=[0eOB7][?ortš (ÇÒ? & £?T) !!! ]
+filenum=3
+signature=Windows Vista
+needrestore=yes
+backuptime=Saturday, January 17, 2009
