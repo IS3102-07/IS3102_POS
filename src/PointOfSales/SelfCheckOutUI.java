@@ -103,7 +103,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         jLabel3.setText("Sub total:");
 
         lblTotalPrice.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        lblTotalPrice.setText("0.00");
+        lblTotalPrice.setText("0.0");
 
         tblLineItem.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tblLineItem.setModel(new javax.swing.table.DefaultTableModel(
@@ -239,10 +239,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         jLabel5.setText("Total:");
 
         lblDiscount.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        lblDiscount.setText("0.00");
+        lblDiscount.setText("0.0");
 
         lblTotalNet.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        lblTotalNet.setText("0.00");
+        lblTotalNet.setText("0.0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -274,9 +274,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
                                 .addComponent(jLabel5))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel4))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,6 +387,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         dialog.pack();
         dialog.setVisible(true);
         tblLineItem.requestFocus();
+        refreshTotalQuantityAndPrice();
     }//GEN-LAST:event_btnLoyaltyCardActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -411,7 +410,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
         if (tblLineItem.getSelectedRow() != -1 && tblLineItem.getRowCount() != 0) {
             JDialog dialog = new JDialog();
-            dialog.setLocationRelativeTo(null);
+            dialog.setLocation(580, 400);
             dialog.setModal(true);
             dialog.setUndecorated(true);
             dialog.add(new QuantityUI(lineItems.get(tblLineItem.getSelectedRow()).getQuantity()));
@@ -431,15 +430,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         //----------barcode scanner--------------
         String currentKeyCode = evt.getKeyCode() + "";
         System.out.println(currentKeyCode);
-//        if (currentKeyCode.equals("16") || currentKeyCode.equals("17") || currentKeyCode.equals("74")) {
-//            //ignore
-//        } else if (currentKeyCode.equals("10")) {
-//            submitSKU(SKUString);
-//            SKUString = "";
-//        } else {
-//            SKUString += evt.getKeyChar() + "";
-//        }
-//=======
         char c = evt.getKeyChar();
         if (Character.isLetterOrDigit(c)) {
             SKUString += evt.getKeyChar() + "";
@@ -449,20 +439,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         } else {
             //ignore
         }
-
-//========
-//        Integer currentKeyCode = evt.getKeyCode();
-//        System.out.println(currentKeyCode);
-//
-//        if (!((currentKeyCode >= 48) && (currentKeyCode >= 57)) || !((currentKeyCode >= 65) && (currentKeyCode <= 90)) || !((currentKeyCode >= 97) && (currentKeyCode <= 122))) {
-//            //ignore
-//        } else if (currentKeyCode == 10) {
-//            submitSKU(SKUString);
-//            SKUString = "";
-//        } else {
-//            SKUString += evt.getKeyChar() + "";
-//        }
-
     }//GEN-LAST:event_tblLineItemKeyReleased
 
     private void btnTest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest1ActionPerformed
@@ -675,7 +651,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         double totalPrice = 0;
         double netPrice = 0;
         double discounPrice = 0;
-        double discountRate = POS.transaction.getDiscountRate();
+        double discountRate = 0;
 
         for (int i = 0; i < lineItems.size(); i++) {
             totalQuantity += lineItems.get(i).getQuantity();
@@ -686,27 +662,29 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         POS.transaction.setTotalItems(totalQuantity);
         lblTotalItems.setText(totalQuantity + "");
 
-        //discount label
+        //sub total label
         POS.transaction.setTotalPrice(totalPrice);
         lblTotalPrice.setText(totalPrice + "");
 
-        //sub total label
+        //discount label
+        discountRate = POS.transaction.getDiscountRate();
+        System.out.println("discountRate " + discountRate);
         if (discountRate > 0) {
             discounPrice = totalPrice * (discountRate / 100);
             discounPrice = Math.round(discounPrice * 100.0) / 100.0;
             POS.transaction.setDiscountPrice(totalPrice);
             lblDiscount.setText(discounPrice + "");
         } else {
-            lblDiscount.setText("0.00");
+            lblDiscount.setText("0.0");
         }
 
         //total price label
         if (totalPrice > 0) {
             netPrice = totalPrice - discounPrice;
             POS.transaction.setNetPrice(netPrice);
-            lblTotalPrice.setText(netPrice + "");
+            lblTotalNet.setText(netPrice + "");
         } else {
-            lblTotalPrice.setText(totalPrice + "");
+            lblTotalNet.setText(totalPrice + "");
         }
 
     }

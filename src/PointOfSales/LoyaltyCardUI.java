@@ -331,6 +331,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         POS.transaction.setPointsToDeduct(pointsDeducting);
+        System.out.println("POS.transaction.setDiscountRate " + discountRate);
         POS.transaction.setDiscountRate(discountRate);
         Window w = SwingUtilities.getWindowAncestor(LoyaltyCardUI.this);
         w.setVisible(false);
