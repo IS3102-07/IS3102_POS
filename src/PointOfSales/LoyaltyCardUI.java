@@ -13,15 +13,15 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     public LoyaltyCardUI() {
         initComponents();
 
-        discountRate = POS.transaction.getDiscountRate();
-
-        memberPoints = POS.transaction.getMemberPoints();
-        pointsDeducting = POS.transaction.getPointsToDeduct();
         memberEmail = POS.transaction.getMemberEmail();
+        System.out.println("Email " + memberEmail);
 
         if (memberEmail != null) {
             txtMemberEmail.setText(memberEmail);
         }
+
+        discountRate = POS.transaction.getDiscountRate();
+        memberPoints = POS.transaction.getMemberPoints();
 
         if (memberPoints == 0) {
             lblCurrentPoints.setText("-");
@@ -29,42 +29,40 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
             lblCurrentPoints.setText(memberPoints + "");
         }
 
+        pointsDeducting = POS.transaction.getPointsToDeduct();
         if (pointsDeducting == 0) {
             lblRedeem.setText("-");
+        } else {
+            lblRedeem.setText(pointsDeducting + "");
+        }
+
+        //set which redemption button can be pressed
+        if (memberPoints >= 500) {
+            btn5.setEnabled(true);
+            btn10.setEnabled(true);
+            btn15.setEnabled(true);
+            btn20.setEnabled(true);
+        } else if (memberPoints < 500 && memberPoints >= 300) {
+            btn5.setEnabled(true);
+            btn10.setEnabled(true);
+            btn15.setEnabled(true);
+            btn20.setEnabled(false);
+        } else if (memberPoints < 300 && memberPoints >= 150) {
+            btn5.setEnabled(true);
+            btn10.setEnabled(true);
+            btn15.setEnabled(false);
+            btn20.setEnabled(false);
+        } else if (memberPoints < 150 && memberPoints >= 50) {
+            btn5.setEnabled(true);
+            btn10.setEnabled(false);
+            btn15.setEnabled(false);
+            btn20.setEnabled(false);
+        } else if (memberPoints < 50) {
             btn5.setEnabled(false);
             btn10.setEnabled(false);
             btn15.setEnabled(false);
             btn20.setEnabled(false);
-        } else {
-            lblRedeem.setText(pointsDeducting + "");
-            if (pointsDeducting >= 500) {
-                btn5.setEnabled(true);
-                btn10.setEnabled(true);
-                btn15.setEnabled(true);
-                btn20.setEnabled(true);
-            } else if (pointsDeducting < 500 && pointsDeducting >= 300) {
-                btn5.setEnabled(true);
-                btn10.setEnabled(true);
-                btn15.setEnabled(true);
-                btn20.setEnabled(false);
-            } else if (pointsDeducting < 300 && pointsDeducting >= 150) {
-                btn5.setEnabled(true);
-                btn10.setEnabled(true);
-                btn15.setEnabled(false);
-                btn20.setEnabled(false);
-            } else if (pointsDeducting < 150 && pointsDeducting >= 50) {
-                btn5.setEnabled(true);
-                btn10.setEnabled(false);
-                btn15.setEnabled(false);
-                btn20.setEnabled(false);
-            } else if (pointsDeducting < 50) {
-                btn5.setEnabled(false);
-                btn10.setEnabled(false);
-                btn15.setEnabled(false);
-                btn20.setEnabled(false);
-            }
         }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -90,6 +88,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         lblPoints11 = new javax.swing.JLabel();
         lblRedeem = new javax.swing.JLabel();
         lblCurrentPoints = new javax.swing.JLabel();
+        btnConfirm = new javax.swing.JButton();
 
         jLabel6.setText("100 : Points");
 
@@ -188,6 +187,16 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         lblCurrentPoints.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblCurrentPoints.setText("1000");
 
+        btnConfirm.setBackground(new java.awt.Color(153, 0, 0));
+        btnConfirm.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnConfirm.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfirm.setText("Confirm");
+        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -229,6 +238,8 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel1))
                                 .addComponent(txtMemberEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,7 +293,8 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(13, 13, 13))
                     .addGroup(layout.createSequentialGroup()
@@ -294,10 +306,10 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtMemberEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMemberEmailKeyReleased
-        System.out.println("txtMemberEmailKeyReleased: " + evt.getKeyCode());
-        //need to exract the email
-        //POS.transaction.setMemberEmail(evt.getKeyChar() + "");
+        //System.out.println("txtMemberEmailKeyReleased: " + evt.getKeyCode());
+
         try {
+            memberEmail = evt.getKeyChar() + "";
             memberPoints = getMemberLoyaltyPoints(evt.getKeyChar() + "");
 
             lblCurrentPoints.setText(memberPoints + "");
@@ -336,8 +348,6 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     }//GEN-LAST:event_txtMemberEmailKeyReleased
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        POS.transaction.setPointsToDeduct(pointsDeducting);
-        POS.transaction.setDiscountRate(discountRate);
         Window w = SwingUtilities.getWindowAncestor(LoyaltyCardUI.this);
         w.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
@@ -361,7 +371,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
 
     private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
         lblRedeem.setText(150 + "");
-        pointsDeducting = 50;
+        pointsDeducting = 150;
         discountRate = 10;
         txtMemberEmail.requestFocus();
     }//GEN-LAST:event_btn10ActionPerformed
@@ -380,6 +390,15 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         txtMemberEmail.requestFocus();
     }//GEN-LAST:event_btn20ActionPerformed
 
+    private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
+        POS.transaction.setPointsToDeduct(pointsDeducting);
+        POS.transaction.setDiscountRate(discountRate);
+        POS.transaction.setMemberEmail(memberEmail);
+        POS.transaction.setMemberPoints(memberPoints);
+        Window w = SwingUtilities.getWindowAncestor(LoyaltyCardUI.this);
+        w.setVisible(false);
+    }//GEN-LAST:event_btnConfirmActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn10;
@@ -388,6 +407,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     private javax.swing.JButton btn5;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnConfirm;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

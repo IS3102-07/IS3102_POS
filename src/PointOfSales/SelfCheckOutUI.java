@@ -103,6 +103,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         jLabel3.setText("Sub total:");
 
         lblTotalPrice.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        lblTotalPrice.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTotalPrice.setText("0.0");
 
         tblLineItem.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -239,9 +240,11 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         jLabel5.setText("Total:");
 
         lblDiscount.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        lblDiscount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblDiscount.setText("0.0");
 
         lblTotalNet.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        lblTotalNet.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTotalNet.setText("0.0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -249,12 +252,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -271,17 +271,18 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                                 .addComponent(jLabel7)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel5))
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTotalPrice)
-                            .addComponent(lblDiscount)
-                            .addComponent(lblTotalNet))
-                        .addGap(41, 41, 41)))
+                            .addComponent(lblDiscount, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTotalPrice, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTotalNet, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(19, 19, 19))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -359,7 +360,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         dialog.setVisible(true);
         tblLineItem.requestFocus();
 
-        System.out.println("POS.transactionCompleted " + POS.transactionCompleted);
         if (POS.transactionCompleted) {
             DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
             int rows = model.getRowCount();
@@ -428,8 +428,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
     private void tblLineItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblLineItemKeyReleased
         //----------barcode scanner--------------
-        String currentKeyCode = evt.getKeyCode() + "";
-        System.out.println(currentKeyCode);
         char c = evt.getKeyChar();
         if (Character.isLetterOrDigit(c)) {
             SKUString += evt.getKeyChar() + "";
@@ -451,7 +449,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             itemHelper = getItemBySKU(SKU);
             if (itemHelper != null) {
 
-                System.out.println("POS.storeID " + POS.storeID);
                 itemCountryPrice = getItemCountryPriceBySKU(SKU, Long.parseLong(POS.storeID));
                 //check arraylist if this lineitem exist, if have increase quantity, 
                 for (int i = 0; i < lineItems.size(); i++) {
@@ -670,7 +667,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         //discount label
         discountRate = POS.transaction.getDiscountRate();
-        System.out.println("discountRate " + discountRate);
         if (discountRate > 0) {
             discounPrice = totalPrice * (discountRate / 100);
             discounPrice = Math.round(discounPrice * 100.0) / 100.0;
