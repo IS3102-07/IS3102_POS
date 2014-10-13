@@ -439,6 +439,18 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         } else {
             SKUString += evt.getKeyChar() + "";
         }
+//=======
+//        char c = evt.getKeyChar();
+//        if (Character.isLetterOrDigit(c)) {
+//            SKUString += evt.getKeyChar() + "";
+//        } else if (evt.getKeyCode() == 10) {
+//            submitSKU(SKUString);
+//            SKUString = "";
+//        } else {
+//            //ignore
+//        }
+
+//========
 //        Integer currentKeyCode = evt.getKeyCode();
 //        System.out.println(currentKeyCode);
 //
