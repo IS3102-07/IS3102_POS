@@ -133,11 +133,6 @@ public class LoginUI extends javax.swing.JFrame {
         });
 
         txtEmail.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
-            }
-        });
 
         lblEmail.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblEmail.setText("Email");
@@ -224,10 +219,6 @@ public class LoginUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
-
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         txtEmail.setText("");
         txtPassword.setText("");
@@ -254,7 +245,7 @@ public class LoginUI extends javax.swing.JFrame {
                     lblMessage.setText("Invalid credential. Please try again.");
                 } else {
                     ReadFile readFile = new ReadFile();
-                    POS.supervisorContactNo = Integer.parseInt(txtContact.getText());
+                    POS.supervisorContactNo = getCountryCode(POS.storeID) + txtContact.getText();
                     POS.staffEmail = txtEmail.getText();
                     POS.staffPassword = txtPassword.getPassword();
                     MainMenuUI mainMenuUI = new MainMenuUI();
@@ -329,6 +320,12 @@ public class LoginUI extends javax.swing.JFrame {
         PointOfSales.HQWebServiceBean_Service service = new PointOfSales.HQWebServiceBean_Service();
         PointOfSales.HQWebServiceBean port = service.getHQWebServiceBeanPort();
         return port.posLoginStaff(email, password);
+    }
+
+    private static String getCountryCode(java.lang.Long storeID) {
+        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
+        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
+        return port.getCountryCode(storeID);
     }
 
 }

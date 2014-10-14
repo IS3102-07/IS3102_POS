@@ -4,9 +4,9 @@
 
 <xs:element name="alertSupervisorResponse" type="tns:alertSupervisorResponse"/>
 
-<xs:element name="callSupervisor" type="tns:callSupervisor"/>
+<xs:element name="getCountryCode" type="tns:getCountryCode"/>
 
-<xs:element name="callSupervisorResponse" type="tns:callSupervisorResponse"/>
+<xs:element name="getCountryCodeResponse" type="tns:getCountryCodeResponse"/>
 
 <xs:element name="getItemBySKU" type="tns:getItemBySKU"/>
 
@@ -19,6 +19,18 @@
 <xs:element name="submitSalesRecord" type="tns:submitSalesRecord"/>
 
 <xs:element name="submitSalesRecordResponse" type="tns:submitSalesRecordResponse"/>
+
+<xs:complexType name="getCountryCode">
+<xs:sequence>
+<xs:element name="storeID" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCountryCodeResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
 
 <xs:complexType name="getItemBySKU">
 <xs:sequence>
@@ -53,22 +65,10 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="callSupervisor">
-<xs:sequence>
-<xs:element name="contactNo" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="callSupervisorResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="alertSupervisor">
 <xs:sequence>
 <xs:element name="posName" type="xs:string" minOccurs="0"/>
-<xs:element name="supervisorTel" type="xs:int" minOccurs="0"/>
+<xs:element name="supervisorTel" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -421,6 +421,8 @@
 <xs:element name="passwordSalt" type="xs:string" minOccurs="0"/>
 <xs:element name="phone" type="xs:string" minOccurs="0"/>
 <xs:element name="purchases" type="tns:salesRecordEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="securityAnswer" type="xs:string" minOccurs="0"/>
+<xs:element name="securityQuestion" type="xs:int" minOccurs="0"/>
 <xs:element name="shoppingList" type="tns:shoppingListEntity" minOccurs="0"/>
 <xs:element name="zipCode" type="xs:string" minOccurs="0"/>
 </xs:sequence>

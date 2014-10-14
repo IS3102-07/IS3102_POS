@@ -16,7 +16,7 @@ public class ReadFile {
 
             while ((data = br.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(data, ",");
-                POS.storeID = st.nextToken();
+                POS.storeID = Long.parseLong(st.nextToken());
                 POS.storeName = st.nextToken();
                 POS.PORT_Pole = st.nextToken();
             }

@@ -2,11 +2,11 @@ package PointOfSales;
 
 public class POS {
 
-    public static String storeID;
+    public static Long storeID;
     public static String storeName;
     public static String staffEmail;
     public static char[] staffPassword;
-    public static int supervisorContactNo;
+    public static String supervisorContactNo;
     public static Transaction transaction;
     public static int tmpQty = 0;
     public static boolean transactionCompleted;

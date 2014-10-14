@@ -22,17 +22,17 @@
 <message name="getItemBySKUResponse">
 <part name="parameters" element="tns:getItemBySKUResponse"/>
 </message>
-<message name="callSupervisor">
-<part name="parameters" element="tns:callSupervisor"/>
-</message>
-<message name="callSupervisorResponse">
-<part name="parameters" element="tns:callSupervisorResponse"/>
-</message>
 <message name="alertSupervisor">
 <part name="parameters" element="tns:alertSupervisor"/>
 </message>
 <message name="alertSupervisorResponse">
 <part name="parameters" element="tns:alertSupervisorResponse"/>
+</message>
+<message name="getCountryCode">
+<part name="parameters" element="tns:getCountryCode"/>
+</message>
+<message name="getCountryCodeResponse">
+<part name="parameters" element="tns:getCountryCodeResponse"/>
 </message>
 <portType name="StoreWebServiceBean">
 <operation name="submitSalesRecord">
@@ -47,13 +47,13 @@
 <input wsam:Action="http://WebServices/StoreWebServiceBean/getItemBySKURequest" message="tns:getItemBySKU"/>
 <output wsam:Action="http://WebServices/StoreWebServiceBean/getItemBySKUResponse" message="tns:getItemBySKUResponse"/>
 </operation>
-<operation name="callSupervisor">
-<input wsam:Action="http://WebServices/StoreWebServiceBean/callSupervisorRequest" message="tns:callSupervisor"/>
-<output wsam:Action="http://WebServices/StoreWebServiceBean/callSupervisorResponse" message="tns:callSupervisorResponse"/>
-</operation>
 <operation name="alertSupervisor">
 <input wsam:Action="http://WebServices/StoreWebServiceBean/alertSupervisorRequest" message="tns:alertSupervisor"/>
 <output wsam:Action="http://WebServices/StoreWebServiceBean/alertSupervisorResponse" message="tns:alertSupervisorResponse"/>
+</operation>
+<operation name="getCountryCode">
+<input wsam:Action="http://WebServices/StoreWebServiceBean/getCountryCodeRequest" message="tns:getCountryCode"/>
+<output wsam:Action="http://WebServices/StoreWebServiceBean/getCountryCodeResponse" message="tns:getCountryCodeResponse"/>
 </operation>
 </portType>
 <binding name="StoreWebServiceBeanPortBinding" type="tns:StoreWebServiceBean">
@@ -85,7 +85,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="callSupervisor">
+<operation name="alertSupervisor">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -94,7 +94,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="alertSupervisor">
+<operation name="getCountryCode">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

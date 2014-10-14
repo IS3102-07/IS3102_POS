@@ -359,6 +359,8 @@
 <xs:element name="passwordSalt" type="xs:string" minOccurs="0"/>
 <xs:element name="phone" type="xs:string" minOccurs="0"/>
 <xs:element name="purchases" type="tns:salesRecordEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="securityAnswer" type="xs:string" minOccurs="0"/>
+<xs:element name="securityQuestion" type="xs:int" minOccurs="0"/>
 <xs:element name="shoppingList" type="tns:shoppingListEntity" minOccurs="0"/>
 <xs:element name="zipCode" type="xs:string" minOccurs="0"/>
 </xs:sequence>
