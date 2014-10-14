@@ -323,7 +323,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         try {
             member = getMember(evt.getKeyChar() + "");
             System.out.println(member.getName());
-            POS.displayPoleMessage("Welcome to Island Furniture", member.getName());
+            POS.displayPoleMessage("Welcome", member.getName());
 
             lblCurrentPoints.setText(member.getLoyaltyPoints() + "");
             lblRedeem.setText(pointsDeducting + "");

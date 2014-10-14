@@ -701,6 +701,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         String line2 = formatSKU + formatItemSubPrice;
 
         System.out.println(line1 + "\n" + line2);
+        //POS.displayPoleMessage("test1", "test2");
+        //POS.displayPoleMessage("test1", line1);
+        //POS.displayPoleMessage("test2", line2);
         POS.displayPoleMessage(line1, line2);
     }
 

@@ -26,7 +26,7 @@ public class POS {
     public static SerialPort serialPort;
 
     public static void displayPoleMessage(String line1, String line2) {
-        //lline 1 write left to right
+        //line 1 write left to right
         //line 2 write right to left
         byte[] clear = {0x0C};
         byte[] newLine = {0x0A};
@@ -39,6 +39,7 @@ public class POS {
             partnerPoleDisplayOutputStream.write(newLine);
             partnerPoleDisplayOutputStream.write(carriageReturn);
             partnerPoleDisplayOutputStream.write(message2);
+            partnerPoleDisplayOutputStream.write(carriageReturn);
         } catch (IOException ex) {
             ex.printStackTrace();
             //JOptionPane.showMessageDialog(null, "Unable to write to Partner Pole Display: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

@@ -15,7 +15,9 @@ public class LoginUI extends javax.swing.JFrame {
         this.setSize(1280, 960);
 
         POS.initPartnerPoleDisplay();
-        POS.displayPoleMessage("Welcome to Island Furniture", "");
+        String line2 = String.format("%20s", "Island Furniture!");
+
+//POS.displayPoleMessage("Welcome to", line2);
     }
 
     @SuppressWarnings("unchecked")
