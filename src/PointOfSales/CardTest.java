@@ -6,6 +6,7 @@ import javax.smartcardio.*;
 
 public class CardTest {
 
+  final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
   //  F2E5A75D9000
 
 //32D3A75D9000

@@ -250,8 +250,8 @@ public class TestUI extends javax.swing.JFrame {
         byte[] clear = {0x0C};
         byte[] newLine = {0x0A};
         byte[] carriageReturn = {0x0D};
-        byte[] message1 = new String("Hello World!").getBytes();
-        byte[] message2 = new String("Jason SIM?").getBytes();
+        byte[] message1 = new String("IS3102 IT07").getBytes();
+        byte[] message2 = new String("           Huat").getBytes();
         try {
             partnerPoleDisplayOutputStream.write(clear);
             partnerPoleDisplayOutputStream.write(message1);
@@ -477,18 +477,18 @@ public class TestUI extends javax.swing.JFrame {
         ReadReceipt pr = new ReadReceipt();
         try {
             Double margin = 1.0;
-            Integer lines = 16;
 
             PrinterJob printerJob = PrinterJob.getPrinterJob();
             PageFormat pageFormat = printerJob.defaultPage();
             Paper paper = new Paper();
             paper.setSize(180.00, 200.00);
             //paper.setSize(180.0, (double) (paper.getHeight() + 100));
-            paper.setImageableArea(margin, margin, paper.getWidth(), paper.getHeight() - margin * 2);
+            paper.setImageableArea(margin, margin, paper.getWidth(), 20 - margin * 2);
+            //paper.setImageableArea(margin, margin, paper.getWidth(), paper.getHeight() - margin * 2);
             pageFormat.setPaper(paper);
             pageFormat.setOrientation(PageFormat.PORTRAIT);
             txtReceiptMessage.setText("12345678901234567890123456");
-    //txtReceiptMessage.setText(POS.test);
+            //txtReceiptMessage.setText(POS.test);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
             printerJob.print();
         } catch (PrinterException ex) {
