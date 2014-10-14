@@ -13,6 +13,9 @@ public class LoginUI extends javax.swing.JFrame {
         cp = getContentPane();
         cp.setBackground(Color.white);
         this.setSize(1280, 960);
+
+        POS.initPartnerPoleDisplay();
+        POS.displayPoleMessage("Welcome to Island Furniture", "");
     }
 
     @SuppressWarnings("unchecked")

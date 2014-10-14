@@ -4,9 +4,13 @@
 
 <xs:element name="createSalesRecordResponse" type="tns:createSalesRecordResponse"/>
 
+<xs:element name="getMember" type="tns:getMember"/>
+
 <xs:element name="getMemberLoyaltyPoints" type="tns:getMemberLoyaltyPoints"/>
 
 <xs:element name="getMemberLoyaltyPointsResponse" type="tns:getMemberLoyaltyPointsResponse"/>
+
+<xs:element name="getMemberResponse" type="tns:getMemberResponse"/>
 
 <xs:element name="getStoreByID" type="tns:getStoreByID"/>
 
@@ -388,6 +392,18 @@
 <xs:complexType name="getMemberLoyaltyPointsResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMember">
+<xs:sequence>
+<xs:element name="memberEmail" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMemberResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:memberEntity" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

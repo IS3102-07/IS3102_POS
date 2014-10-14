@@ -12,8 +12,7 @@ public class Transaction {
     private double netPrice;
     private int pointsToDeduct;
     private int totalItems;
-    private String memberEmail;
-    private int memberPoints;
+    private MemberEntity member;
 
     public Transaction() {
         lineItems = new ArrayList<LineItem>();
@@ -33,14 +32,6 @@ public class Transaction {
 
     public void setTotalItems(int totalItems) {
         this.totalItems = totalItems;
-    }
-
-    public String getMemberEmail() {
-        return memberEmail;
-    }
-
-    public void setMemberEmail(String memberEmail) {
-        this.memberEmail = memberEmail;
     }
 
     public List<LineItem> getLineItems() {
@@ -67,14 +58,6 @@ public class Transaction {
         this.pointsToDeduct = pointsToDeduct;
     }
 
-    public int getMemberPoints() {
-        return memberPoints;
-    }
-
-    public void setMemberPoints(int memberPoints) {
-        this.memberPoints = memberPoints;
-    }
-
     public int getDiscountRate() {
         return discountRate;
     }
@@ -89,6 +72,20 @@ public class Transaction {
 
     public void setDiscountPrice(double discountPrice) {
         this.discountPrice = discountPrice;
+    }
+
+    /**
+     * @return the member
+     */
+    public MemberEntity getMember() {
+        return member;
+    }
+
+    /**
+     * @param member the member to set
+     */
+    public void setMember(MemberEntity member) {
+        this.member = member;
     }
 
 }

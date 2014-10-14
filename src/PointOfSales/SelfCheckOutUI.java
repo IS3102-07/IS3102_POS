@@ -26,7 +26,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
 
-        //can remove this 
+        //hardcode value please  remove this when enough of bypass-------------
         ReadFile readFile = new ReadFile();
     }
 
@@ -388,6 +388,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         dialog.setVisible(true);
         tblLineItem.requestFocus();
         refreshTotalQuantityAndPrice();
+        //POS.displayPoleMessage("Welcome to Island Furniture","");
     }//GEN-LAST:event_btnLoyaltyCardActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -626,7 +627,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 //done with adding to List, update the table
                 refreshTable();
                 refreshTotalQuantityAndPrice();
-
+                //POS.displayPoleMessage(SKU, SKU);
             }
         } catch (Exception ex) {
             lblMessage.setText("Item not available for checkout, contact customer service for assistance.");
