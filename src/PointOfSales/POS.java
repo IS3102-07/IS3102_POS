@@ -39,7 +39,6 @@ public class POS {
             partnerPoleDisplayOutputStream.write(newLine);
             partnerPoleDisplayOutputStream.write(carriageReturn);
             partnerPoleDisplayOutputStream.write(message2);
-            partnerPoleDisplayOutputStream.write(carriageReturn);
         } catch (IOException ex) {
             ex.printStackTrace();
             //JOptionPane.showMessageDialog(null, "Unable to write to Partner Pole Display: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

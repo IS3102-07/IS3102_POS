@@ -12,6 +12,8 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     public LoyaltyCardUI() {
         initComponents();
 
+        POS.displayPoleMessage("Scan Loyalty Card", "");
+
         member = POS.transaction.getMember();
 
         if (member != null && member.getEmail() != null) {
@@ -323,7 +325,11 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         try {
             member = getMember(evt.getKeyChar() + "");
             System.out.println(member.getName());
-            POS.displayPoleMessage("Welcome", member.getName());
+
+            String string1 = String.format("%-9s", "Pts " + member.getLoyaltyPoints());
+            String string2 = String.format("%10s", member.getLoyaltyTier().getTier());
+            String line2 = string1 + string2;
+            POS.displayPoleMessage(member.getName(), line2);
 
             lblCurrentPoints.setText(member.getLoyaltyPoints() + "");
             lblRedeem.setText(pointsDeducting + "");
