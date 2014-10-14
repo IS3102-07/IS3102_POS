@@ -397,10 +397,11 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         if (tblLineItem.getSelectedRow() != -1 && tblLineItem.getRowCount() != 0) {
             lineItems.remove(tblLineItem.getSelectedRow());
             model.removeRow(tblLineItem.getSelectedRow());
+            POS.displayPoleMessage("Item Removed", "");
         }
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
-        POS.displayPoleMessage("Item Removed", "");
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
@@ -425,11 +426,12 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
             lineItems.get(tblLineItem.getSelectedRow()).setQuantity(POS.tmpQty);
             model.setValueAt(POS.tmpQty, tblLineItem.getSelectedRow(), 2);
+            POS.displayPoleMessage("Quantity Updated", "");
         }
 
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
-        POS.displayPoleMessage("Quantity Updated", "");
+
     }//GEN-LAST:event_btnUpdateQuantityActionPerformed
 
 
@@ -701,7 +703,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         String formatItemPrice = String.format("%9s", itemPrice);
         String line1 = formatItemName + formatItemPrice;
 
-        String formatSKU = String.format("%-9s", SKU);
+        String formatSKU = String.format("%-9s", "SUB-TOTAL");
         String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
         String line2 = formatSKU + formatItemSubPrice;
 
