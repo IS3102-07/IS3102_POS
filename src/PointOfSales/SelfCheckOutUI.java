@@ -473,6 +473,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
+                printLineItemPoleMessage(SKU, itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {
             lblMessage.setText("Test 1:  Item not available for checkout, contact customer service for assistance.");
@@ -492,7 +493,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 System.out.println("--------\n\n");
             }
         }
-
     }//GEN-LAST:event_btnTestContentActionPerformed
 
     private void btnTest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest2ActionPerformed
@@ -524,6 +524,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
+                printLineItemPoleMessage(SKU, itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {
             lblMessage.setText("Test 2:  Item not available for checkout, contact customer service for assistance.");
@@ -619,7 +620,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 }
                 //else add new lineitem to the list
                 if (!isExist) {
-                    //lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
                     lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
@@ -627,7 +627,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 //done with adding to List, update the table
                 refreshTable();
                 refreshTotalQuantityAndPrice();
-                //POS.displayPoleMessage(SKU, SKU);
+                tblLineItem.requestFocus();
+                printLineItemPoleMessage(SKU, itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {
             lblMessage.setText("Item not available for checkout, contact customer service for assistance.");
@@ -688,6 +689,22 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         } else {
             lblTotalNet.setText(totalPrice + "");
         }
+    }
+
+    private void printLineItemPoleMessage(String SKU, String itemName, double itemPrice) {
+        int quantity = 0;
+        if (lineItems == null || lineItems.isEmpty()) {
+            quantity = 0;
+        } else {
+            for (int i = 0; i < lineItems.size(); i++) {
+                if (SKU.equals(lineItems.get(i).getSKU())) {
+                    quantity = lineItems.get(i).getQuantity();
+                }
+            }
+        }
+        String line1 = quantity + " " + itemName + SKU;
+        String line2 = "SUBT " + itemPrice;
+        POS.displayPoleMessage(line1, line2);
 
     }
 

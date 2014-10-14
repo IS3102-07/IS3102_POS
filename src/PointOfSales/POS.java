@@ -26,6 +26,8 @@ public class POS {
     public static SerialPort serialPort;
 
     public static void displayPoleMessage(String line1, String line2) {
+        //lline 1 write left to right
+        //line 2 write right to left
         byte[] clear = {0x0C};
         byte[] newLine = {0x0A};
         byte[] carriageReturn = {0x0D};
