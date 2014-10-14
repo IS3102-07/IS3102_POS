@@ -12,6 +12,15 @@ public class PaymentUI extends javax.swing.JPanel {
         initComponents();
         this.setSize(607, 400);
         txtCreditNumber.requestFocus();;
+
+        String string1 = String.format("%-9s", "Sub Total");
+        String string2 = String.format("%9s", POS.transaction.getTotalPrice());
+        String line1 = string1 + string2;
+
+        String string11 = String.format("%-9s", POS.transaction.getDiscountRate() + "%");
+        String string22 = String.format("%10s", "[" + POS.transaction.getNetPrice() + "]");
+        String line2 = string11 + string22;
+        POS.displayPoleMessage(line1, line2);
     }
 
     @SuppressWarnings("unchecked")
@@ -117,6 +126,12 @@ public class PaymentUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCreditNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditNumberKeyReleased
+        String string1 = String.format("%20s", "Come back again!");
+        POS.displayPoleMessage("Thank you!", string1);
+
+        POS.transactionCompleted = true;
+        //submitSalesRecord(POS.);
+
         JDialog dialog = new JDialog();
         final Toolkit toolkit = Toolkit.getDefaultToolkit();
         final Dimension screenSize = toolkit.getScreenSize();
@@ -129,15 +144,15 @@ public class PaymentUI extends javax.swing.JPanel {
         dialog.pack();
         dialog.setVisible(true);
 
+        String line2 = String.format("%20s", "Island Furniture!");
+        POS.displayPoleMessage("Welcome to", line2);
+        
         txtCreditNumber.setText("");
         Window w = SwingUtilities.getWindowAncestor(PaymentUI.this);
         w.setVisible(false);
+
 //        Boolean startCreditCardMSR1 = false;
-//        String kbValue = lbltest.getText();
-//
-//        System.out.println("startCreditCardMSR1: " + startCreditCardMSR1);
-//        System.out.println("kbValue: " + kbValue);
-//
+//        String kbValue = txtCreditNumber.getText();
 //        if (!startCreditCardMSR1) {
 //            if (kbValue != null && kbValue.trim().length() > 0) {
 //                kbValue = kbValue.trim();

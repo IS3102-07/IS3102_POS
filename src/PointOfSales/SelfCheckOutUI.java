@@ -693,18 +693,14 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private void printLineItemPoleMessage(String SKU, String itemName, double itemPrice) {
 
         String formatItemName = String.format("%-9s", itemName);
-        String formatItemPrice = String.format("%9s", itemPrice + " ");
+        String formatItemPrice = String.format("%9s", itemPrice);
         String line1 = formatItemName + formatItemPrice;
 
         String formatSKU = String.format("%-9s", SKU);
         String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
         String line2 = formatSKU + formatItemSubPrice;
 
-        System.out.println(line1 + "\n" + line2);
-        //POS.displayPoleMessage("test1", "test2");
-        //POS.displayPoleMessage("test1", line1);
-        //POS.displayPoleMessage("test2", line2);
-        POS.displayPoleMessage(line1, line2);
+         POS.displayPoleMessage(line1, line2);
     }
 
     private static Double getItemCountryPriceBySKU(java.lang.String sku, java.lang.Long storeID) {

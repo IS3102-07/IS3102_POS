@@ -13,7 +13,6 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         initComponents();
 
         POS.displayPoleMessage("Scan Loyalty Card", "");
-
         member = POS.transaction.getMember();
 
         if (member != null && member.getEmail() != null) {
@@ -355,11 +354,14 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                 btn15.setEnabled(false);
                 btn20.setEnabled(false);
             }
-            
-//            String string1 = String.format("%-9s", "Pts " + member.getLoyaltyPoints());
-//            String string2 = String.format("%9s", member.getLoyaltyTier().getTier());
-//            String line2 = string1 + string2;
-//            POS.displayPoleMessage(member.getName(), line2);
+
+            String string1 = String.format("%-9s", "Pts " + member.getLoyaltyPoints());
+            String string2 = "";
+            if (member.getLoyaltyTier() != null) {
+                string2 = String.format("%10s", member.getLoyaltyTier().getTier());
+            }
+            String line2 = string1 + string2;
+            POS.displayPoleMessage(member.getName(), line2);
         } catch (Exception ex) {
             lblCurrentPoints.setText("-");
             lblRedeem.setText("-");

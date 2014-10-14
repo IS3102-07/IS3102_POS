@@ -8,8 +8,6 @@ public class ProcessPaymentUI extends javax.swing.JPanel {
     public ProcessPaymentUI() {
         initComponents();
         this.setSize(607, 400);
-        POS.transactionCompleted = true;
-        //submitSalesRecord(POS.);
     }
 
     @SuppressWarnings("unchecked")
