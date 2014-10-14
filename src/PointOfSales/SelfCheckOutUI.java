@@ -347,30 +347,32 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
-        JDialog dialog = new JDialog();
-        final Toolkit toolkit = Toolkit.getDefaultToolkit();
-        final Dimension screenSize = toolkit.getScreenSize();
-        final int x = (screenSize.width - dialog.getWidth()) / 4;
-        final int y = (screenSize.height - dialog.getHeight()) / 4;
-        dialog.setLocation(x, y);
-        dialog.setModal(true);
-        dialog.setUndecorated(true);
-        dialog.add(new PaymentUI());
-        dialog.pack();
-        dialog.setVisible(true);
-        tblLineItem.requestFocus();
-
-        if (POS.transactionCompleted) {
-            DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
-            int rows = model.getRowCount();
-            for (int i = rows - 1; i >= 0; i--) {
-                model.removeRow(i);
-            }
-            POS.transaction = new Transaction();
-            lineItems = POS.transaction.getLineItems();
-            refreshTotalQuantityAndPrice();
+        if (POS.transaction.getTotalItems() > 0) {
+            JDialog dialog = new JDialog();
+            final Toolkit toolkit = Toolkit.getDefaultToolkit();
+            final Dimension screenSize = toolkit.getScreenSize();
+            final int x = (screenSize.width - dialog.getWidth()) / 4;
+            final int y = (screenSize.height - dialog.getHeight()) / 4;
+            dialog.setLocation(x, y);
+            dialog.setModal(true);
+            dialog.setUndecorated(true);
+            dialog.add(new PaymentUI());
+            dialog.pack();
+            dialog.setVisible(true);
             tblLineItem.requestFocus();
-            POS.transactionCompleted = false;
+
+            if (POS.transactionCompleted) {
+                DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
+                int rows = model.getRowCount();
+                for (int i = rows - 1; i >= 0; i--) {
+                    model.removeRow(i);
+                }
+                POS.transaction = new Transaction();
+                lineItems = POS.transaction.getLineItems();
+                refreshTotalQuantityAndPrice();
+                tblLineItem.requestFocus();
+                POS.transactionCompleted = false;
+            }
         }
     }//GEN-LAST:event_btnPayActionPerformed
 
@@ -398,6 +400,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         }
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
+        POS.displayPoleMessage("Item Removed", "");
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
@@ -426,6 +429,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
+        POS.displayPoleMessage("Quantity Updated", "");
     }//GEN-LAST:event_btnUpdateQuantityActionPerformed
 
 
@@ -540,6 +544,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lineItems = POS.transaction.getLineItems();
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
+        POS.displayPoleMessage("Items cleared", "");
     }//GEN-LAST:event_btnCancelActionPerformed
 
     public static void main(String args[]) {
@@ -700,7 +705,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
         String line2 = formatSKU + formatItemSubPrice;
 
-         POS.displayPoleMessage(line1, line2);
+        POS.displayPoleMessage(line1, line2);
     }
 
     private static Double getItemCountryPriceBySKU(java.lang.String sku, java.lang.Long storeID) {
