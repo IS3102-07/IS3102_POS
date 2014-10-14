@@ -321,9 +321,9 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         System.out.println("txtMemberEmailKeyReleased: " + evt.getKeyChar());
 
         try {
-            member = new MemberEntity();
-            member.setEmail(evt.getKeyChar() + "");;
-            member.setLoyaltyPoints(getMember(evt.getKeyChar() + "").getLoyaltyPoints());
+            member = getMember(evt.getKeyChar() + "");
+            System.out.println(member.getName());
+            POS.displayPoleMessage("Welcome to Island Furniture", member.getName());
 
             lblCurrentPoints.setText(member.getLoyaltyPoints() + "");
             lblRedeem.setText(pointsDeducting + "");

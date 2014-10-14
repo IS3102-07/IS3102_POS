@@ -388,7 +388,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         dialog.setVisible(true);
         tblLineItem.requestFocus();
         refreshTotalQuantityAndPrice();
-        //POS.displayPoleMessage("Welcome to Island Furniture","");
     }//GEN-LAST:event_btnLoyaltyCardActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -692,20 +691,17 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     }
 
     private void printLineItemPoleMessage(String SKU, String itemName, double itemPrice) {
-        int quantity = 0;
-        if (lineItems == null || lineItems.isEmpty()) {
-            quantity = 0;
-        } else {
-            for (int i = 0; i < lineItems.size(); i++) {
-                if (SKU.equals(lineItems.get(i).getSKU())) {
-                    quantity = lineItems.get(i).getQuantity();
-                }
-            }
-        }
-        String line1 = quantity + " " + itemName + SKU;
-        String line2 = "SUBT " + itemPrice;
-        POS.displayPoleMessage(line1, line2);
 
+        String formatItemName = String.format("%-10s", itemName);
+        String formatItemPrice = String.format("%10s", itemPrice + "");
+        String line1 = formatItemName + formatItemPrice;
+
+        String formatSKU = String.format("%-10s", SKU);
+        String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
+        String line2 = formatSKU + formatItemSubPrice;
+
+        System.out.println(line1 + "\n" + line2);
+        POS.displayPoleMessage(line1, line2);
     }
 
     private static Double getItemCountryPriceBySKU(java.lang.String sku, java.lang.Long storeID) {
