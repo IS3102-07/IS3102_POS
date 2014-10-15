@@ -64,8 +64,8 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         lblDiscount = new javax.swing.JLabel();
         lblTotalNet = new javax.swing.JLabel();
-        btnLoyaltyCard1 = new javax.swing.JButton();
-        btnLoyaltyCard2 = new javax.swing.JButton();
+        btnPayCredit = new javax.swing.JButton();
+        btnPayCash = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblPOSName = new javax.swing.JLabel();
         lblDuty = new javax.swing.JLabel();
@@ -247,25 +247,25 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         lblTotalNet.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTotalNet.setText("0.0");
 
-        btnLoyaltyCard1.setBackground(new java.awt.Color(255, 153, 51));
-        btnLoyaltyCard1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnLoyaltyCard1.setForeground(new java.awt.Color(255, 255, 255));
-        btnLoyaltyCard1.setText("<html><h1 align='center'>Payment by <br>Credit Card</h1></htm>");
-        btnLoyaltyCard1.setBorder(new javax.swing.border.MatteBorder(null));
-        btnLoyaltyCard1.addActionListener(new java.awt.event.ActionListener() {
+        btnPayCredit.setBackground(new java.awt.Color(255, 153, 51));
+        btnPayCredit.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnPayCredit.setForeground(new java.awt.Color(255, 255, 255));
+        btnPayCredit.setText("<html><h1 align='center'>Payment by <br>Credit Card</h1></htm>");
+        btnPayCredit.setBorder(new javax.swing.border.MatteBorder(null));
+        btnPayCredit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoyaltyCard1ActionPerformed(evt);
+                btnPayCreditActionPerformed(evt);
             }
         });
 
-        btnLoyaltyCard2.setBackground(new java.awt.Color(255, 153, 51));
-        btnLoyaltyCard2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnLoyaltyCard2.setForeground(new java.awt.Color(255, 255, 255));
-        btnLoyaltyCard2.setText("<html><h1 align='center'>Payment by <br>CASH</h1></htm>");
-        btnLoyaltyCard2.setBorder(new javax.swing.border.MatteBorder(null));
-        btnLoyaltyCard2.addActionListener(new java.awt.event.ActionListener() {
+        btnPayCash.setBackground(new java.awt.Color(255, 153, 51));
+        btnPayCash.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnPayCash.setForeground(new java.awt.Color(255, 255, 255));
+        btnPayCash.setText("<html><h1 align='center'>Payment by <br>CASH</h1></htm>");
+        btnPayCash.setBorder(new javax.swing.border.MatteBorder(null));
+        btnPayCash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoyaltyCard2ActionPerformed(evt);
+                btnPayCashActionPerformed(evt);
             }
         });
 
@@ -285,7 +285,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblDuty)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblPOSName)
                 .addContainerGap())
         );
@@ -334,25 +334,22 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnUpdateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnLoyaltyCard2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnLoyaltyCard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnLoyaltyCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnUpdateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnPayCash, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLoyaltyCard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPayCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnHelp)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
             .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -373,8 +370,8 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                             .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLoyaltyCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLoyaltyCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnPayCash, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPayCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -452,10 +449,10 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
 
             lineItems.get(tblLineItem.getSelectedRow()).setQuantity(POS.tmpQty);
             model.setValueAt(POS.tmpQty, tblLineItem.getSelectedRow(), 2);
-            //POS.displayPoleMessage("Quantity Updated", "");
         }
 
         refreshTotalQuantityAndPrice();
+        printLineItemPoleMessage(lineItems.get(tblLineItem.getSelectedRow()).getDescription(), lineItems.get(tblLineItem.getSelectedRow()).getPrice());
         tblLineItem.requestFocus();
 
     }//GEN-LAST:event_btnUpdateQuantityActionPerformed
@@ -504,7 +501,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
-                printLineItemPoleMessage(SKU, itemHelper.getItemName(), itemCountryPrice);
+                printLineItemPoleMessage(itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {
             lblMessage.setText("Test 1:  Item not available for checkout, contact customer service for assistance.");
@@ -555,7 +552,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
-                printLineItemPoleMessage(SKU, itemHelper.getItemName(), itemCountryPrice);
+                printLineItemPoleMessage(itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {
             lblMessage.setText("Test 2:  Item not available for checkout, contact customer service for assistance.");
@@ -575,13 +572,39 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         //POS.displayPoleMessage("Items cleared", "");
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnLoyaltyCard1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoyaltyCard1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoyaltyCard1ActionPerformed
+    private void btnPayCreditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayCreditActionPerformed
+        if (POS.transaction.getTotalItems() > 0) {
+            JDialog dialog = new JDialog();
+            final Toolkit toolkit = Toolkit.getDefaultToolkit();
+            final Dimension screenSize = toolkit.getScreenSize();
+            final int x = (screenSize.width - dialog.getWidth()) / 4;
+            final int y = (screenSize.height - dialog.getHeight()) / 4;
+            dialog.setLocation(x, y);
+            dialog.setModal(true);
+            dialog.setUndecorated(true);
+            dialog.add(new PaymentUI_CreditCard());
+            dialog.pack();
+            dialog.setVisible(true);
+            tblLineItem.requestFocus();
 
-    private void btnLoyaltyCard2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoyaltyCard2ActionPerformed
+            if (POS.transactionCompleted) {
+                DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
+                int rows = model.getRowCount();
+                for (int i = rows - 1; i >= 0; i--) {
+                    model.removeRow(i);
+                }
+                POS.transaction = new Transaction();
+                lineItems = POS.transaction.getLineItems();
+                refreshTotalQuantityAndPrice();
+                tblLineItem.requestFocus();
+                POS.transactionCompleted = false;
+            }
+        }
+    }//GEN-LAST:event_btnPayCreditActionPerformed
+
+    private void btnPayCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayCashActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoyaltyCard2ActionPerformed
+    }//GEN-LAST:event_btnPayCashActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -623,8 +646,8 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnLoyaltyCard;
-    private javax.swing.JButton btnLoyaltyCard1;
-    private javax.swing.JButton btnLoyaltyCard2;
+    private javax.swing.JButton btnPayCash;
+    private javax.swing.JButton btnPayCredit;
     private javax.swing.JButton btnTest1;
     private javax.swing.JButton btnTest2;
     private javax.swing.JButton btnTestContent;
@@ -674,7 +697,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
-                printLineItemPoleMessage(SKU, itemHelper.getItemName(), itemCountryPrice);
+                printLineItemPoleMessage(itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {
             lblMessage.setText("Item not available for checkout, contact customer service for assistance.");
@@ -737,16 +760,16 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         }
     }
 
-    private void printLineItemPoleMessage(String SKU, String itemName, double itemPrice) {
-
+    private void printLineItemPoleMessage(String itemName, double itemPrice) {
         String formatItemName = String.format("%-9s", itemName);
         String formatItemPrice = String.format("%9s", itemPrice);
         String line1 = formatItemName + formatItemPrice;
 
-        String formatSKU = String.format("%-9s", "SUB-TOTAL");
+        String formatLabel = String.format("%-9s", "SUB-TOTAL");
         String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
-        String line2 = formatSKU + formatItemSubPrice;
+        String line2 = formatLabel + formatItemSubPrice;
 
+        //System.out.println(line1 + "\n" + line2);
         //POS.displayPoleMessage(line1, line2);
     }
 

@@ -107,9 +107,4 @@ public class ProcessPaymentUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 
-    private static ReturnHelper submitSalesRecord(java.lang.String staffEmail, java.lang.String password, java.lang.Long storeID, java.lang.String posName, java.util.List<PointOfSales.LineItemEntity> itemsPurchased, java.lang.Double amountPaid, java.lang.String memberEmail) {
-        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
-        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
-        return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchased, amountPaid, memberEmail);
-    }
 }

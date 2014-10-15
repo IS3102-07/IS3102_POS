@@ -360,7 +360,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             dialog.setLocation(x, y);
             dialog.setModal(true);
             dialog.setUndecorated(true);
-            dialog.add(new PaymentUI());
+            dialog.add(new PaymentUI_CreditCard());
             dialog.pack();
             dialog.setVisible(true);
             tblLineItem.requestFocus();
@@ -430,10 +430,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
             lineItems.get(tblLineItem.getSelectedRow()).setQuantity(POS.tmpQty);
             model.setValueAt(POS.tmpQty, tblLineItem.getSelectedRow(), 2);
-            //POS.displayPoleMessage("Quantity Updated", "");
         }
 
         refreshTotalQuantityAndPrice();
+        printLineItemPoleMessage(lineItems.get(tblLineItem.getSelectedRow()).getDescription(), lineItems.get(tblLineItem.getSelectedRow()).getPrice());
         tblLineItem.requestFocus();
 
     }//GEN-LAST:event_btnUpdateQuantityActionPerformed
@@ -482,7 +482,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
-                printLineItemPoleMessage(SKU, itemHelper.getItemName(), itemCountryPrice);
+                printLineItemPoleMessage( itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {
             lblMessage.setText("Test 1:  Item not available for checkout, contact customer service for assistance.");
@@ -533,7 +533,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
-                printLineItemPoleMessage(SKU, itemHelper.getItemName(), itemCountryPrice);
+                printLineItemPoleMessage( itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {
             lblMessage.setText("Test 2:  Item not available for checkout, contact customer service for assistance.");
@@ -641,7 +641,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
-                printLineItemPoleMessage(SKU, itemHelper.getItemName(), itemCountryPrice);
+                printLineItemPoleMessage(itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {
             lblMessage.setText("Item not available for checkout, contact customer service for assistance.");
@@ -704,15 +704,14 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         }
     }
 
-    private void printLineItemPoleMessage(String SKU, String itemName, double itemPrice) {
-
+    private void printLineItemPoleMessage(String itemName, double itemPrice) {
         String formatItemName = String.format("%-9s", itemName);
         String formatItemPrice = String.format("%9s", itemPrice);
         String line1 = formatItemName + formatItemPrice;
 
-        String formatSKU = String.format("%-9s", "SUB-TOTAL");
+        String formatLabel = String.format("%-9s", "SUB-TOTAL");
         String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
-        String line2 = formatSKU + formatItemSubPrice;
+        String line2 = formatLabel + formatItemSubPrice;
 
         //POS.displayPoleMessage(line1, line2);
     }

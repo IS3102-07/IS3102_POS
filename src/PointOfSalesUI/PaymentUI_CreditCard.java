@@ -1,15 +1,16 @@
 package PointOfSalesUI;
 
 import POS.*;
+import PointOfSales.ReturnHelper;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.Window;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
-public class PaymentUI extends javax.swing.JPanel {
+public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
-    public PaymentUI() {
+    public PaymentUI_CreditCard() {
         initComponents();
         this.setSize(607, 400);
         txtCreditNumber.requestFocus();;
@@ -21,7 +22,7 @@ public class PaymentUI extends javax.swing.JPanel {
         String string11 = String.format("%-9s", POS.transaction.getDiscountRate() + "%");
         String string22 = String.format("%10s", "[" + POS.transaction.getNetPrice() + "]");
         String line2 = string11 + string22;
-        POS.displayPoleMessage(line1, line2);
+        //POS.displayPoleMessage(line1, line2);
     }
 
     @SuppressWarnings("unchecked")
@@ -128,11 +129,11 @@ public class PaymentUI extends javax.swing.JPanel {
 
     private void txtCreditNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditNumberKeyReleased
         String string1 = String.format("%20s", "Come back again!");
-        POS.displayPoleMessage("Thank you!", string1);
+        //POS.displayPoleMessage("Thank you!", string1);
 
         POS.transactionCompleted = true;
-        //submitSalesRecord(POS.);
-
+        // submitSalesRecord(POS.staffEmail, POS.staffPassword,POS.storeID, POS.POSName, ?? ,  POS.transaction.getNetPrice(),  POS.transaction.getMember().getEmail()  );
+        //     return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchased, amountPaid, memberEmail);
         JDialog dialog = new JDialog();
         final Toolkit toolkit = Toolkit.getDefaultToolkit();
         final Dimension screenSize = toolkit.getScreenSize();
@@ -146,10 +147,10 @@ public class PaymentUI extends javax.swing.JPanel {
         dialog.setVisible(true);
 
         String line2 = String.format("%20s", "Island Furniture!");
-        POS.displayPoleMessage("Welcome to", line2);
-        
+        //POS.displayPoleMessage("Welcome to", line2);
+
         txtCreditNumber.setText("");
-        Window w = SwingUtilities.getWindowAncestor(PaymentUI.this);
+        Window w = SwingUtilities.getWindowAncestor(PaymentUI_CreditCard.this);
         w.setVisible(false);
 
 //        Boolean startCreditCardMSR1 = false;
@@ -181,7 +182,7 @@ public class PaymentUI extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         txtCreditNumber.setText("");
-        Window w = SwingUtilities.getWindowAncestor(PaymentUI.this);
+        Window w = SwingUtilities.getWindowAncestor(PaymentUI_CreditCard.this);
         w.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -197,4 +198,10 @@ public class PaymentUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtCreditNumber;
     // End of variables declaration//GEN-END:variables
+
+    private static ReturnHelper submitSalesRecord(java.lang.String staffEmail, java.lang.String password, java.lang.Long storeID, java.lang.String posName, java.util.List<PointOfSales.LineItemEntity> itemsPurchased, java.lang.Double amountPaid, java.lang.String memberEmail) {
+        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
+        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
+        return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchased, amountPaid, memberEmail);
+    }
 }
