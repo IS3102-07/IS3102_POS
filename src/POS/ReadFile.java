@@ -1,4 +1,4 @@
-package PointOfSales;
+package POS;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,7 +11,7 @@ public class ReadFile {
     public ReadFile() {
         try {
             String filePath = new File("").getAbsolutePath();
-            BufferedReader br = new BufferedReader(new FileReader(filePath.concat("\\src\\PointOfSales\\setup.txt")));
+            BufferedReader br = new BufferedReader(new FileReader(filePath.concat("\\src\\POS\\setup.txt")));
             String data;
 
             while ((data = br.readLine()) != null) {

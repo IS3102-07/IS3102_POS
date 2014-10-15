@@ -1,4 +1,4 @@
-package PointOfSales;
+package POS;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -14,9 +14,7 @@ public class LoginUI extends javax.swing.JFrame {
         cp.setBackground(Color.white);
         this.setSize(1280, 960);
 
-        POS.initPartnerPoleDisplay();
-        String line2 = String.format("%20s", "Island Furniture!");
-        POS.displayPoleMessage("Welcome to", line2);
+        ReadFile readFile = new ReadFile();
     }
 
     @SuppressWarnings("unchecked")
@@ -226,6 +224,7 @@ public class LoginUI extends javax.swing.JFrame {
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         txtEmail.setText("");
         txtPassword.setText("");
+        txtContact.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -248,7 +247,6 @@ public class LoginUI extends javax.swing.JFrame {
                 if (posLoginStaff(txtEmail.getText(), passText) == null) {
                     lblMessage.setText("Invalid credential. Please try again.");
                 } else {
-                    ReadFile readFile = new ReadFile();
                     POS.supervisorContactNo = getCountryCode(POS.storeID) + txtContact.getText();
                     POS.staffEmail = txtEmail.getText();
                     POS.staffPassword = txtPassword.getPassword();

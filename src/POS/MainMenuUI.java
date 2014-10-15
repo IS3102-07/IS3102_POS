@@ -1,8 +1,8 @@
-package PointOfSales;
+package POS;
 
+import PointOfSales.SelfCheckOutUI;
 import java.awt.Color;
 import java.awt.Container;
-import javax.swing.JFrame;
 
 public class MainMenuUI extends javax.swing.JFrame {
 

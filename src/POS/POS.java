@@ -1,4 +1,4 @@
-package PointOfSales;
+package POS;
 
 import gnu.io.CommPortIdentifier;
 import gnu.io.PortInUseException;
@@ -21,7 +21,7 @@ public class POS {
     public static String PORT_Pole;
     public static String test;
 
-    public static final String partnerPoleDisplayCOMPort = "COM4";
+    public static final String partnerPoleDisplayCOMPort = PORT_Pole;
     public static OutputStream partnerPoleDisplayOutputStream;
     public static SerialPort serialPort;
 

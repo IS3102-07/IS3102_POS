@@ -1,5 +1,7 @@
-package PointOfSales;
+package POS;
 
+import PointOfSales.MemberEntity;
+import PointOfSales.MemberEntity;
 import java.util.ArrayList;
 import java.util.List;
 

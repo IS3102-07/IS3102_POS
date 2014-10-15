@@ -1,4 +1,4 @@
-package PointOfSales;
+package POS;
 
 public class LineItem {
 

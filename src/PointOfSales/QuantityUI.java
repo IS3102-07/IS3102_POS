@@ -1,5 +1,6 @@
 package PointOfSales;
 
+import POS.*;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
 
