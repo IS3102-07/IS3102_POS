@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class POS {
 
     public static Long storeID;
-    public static String storeName;
+    public static String POSName;
     public static String staffEmail;
     public static char[] staffPassword;
     public static String supervisorContactNo;

@@ -410,7 +410,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         if (!POS.supervisorContactNo.isEmpty()) {
             System.out.println(POS.supervisorContactNo);
-            alertSupervisor(POS.storeName, POS.supervisorContactNo);
+            alertSupervisor(POS.POSName, POS.supervisorContactNo);
         }
         //alertSupervisor(POS.storeName, POS.supervisorContactNo);
         tblLineItem.requestFocus();

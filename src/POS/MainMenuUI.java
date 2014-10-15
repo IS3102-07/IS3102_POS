@@ -1,6 +1,6 @@
 package POS;
 
-import PointOfSales.SelfCheckOutUI;
+import PointOfSales.*;
 import java.awt.Color;
 import java.awt.Container;
 
@@ -26,7 +26,7 @@ public class MainMenuUI extends javax.swing.JFrame {
         lblHeader1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblSelfCheckOut = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblCashierCheckout = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -102,8 +102,13 @@ public class MainMenuUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cashiercheckout.png"))); // NOI18N
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCashierCheckout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cashiercheckout.png"))); // NOI18N
+        lblCashierCheckout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCashierCheckout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblCashierCheckoutMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,7 +118,7 @@ public class MainMenuUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(241, 241, 241)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(lblCashierCheckout)
                     .addComponent(lblSelfCheckOut))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -127,7 +132,7 @@ public class MainMenuUI extends javax.swing.JFrame {
                 .addGap(113, 113, 113)
                 .addComponent(lblSelfCheckOut)
                 .addGap(85, 85, 85)
-                .addComponent(jLabel2)
+                .addComponent(lblCashierCheckout)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
@@ -141,6 +146,12 @@ public class MainMenuUI extends javax.swing.JFrame {
         selfCheckOutUI.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblSelfCheckOutMouseClicked
+
+    private void lblCashierCheckoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCashierCheckoutMousePressed
+        CashierCheckoutUI cashierCheckoutUI = new CashierCheckoutUI();
+        cashierCheckoutUI.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lblCashierCheckoutMousePressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -182,7 +193,7 @@ public class MainMenuUI extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblCashierCheckout;
     private javax.swing.JLabel lblHeader1;
     private javax.swing.JLabel lblSelfCheckOut;
     private javax.swing.JPanel pnlHader;
