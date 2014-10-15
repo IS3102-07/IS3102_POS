@@ -1,6 +1,6 @@
 package POS;
 
-import PointOfSales.MemberEntity;
+import PointOfSalesUI.MemberEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,16 +75,10 @@ public class Transaction {
         this.discountPrice = discountPrice;
     }
 
-    /**
-     * @return the member
-     */
     public MemberEntity getMember() {
         return member;
     }
 
-    /**
-     * @param member the member to set
-     */
     public void setMember(MemberEntity member) {
         this.member = member;
     }

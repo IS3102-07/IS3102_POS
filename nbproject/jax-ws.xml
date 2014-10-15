@@ -2,10 +2,10 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services/>
   <clients>
-    <client name="HQWebServiceBean">
-      <wsdl-url>http://Hello:8080/HQWebServiceBean/HQWebServiceBean?wsdl</wsdl-url>
-      <local-wsdl-file>Hello_8080/HQWebServiceBean/HQWebServiceBean.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">PointOfSales</package-name>
+    <client name="RetailInventoryWebService">
+      <wsdl-url>http://Hello:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl</wsdl-url>
+      <local-wsdl-file>Hello_8080/RetailInventoryWebService/RetailInventoryWebService.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">PointOfSalesUI</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -22,7 +22,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://Hello:8080/HQWebServiceBean/HQWebServiceBean?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://Hello:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -34,14 +34,14 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>PointOfSales</wsimport-option-value>
+          <wsimport-option-value>PointOfSalesUI</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>
-    <client name="StoreWebServiceBean">
-      <wsdl-url>http://Hello:8080/StoreWebServiceBean/StoreWebServiceBean?wsdl</wsdl-url>
-      <local-wsdl-file>Hello_8080/StoreWebServiceBean/StoreWebServiceBean.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">PointOfSales</package-name>
+    <client name="LoyaltyAndRewardsWebService">
+      <wsdl-url>http://Hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl</wsdl-url>
+      <local-wsdl-file>Hello_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">PointOfSalesUI</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -58,7 +58,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://Hello:8080/StoreWebServiceBean/StoreWebServiceBean?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://Hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -70,7 +70,75 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>PointOfSales</wsimport-option-value>
+          <wsimport-option-value>PointOfSalesUI</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="SalesReportingWebService">
+      <wsdl-url>http://Hello:8080/SalesReportingWebService/SalesReportingWebService?wsdl</wsdl-url>
+      <local-wsdl-file>Hello_8080/SalesReportingWebService/SalesReportingWebService.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">PointOfSalesUI</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://Hello:8080/SalesReportingWebService/SalesReportingWebService?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>package</wsimport-option-name>
+          <wsimport-option-value>PointOfSalesUI</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="AccountManagementWebService">
+      <wsdl-url>http://Hello:8080/AccountManagementWebService/AccountManagementWebService?wsdl</wsdl-url>
+      <local-wsdl-file>Hello_8080/AccountManagementWebService/AccountManagementWebService.wsdl</local-wsdl-file>
+      <package-name>commoninfrastructure.accountmanagement</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://Hello:8080/AccountManagementWebService/AccountManagementWebService?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

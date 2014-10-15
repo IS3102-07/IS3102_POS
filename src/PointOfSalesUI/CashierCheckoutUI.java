@@ -1,7 +1,6 @@
 package PointOfSalesUI;
 
 import POS.*;
-import PointOfSales.ItemHelper;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -773,21 +772,21 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         //POS.displayPoleMessage(line1, line2);
     }
 
-    private static Double getItemCountryPriceBySKU(java.lang.String sku, java.lang.Long storeID) {
-        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
-        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
-        return port.getItemCountryPriceBySKU(sku, storeID);
-    }
-
-    private static ItemHelper getItemBySKU(java.lang.String sku) {
-        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
-        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
+    private static PointOfSalesUI.ItemHelper getItemBySKU(java.lang.String sku) {
+        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
+        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
         return port.getItemBySKU(sku);
     }
 
+    private static Double getItemCountryPriceBySKU(java.lang.String sku, java.lang.Long storeID) {
+        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
+        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+        return port.getItemCountryPriceBySKU(sku, storeID);
+    }
+
     private static Boolean alertSupervisor(java.lang.String posName, java.lang.String supervisorTel) {
-        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
-        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
+        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
+        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
         return port.alertSupervisor(posName, supervisorTel);
     }
 

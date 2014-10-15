@@ -1,7 +1,6 @@
 package PointOfSalesUI;
 
 import POS.*;
-import PointOfSales.ReturnHelper;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.Window;
@@ -199,9 +198,10 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
     private javax.swing.JTextField txtCreditNumber;
     // End of variables declaration//GEN-END:variables
 
-    private static ReturnHelper submitSalesRecord(java.lang.String staffEmail, java.lang.String password, java.lang.Long storeID, java.lang.String posName, java.util.List<PointOfSales.LineItemEntity> itemsPurchased, java.lang.Double amountPaid, java.lang.String memberEmail) {
-        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
-        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
-        return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchased, amountPaid, memberEmail);
+    private static ReturnHelper submitSalesRecord(java.lang.String staffEmail, java.util.List<java.lang.Integer> password, java.lang.Long storeID, java.lang.String posName, java.util.List<java.lang.String> itemsPurchasedSKU, java.util.List<java.lang.Integer> itemsPurchasedQyu, java.lang.Double amountPaid, java.lang.String memberEmail) {
+        PointOfSalesUI.SalesReportingWebService_Service service = new PointOfSalesUI.SalesReportingWebService_Service();
+        PointOfSalesUI.SalesReportingWebService port = service.getSalesReportingWebServicePort();
+        return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchasedSKU, itemsPurchasedQyu, amountPaid, memberEmail);
     }
+
 }

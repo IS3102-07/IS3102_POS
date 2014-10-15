@@ -318,16 +318,16 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 
-    private static Long posLoginStaff(java.lang.String email, java.lang.String password) {
-        PointOfSales.HQWebServiceBean_Service service = new PointOfSales.HQWebServiceBean_Service();
-        PointOfSales.HQWebServiceBean port = service.getHQWebServiceBeanPort();
-        return port.posLoginStaff(email, password);
+    private static String getCountryCode(java.lang.Long storeID) {
+        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
+        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+        return port.getCountryCode(storeID);
     }
 
-    private static String getCountryCode(java.lang.Long storeID) {
-        PointOfSales.StoreWebServiceBean_Service service = new PointOfSales.StoreWebServiceBean_Service();
-        PointOfSales.StoreWebServiceBean port = service.getStoreWebServiceBeanPort();
-        return port.getCountryCode(storeID);
+    private static Long posLoginStaff(java.lang.String email, java.lang.String password) {
+        commoninfrastructure.accountmanagement.AccountManagementWebService_Service service = new commoninfrastructure.accountmanagement.AccountManagementWebService_Service();
+        commoninfrastructure.accountmanagement.AccountManagementWebService port = service.getAccountManagementWebServicePort();
+        return port.posLoginStaff(email, password);
     }
 
 }

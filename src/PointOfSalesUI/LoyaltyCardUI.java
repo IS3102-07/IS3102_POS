@@ -1,7 +1,6 @@
 package PointOfSalesUI;
 
 import POS.*;
-import PointOfSales.MemberEntity;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
 
@@ -14,7 +13,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     public LoyaltyCardUI() {
         initComponents();
 
-        POS.displayPoleMessage("Scan Loyalty Card", "");
+        //POS.displayPoleMessage("Scan Loyalty Card", "");
         member = POS.transaction.getMember();
 
         if (member != null && member.getEmail() != null) {
@@ -324,7 +323,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         System.out.println("txtMemberEmailKeyReleased: " + evt.getKeyChar());
 
         try {
-            member = getMember(evt.getKeyChar() + "");
+            member = getMemberViaCard(evt.getKeyChar() + "");
             System.out.println(member.getName());
 
             lblCurrentPoints.setText(member.getLoyaltyPoints() + "");
@@ -363,7 +362,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                 string2 = String.format("%10s", member.getLoyaltyTier().getTier());
             }
             String line2 = string1 + string2;
-            POS.displayPoleMessage(member.getName(), line2);
+            //POS.displayPoleMessage(member.getName(), line2);
         } catch (Exception ex) {
             lblCurrentPoints.setText("-");
             lblRedeem.setText("-");
@@ -450,9 +449,10 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     private javax.swing.JTextField txtMemberEmail;
     // End of variables declaration//GEN-END:variables
 
-    private static MemberEntity getMember(java.lang.String memberEmail) {
-        PointOfSales.HQWebServiceBean_Service service = new PointOfSales.HQWebServiceBean_Service();
-        PointOfSales.HQWebServiceBean port = service.getHQWebServiceBeanPort();
-        return port.getMember(memberEmail);
+    private static MemberEntity getMemberViaCard(java.lang.String memberCard) {
+        PointOfSalesUI.LoyaltyAndRewardsWebService_Service service = new PointOfSalesUI.LoyaltyAndRewardsWebService_Service();
+        PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
+        return port.getMemberViaCard(memberCard);
     }
+
 }
