@@ -1,5 +1,6 @@
-package PointOfSales;
+package PointOfSalesUI;
 
+import PointOfSales.ReturnHelper;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
 

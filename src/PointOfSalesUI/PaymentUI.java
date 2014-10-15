@@ -1,4 +1,4 @@
-package PointOfSales;
+package PointOfSalesUI;
 
 import POS.*;
 import java.awt.Dimension;

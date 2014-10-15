@@ -1,6 +1,7 @@
 package POS;
 
-import PointOfSales.*;
+import PointOfSalesUI.CashierCheckoutUI;
+import PointOfSalesUI.SelfCheckOutUI;
 import java.awt.Color;
 import java.awt.Container;
 

@@ -1,6 +1,6 @@
 package POS;
 
-import PointOfSales.printableEditorPane;
+import PointOfSalesUI.printableEditorPane;
 import gnu.io.CommPortIdentifier;
 import gnu.io.PortInUseException;
 import gnu.io.SerialPort;

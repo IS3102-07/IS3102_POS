@@ -1,6 +1,7 @@
-package PointOfSales;
+package PointOfSalesUI;
 
 import POS.*;
+import PointOfSales.ItemHelper;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;

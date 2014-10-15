@@ -1,6 +1,7 @@
-package PointOfSales;
+package PointOfSalesUI;
 
 import POS.*;
+import PointOfSales.MemberEntity;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
 

@@ -1,4 +1,4 @@
-package PointOfSales;
+package PointOfSalesUI;
 
 import java.awt.Color;
 import java.awt.Dimension;
