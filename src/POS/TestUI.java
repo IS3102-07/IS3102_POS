@@ -1,18 +1,15 @@
 package POS;
 
-import PointOfSalesUI.printableEditorPane;
+import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
 import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
 import java.awt.print.PrinterJob;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Enumeration;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class TestUI extends javax.swing.JFrame {
@@ -145,11 +142,7 @@ public class TestUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTestPrinterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestPrinterActionPerformed
-        try {
-            testPartnerThermalPrinterAndCashBox();
-        } catch (IOException ex) {
-            Logger.getLogger(TestUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        testPartnerThermalPrinterAndCashBox();
     }//GEN-LAST:event_btnTestPrinterActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -202,11 +195,6 @@ public class TestUI extends javax.swing.JFrame {
 
     private void initPartnerPoleDisplay() {
 
-        //  Enumeration<CommPortIdentifier> numPorts = CommPortIdentifier.getPortIdentifiers();
-//        while (numPorts.hasMoreElements()) {
-//            CommPortIdentifier commPortIdentifier = numPorts.nextElement();
-//            System.out.println(commPortIdentifier.getName());
-//        }
         Enumeration<CommPortIdentifier> commPortList = CommPortIdentifier.getPortIdentifiers();
 
         while (commPortList.hasMoreElements()) {
@@ -224,38 +212,58 @@ public class TestUI extends javax.swing.JFrame {
         }
     }
 
-    private void testPartnerThermalPrinterAndCashBox() throws IOException {
-        ReadReceipt pr = new ReadReceipt();
-//        Double margin = 1.0;
-//        Integer lines = 8;
-//        PrinterJob printerJob = PrinterJob.getPrinterJob();
-//        PageFormat pageFormat = printerJob.defaultPage();
-//        Paper paper = new Paper();
-//        paper.setSize(180.0, (double) (paper.getHeight() + lines * 10.0));
-//
-//        System.out.println("test " + (double) (paper.getHeight() + lines * 10.0));
-//
-//        paper.setImageableArea(margin, margin, paper.getWidth() - margin * 2, paper.getHeight() - margin * 2);
-//        pageFormat.setPaper(paper);
-//        pageFormat.setOrientation(PageFormat.PORTRAIT);
-//        printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
+    private void testPartnerThermalPrinterAndCashBox() {
+        //try connect and open the drawer
+        Enumeration<CommPortIdentifier> port_list = CommPortIdentifier.getPortIdentifiers();
 
-        printableEditorPane jEditorPane = new printableEditorPane();
-        jEditorPane.setContentType("text/html");
+        while (port_list.hasMoreElements()) {
+            CommPortIdentifier port_id = (CommPortIdentifier) port_list.nextElement();
+            //commPort.getPortType() == CommPortIdentifier.PORT_SERIAL && 
+            if (port_id.getName().equals("COM2")) {
 
-        String filePath = new File("").getAbsolutePath();
-        jEditorPane.read(new BufferedReader(new FileReader(filePath.concat("\\src\\PointOfSales\\receipt.txt"))), "");
+                try {
+                    CommPort port = port_id.open("PortListOpen", 20);
+                    port.close();
+//                    serialPort = (SerialPort) commPort.open("UnifiedPointOfSale", 5000);
+//                    partnerPoleDisplayOutputStream = serialPort.getOutputStream();
+                } catch (PortInUseException ex) {
+                    JOptionPane.showMessageDialog(null, "Unable to initialize Partner Pole Display: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
 
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.setPrintable(jEditorPane);
-        if (job.printDialog()) /* Displays the standard system print dialog
-         */ {
-            try {
-                job.print();
-            } catch (Exception ex) {
-                System.out.println(ex);
             }
         }
+
+        ReadReceipt pr = new ReadReceipt();
+        Double margin = 1.0;
+        Integer lines = 8;
+        PrinterJob printerJob = PrinterJob.getPrinterJob();
+        PageFormat pageFormat = printerJob.defaultPage();
+        Paper paper = new Paper();
+        paper.setSize(180.0, (double) (paper.getHeight() + lines * 10.0));
+
+        System.out.println("test " + (double) (paper.getHeight() + lines * 10.0));
+
+        paper.setImageableArea(margin, margin, paper.getWidth() - margin * 2, paper.getHeight() - margin * 2);
+        pageFormat.setPaper(paper);
+        pageFormat.setOrientation(PageFormat.PORTRAIT);
+        printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
     }
+//        printableEditorPane jEditorPane = new printableEditorPane();
+//        jEditorPane.setContentType("text/html");
+//
+//        String filePath = new File("").getAbsolutePath();
+//        jEditorPane.read(new BufferedReader(new FileReader(filePath.concat("\\src\\PointOfSales\\receipt.txt"))), "");
+//
+//        PrinterJob job = PrinterJob.getPrinterJob();
+//        job.setPrintable(jEditorPane);
+//        if (job.printDialog()) /* Displays the standard system print dialog
+//         */ {
+//            try {
+//                job.print();
+//            } catch (Exception ex) {
+//                System.out.println(ex);
+//            }
+//        }
+//    }
 
 }
