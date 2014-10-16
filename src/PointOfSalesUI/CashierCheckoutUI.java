@@ -28,7 +28,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         lineItems = POS.transaction.getLineItems();
 
         if (POS.staffEmail != null && POS.POSName != null) {
-            lblDuty.setText("Cashier on Duty : " + POS.staffEmail);
+            lblDuty.setText("Cashier  : " + POS.staffEmail);
             lblPOSName.setText(POS.POSName);
         }
 
@@ -68,6 +68,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblPOSName = new javax.swing.JLabel();
         lblDuty = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -298,6 +299,16 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnBack.setBackground(new java.awt.Color(204, 204, 204));
+        btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnBack.setText("Exit");
+        btnBack.setBorder(new javax.swing.border.MatteBorder(null));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -333,22 +344,27 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnUpdateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnPayCash, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLoyaltyCard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPayCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnHelp)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(17, 17, 17))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnUpdateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnPayCash, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnLoyaltyCard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnPayCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnHelp)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))))
             .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -384,15 +400,21 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(lblDiscount))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(btnTest1)
-                    .addComponent(btnTestContent)
-                    .addComponent(btnTest2)
-                    .addComponent(lblMessage)
-                    .addComponent(lblTotalNet))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(btnTest1)
+                            .addComponent(btnTestContent)
+                            .addComponent(btnTest2)
+                            .addComponent(lblMessage)
+                            .addComponent(lblTotalNet))
+                        .addContainerGap(45, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
 
         pack();
@@ -602,8 +624,38 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPayCreditActionPerformed
 
     private void btnPayCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayCashActionPerformed
-        // TODO add your handling code here:
+        if (POS.transaction.getTotalItems() > 0) {
+            JDialog dialog = new JDialog();
+            final Toolkit toolkit = Toolkit.getDefaultToolkit();
+            final Dimension screenSize = toolkit.getScreenSize();
+            final int x = (screenSize.width - dialog.getWidth()) / 4;
+            final int y = (screenSize.height - dialog.getHeight()) / 4;
+            dialog.setLocation(x, y);
+            dialog.setModal(true);
+            dialog.setUndecorated(true);
+            dialog.add(new PaymentUI_Cash());
+            dialog.pack();
+            dialog.setVisible(true);
+            tblLineItem.requestFocus();
+
+            if (POS.transactionCompleted) {
+                DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
+                int rows = model.getRowCount();
+                for (int i = rows - 1; i >= 0; i--) {
+                    model.removeRow(i);
+                }
+                POS.transaction = new Transaction();
+                lineItems = POS.transaction.getLineItems();
+                refreshTotalQuantityAndPrice();
+                tblLineItem.requestFocus();
+                POS.transactionCompleted = false;
+            }
+        }
     }//GEN-LAST:event_btnPayCashActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -641,6 +693,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnHelp;

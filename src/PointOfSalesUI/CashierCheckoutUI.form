@@ -25,7 +25,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -64,29 +64,37 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnUpdateQuantity" min="-2" pref="244" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnDelete" min="-2" pref="221" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="btnPayCash" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnLoyaltyCard" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnCancel" max="32767" attributes="0"/>
-                          <Component id="btnPayCredit" min="-2" pref="221" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="btnUpdateQuantity" min="-2" pref="244" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnDelete" min="-2" pref="221" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="btnPayCash" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnLoyaltyCard" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btnCancel" max="32767" attributes="0"/>
+                                  <Component id="btnPayCredit" min="-2" pref="221" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="btnHelp" max="32767" attributes="0"/>
+                          <Component id="jPanel1" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="btnHelp" max="32767" attributes="0"/>
-                  <Component id="jPanel1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnBack" min="-2" pref="161" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
-          <Component id="pnlHader" alignment="0" max="32767" attributes="0"/>
+          <Component id="pnlHader" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -129,16 +137,25 @@
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblDiscount" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnTest1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnTestContent" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnTest2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblMessage" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblTotalNet" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTest1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTestContent" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTest2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMessage" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotalNet" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="45" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <Component id="btnBack" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="45" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -560,5 +577,24 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="btnBack">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Exit"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+            <MatteColorBorder/>
+          </Border>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

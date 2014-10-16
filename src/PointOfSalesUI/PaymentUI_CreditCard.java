@@ -4,10 +4,14 @@ import POS.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.Window;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
 public class PaymentUI_CreditCard extends javax.swing.JPanel {
+
+    private List<LineItem> lineItems;
 
     public PaymentUI_CreditCard() {
         initComponents();
@@ -131,8 +135,30 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         //POS.displayPoleMessage("Thank you!", string1);
 
         POS.transactionCompleted = true;
-        // submitSalesRecord(POS.staffEmail, POS.staffPassword,POS.storeID, POS.POSName, ?? ,  POS.transaction.getNetPrice(),  POS.transaction.getMember().getEmail()  );
-        //     return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchased, amountPaid, memberEmail);
+        List<String> SKUs = new ArrayList();
+        List<Integer> quantities = new ArrayList();
+
+        lineItems = POS.transaction.getLineItems();
+        for (int i = 0; i < lineItems.size(); i++) {
+            SKUs.add(lineItems.get(i).getSKU());
+            quantities.add(lineItems.get(i).getQuantity());
+        }
+
+        int pointsDeducting = 0;
+        if (POS.transaction.getDiscountRate() == 10) {
+            pointsDeducting = 150;
+        } else if (POS.transaction.getDiscountRate() == 15) {
+            pointsDeducting = 300;
+        } else if (POS.transaction.getDiscountRate() == 20) {
+            pointsDeducting = 500;
+        }
+
+        String memberEmail = "";
+        if (POS.transaction.getMember() != null) {
+            memberEmail = POS.transaction.getMember().getEmail();
+        }
+
+        submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.POSName, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail);
         JDialog dialog = new JDialog();
         final Toolkit toolkit = Toolkit.getDefaultToolkit();
         final Dimension screenSize = toolkit.getScreenSize();
@@ -198,10 +224,10 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
     private javax.swing.JTextField txtCreditNumber;
     // End of variables declaration//GEN-END:variables
 
-    private static ReturnHelper submitSalesRecord(java.lang.String staffEmail, java.util.List<java.lang.Integer> password, java.lang.Long storeID, java.lang.String posName, java.util.List<java.lang.String> itemsPurchasedSKU, java.util.List<java.lang.Integer> itemsPurchasedQyu, java.lang.Double amountPaid, java.lang.String memberEmail) {
+    private static ReturnHelper submitSalesRecord(java.lang.String staffEmail, java.lang.String password, java.lang.Long storeID, java.lang.String posName, java.util.List<java.lang.String> itemsPurchasedSKU, java.util.List<java.lang.Integer> itemsPurchasedQty, java.lang.Double amountDue, java.lang.Double amountPaid, java.lang.Double amountPaidUsingPoints, java.lang.Integer loyaltyPointsDeducted, java.lang.String memberEmail) {
         PointOfSalesUI.SalesReportingWebService_Service service = new PointOfSalesUI.SalesReportingWebService_Service();
         PointOfSalesUI.SalesReportingWebService port = service.getSalesReportingWebServicePort();
-        return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchasedSKU, itemsPurchasedQyu, amountPaid, memberEmail);
+        return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchasedSKU, itemsPurchasedQty, amountDue, amountPaid, amountPaidUsingPoints, loyaltyPointsDeducted, memberEmail);
     }
 
 }
