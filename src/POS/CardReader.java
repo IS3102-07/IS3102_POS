@@ -4,12 +4,9 @@ import java.io.*;
 import java.util.*;
 import javax.smartcardio.*;
 
-public class CardTest {
+public class CardReader {
 
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
-    //  F2E5A75D9000
-
-//32D3A75D9000
     public static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
         int v;
@@ -21,7 +18,7 @@ public class CardTest {
         return new String(hexChars);
     }
 
-    public static void main(String[] args) throws Exception {
+    public String getCardUID() throws Exception {
         TerminalFactory factory = TerminalFactory.getInstance("PC/SC", null);
         System.out.println(factory);
 
@@ -34,22 +31,21 @@ public class CardTest {
         CardTerminal terminal = terminals.get(0);
 
         // Keep looping looking for cards until the application is closed
-        while (true) {
-            terminal.waitForCardPresent(0);
-            try {
-                Card card = terminal.connect("*");
-                CardChannel channel = card.getBasicChannel();
+        terminal.waitForCardPresent(0);
+        try {
+            Card card = terminal.connect("*");
+            CardChannel channel = card.getBasicChannel();
 
-                CommandAPDU command = new CommandAPDU(new byte[]{(byte) 0xFF, (byte) 0xCA, (byte) 0x00, (byte) 0x00, (byte) 0x04});
-                ResponseAPDU response = channel.transmit(command);
+            CommandAPDU command = new CommandAPDU(new byte[]{(byte) 0xFF, (byte) 0xCA, (byte) 0x00, (byte) 0x00, (byte) 0x04});
+            ResponseAPDU response = channel.transmit(command);
 
-                byte[] byteArray = response.getBytes();
+            byte[] byteArray = response.getBytes();
 
-                System.out.println(bytesToHex(byteArray));
-                Thread.sleep(1000);
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
+            System.out.println(bytesToHex(byteArray));
+            return bytesToHex(byteArray);
+        } catch (CardException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

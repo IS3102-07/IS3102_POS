@@ -17,7 +17,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         member = POS.transaction.getMember();
 
         if (member != null && member.getEmail() != null) {
-            txtMemberEmail.setText(member.getEmail());
+            txtMemberName.setText(member.getName());
         }
 
         discountRate = POS.transaction.getDiscountRate();
@@ -77,6 +77,8 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                 btn20.setEnabled(false);
             }
         }
+        
+        btnScan.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -84,8 +86,10 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel6 = new javax.swing.JLabel();
+        btnBack2 = new javax.swing.JButton();
+        btnBack3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtMemberEmail = new javax.swing.JTextField();
+        txtMemberName = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -103,8 +107,29 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         lblRedeem = new javax.swing.JLabel();
         lblCurrentPoints = new javax.swing.JLabel();
         btnConfirm = new javax.swing.JButton();
+        btnScan = new javax.swing.JButton();
 
         jLabel6.setText("100 : Points");
+
+        btnBack2.setBackground(new java.awt.Color(153, 0, 0));
+        btnBack2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnBack2.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack2.setText("Back");
+        btnBack2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack2ActionPerformed(evt);
+            }
+        });
+
+        btnBack3.setBackground(new java.awt.Color(153, 0, 0));
+        btnBack3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnBack3.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack3.setText("Back");
+        btnBack3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack3ActionPerformed(evt);
+            }
+        });
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -112,12 +137,8 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Scan Loyalty Card:");
 
-        txtMemberEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtMemberEmail.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtMemberEmailKeyReleased(evt);
-            }
-        });
+        txtMemberName.setEditable(false);
+        txtMemberName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         btnBack.setBackground(new java.awt.Color(153, 0, 0));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -211,6 +232,16 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
             }
         });
 
+        btnScan.setBackground(new java.awt.Color(153, 0, 0));
+        btnScan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnScan.setForeground(new java.awt.Color(255, 255, 255));
+        btnScan.setText("Scan");
+        btnScan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnScanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -247,28 +278,33 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(30, 30, 30)
                                         .addComponent(jLabel11))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(145, 145, 145)
                                     .addComponent(jLabel1))
-                                .addComponent(txtMemberEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblPoints11))
-                                        .addComponent(lblPoints10))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblCurrentPoints, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lblRedeem, javax.swing.GroupLayout.Alignment.TRAILING)))))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblPoints11)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(5, 5, 5)
+                                                .addComponent(lblPoints10)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblCurrentPoints, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblRedeem, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(txtMemberName, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnScan, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +319,9 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                     .addComponent(lblPoints11)
                     .addComponent(lblRedeem))
                 .addGap(18, 18, 18)
-                .addComponent(txtMemberEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMemberName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnScan, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -300,7 +338,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                                 .addComponent(btn20, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel11)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -310,7 +348,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                                     .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(13, 13, 13))
+                        .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn15, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -319,13 +357,78 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtMemberEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMemberEmailKeyReleased
-        System.out.println("txtMemberEmailKeyReleased: " + evt.getKeyChar());
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        Window w = SwingUtilities.getWindowAncestor(LoyaltyCardUI.this);
+        w.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+        lblRedeem.setText(50 + "");
+        pointsDeducting = 50;
+        discountRate = 5;
+        txtMemberName.requestFocus();
+    }//GEN-LAST:event_btn5ActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        member = new MemberEntity();
+        POS.transaction.setMember(member);
+        txtMemberName.setText("");
+        lblCurrentPoints.setText("-");
+        lblRedeem.setText("-");
+        pointsDeducting = 0;
+        discountRate = 0;
+        txtMemberName.requestFocus();
+        btn5.setEnabled(false);
+        btn10.setEnabled(false);
+        btn15.setEnabled(false);
+        btn20.setEnabled(false);
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
+        lblRedeem.setText(150 + "");
+        pointsDeducting = 150;
+        discountRate = 10;
+        txtMemberName.requestFocus();
+    }//GEN-LAST:event_btn10ActionPerformed
+
+    private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
+        lblRedeem.setText(300 + "");
+        pointsDeducting = 300;
+        discountRate = 15;
+        txtMemberName.requestFocus();
+    }//GEN-LAST:event_btn15ActionPerformed
+
+    private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn20ActionPerformed
+        lblRedeem.setText(500 + "");
+        pointsDeducting = 500;
+        discountRate = 20;
+        txtMemberName.requestFocus();
+    }//GEN-LAST:event_btn20ActionPerformed
+
+    private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
+        POS.transaction.setPointsToDeduct(pointsDeducting);
+        POS.transaction.setDiscountRate(discountRate);
+        POS.transaction.setMember(member);
+        Window w = SwingUtilities.getWindowAncestor(LoyaltyCardUI.this);
+        w.setVisible(false);
+    }//GEN-LAST:event_btnConfirmActionPerformed
+
+    private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBack2ActionPerformed
+
+    private void btnBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBack3ActionPerformed
+
+    private void btnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScanActionPerformed
+
 
         try {
-            member = getMemberViaCard(evt.getKeyChar() + "");
+            CardReader cardReader = new CardReader();
+            member = getMemberViaCard(cardReader.getCardUID());
             System.out.println(member.getName());
-
+            txtMemberName.setText(member.getName());
             lblCurrentPoints.setText(member.getLoyaltyPoints() + "");
             lblRedeem.setText(pointsDeducting + "");
 
@@ -367,63 +470,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
             lblCurrentPoints.setText("-");
             lblRedeem.setText("-");
         }
-    }//GEN-LAST:event_txtMemberEmailKeyReleased
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        Window w = SwingUtilities.getWindowAncestor(LoyaltyCardUI.this);
-        w.setVisible(false);
-    }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        lblRedeem.setText(50 + "");
-        pointsDeducting = 50;
-        discountRate = 5;
-        txtMemberEmail.requestFocus();
-    }//GEN-LAST:event_btn5ActionPerformed
-
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        member = new MemberEntity();
-        POS.transaction.setMember(member);
-        txtMemberEmail.setText("");
-        lblCurrentPoints.setText("-");
-        lblRedeem.setText("-");
-        pointsDeducting = 0;
-        discountRate = 0;
-        txtMemberEmail.requestFocus();
-        btn5.setEnabled(false);
-        btn10.setEnabled(false);
-        btn15.setEnabled(false);
-        btn20.setEnabled(false);
-    }//GEN-LAST:event_btnClearActionPerformed
-
-    private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
-        lblRedeem.setText(150 + "");
-        pointsDeducting = 150;
-        discountRate = 10;
-        txtMemberEmail.requestFocus();
-    }//GEN-LAST:event_btn10ActionPerformed
-
-    private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
-        lblRedeem.setText(300 + "");
-        pointsDeducting = 300;
-        discountRate = 15;
-        txtMemberEmail.requestFocus();
-    }//GEN-LAST:event_btn15ActionPerformed
-
-    private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn20ActionPerformed
-        lblRedeem.setText(500 + "");
-        pointsDeducting = 500;
-        discountRate = 20;
-        txtMemberEmail.requestFocus();
-    }//GEN-LAST:event_btn20ActionPerformed
-
-    private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-        POS.transaction.setPointsToDeduct(pointsDeducting);
-        POS.transaction.setDiscountRate(discountRate);
-        POS.transaction.setMember(member);
-        Window w = SwingUtilities.getWindowAncestor(LoyaltyCardUI.this);
-        w.setVisible(false);
-    }//GEN-LAST:event_btnConfirmActionPerformed
+    }//GEN-LAST:event_btnScanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -432,8 +479,11 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     private javax.swing.JButton btn20;
     private javax.swing.JButton btn5;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack2;
+    private javax.swing.JButton btnBack3;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnConfirm;
+    private javax.swing.JButton btnScan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -446,7 +496,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     private javax.swing.JLabel lblPoints10;
     private javax.swing.JLabel lblPoints11;
     private javax.swing.JLabel lblRedeem;
-    private javax.swing.JTextField txtMemberEmail;
+    private javax.swing.JTextField txtMemberName;
     // End of variables declaration//GEN-END:variables
 
     private static MemberEntity getMemberViaCard(java.lang.String memberCard) {
