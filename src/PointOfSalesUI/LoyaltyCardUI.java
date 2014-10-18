@@ -420,8 +420,6 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBack3ActionPerformed
 
     private void btnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScanActionPerformed
-
-
         try {
             CardReader cardReader = new CardReader();
             member = getMemberViaCard(cardReader.getCardUID());

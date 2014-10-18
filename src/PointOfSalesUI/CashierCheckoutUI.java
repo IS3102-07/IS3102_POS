@@ -19,7 +19,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
 
     public CashierCheckoutUI() {
         initComponents();
-        this.setTitle("Island Furniture Self Checkout");
+        this.setTitle("Island Furniture Cashier Checkout");
         this.setSize(1280, 960);
         cp = getContentPane();
         cp.setBackground(Color.white);

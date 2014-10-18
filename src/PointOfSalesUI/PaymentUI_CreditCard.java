@@ -131,9 +131,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCreditNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditNumberKeyReleased
-        String string1 = String.format("%20s", "Come back again!");
-        //POS.displayPoleMessage("Thank you!", string1);
-
+        //prepare to submit sales record to web service
         POS.transactionCompleted = true;
         List<String> SKUs = new ArrayList();
         List<Integer> quantities = new ArrayList();
@@ -158,7 +156,20 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
             memberEmail = POS.transaction.getMember().getEmail();
         }
 
-        submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.POSName, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail);
+        try {
+            submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.POSName, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        //print receipt
+        printReceipt();
+
+        //display pole message
+        String string1 = String.format("%20s", "Come back again!");
+        //POS.displayPoleMessage("Thank you!", string1);
+
+        //done with submit sales record
         JDialog dialog = new JDialog();
         final Toolkit toolkit = Toolkit.getDefaultToolkit();
         final Dimension screenSize = toolkit.getScreenSize();
@@ -171,6 +182,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         dialog.pack();
         dialog.setVisible(true);
 
+        //reset
         String line2 = String.format("%20s", "Island Furniture!");
         //POS.displayPoleMessage("Welcome to", line2);
 
@@ -178,31 +190,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         Window w = SwingUtilities.getWindowAncestor(PaymentUI_CreditCard.this);
         w.setVisible(false);
 
-//        Boolean startCreditCardMSR1 = false;
-//        String kbValue = txtCreditNumber.getText();
-//        if (!startCreditCardMSR1) {
-//            if (kbValue != null && kbValue.trim().length() > 0) {
-//                kbValue = kbValue.trim();
-//
-//                if (kbValue.length() >= 2) {
-//                    if (kbValue.startsWith("%B")) {
-//                        startCreditCardMSR1 = true;
-//                    }
-//                }
-//            }
-//        }
-//        if (startCreditCardMSR1) {
-//            if (kbValue != null && kbValue.trim().length() > 0) {
-//                kbValue = kbValue.trim();
-//
-//                if (kbValue.length() >= 2) {
-//                    if (kbValue.endsWith("?")) {
-//                        startCreditCardMSR1 = false;
-//                                //print
-//                    }
-//                }
-//            }
-//        }
+
     }//GEN-LAST:event_txtCreditNumberKeyReleased
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -223,6 +211,10 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtCreditNumber;
     // End of variables declaration//GEN-END:variables
+
+    private void printReceipt() {
+
+    }
 
     private static ReturnHelper submitSalesRecord(java.lang.String staffEmail, java.lang.String password, java.lang.Long storeID, java.lang.String posName, java.util.List<java.lang.String> itemsPurchasedSKU, java.util.List<java.lang.Integer> itemsPurchasedQty, java.lang.Double amountDue, java.lang.Double amountPaid, java.lang.Double amountPaidUsingPoints, java.lang.Integer loyaltyPointsDeducted, java.lang.String memberEmail) {
         PointOfSalesUI.SalesReportingWebService_Service service = new PointOfSalesUI.SalesReportingWebService_Service();

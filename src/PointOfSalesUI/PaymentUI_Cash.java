@@ -128,9 +128,6 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
 
     private void btnConputeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConputeActionPerformed
         try {
-            String string1 = String.format("%20s", "Come back again!");
-            //POS.displayPoleMessage("Thank you!", string1);
-
             Border defaultLine = txtReceived.getBorder();
 
             double received = Integer.parseInt(txtReceived.getText());
@@ -166,7 +163,12 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                 if (POS.transaction.getMember() != null) {
                     memberEmail = POS.transaction.getMember().getEmail();
                 }
-                //submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.POSName, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail);
+
+                try {
+                    submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.POSName, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         } catch (Exception ex) {
             Border redline = BorderFactory.createLineBorder(Color.red);
@@ -197,4 +199,14 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtReceived;
     // End of variables declaration//GEN-END:variables
+
+    private void printReceipt() {
+
+    }
+
+    private static ReturnHelper submitSalesRecord(java.lang.String staffEmail, java.lang.String password, java.lang.Long storeID, java.lang.String posName, java.util.List<java.lang.String> itemsPurchasedSKU, java.util.List<java.lang.Integer> itemsPurchasedQty, java.lang.Double amountDue, java.lang.Double amountPaid, java.lang.Double amountPaidUsingPoints, java.lang.Integer loyaltyPointsDeducted, java.lang.String memberEmail) {
+        PointOfSalesUI.SalesReportingWebService_Service service = new PointOfSalesUI.SalesReportingWebService_Service();
+        PointOfSalesUI.SalesReportingWebService port = service.getSalesReportingWebServicePort();
+        return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchasedSKU, itemsPurchasedQty, amountDue, amountPaid, amountPaidUsingPoints, loyaltyPointsDeducted, memberEmail);
+    }
 }
