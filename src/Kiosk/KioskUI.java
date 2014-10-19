@@ -24,6 +24,7 @@ public class KioskUI extends javax.swing.JFrame {
         btnPay = new javax.swing.JButton();
         btnRewards = new javax.swing.JButton();
         btnMembership = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -41,7 +42,7 @@ public class KioskUI extends javax.swing.JFrame {
         pnlHaderLayout.setHorizontalGroup(
             pnlHaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHaderLayout.createSequentialGroup()
-                .addContainerGap(370, Short.MAX_VALUE)
+                .addContainerGap(386, Short.MAX_VALUE)
                 .addComponent(lblHeader2)
                 .addGap(369, 369, 369))
         );
@@ -56,7 +57,7 @@ public class KioskUI extends javax.swing.JFrame {
         btnPay.setBackground(new java.awt.Color(255, 153, 51));
         btnPay.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         btnPay.setForeground(new java.awt.Color(255, 255, 255));
-        btnPay.setText("Offers");
+        btnPay.setText("Registration");
         btnPay.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +87,8 @@ public class KioskUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,6 +102,10 @@ public class KioskUI extends javax.swing.JFrame {
                 .addGap(55, 55, 55)
                 .addComponent(btnMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,14 +116,18 @@ public class KioskUI extends javax.swing.JFrame {
                     .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRewards, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(460, 460, 460))
+                .addGap(285, 285, 285)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
-
+        TermsAndConditionsUI termsAndConditionsUI = new TermsAndConditionsUI();
+        termsAndConditionsUI.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnPayActionPerformed
 
     private void btnRewardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardsActionPerformed
@@ -162,6 +173,7 @@ public class KioskUI extends javax.swing.JFrame {
     private javax.swing.JButton btnMembership;
     private javax.swing.JButton btnPay;
     private javax.swing.JButton btnRewards;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JPanel pnlHader;
     // End of variables declaration//GEN-END:variables

@@ -5,9 +5,7 @@ import java.awt.Color;
 import java.awt.Window;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.BorderFactory;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
 
 public class PaymentUI_Cash extends javax.swing.JPanel {
 
@@ -128,16 +126,13 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
 
     private void btnConputeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConputeActionPerformed
         try {
-            Border defaultLine = txtReceived.getBorder();
-
             double received = Integer.parseInt(txtReceived.getText());
             double change = POS.transaction.getNetPrice() - received;
 
             if (received < POS.transaction.getNetPrice()) {
-                Border redline = BorderFactory.createLineBorder(Color.red);
-                txtReceived.setBorder(redline);
+                txtReceived.setForeground(Color.red);
             } else {
-                txtReceived.setBorder(defaultLine);
+                txtReceived.setForeground(Color.black);
                 txtChange.setText(Math.abs(change) + "");
 
                 POS.transactionCompleted = true;
@@ -165,14 +160,13 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                 }
 
                 try {
-                    submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.POSName, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail);
+                    //submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.POSName, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         } catch (Exception ex) {
-            Border redline = BorderFactory.createLineBorder(Color.red);
-            txtReceived.setBorder(redline);
+            txtReceived.setForeground(Color.red);
         }
     }//GEN-LAST:event_btnConputeActionPerformed
 

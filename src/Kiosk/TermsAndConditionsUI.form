@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="undecorated" type="boolean" value="true"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="pnlHader" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jButton2" min="-2" pref="129" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="129" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jScrollPane1" min="-2" pref="1367" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="pnlHader" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="481" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButton1" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
+                  <Component id="jButton2" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="pnlHader">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="99" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="386" max="32767" attributes="0"/>
+                  <Component id="lblHeader2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="369" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="62" max="32767" attributes="0"/>
+                  <Component id="lblHeader2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lblHeader2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="82" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/logo-label.png"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="LoginUI_lblHeader"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="jTextArea1">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="24" style="0"/>
+            </Property>
+            <Property name="lineWrap" type="boolean" value="true"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Data Protection Policy&#xa;The purpose of this document (&#x201c;Data Protection Policy&#x201d;) is to inform you of how StarHub Ltd. manages Personal Data which is subject to the Singapore Personal Data Protection Act (No. 26 of 2012) (&#x201c;the Act&#x201d;). Please take a moment to read this Data Protection Policy so that you know and understand the purposes for which we collect, use and disclose your Personal Data.&#xa;&#xa;By interacting with us, submitting information to us, or signing up for any Products and Services offered by us, you agree and consent to Island Furniture Ltd. (including its related corporations and business units) (collectively, the &quot;Companies&quot;), as well as their respective representatives and/or agents (collectively referred to herein as &quot;StarHub&quot;, &quot;us&quot;, &quot;we&quot; or &quot;our&quot;) collecting, using, disclosing and sharing amongst themselves your Personal Data, and disclosing such Personal Data to the Companies&apos; authorised service providers and relevant third parties in the manner set forth in this Data Protection Policy.&#xa;&#xa;This Data Protection Policy supplements but does not supersede nor replace any other consents you may have previously provided to Island Furniture in respect of your Personal Data, and your consents herein are additional to any rights which to any of the Companies may have at law to collect, use or disclose your Personal Data.&#xa;&#xa;Island Furniture may from time to time update this Data Protection Policy to ensure that this Data Protection Policy is consistent with our future developments, industry trends and/or any changes in legal or regulatory requirements. Subject to your rights at law, you agree to be bound by the prevailing terms of the Data Protection Policy as updated from time to time on our website http://www.starhub.com/pdpp. Please check back regularly for updated information on the handling of your Personal Data.&#xa;&#xa;1.  Personal Data&#xa;&#xa;1.1 In this Data Protection Policy, &#x201c;Personal Data&#x201d; refers to any data, whether true or not, about an individual who can be identified (a) from that data; or (b) from that data and other information to which we have or are likely to have access, including data in our records as may be updated from time to time.&#xa;&#xa;1.2 Examples of such Personal Data you may provide to us include (depending on the nature of your interaction with us) your name, NRIC, passport or other identification number, telephone number(s), mailing address, email address, network data and any other information relating to any individuals which you have provided us in any forms you may have submitted to us, or via other forms of interaction with you.&#xa;&#xa;2. Collection of Personal Data&#xa;&#xa;2.1 Generally, we collect Personal Data in the following ways:&#xa;&#xa;(a) when you submit an application form or other forms relating to any of our Products and Services (defined below);&#xa;&#xa;(b) when you interact with our customer service officers, for example, via telephone calls, letters, face-to-face meetings and emails;&#xa;&#xa;(c) when you use some of our services, for example, websites and apps including establishing any online accounts with us;&#xa;&#xa;(d) when you request that we contact you, be included in an email or other mailing list;&#xa;&#xa;(e) when you respond to our promotions, initiatives or to any request for additional Personal Data;&#xa;&#xa;(f) when you are contacted by, and respond to, our marketing representatives and customer service officers;&#xa;&#xa;(g) when we receive references from business partners and third parties, for example, where you have been referred by them;&#xa;&#xa;(h) when we seek information from third parties about you in connection with the  Products and Services you have applied for; and&#xa;&#xa;(i) when you submit your Personal Data to us for any other reasons.&#xa;&#xa;2.2 When you browse our website, you generally do so anonymously but please see the section below on cookies. We do not at our website automatically collect Personal Data unless you provide such information or login with your account credentials.&#xa;&#xa;2.3 If you provide us with any Personal Data relating to a third party (e.g. information of your spouse, children, parents, and/or employees), by submitting such information to us, you represent to us that you have obtained the consent of the third party to provide us with their Personal Data for the respective purposes.&#xa;&#xa;2.4 You should ensure that all Personal Data submitted to us is complete, accurate, true and correct. Failure on your part to do so may result in our inability to provide you with the Products and Services you have requested.&#xa;&#xa;3. Purposes for the Collection, Use and Disclosure of Your Personal Data&#xa;&#xa;3.1 Generally, Island Furniture collects, uses and discloses your Personal Data for the following purposes:&#xa;&#xa;(a) responding to your queries and requests;&#xa;&#xa;(b) managing the administrative and business operations of StarHub and complying with internal policies and procedures;&#xa;&#xa;(c) facilitating business asset transactions (which may extend to any mergers, acquisitions or asset sales) involving any of the Companies;&#xa;&#xa;(d) matching any Personal Data held which relates to you for any of the purposes listed herein;&#xa;&#xa;(e) resolving complaints and handling requests and enquiries;&#xa;&#xa;(f)  preventing, detecting and investigating crime and analyzing and managing commercial risks;&#xa;&#xa;(g) providing media announcements and responses;&#xa;&#xa;(h) monitoring or recording phone calls and customer-facing interactions for quality assurance, employee training and performance evaluation and identity verification purposes;&#xa;&#xa;(i) organising promotional events;&#xa;&#xa;(j) legal purposes (including but not limited to obtaining legal advice and dispute resolution);&#xa;&#xa;(k) conducting investigations relating to disputes, billing or fraud;&#xa;&#xa;(l) meeting or complying with any applicable rules, laws, regulations, codes of practice or guidelines issued by any legal or regulatory bodies which are binding on Island Furniture (including but not limited to responding to regulatory complaints, disclosing to regulatory bodies and conducting audit checks, due diligence and investigations); and&#xa;&#xa;(m) purposes which are reasonably related to the aforesaid.&#xa;&#xa;3.2 In addition, StarHub collects, uses and discloses your Personal Data for the following purposes:&#xa;&#xa;(a)  If you are a customer or an employee of an organisation which is a customer of StarHub (including but not limited to Mobile, Broadband, Television, Voice and International Direct Dialing and/or Cloud Computing products and services (&#x201c;Products and Services&#x201d;)):&#xa;&#xa;(i) opening or continuation of accounts and establishing or providing you with the  Products and Services you subscribe to (including but not limited to service activation, service operations, service delivery and order processing);&#xa;&#xa;(ii) facilitating the continuation or termination of your subscription to our Products and Services (including but not limited to administering subscription arrangements, account maintenance, account closure,  processing renewal of contracts and customer relationship management);&#xa;&#xa;(iii) facilitating the daily operation of the Products and Services (including but not limited to billing, customer service, customer verification, technical support, network maintenance and troubleshooting);&#xa;&#xa;(iv) managing and executing our service-level agreements with you;&#xa;&#xa;(v) processing of payment instructions, direct debit facilities and/or credit facilities requested by you;&#xa;&#xa;(vi) enforcement of repayment obligations (including but not limited to debt collection, filing of claims and retrieval of payments from losses made by service partners);&#xa;&#xa;(vii) administering and processing any insurance claims and payments arising under the respective policies;&#xa;&#xa;(viii) credit and internal risk management (including but not limited to performing credit checks and disclosures to law enforcement agencies);&#xa;&#xa;(ix) generating internal reports (including but not limited to annual, operational and management reports);&#xa;&#xa;(x) processing referral payments and commission fees to our external partners;&#xa;&#xa;(xi) administering fee adjustments, refunds and waivers;&#xa;&#xa;(xii) analysing your use of our Products and Services so as to help us improve, review, develop and efficiently manage the Products and Services offered to you; and&#xa;&#xa;(xiii) purposes which are reasonably related to the aforesaid.&#xa;&#xa;3.3 Furthermore, where permitted under the Act:&#xa;&#xa;(a)  StarHub may also collect, use and disclose your Personal Data for the following &#x201c;Island Furniture Additional Purposes&#x201d;:&#xa;&#xa;(i) analytics and tracking, including facilitating the sale of analytical data&#xa;&#xa;(ii) conducting market research and surveys to enable us to understand and determine customer location, preferences and demographics to develop special offers and marketing programmes in relation to StarHub&apos;s Products and Services, and to improve our service delivery and your customer experience at our touchpoints;&#xa;&#xa;(iii) providing additional Products and Services and benefits to you, including promotions, loyalty and reward programmes from Island Furniture;&#xa;&#xa;(iv) matching Personal Data with other data collected for other purposes and from other sources (including third parties) in connection with the provision, marketing or offering of Products and Services by StarHub;&#xa;&#xa;(v) leads generation and management for marketing Island Furniture Products and Services;&#xa;&#xa;(vi) administering contests, competitions and marketing campaigns, and personalising your experience at StarHub&#x2019;s touchpoints;&#xa;&#xa;(vii) communicating to you advertisements involving details of our Products and Services, special offers and rewards, either to our customers generally, or which we have identified may be of interest to you (including but not limited to upselling, cross selling and telemarketing);&#xa;&#xa;(viii) organising promotional events and corporate social responsibility projects; and&#xa;&#xa;(ix) purposes which are reasonably related to the aforesaid.&#xa;&#xa;In addition, where permitted under the Act and subject to the provisions of any applicable law, your Personal Data may be disclosed, for StarHub Additional Purposes, to the vendors or other third party service providers in connection with promotions and services offered by StarHub.&#xa;&#xa;(b) StarHub may also collect, use and disclose your Personal Data for the following &#x201c;Preferred Partners Additional Purposes&#x201d; :&#xa;&#xa;(i) conducting market research and surveys to enable us to understand and determine customer location, preferences and demographics to develop special offers and marketing programmes with our preferred partners;&#xa;&#xa;(ii) matching Personal Data with other data collected for other purposes and from other sources (including third parties) in connection with the provision, marketing or offering of products and services (including promotions, loyalty and reward programmes) by our preferred partners;&#xa;&#xa;(iii) leads generation and management for marketing the products and services offered by our preferred partners;&#xa;&#xa;(iv) administering contests, competitions and marketing campaigns in connection with the products and services offered by our preferred partners;&#xa;&#xa;(v) sending you informational, recruitment and other notification messages communicated by our preferred partners;&#xa;&#xa;(vi) communicating to you advertisements involving details of the products, services, special offers and rewards offered by our preferred partners, either to our customers generally, or which we or our preferred partners have identified may be of interest to you (including but not limited to upselling, cross selling and telemarketing); and&#xa;&#xa;(vii) purposes which are reasonably related to the aforesaid.&#xa;&#xa;In addition, where permitted under the Act and subject to the provisions of any applicable law, your Personal Data may be disclosed, for Preferred Partners&apos; Additional Purposes, to the vendors or other third party service providers in connection with promotions and services offered by StarHub&#x2019;s preferred partners. However, please be assured that we do not disclose your Personal Data to our preferred partners for the purposes of the above.&#xa;&#xa;3.4 If you have provided your Singapore telephone number(s) and have indicated that you consent to receiving marketing or promotional information via your Singapore telephone number(s), then from time to time, StarHub may contact you using such Singapore telephone number(s) (including via voice calls, text, fax or other means) with information about our Products and Services or those products and services offered by our preferred partners (including discounts and special offers).&#xa;&#xa;3.5 In relation to particular Products and Services or in your interactions with us, we may also have specifically notified you of other purposes for which we collect, use or disclose your Personal Data. If so, we will collect, use and disclose your Personal Data for these additional purposes as well, unless we have specifically notified you otherwise.&#xa;&#xa;3.6 You have a choice to withdraw your consent for receiving marketing or promotional materials/communication. You may contact us using the contact details found below.&#xa;&#xa;3.7 Please be aware that once we receive confirmation that you wish to withdraw your consent for marketing or promotional materials/communication, it may take up to 30 working days for your withdrawal to be reflected in our systems. Therefore, you may still receive marketing or promotional materials/communication during this period of time. Please note that even if you withdraw your consent for the receipt of marketing or promotional materials, we may still contact you for other purposes in relation to the Products and Services that you hold or have subscribed to with StarHub.&#xa;&#xa;4. Disclosure of Personal Data&#xa;&#xa;4.1 StarHub will take reasonable steps to protect your Personal Data against unauthorised disclosure. Subject to the provisions of any applicable law, your Personal Data may be disclosed, for the purposes listed above (where applicable), to the following:&#xa;&#xa;(a) StarHub&#x2019;s related corporations and employees to provide content, Products and Services to you, address your questions and requests in relation to your customer accounts, subscription and billing arrangements with us as well as our Products and Services, to activate, deactivate, install, maintain and operate our systems and/or services;&#xa;&#xa;(b) companies providing services relating to insurance and consultancy to StarHub;&#xa;&#xa;(c) agents, contractors or third party service providers who provide operational services to StarHub, such as courier services, telecommunications, information technology, payment, printing, billing, payroll, processing, technical services, training, market research, call centre, security or other services to StarHub;&#xa;&#xa;(d) vendors or third party service providers in connection with marketing promotions and services offered by StarHub or its preferred partners;&#xa;&#xa;(e) commercial shops and retailers in relation to providing rewards and benefits;&#xa;&#xa;(f) other telecommunications, content or other service providers to facilitate their provision of content or services, or for interconnection, inter-operability, system operation and maintenance and billing between service providers;&#xa;&#xa;(g) any business partner, investor, assignee or transferee (actual or prospective) to facilitate business asset transactions (which may extend to any merger, acquisition or asset sale) involving any of the Companies;&#xa;&#xa;(h)    collection and repossession agencies in relation to the enforcement of repayment obligations for debts;&#xa;&#xa;(i) external banks, credit card companies and their respective service providers;&#xa;&#xa;(j) our professional advisers such as auditors and lawyers;&#xa;&#xa;(k) relevant government regulators, statutory boards or authorities or law enforcement agencies to comply with any laws, rules, guidelines and regulations or schemes imposed by any governmental authority; and&#xa;&#xa;(l) any other party to whom you authorise us to disclose your Personal Data to.&#xa;&#xa;5. Use of Cookies&#xa;&#xa;5.1 A cookie is a small piece of information that is placed on your computer when you visit certain websites.&#xa;&#xa;5.2 StarHub uses cookies on its websites for the following purposes:&#xa;&#xa;(a) enabling certain features and functions on our websites, eg. remembering your user-id, favourite channel selections, browsing and other service preferences;&#xa;&#xa;(b) building up a profile of how you and other users use the website;&#xa;&#xa;(c) improving the efficiency of our website;&#xa;&#xa;(d) administering services to you and to advertisers; and&#xa;&#xa;(e) establishing usage statistics&#xa;&#xa;5.3 Most internet browsers provide you the option of turning off the processing of cookies (please see the &#x201c;help&#x201d; section of your browser), but this may result in the loss of functionality, restrict your use of the website and/or delay or affect the way in which it operates.&#xa;&#xa;5.4 Advertisements on the StarHub website may be provided by third party advertisers and their agencies. These may generate cookies to track how many people have seen a particular advertisement (or use the services of third parties to do this), and to track how many people have seen it more than once. StarHub does not control these third parties and their cookie policies and if you have questions about their cookie policies, please contact StarHub and we will try our best to assist by providing you information about these third party advertising agencies.&#xa;&#xa;5.5 StarHub is not responsible for the Personal Data policies (including Personal Data protection and cookies), content or security of any third party websites linked to the StarHub website.&#xa;&#xa;6. Contacting Us &#x2013; Withdrawal of Consent, Access and Correction of your Personal Data&#xa;&#xa;6.1 If you:&#xa;&#xa;(a) have any questions or feedback relating to your Personal Data or our Data Protection Policy;  &#xa;(b) would like to withdraw your consent to any use of your Personal Data as set out in this Data Protection Policy; or&#xa;(c) would like to obtain access and make corrections to your Personal Data records, please contact StarHub as follows:&#xa;Email: dpo@starhub.com&#xa;Write in:     Data Protection Officer&#xa;                Island Furniture&#xa;                67 Ubi Avenue 1&#xa;                #05-01 Island Furniture&#xa;                Singapore 408942&#xa;&#xa;6.2 Please note that if your Personal Data has been provided to us by a third party (e.g. a referrer), you should contact that organisation or individual to make such queries, complaints, and access and correction requests to StarHub on your behalf.&#xa;&#xa;&#xa;6.3 If you withdraw your consent to any or all use of your Personal Data, depending on the nature of your request, StarHub may not be in a position to continue to provide its Products and Services to you, administer any contractual relationship in place, which in turn may also result in the termination of any agreements with StarHub, and your being in breach of your contractual obligations or undertakings. StarHub&#x2019;s legal rights and remedies in such event are expressly reserved.&#xa;&#xa;7.  Governing Law&#xa;&#xa;7.1 This Data Protection Policy and your use of this website shall be governed in all respects by the laws of Singapore."/>
+            <Property name="wrapStyleWord" type="boolean" value="true"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="99" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Agree"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="99" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Return"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="24" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Personal Data Protection Policy"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
