@@ -1,6 +1,7 @@
 package PointOfSalesUI;
 
 import POS.*;
+import java.awt.Color;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
 
@@ -18,6 +19,9 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
 
         if (member != null && member.getEmail() != null) {
             txtMemberName.setText(member.getName());
+        } else {
+            //txtMemberName.setForeground(Color.GRAY);
+            txtMemberName.setText("Place your card on the reader and press 'Scan'");
         }
 
         discountRate = POS.transaction.getDiscountRate();
@@ -139,6 +143,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
 
         txtMemberName.setEditable(false);
         txtMemberName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtMemberName.setText("Place your card on the reader and press \"Scan\"");
 
         btnBack.setBackground(new java.awt.Color(153, 0, 0));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -423,7 +428,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         try {
             CardReader cardReader = new CardReader();
             if (cardReader.getCardUID().equals("Card cannot be found!")) {
-                
+
             } else {
                 member = getMemberViaCard(cardReader.getCardUID());
                 System.out.println(member.getName());
