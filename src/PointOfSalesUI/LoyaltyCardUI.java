@@ -77,7 +77,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                 btn20.setEnabled(false);
             }
         }
-        
+
         btnScan.requestFocus();
     }
 
@@ -422,46 +422,50 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     private void btnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScanActionPerformed
         try {
             CardReader cardReader = new CardReader();
-            member = getMemberViaCard(cardReader.getCardUID());
-            System.out.println(member.getName());
-            txtMemberName.setText(member.getName());
-            lblCurrentPoints.setText(member.getLoyaltyPoints() + "");
-            lblRedeem.setText(pointsDeducting + "");
+            if (cardReader.getCardUID().equals("Card cannot be found!")) {
+                
+            } else {
+                member = getMemberViaCard(cardReader.getCardUID());
+                System.out.println(member.getName());
+                txtMemberName.setText(member.getName());
+                lblCurrentPoints.setText(member.getLoyaltyPoints() + "");
+                lblRedeem.setText(pointsDeducting + "");
 
-            if (member.getLoyaltyPoints() >= 500) {
-                btn5.setEnabled(true);
-                btn10.setEnabled(true);
-                btn15.setEnabled(true);
-                btn20.setEnabled(true);
-            } else if (member.getLoyaltyPoints() < 500 && member.getLoyaltyPoints() >= 300) {
-                btn5.setEnabled(true);
-                btn10.setEnabled(true);
-                btn15.setEnabled(true);
-                btn20.setEnabled(false);
-            } else if (member.getLoyaltyPoints() < 300 && member.getLoyaltyPoints() >= 150) {
-                btn5.setEnabled(true);
-                btn10.setEnabled(true);
-                btn15.setEnabled(false);
-                btn20.setEnabled(false);
-            } else if (member.getLoyaltyPoints() < 150 && member.getLoyaltyPoints() >= 50) {
-                btn5.setEnabled(true);
-                btn10.setEnabled(false);
-                btn15.setEnabled(false);
-                btn20.setEnabled(false);
-            } else if (member.getLoyaltyPoints() < 50) {
-                btn5.setEnabled(false);
-                btn10.setEnabled(false);
-                btn15.setEnabled(false);
-                btn20.setEnabled(false);
-            }
+                if (member.getLoyaltyPoints() >= 500) {
+                    btn5.setEnabled(true);
+                    btn10.setEnabled(true);
+                    btn15.setEnabled(true);
+                    btn20.setEnabled(true);
+                } else if (member.getLoyaltyPoints() < 500 && member.getLoyaltyPoints() >= 300) {
+                    btn5.setEnabled(true);
+                    btn10.setEnabled(true);
+                    btn15.setEnabled(true);
+                    btn20.setEnabled(false);
+                } else if (member.getLoyaltyPoints() < 300 && member.getLoyaltyPoints() >= 150) {
+                    btn5.setEnabled(true);
+                    btn10.setEnabled(true);
+                    btn15.setEnabled(false);
+                    btn20.setEnabled(false);
+                } else if (member.getLoyaltyPoints() < 150 && member.getLoyaltyPoints() >= 50) {
+                    btn5.setEnabled(true);
+                    btn10.setEnabled(false);
+                    btn15.setEnabled(false);
+                    btn20.setEnabled(false);
+                } else if (member.getLoyaltyPoints() < 50) {
+                    btn5.setEnabled(false);
+                    btn10.setEnabled(false);
+                    btn15.setEnabled(false);
+                    btn20.setEnabled(false);
+                }
 
-            String string1 = String.format("%-9s", "Pts " + member.getLoyaltyPoints());
-            String string2 = "";
-            if (member.getLoyaltyTier() != null) {
-                string2 = String.format("%10s", member.getLoyaltyTier().getTier());
+                String string1 = String.format("%-9s", "Pts " + member.getLoyaltyPoints());
+                String string2 = "";
+                if (member.getLoyaltyTier() != null) {
+                    string2 = String.format("%10s", member.getLoyaltyTier().getTier());
+                }
+                String line2 = string1 + string2;
+                //POS.displayPoleMessage(member.getName(), line2);
             }
-            String line2 = string1 + string2;
-            //POS.displayPoleMessage(member.getName(), line2);
         } catch (Exception ex) {
             lblCurrentPoints.setText("-");
             lblRedeem.setText("-");
