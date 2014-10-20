@@ -227,6 +227,7 @@
 <xs:element name="id" type="xs:long" minOccurs="0"/>
 <xs:element name="length" type="xs:int" minOccurs="0"/>
 <xs:element name="lineItems" type="tns:lineItemEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
 <xs:element name="type" type="xs:string" minOccurs="0"/>
 <xs:element name="warehouse" type="tns:warehouseEntity" minOccurs="0"/>
 <xs:element name="width" type="xs:int" minOccurs="0"/>

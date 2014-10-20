@@ -4,8 +4,14 @@ import POS.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.Window;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
@@ -41,6 +47,8 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtReceiptMessage = new javax.swing.JTextPane();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -76,6 +84,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/discover-curved-64px.png"))); // NOI18N
 
+        txtReceiptMessage.setContentType("text/html"); // NOI18N
+        jScrollPane1.setViewportView(txtReceiptMessage);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,14 +107,19 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtCreditNumber, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel5))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(144, 144, 144)
+                                        .addComponent(jScrollPane1)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel7)))
                         .addGap(30, 30, 30))))
@@ -122,7 +138,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(jLabel7)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGap(61, 61, 61)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -157,7 +175,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         }
 
         try {
-            submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.POSName, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail);
+            //submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.POSName, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -209,14 +227,60 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtCreditNumber;
+    private javax.swing.JTextPane txtReceiptMessage;
     // End of variables declaration//GEN-END:variables
 
     private void printReceipt() {
+        try {
+            //ReadReceipt pr = new ReadReceipt();
+            Double margin = 1.0;
+            Integer lines = 50;
+            PrinterJob printerJob = PrinterJob.getPrinterJob();
+            PageFormat pageFormat = printerJob.defaultPage();
+            Paper paper = new Paper();
+            paper.setSize(180.0, (double) (paper.getHeight() + lines * 10.0));
 
+            System.out.println("test " + (double) (paper.getHeight() + lines * 10.0));
+
+            paper.setImageableArea(margin, margin, paper.getWidth() - margin * 2, paper.getHeight() - margin * 2);
+            pageFormat.setPaper(paper);
+            pageFormat.setOrientation(PageFormat.PORTRAIT);
+
+            String abc = "Island Furniture";
+            txtReceiptMessage.setText("<html><table><tr><th colspan=\"2\">Island Furniture<br>"
+                    + "317 Alexandra Rd<br>"
+                    + "Singapore 159965</th></tr><tr align='center'>"
+                    + "<td colspan=\"2\">Member Card No SG30072239<br>"
+                    + "Card Expiry 31/01/16</td></tr><tr><td>Description</td><td>Amount</td></tr>"
+                    + "<tr><td>1234567890123456</td>" //loop description
+                    + "<td>1102.95</td></tr>" //loop price
+                    + "<tr><td>&nbsp Members Discounts</td>"
+                    + "<td>-0.30</td></tr>"
+                    + "<tr><td>Total S$</td>"
+                    + "<td>2.65</td></tr>"
+                    + "<tr><td>NETS</td>"
+                    + "<td>-2.65</td></tr><tr>"
+                    + "<td>Item Count</td>"
+                    + "<td>1</td></tr>"
+                    //+ "------------------------------------------"
+                    + "<tr align='center'><td colspan=\"2\">Receipt: CMP100000114463<br>"
+                    + "Date/Time: 23-07-2014 07:56PM<br>"
+                    + "POS: CMP1<br>"
+                    + "Cashier: Jason Sim</td></tr>"
+                    + "<tr align='center'><td colspan=\"2\">Thank you for <br>Shopping at Island Furniture!</td></tr></table></html>");
+
+            printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
+            if (printerJob.printDialog()) {
+                printerJob.print();
+            }
+        } catch (PrinterException ex) {
+            Logger.getLogger(TestUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    private static ReturnHelper submitSalesRecord(java.lang.String staffEmail, java.lang.String password, java.lang.Long storeID, java.lang.String posName, java.util.List<java.lang.String> itemsPurchasedSKU, java.util.List<java.lang.Integer> itemsPurchasedQty, java.lang.Double amountDue, java.lang.Double amountPaid, java.lang.Double amountPaidUsingPoints, java.lang.Integer loyaltyPointsDeducted, java.lang.String memberEmail) {
+    private static Boolean submitSalesRecord(java.lang.String staffEmail, java.lang.String password, java.lang.Long storeID, java.lang.String posName, java.util.List<java.lang.String> itemsPurchasedSKU, java.util.List<java.lang.Integer> itemsPurchasedQty, java.lang.Double amountDue, java.lang.Double amountPaid, java.lang.Double amountPaidUsingPoints, java.lang.Integer loyaltyPointsDeducted, java.lang.String memberEmail) {
         PointOfSalesUI.SalesReportingWebService_Service service = new PointOfSalesUI.SalesReportingWebService_Service();
         PointOfSalesUI.SalesReportingWebService port = service.getSalesReportingWebServicePort();
         return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchasedSKU, itemsPurchasedQty, amountDue, amountPaid, amountPaidUsingPoints, loyaltyPointsDeducted, memberEmail);

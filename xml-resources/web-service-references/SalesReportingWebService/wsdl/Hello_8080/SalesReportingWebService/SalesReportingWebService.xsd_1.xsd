@@ -22,14 +22,7 @@
 
 <xs:complexType name="submitSalesRecordResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:returnHelper" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="returnHelper">
-<xs:sequence>
-<xs:element name="isSuccess" type="xs:boolean" minOccurs="0"/>
-<xs:element name="message" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

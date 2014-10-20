@@ -4,17 +4,17 @@
 <xsd:import namespace="http://LoyaltyAndRewards.OperationalCRM/" schemaLocation="http://Hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="getMemberLoyaltyPoints">
-<part name="parameters" element="tns:getMemberLoyaltyPoints"/>
-</message>
-<message name="getMemberLoyaltyPointsResponse">
-<part name="parameters" element="tns:getMemberLoyaltyPointsResponse"/>
-</message>
 <message name="getMemberViaEmail">
 <part name="parameters" element="tns:getMemberViaEmail"/>
 </message>
 <message name="getMemberViaEmailResponse">
 <part name="parameters" element="tns:getMemberViaEmailResponse"/>
+</message>
+<message name="getMemberLoyaltyPoints">
+<part name="parameters" element="tns:getMemberLoyaltyPoints"/>
+</message>
+<message name="getMemberLoyaltyPointsResponse">
+<part name="parameters" element="tns:getMemberLoyaltyPointsResponse"/>
 </message>
 <message name="getMemberViaCard">
 <part name="parameters" element="tns:getMemberViaCard"/>
@@ -23,13 +23,13 @@
 <part name="parameters" element="tns:getMemberViaCardResponse"/>
 </message>
 <portType name="LoyaltyAndRewardsWebService">
-<operation name="getMemberLoyaltyPoints">
-<input wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/getMemberLoyaltyPointsRequest" message="tns:getMemberLoyaltyPoints"/>
-<output wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/getMemberLoyaltyPointsResponse" message="tns:getMemberLoyaltyPointsResponse"/>
-</operation>
 <operation name="getMemberViaEmail">
 <input wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/getMemberViaEmailRequest" message="tns:getMemberViaEmail"/>
 <output wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/getMemberViaEmailResponse" message="tns:getMemberViaEmailResponse"/>
+</operation>
+<operation name="getMemberLoyaltyPoints">
+<input wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/getMemberLoyaltyPointsRequest" message="tns:getMemberLoyaltyPoints"/>
+<output wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/getMemberLoyaltyPointsResponse" message="tns:getMemberLoyaltyPointsResponse"/>
 </operation>
 <operation name="getMemberViaCard">
 <input wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/getMemberViaCardRequest" message="tns:getMemberViaCard"/>
@@ -38,7 +38,7 @@
 </portType>
 <binding name="LoyaltyAndRewardsWebServicePortBinding" type="tns:LoyaltyAndRewardsWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="getMemberLoyaltyPoints">
+<operation name="getMemberViaEmail">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -47,7 +47,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getMemberViaEmail">
+<operation name="getMemberLoyaltyPoints">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
