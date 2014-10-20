@@ -431,7 +431,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
 
             } else {
                 member = getMemberViaCard(cardReader.getCardUID());
-                System.out.println(member.getName());
+
                 txtMemberName.setText(member.getName());
                 lblCurrentPoints.setText(member.getLoyaltyPoints() + "");
                 lblRedeem.setText(pointsDeducting + "");

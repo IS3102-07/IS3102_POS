@@ -1,16 +1,21 @@
 package POS;
 
-import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
 import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
+import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class TestUI extends javax.swing.JFrame {
 
@@ -32,11 +37,12 @@ public class TestUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnTestPrinter = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtReceiptMessage = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane = new javax.swing.JEditorPane();
         jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtReceiptMessage = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,22 +94,15 @@ public class TestUI extends javax.swing.JFrame {
 
         jButton2.setText("jButton2");
 
+        txtReceiptMessage.setColumns(20);
+        txtReceiptMessage.setRows(5);
+        jScrollPane2.setViewportView(txtReceiptMessage);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(347, 347, 347)
-                        .addComponent(txtReceiptMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(btnTestPrinter, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(275, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(110, 110, 110)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,21 +112,32 @@ public class TestUI extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(btnTestPrinter, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(133, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtReceiptMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTestPrinter, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnTestPrinter, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,7 +145,7 @@ public class TestUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(133, 133, 133)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,7 +200,8 @@ public class TestUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtReceiptMessage;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea txtReceiptMessage;
     // End of variables declaration//GEN-END:variables
 
     private void initPartnerPoleDisplay() {
@@ -213,40 +224,32 @@ public class TestUI extends javax.swing.JFrame {
     }
 
     private void testPartnerThermalPrinterAndCashBox() {
-        //try connect and open the drawer
-        Enumeration<CommPortIdentifier> port_list = CommPortIdentifier.getPortIdentifiers();
+        try {
+            //ReadReceipt pr = new ReadReceipt();
+            Double margin = 1.0;
+            Integer lines = 50;
+            PrinterJob printerJob = PrinterJob.getPrinterJob();
+            PageFormat pageFormat = printerJob.defaultPage();
+            Paper paper = new Paper();
+            paper.setSize(180.0, (double) (paper.getHeight() + lines * 10.0));
 
-        while (port_list.hasMoreElements()) {
-            CommPortIdentifier port_id = (CommPortIdentifier) port_list.nextElement();
-            //commPort.getPortType() == CommPortIdentifier.PORT_SERIAL && 
-            if (port_id.getName().equals("COM2")) {
+            System.out.println("test " + (double) (paper.getHeight() + lines * 10.0));
 
-                try {
-                    CommPort port = port_id.open("PortListOpen", 20);
-                    port.close();
-//                    serialPort = (SerialPort) commPort.open("UnifiedPointOfSale", 5000);
-//                    partnerPoleDisplayOutputStream = serialPort.getOutputStream();
-                } catch (PortInUseException ex) {
-                    JOptionPane.showMessageDialog(null, "Unable to initialize Partner Pole Display: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
+            paper.setImageableArea(margin, margin, paper.getWidth() - margin * 2, paper.getHeight() - margin * 2);
+            pageFormat.setPaper(paper);
+            pageFormat.setOrientation(PageFormat.PORTRAIT);
 
+            txtReceiptMessage.setText("<html>Economy");
+            txtReceiptMessage.append("\nEconomy");
+
+            printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
+            if (printerJob.printDialog()) {
+                printerJob.print();
             }
+        } catch (PrinterException ex) {
+            Logger.getLogger(TestUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        ReadReceipt pr = new ReadReceipt();
-        Double margin = 1.0;
-        Integer lines = 8;
-        PrinterJob printerJob = PrinterJob.getPrinterJob();
-        PageFormat pageFormat = printerJob.defaultPage();
-        Paper paper = new Paper();
-        paper.setSize(180.0, (double) (paper.getHeight() + lines * 10.0));
-
-        System.out.println("test " + (double) (paper.getHeight() + lines * 10.0));
-
-        paper.setImageableArea(margin, margin, paper.getWidth() - margin * 2, paper.getHeight() - margin * 2);
-        pageFormat.setPaper(paper);
-        pageFormat.setOrientation(PageFormat.PORTRAIT);
-        printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
     }
 //        printableEditorPane jEditorPane = new printableEditorPane();
 //        jEditorPane.setContentType("text/html");
