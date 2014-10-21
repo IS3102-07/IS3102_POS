@@ -8,7 +8,9 @@ import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -175,7 +177,10 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         }
 
         try {
-            //submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.POSName, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail);
+
+            if (POS.staffEmail != null && POS.staffPassword != null) {
+                submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.POSName, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail);
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -248,29 +253,53 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
             pageFormat.setPaper(paper);
             pageFormat.setOrientation(PageFormat.PORTRAIT);
 
-            String abc = "Island Furniture";
-            txtReceiptMessage.setText("<html><table><tr><th colspan=\"2\">Island Furniture<br>"
+            lineItems = POS.transaction.getLineItems();
+
+            //formating receipt
+            String receiptString1 = "<html><table><tr><th colspan=\"2\">Island Furniture<br>"
                     + "317 Alexandra Rd<br>"
                     + "Singapore 159965</th></tr><tr align='center'>"
                     + "<td colspan=\"2\">Member Card No SG30072239<br>"
-                    + "Card Expiry 31/01/16</td></tr><tr><td>Description</td><td>Amount</td></tr>"
-                    + "<tr><td>1234567890123456</td>" //loop description
-                    + "<td>1102.95</td></tr>" //loop price
-                    + "<tr><td>&nbsp Members Discounts</td>"
-                    + "<td>-0.30</td></tr>"
-                    + "<tr><td>Total S$</td>"
-                    + "<td>2.65</td></tr>"
-                    + "<tr><td>NETS</td>"
-                    + "<td>-2.65</td></tr><tr>"
-                    + "<td>Item Count</td>"
-                    + "<td>1</td></tr>"
-                    //+ "------------------------------------------"
-                    + "<tr align='center'><td colspan=\"2\">Receipt: CMP100000114463<br>"
-                    + "Date/Time: 23-07-2014 07:56PM<br>"
-                    + "POS: CMP1<br>"
-                    + "Cashier: Jason Sim</td></tr>"
-                    + "<tr align='center'><td colspan=\"2\">Thank you for <br>Shopping at Island Furniture!</td></tr></table></html>");
+                    + "Card Expiry 31/01/16</td></tr>"
+                    + "<tr><td colspan=\"2\">------------------------------------------</td></tr>"
+                    + "<tr><td>Description</td><td>Amount</td></tr>";
 
+            String receiptString2 = "";
+
+            for (int i = 0; i < lineItems.size(); i++) {
+                String receipLineItem = lineItems.get(i).getQuantity() + " " + lineItems.get(i).getDescription();
+                if (receipLineItem.length() > 15) {
+                    receipLineItem = receipLineItem.substring(0, 15);
+                }
+
+                receiptString2 += "<tr><td>" + receipLineItem + "</td><td>" + lineItems.get(i).getPrice() + "</td></tr>";
+            }
+
+            receiptString2 += "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
+
+            String receiptString3 = "";
+            if (POS.transaction.getDiscountPrice() > 0) {
+                receiptString3 = "<tr><td>Subtotal </td><td>" + POS.transaction.getTotalPrice() + "</td></tr>";
+                receiptString3 += "<tr><td>&nbsp Member Disc</td>" + "<td>- " + POS.transaction.getDiscountPrice() + "</td></tr>";
+            }
+
+            String receiptString4 = "<tr><td>Total</td><td>" + POS.transaction.getNetPrice() + "</td></tr><tr>"
+                    + "<td>Item Count</td><td>" + POS.transaction.getTotalItems() + "</td></tr>"
+                    + "<tr><td colspan=\"2\">------------------------------------------</td></tr>"
+                    + "<tr align='center'><td colspan=\"2\">Receipt: CMP100000114463<br>";
+
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy hh:mm a");
+            //System.out.println(sdf.format(date));
+
+            receiptString4 += "Date: " + sdf.format(date) + "<br>";
+
+            receiptString4 += "" + POS.POSName + "<br>"
+                    + "Cashier: Jason Sim</td></tr>"
+                    + "<tr><td colspan=\"2\">------------------------------------------</td></tr>"
+                    + "<tr align='center'><td colspan=\"2\">Thank you for <br>Shopping at Island Furniture!</td></tr></table></html>";
+
+            txtReceiptMessage.setText(receiptString1 + receiptString2 + receiptString3 + receiptString4);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
             if (printerJob.printDialog()) {
                 printerJob.print();

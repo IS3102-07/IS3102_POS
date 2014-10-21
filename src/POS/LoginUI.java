@@ -152,11 +152,6 @@ public class LoginUI extends javax.swing.JFrame {
         lblPassword1.setText("Supervisor ContactNo.");
 
         txtContact.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtContact.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContactActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -262,10 +257,6 @@ public class LoginUI extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void txtContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContactActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtContactActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
