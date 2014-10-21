@@ -4,12 +4,6 @@
 <xsd:import namespace="http://RetailInventory.StoreTransaction/" schemaLocation="http://Hello:8080/RetailInventoryWebService/RetailInventoryWebService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="getStoreByID">
-<part name="parameters" element="tns:getStoreByID"/>
-</message>
-<message name="getStoreByIDResponse">
-<part name="parameters" element="tns:getStoreByIDResponse"/>
-</message>
 <message name="getItemBySKU">
 <part name="parameters" element="tns:getItemBySKU"/>
 </message>
@@ -34,11 +28,13 @@
 <message name="getItemCountryPriceBySKUResponse">
 <part name="parameters" element="tns:getItemCountryPriceBySKUResponse"/>
 </message>
+<message name="getStoreAddressByID">
+<part name="parameters" element="tns:getStoreAddressByID"/>
+</message>
+<message name="getStoreAddressByIDResponse">
+<part name="parameters" element="tns:getStoreAddressByIDResponse"/>
+</message>
 <portType name="RetailInventoryWebService">
-<operation name="getStoreByID">
-<input wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getStoreByIDRequest" message="tns:getStoreByID"/>
-<output wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getStoreByIDResponse" message="tns:getStoreByIDResponse"/>
-</operation>
 <operation name="getItemBySKU">
 <input wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getItemBySKURequest" message="tns:getItemBySKU"/>
 <output wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getItemBySKUResponse" message="tns:getItemBySKUResponse"/>
@@ -55,18 +51,13 @@
 <input wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getItemCountryPriceBySKURequest" message="tns:getItemCountryPriceBySKU"/>
 <output wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getItemCountryPriceBySKUResponse" message="tns:getItemCountryPriceBySKUResponse"/>
 </operation>
+<operation name="getStoreAddressByID">
+<input wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getStoreAddressByIDRequest" message="tns:getStoreAddressByID"/>
+<output wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getStoreAddressByIDResponse" message="tns:getStoreAddressByIDResponse"/>
+</operation>
 </portType>
 <binding name="RetailInventoryWebServicePortBinding" type="tns:RetailInventoryWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="getStoreByID">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="getItemBySKU">
 <soap:operation soapAction=""/>
 <input>
@@ -95,6 +86,15 @@
 </output>
 </operation>
 <operation name="getItemCountryPriceBySKU">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getStoreAddressByID">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

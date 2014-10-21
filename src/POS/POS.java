@@ -11,15 +11,22 @@ import javax.swing.JOptionPane;
 public class POS {
 
     public static Long storeID;
-    public static String POSName;
+    public static String storeAddress;
+    public static String storePostal;
+    public static String storeCountry;
+    public static String name;
+
+    public static String staffName;
     public static String staffEmail;
     public static char[] staffPassword;
     public static String supervisorContactNo;
+
     public static Transaction transaction;
+
     public static int tmpQty = 0;
     public static boolean transactionCompleted;
+
     public static String PORT_Pole;
-    public static String test;
 
     public static final String partnerPoleDisplayCOMPort = PORT_Pole;
     public static OutputStream partnerPoleDisplayOutputStream;

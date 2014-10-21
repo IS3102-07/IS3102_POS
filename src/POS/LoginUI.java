@@ -2,6 +2,7 @@ package POS;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.util.List;
 
 public class LoginUI extends javax.swing.JFrame {
 
@@ -239,12 +240,22 @@ public class LoginUI extends javax.swing.JFrame {
             lblMessage.setText("Error: Password cannot be blank.");
         } else {
             try {
-                if (posLoginStaff(txtEmail.getText(), passText) == null) {
+                Integer.parseInt(txtContact.getText());
+                String staffName = posLoginStaff(txtEmail.getText(), passText);
+                if (staffName == null) {
                     lblMessage.setText("Invalid credential. Please try again.");
                 } else {
+                    POS.staffName = staffName;
                     POS.supervisorContactNo = getCountryCode(POS.storeID) + txtContact.getText();
                     POS.staffEmail = txtEmail.getText();
                     POS.staffPassword = txtPassword.getPassword();
+
+                    List<String> store = getStoreAddressByID(POS.storeID);
+                    POS.storeAddress = store.get(0);
+                    POS.storePostal = store.get(1);
+                    POS.storeCountry = store.get(2);
+
+                    //POS.POS_storePostal = store.get
                     MainMenuUI mainMenuUI = new MainMenuUI();
                     mainMenuUI.setVisible(true);
                     this.setVisible(false);
@@ -315,10 +326,16 @@ public class LoginUI extends javax.swing.JFrame {
         return port.getCountryCode(storeID);
     }
 
-    private static Long posLoginStaff(java.lang.String email, java.lang.String password) {
+    private static String posLoginStaff(java.lang.String email, java.lang.String password) {
         commoninfrastructure.accountmanagement.AccountManagementWebService_Service service = new commoninfrastructure.accountmanagement.AccountManagementWebService_Service();
         commoninfrastructure.accountmanagement.AccountManagementWebService port = service.getAccountManagementWebServicePort();
         return port.posLoginStaff(email, password);
+    }
+
+    private static java.util.List<java.lang.String> getStoreAddressByID(java.lang.Long storeID) {
+        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
+        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+        return port.getStoreAddressByID(storeID);
     }
 
 }

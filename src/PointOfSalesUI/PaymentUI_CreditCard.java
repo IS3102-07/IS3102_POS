@@ -20,11 +20,15 @@ import javax.swing.SwingUtilities;
 public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
     private List<LineItem> lineItems;
+    private Date date;
 
     public PaymentUI_CreditCard() {
         initComponents();
+
         this.setSize(607, 400);
-        txtCreditNumber.requestFocus();;
+
+        txtReceiptMessage.setVisible(false);
+        txtCreditNumber.requestFocus();
 
         String string1 = String.format("%-9s", "Sub Total");
         String string2 = String.format("%9s", POS.transaction.getTotalPrice());
@@ -86,7 +90,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/discover-curved-64px.png"))); // NOI18N
 
+        txtReceiptMessage.setBorder(null);
         txtReceiptMessage.setContentType("text/html"); // NOI18N
+        txtReceiptMessage.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(txtReceiptMessage);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -106,22 +112,20 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                                 .addComponent(jLabel2)
                                 .addGap(411, 411, 411)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtCreditNumber, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel5))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(144, 144, 144)
-                                        .addComponent(jScrollPane1)))
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel7)))
                         .addGap(30, 30, 30))))
@@ -129,7 +133,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(txtCreditNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,9 +146,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(jLabel7)
                     .addComponent(jLabel6))
-                .addGap(61, 61, 61)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -177,33 +181,34 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         }
 
         try {
-
             if (POS.staffEmail != null && POS.staffPassword != null) {
-                submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.POSName, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail);
+                date = new Date();
+
+                submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.name, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail, date.getTime() + "");
+
+                //print receipt
+                printReceipt();
+
+                //display pole message
+                String string1 = String.format("%20s", "Come back again!");
+                //POS.displayPoleMessage("Thank you!", string1);
+
+                //done with submit sales record
+                JDialog dialog = new JDialog();
+                final Toolkit toolkit = Toolkit.getDefaultToolkit();
+                final Dimension screenSize = toolkit.getScreenSize();
+                final int x = (screenSize.width - dialog.getWidth()) / 4;
+                final int y = (screenSize.height - dialog.getHeight()) / 4;
+                dialog.setLocation(x, y);
+                dialog.setModal(true);
+                dialog.setUndecorated(true);
+                dialog.add(new ProcessPaymentUI());
+                dialog.pack();
+                dialog.setVisible(true);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-        //print receipt
-        printReceipt();
-
-        //display pole message
-        String string1 = String.format("%20s", "Come back again!");
-        //POS.displayPoleMessage("Thank you!", string1);
-
-        //done with submit sales record
-        JDialog dialog = new JDialog();
-        final Toolkit toolkit = Toolkit.getDefaultToolkit();
-        final Dimension screenSize = toolkit.getScreenSize();
-        final int x = (screenSize.width - dialog.getWidth()) / 4;
-        final int y = (screenSize.height - dialog.getHeight()) / 4;
-        dialog.setLocation(x, y);
-        dialog.setModal(true);
-        dialog.setUndecorated(true);
-        dialog.add(new ProcessPaymentUI());
-        dialog.pack();
-        dialog.setVisible(true);
 
         //reset
         String line2 = String.format("%20s", "Island Furniture!");
@@ -239,15 +244,12 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
     private void printReceipt() {
         try {
-            //ReadReceipt pr = new ReadReceipt();
             Double margin = 1.0;
             Integer lines = 50;
             PrinterJob printerJob = PrinterJob.getPrinterJob();
             PageFormat pageFormat = printerJob.defaultPage();
             Paper paper = new Paper();
             paper.setSize(180.0, (double) (paper.getHeight() + lines * 10.0));
-
-            System.out.println("test " + (double) (paper.getHeight() + lines * 10.0));
 
             paper.setImageableArea(margin, margin, paper.getWidth() - margin * 2, paper.getHeight() - margin * 2);
             pageFormat.setPaper(paper);
@@ -256,50 +258,54 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
             lineItems = POS.transaction.getLineItems();
 
             //formating receipt
-            String receiptString1 = "<html><table><tr><th colspan=\"2\">Island Furniture<br>"
-                    + "317 Alexandra Rd<br>"
-                    + "Singapore 159965</th></tr><tr align='center'>"
-                    + "<td colspan=\"2\">Member Card No SG30072239<br>"
-                    + "Card Expiry 31/01/16</td></tr>"
-                    + "<tr><td colspan=\"2\">------------------------------------------</td></tr>"
-                    + "<tr><td>Description</td><td>Amount</td></tr>";
+            String receiptString1 = "<html><table><tr align='center'><td colspan=\"2\"><b>Island Furniture<br>"
+                    + "" + POS.storeAddress + "<br>"
+                    + "" + POS.storeCountry + " " + POS.storePostal + "</b></td></tr>";
 
-            String receiptString2 = "";
+            //if member - card
+            if (POS.transaction.getDiscountPrice() > 0) {
+                receiptString1 += "<tr align='center'><td colspan=\"2\">Member " + POS.transaction.getMember().loyaltyCardId + "<br>"
+                        + "Teir: " + POS.transaction.getMember().loyaltyTier + "</td></tr>";
+            }
+            receiptString1 += "<tr><td colspan=\"2\">------------------------------------------</td></tr><tr><td>Description</td><td>Amount</td></tr>";
 
+            //loop items
             for (int i = 0; i < lineItems.size(); i++) {
                 String receipLineItem = lineItems.get(i).getQuantity() + " " + lineItems.get(i).getDescription();
                 if (receipLineItem.length() > 15) {
                     receipLineItem = receipLineItem.substring(0, 15);
                 }
 
-                receiptString2 += "<tr><td>" + receipLineItem + "</td><td>" + lineItems.get(i).getPrice() + "</td></tr>";
+                receiptString1 += "<tr><td>" + receipLineItem + "</td><td>" + lineItems.get(i).getPrice() + "</td></tr>";
             }
 
-            receiptString2 += "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
+            receiptString1 += "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
 
-            String receiptString3 = "";
+            //if member - disc
             if (POS.transaction.getDiscountPrice() > 0) {
-                receiptString3 = "<tr><td>Subtotal </td><td>" + POS.transaction.getTotalPrice() + "</td></tr>";
-                receiptString3 += "<tr><td>&nbsp Member Disc</td>" + "<td>- " + POS.transaction.getDiscountPrice() + "</td></tr>";
+                receiptString1 += "<tr><td>Subtotal </td><td>" + POS.transaction.getTotalPrice() + "</td></tr>";
+                receiptString1 += "<tr><td>&nbsp Member Disc</td>" + "<td>- " + POS.transaction.getDiscountPrice() + "</td></tr>";
             }
 
-            String receiptString4 = "<tr><td>Total</td><td>" + POS.transaction.getNetPrice() + "</td></tr><tr>"
+            //total price
+            receiptString1 += "<tr><td>Total</td><td>" + POS.transaction.getNetPrice() + "</td></tr><tr>"
                     + "<td>Item Count</td><td>" + POS.transaction.getTotalItems() + "</td></tr>"
-                    + "<tr><td colspan=\"2\">------------------------------------------</td></tr>"
-                    + "<tr align='center'><td colspan=\"2\">Receipt: CMP100000114463<br>";
+                    + "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
 
-            Date date = new Date();
+            //receipt no
+            receiptString1 += "<tr align='center'><td colspan=\"2\">Receipt: " + date.getTime() + "<br>";
+
+            //receipt date
             SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy hh:mm a");
-            //System.out.println(sdf.format(date));
+            receiptString1 += "Date: " + sdf.format(date) + "<br>";
 
-            receiptString4 += "Date: " + sdf.format(date) + "<br>";
-
-            receiptString4 += "" + POS.POSName + "<br>"
-                    + "Cashier: Jason Sim</td></tr>"
+            //POS name and cashier
+            receiptString1 += "" + POS.name + "<br>"
+                    + "Cashier: " + POS.staffName + "</td></tr>"
                     + "<tr><td colspan=\"2\">------------------------------------------</td></tr>"
                     + "<tr align='center'><td colspan=\"2\">Thank you for <br>Shopping at Island Furniture!</td></tr></table></html>";
 
-            txtReceiptMessage.setText(receiptString1 + receiptString2 + receiptString3 + receiptString4);
+            txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
             if (printerJob.printDialog()) {
                 printerJob.print();
@@ -309,10 +315,10 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         }
     }
 
-    private static Boolean submitSalesRecord(java.lang.String staffEmail, java.lang.String password, java.lang.Long storeID, java.lang.String posName, java.util.List<java.lang.String> itemsPurchasedSKU, java.util.List<java.lang.Integer> itemsPurchasedQty, java.lang.Double amountDue, java.lang.Double amountPaid, java.lang.Double amountPaidUsingPoints, java.lang.Integer loyaltyPointsDeducted, java.lang.String memberEmail) {
+    private static Boolean submitSalesRecord(java.lang.String staffEmail, java.lang.String password, java.lang.Long storeID, java.lang.String posName, java.util.List<java.lang.String> itemsPurchasedSKU, java.util.List<java.lang.Integer> itemsPurchasedQty, java.lang.Double amountDue, java.lang.Double amountPaid, java.lang.Double amountPaidUsingPoints, java.lang.Integer loyaltyPointsDeducted, java.lang.String memberEmail, java.lang.String receiptNo) {
         PointOfSalesUI.SalesReportingWebService_Service service = new PointOfSalesUI.SalesReportingWebService_Service();
         PointOfSalesUI.SalesReportingWebService port = service.getSalesReportingWebServicePort();
-        return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchasedSKU, itemsPurchasedQty, amountDue, amountPaid, amountPaidUsingPoints, loyaltyPointsDeducted, memberEmail);
+        return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchasedSKU, itemsPurchasedQty, amountDue, amountPaid, amountPaidUsingPoints, loyaltyPointsDeducted, memberEmail, receiptNo);
     }
 
 }

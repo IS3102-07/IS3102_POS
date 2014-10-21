@@ -27,9 +27,9 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
 
-        if (POS.staffEmail != null && POS.POSName != null) {
+        if (POS.staffEmail != null && POS.name != null) {
             lblDuty.setText("Cashier  : " + POS.staffEmail);
-            lblPOSName.setText(POS.POSName);
+            lblPOSName.setText(POS.name);
         }
 
         ReadFile readFile = new ReadFile();
@@ -451,7 +451,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         if (!POS.supervisorContactNo.isEmpty()) {
             System.out.println(POS.supervisorContactNo);
-            alertSupervisor(POS.POSName, POS.supervisorContactNo);
+            alertSupervisor(POS.name, POS.supervisorContactNo);
         }
         //alertSupervisor(POS.storeName, POS.supervisorContactNo);
         tblLineItem.requestFocus();

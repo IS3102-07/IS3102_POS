@@ -34,7 +34,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         //String line2 = String.format("%20s", "Island Furniture!");
         //POS.displayPoleMessage("Welcome to", line2);
 
-
     }
 
     @SuppressWarnings("unchecked")
@@ -431,7 +430,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         if (!POS.supervisorContactNo.isEmpty()) {
             System.out.println(POS.supervisorContactNo);
-            alertSupervisor(POS.POSName, POS.supervisorContactNo);
+            alertSupervisor(POS.name, POS.supervisorContactNo);
         }
         //alertSupervisor(POS.storeName, POS.supervisorContactNo);
         tblLineItem.requestFocus();
