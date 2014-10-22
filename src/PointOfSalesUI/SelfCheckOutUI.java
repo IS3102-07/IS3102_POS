@@ -27,8 +27,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
 
-        //remove thisss
-        //ReadFile readFile = new ReadFile();
         //POS.initPartnerPoleDisplay();
         //String line2 = String.format("%20s", "Island Furniture!");
         //POS.displayPoleMessage("Welcome to", line2);
@@ -55,7 +53,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblMessage = new javax.swing.JLabel();
         btnTest1 = new javax.swing.JButton();
-        btnTestContent = new javax.swing.JButton();
         btnTest2 = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -212,13 +209,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             }
         });
 
-        btnTestContent.setText("Test Content");
-        btnTestContent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTestContentActionPerformed(evt);
-            }
-        });
-
         btnTest2.setText("test add F2");
         btnTest2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,9 +269,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                                 .addComponent(btnTest1)
                                 .addGap(5, 5, 5)
                                 .addComponent(btnTest2)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnTestContent)
-                                .addGap(18, 18, 18)
+                                .addGap(141, 141, 141)
                                 .addComponent(lblMessage))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblTotalItems)
@@ -359,7 +347,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(btnTest1)
-                            .addComponent(btnTestContent)
                             .addComponent(btnTest2)
                             .addComponent(lblMessage)
                             .addComponent(lblTotalNet))))
@@ -420,7 +407,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         if (tblLineItem.getSelectedRow() != -1 && tblLineItem.getRowCount() != 0) {
             lineItems.remove(tblLineItem.getSelectedRow());
             model.removeRow(tblLineItem.getSelectedRow());
-            POS.displayPoleMessage("Item Removed", "");
+            //POS.displayPoleMessage("Item Removed", "");
         }
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
@@ -492,7 +479,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 }
                 //else add new lineitem to the list
                 if (!isExist) {
-                    //lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
                     lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
@@ -507,21 +493,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             lblMessage.setText("Test 1:  Item not available for checkout, contact customer service for assistance.");
         }
     }//GEN-LAST:event_btnTest1ActionPerformed
-
-    private void btnTestContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestContentActionPerformed
-        if (lineItems == null || lineItems.isEmpty()) {
-            System.out.println("LineItems is empty");
-        } else {
-            for (int i = 0; i < lineItems.size(); i++) {
-                System.out.println("--------");
-                System.out.println("Description " + lineItems.get(i).getDescription());
-                System.out.println("SKU " + lineItems.get(i).getSKU());
-                System.out.println("Price " + lineItems.get(i).getPrice());
-                System.out.println("Qty " + lineItems.get(i).getQuantity());
-                System.out.println("--------\n\n");
-            }
-        }
-    }//GEN-LAST:event_btnTestContentActionPerformed
 
     private void btnTest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest2ActionPerformed
         //hard code can delete when done
@@ -543,7 +514,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 }
                 //else add new lineitem to the list
                 if (!isExist) {
-                    //lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
                     lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
@@ -569,7 +539,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lineItems = POS.transaction.getLineItems();
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
-        POS.displayPoleMessage("Items cleared", "");
+        //POS.displayPoleMessage("Items cleared", "");
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
@@ -622,7 +592,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private javax.swing.JButton btnPay;
     private javax.swing.JButton btnTest1;
     private javax.swing.JButton btnTest2;
-    private javax.swing.JButton btnTestContent;
     private javax.swing.JButton btnUpdateQuantity;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -740,7 +709,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
         String line2 = formatLabel + formatItemSubPrice;
 
-        POS.displayPoleMessage(line1, line2);
+        //POS.displayPoleMessage(line1, line2);
     }
 
     private static ItemHelper getItemBySKU(java.lang.String sku) {

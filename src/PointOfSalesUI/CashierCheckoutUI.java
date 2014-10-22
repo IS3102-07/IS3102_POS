@@ -32,7 +32,6 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             lblPOSName.setText(POS.name);
         }
 
-        ReadFile readFile = new ReadFile();
         //POS.initPartnerPoleDisplay();
         //String line2 = String.format("%20s", "Island Furniture!");
         //POS.displayPoleMessage("Welcome to", line2);
@@ -55,7 +54,6 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         btnUpdateQuantity = new javax.swing.JButton();
         lblMessage = new javax.swing.JLabel();
         btnTest1 = new javax.swing.JButton();
-        btnTestContent = new javax.swing.JButton();
         btnTest2 = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -205,13 +203,6 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             }
         });
 
-        btnTestContent.setText("Test Content");
-        btnTestContent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTestContentActionPerformed(evt);
-            }
-        });
-
         btnTest2.setText("test add F2");
         btnTest2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,9 +313,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                                 .addComponent(btnTest1)
                                 .addGap(5, 5, 5)
                                 .addComponent(btnTest2)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnTestContent)
-                                .addGap(18, 18, 18)
+                                .addGap(141, 141, 141)
                                 .addComponent(lblMessage))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblTotalItems)
@@ -406,7 +395,6 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(btnTest1)
-                            .addComponent(btnTestContent)
                             .addComponent(btnTest2)
                             .addComponent(lblMessage)
                             .addComponent(lblTotalNet))
@@ -513,7 +501,6 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                 }
                 //else add new lineitem to the list
                 if (!isExist) {
-                    //lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
                     lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
@@ -528,21 +515,6 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             lblMessage.setText("Test 1:  Item not available for checkout, contact customer service for assistance.");
         }
     }//GEN-LAST:event_btnTest1ActionPerformed
-
-    private void btnTestContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestContentActionPerformed
-        if (lineItems == null || lineItems.isEmpty()) {
-            System.out.println("LineItems is empty");
-        } else {
-            for (int i = 0; i < lineItems.size(); i++) {
-                System.out.println("--------");
-                System.out.println("Description " + lineItems.get(i).getDescription());
-                System.out.println("SKU " + lineItems.get(i).getSKU());
-                System.out.println("Price " + lineItems.get(i).getPrice());
-                System.out.println("Qty " + lineItems.get(i).getQuantity());
-                System.out.println("--------\n\n");
-            }
-        }
-    }//GEN-LAST:event_btnTestContentActionPerformed
 
     private void btnTest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest2ActionPerformed
         //hard code can delete when done
@@ -564,7 +536,6 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                 }
                 //else add new lineitem to the list
                 if (!isExist) {
-                    //lineItem = new LineItem(SKU, item.getName(), 10.00, 1);
                     lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
@@ -702,7 +673,6 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private javax.swing.JButton btnPayCredit;
     private javax.swing.JButton btnTest1;
     private javax.swing.JButton btnTest2;
-    private javax.swing.JButton btnTestContent;
     private javax.swing.JButton btnUpdateQuantity;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
