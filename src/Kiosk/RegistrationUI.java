@@ -2,9 +2,7 @@ package Kiosk;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import javax.swing.JDialog;
+import javax.swing.border.LineBorder;
 
 public class RegistrationUI extends javax.swing.JFrame {
 
@@ -28,20 +26,20 @@ public class RegistrationUI extends javax.swing.JFrame {
         btnReset = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblMessage = new javax.swing.JLabel();
-        btnReset1 = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        txtPhone1 = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtPhone = new javax.swing.JTextField();
+        txtPostal = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtEmail1 = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
+        txtCity = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
+        jXDOB = new org.jdesktop.swingx.JXDatePicker();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
@@ -83,11 +81,16 @@ public class RegistrationUI extends javax.swing.JFrame {
         btnSubmit.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
         btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
         btnReset.setBackground(new java.awt.Color(153, 0, 0));
         btnReset.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnReset.setForeground(new java.awt.Color(255, 255, 255));
-        btnReset.setText("Reset");
+        btnReset.setText("Clear");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
@@ -100,13 +103,13 @@ public class RegistrationUI extends javax.swing.JFrame {
         lblMessage.setForeground(new java.awt.Color(153, 0, 0));
         lblMessage.setText(" ");
 
-        btnReset1.setBackground(new java.awt.Color(153, 0, 0));
-        btnReset1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnReset1.setForeground(new java.awt.Color(255, 255, 255));
-        btnReset1.setText("Return to Main Menu");
-        btnReset1.addActionListener(new java.awt.event.ActionListener() {
+        btnReturn.setBackground(new java.awt.Color(153, 0, 0));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnReturn.setForeground(new java.awt.Color(255, 255, 255));
+        btnReturn.setText("Return to Main Menu");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReset1ActionPerformed(evt);
+                btnReturnActionPerformed(evt);
             }
         });
 
@@ -118,19 +121,19 @@ public class RegistrationUI extends javax.swing.JFrame {
 
         txtName.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        txtPhone1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtAddress.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel11.setText("DOB");
 
-        txtPhone.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtPostal.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel8.setText("Phone");
 
-        txtEmail1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtPhone.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        txtEmail.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtCity.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel12.setText("Address");
@@ -141,7 +144,7 @@ public class RegistrationUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Postal Code");
 
-        jXDatePicker1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jXDOB.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,7 +156,7 @@ public class RegistrationUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(131, 131, 131))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +169,7 @@ public class RegistrationUI extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtName)
-                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
+                            .addComponent(jXDOB, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
@@ -174,21 +177,21 @@ public class RegistrationUI extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPhone1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
-                    .addComponent(txtEmail)
-                    .addComponent(txtPhone))
+                    .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                    .addComponent(txtCity)
+                    .addComponent(txtPostal))
                 .addGap(77, 77, 77))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -198,13 +201,13 @@ public class RegistrationUI extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
+                            .addComponent(jXDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
                             .addComponent(jLabel4)
-                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -250,11 +253,11 @@ public class RegistrationUI extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(20, 20, 20)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,7 +285,7 @@ public class RegistrationUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnReset1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
@@ -312,13 +315,13 @@ public class RegistrationUI extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnReset1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
         );
 
@@ -326,16 +329,92 @@ public class RegistrationUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        txtEmail.setText("");
+        txtName.setText("");
+        txtPhone.setText("");
+        txtAddress.setText("");
+        txtPostal.setText("");
+        txtCity.setText("");
         txtPassword.setText("");
         txtRePassword.setText("");
+
+        txtName.setBackground(Color.white);
+        txtPhone.setBackground(Color.white);
+        txtAddress.setBackground(Color.white);
+        txtPostal.setBackground(Color.white);
+        txtCity.setBackground(Color.white);
+        txtPassword.setBackground(Color.white);
+        txtRePassword.setBackground(Color.white);
+
+        jXDOB.setDate(null);
+        jXDOB.setBorder(new LineBorder(null));
     }//GEN-LAST:event_btnResetActionPerformed
 
-    private void btnReset1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReset1ActionPerformed
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         KioskUI kioskUI = new KioskUI();
         kioskUI.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnReset1ActionPerformed
+    }//GEN-LAST:event_btnReturnActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        if (txtName.getText().isEmpty()) {
+            txtName.setBackground(Color.yellow);
+        } else {
+            txtName.setBackground(Color.white);
+        }
+
+        if (txtPhone.getText().isEmpty()) {
+            txtPhone.setBackground(Color.yellow);
+        } else {
+            txtPhone.setBackground(Color.white);
+        }
+
+        if (txtAddress.getText().isEmpty()) {
+            txtAddress.setBackground(Color.yellow);
+        } else {
+            txtAddress.setBackground(Color.white);
+        }
+
+        if (txtPostal.getText().isEmpty()) {
+            txtPostal.setBackground(Color.yellow);
+        } else {
+            txtPostal.setBackground(Color.white);
+        }
+
+        if (txtCity.getText().isEmpty()) {
+            txtCity.setBackground(Color.yellow);
+        } else {
+            txtCity.setBackground(Color.white);
+        }
+
+        if (txtPassword.getPassword().length == 0) {
+            txtPassword.setBackground(Color.yellow);
+        } else {
+            txtPassword.setBackground(Color.white);
+        }
+
+        if (txtRePassword.getPassword().length == 0) {
+            txtRePassword.setBackground(Color.yellow);
+        } else {
+            txtRePassword.setBackground(Color.white);
+        }
+
+        if (txtPassword.getPassword().length > 0 && txtRePassword.getPassword().length > 0) {
+            if (txtPassword.getPassword() != txtRePassword.getPassword()) {
+                txtPassword.setBackground(Color.red);
+                txtRePassword.setBackground(Color.red);
+            }
+        }
+
+        if (jXDOB.getDate() == null) {
+            jXDOB.setBorder(new LineBorder(Color.YELLOW));
+        } else {
+            jXDOB.setBorder(new LineBorder(null));
+        }
+
+        if (!txtName.getText().isEmpty() && !txtPhone.getText().isEmpty() && !txtAddress.getText().isEmpty() && !txtPostal.getText().isEmpty() && !txtCity.getText().isEmpty() && txtPassword.getPassword().length >= 0 && txtRePassword.getPassword().length >= 0) {
+//   public Boolean kioskRegisterMember(String name, String address, Date DOB, String email, String phone, String city, String zipCode, String password, String storeID) {
+        }
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -371,7 +450,7 @@ public class RegistrationUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReset;
-    private javax.swing.JButton btnReset1;
+    private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -387,17 +466,17 @@ public class RegistrationUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
+    private org.jdesktop.swingx.JXDatePicker jXDOB;
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JLabel lblMessage;
     private javax.swing.JPanel pnlHader;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtDOB;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEmail1;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtPhone;
-    private javax.swing.JTextField txtPhone1;
+    private javax.swing.JTextField txtPostal;
     private javax.swing.JPasswordField txtRePassword;
     // End of variables declaration//GEN-END:variables
 
