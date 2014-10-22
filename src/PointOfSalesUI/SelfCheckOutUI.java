@@ -29,10 +29,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         //remove thisss
         //ReadFile readFile = new ReadFile();
-
-        POS.initPartnerPoleDisplay();
-        String line2 = String.format("%20s", "Island Furniture!");
-        POS.displayPoleMessage("Welcome to", line2);
+        //POS.initPartnerPoleDisplay();
+        //String line2 = String.format("%20s", "Island Furniture!");
+        //POS.displayPoleMessage("Welcome to", line2);
 
     }
 
@@ -40,6 +39,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        qRCode1 = new com.onbarcode.barcode.QRCode();
         pnlHader = new javax.swing.JPanel();
         lblHeader1 = new javax.swing.JLabel();
         btnPay = new javax.swing.JButton();
@@ -80,9 +80,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         pnlHaderLayout.setHorizontalGroup(
             pnlHaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHaderLayout.createSequentialGroup()
-                .addGap(162, 162, 162)
+                .addGap(200, 200, 200)
                 .addComponent(lblHeader1)
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
         pnlHaderLayout.setVerticalGroup(
             pnlHaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -573,7 +573,19 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
-        // TODO add your handling code here:
+        JDialog dialog = new JDialog();
+        final Toolkit toolkit = Toolkit.getDefaultToolkit();
+        final Dimension screenSize = toolkit.getScreenSize();
+        final int x = (screenSize.width - dialog.getWidth()) / 4;
+        final int y = (screenSize.height - dialog.getHeight()) / 4;
+        dialog.setLocation(x, y);
+        dialog.setModal(true);
+        dialog.setUndecorated(true);
+        dialog.add(new QRCodeUI());
+        dialog.pack();
+        dialog.setVisible(true);
+        tblLineItem.requestFocus();
+        refreshTotalQuantityAndPrice();
     }//GEN-LAST:event_btnCancel1ActionPerformed
 
     public static void main(String args[]) {
@@ -635,6 +647,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblTotalNet;
     private javax.swing.JLabel lblTotalPrice;
     private javax.swing.JPanel pnlHader;
+    private com.onbarcode.barcode.QRCode qRCode1;
     private javax.swing.JTable tblLineItem;
     // End of variables declaration//GEN-END:variables
 

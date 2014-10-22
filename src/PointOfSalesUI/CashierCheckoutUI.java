@@ -86,7 +86,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         pnlHaderLayout.setHorizontalGroup(
             pnlHaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHaderLayout.createSequentialGroup()
-                .addGap(162, 162, 162)
+                .addGap(200, 200, 200)
                 .addComponent(lblHeader1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

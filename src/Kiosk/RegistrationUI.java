@@ -3,10 +3,14 @@ package Kiosk;
 import java.awt.Color;
 import java.awt.Container;
 import javax.swing.border.LineBorder;
+import POS.*;
+import java.util.Date;
 
 public class RegistrationUI extends javax.swing.JFrame {
 
     private Container cp;
+    private Date DOB;
+    private Date todayDate;
 
     public RegistrationUI() {
         initComponents();
@@ -46,7 +50,7 @@ public class RegistrationUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtRePassword = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
-        txtDOB = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
@@ -227,7 +231,7 @@ public class RegistrationUI extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel9.setText("Email");
 
-        txtDOB.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -243,7 +247,7 @@ public class RegistrationUI extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(81, 81, 81)
-                        .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(57, 57, 57)
@@ -255,7 +259,7 @@ public class RegistrationUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -334,6 +338,7 @@ public class RegistrationUI extends javax.swing.JFrame {
         txtAddress.setText("");
         txtPostal.setText("");
         txtCity.setText("");
+        txtEmail.setText("");
         txtPassword.setText("");
         txtRePassword.setText("");
 
@@ -342,6 +347,7 @@ public class RegistrationUI extends javax.swing.JFrame {
         txtAddress.setBackground(Color.white);
         txtPostal.setBackground(Color.white);
         txtCity.setBackground(Color.white);
+        txtEmail.setBackground(Color.white);
         txtPassword.setBackground(Color.white);
         txtRePassword.setBackground(Color.white);
 
@@ -386,6 +392,12 @@ public class RegistrationUI extends javax.swing.JFrame {
             txtCity.setBackground(Color.white);
         }
 
+        if (txtEmail.getText().isEmpty()) {
+            txtEmail.setBackground(Color.yellow);
+        } else {
+            txtEmail.setBackground(Color.white);
+        }
+
         if (txtPassword.getPassword().length == 0) {
             txtPassword.setBackground(Color.yellow);
         } else {
@@ -408,10 +420,24 @@ public class RegistrationUI extends javax.swing.JFrame {
         if (jXDOB.getDate() == null) {
             jXDOB.setBorder(new LineBorder(Color.YELLOW));
         } else {
-            jXDOB.setBorder(new LineBorder(null));
+            //check if date is later than today. if later no go
+            todayDate = new Date();
+
+            if (jXDOB.getDate().after(todayDate)) {
+                jXDOB.setBorder(new LineBorder(Color.red));
+            } else {
+                jXDOB.setBorder(new LineBorder(null));
+            }
+
         }
 
         if (!txtName.getText().isEmpty() && !txtPhone.getText().isEmpty() && !txtAddress.getText().isEmpty() && !txtPostal.getText().isEmpty() && !txtCity.getText().isEmpty() && txtPassword.getPassword().length >= 0 && txtRePassword.getPassword().length >= 0) {
+            String passText = new String(txtPassword.getPassword());
+            DOB = jXDOB.getDate();
+//            if (kioskRegisterMember(txtName.getText(), txtAddress.getText(), DOB, txtEmail.getText(), txtPhone.getText(), txtCity.getText(), txtPostal.getText(), passText, POS.storeID.toString())) {
+//
+//            }
+
 //   public Boolean kioskRegisterMember(String name, String address, Date DOB, String email, String phone, String city, String zipCode, String password, String storeID) {
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
@@ -472,7 +498,7 @@ public class RegistrationUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnlHader;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtDOB;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtPhone;
