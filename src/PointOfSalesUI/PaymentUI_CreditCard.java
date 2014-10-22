@@ -271,7 +271,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
             //loop items
             for (int i = 0; i < lineItems.size(); i++) {
-                String receipLineItem = lineItems.get(i).getQuantity() + " " + lineItems.get(i).getDescription();
+                String receipLineItem = lineItems.get(i).getQuantity() + " x " + lineItems.get(i).getDescription();
                 if (receipLineItem.length() > 15) {
                     receipLineItem = receipLineItem.substring(0, 15);
                 }
@@ -307,9 +307,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
-            if (printerJob.printDialog()) {
+          //  if (printerJob.printDialog()) {
                 printerJob.print();
-            }
+        //    }
         } catch (PrinterException ex) {
             Logger.getLogger(TestUI.class.getName()).log(Level.SEVERE, null, ex);
         }

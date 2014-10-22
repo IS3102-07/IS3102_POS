@@ -28,7 +28,6 @@ public class POS {
 
     public static String PORT_Pole;
 
-    public static final String partnerPoleDisplayCOMPort = PORT_Pole;
     public static OutputStream partnerPoleDisplayOutputStream;
     public static SerialPort serialPort;
 
@@ -56,7 +55,7 @@ public class POS {
         Enumeration<CommPortIdentifier> commPortList = CommPortIdentifier.getPortIdentifiers();
         while (commPortList.hasMoreElements()) {
             CommPortIdentifier commPort = (CommPortIdentifier) commPortList.nextElement();
-            if (commPort.getName().equals(partnerPoleDisplayCOMPort)) {
+            if (commPort.getName().equals(PORT_Pole)) {
                 try {
                     serialPort = (SerialPort) commPort.open("IT07POS", 5000);
                     partnerPoleDisplayOutputStream = serialPort.getOutputStream();
