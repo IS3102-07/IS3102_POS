@@ -712,7 +712,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         if (discountRate > 0) {
             discounPrice = totalPrice * (discountRate / 100);
             discounPrice = Math.round(discounPrice * 100.0) / 100.0;
-            POS.transaction.setDiscountPrice(totalPrice);
+            POS.transaction.setDiscountPrice(discounPrice);
             lblDiscount.setText(discounPrice + "");
         } else {
             lblDiscount.setText("0.0");

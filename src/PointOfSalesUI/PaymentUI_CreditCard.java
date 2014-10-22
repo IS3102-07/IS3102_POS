@@ -257,15 +257,15 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
             lineItems = POS.transaction.getLineItems();
 
-            //formating receipt
+            //Header
             String receiptString1 = "<html><table><tr align='center'><td colspan=\"2\"><b>Island Furniture<br>"
                     + "" + POS.storeAddress + "<br>"
                     + "" + POS.storeCountry + " " + POS.storePostal + "</b></td></tr>";
 
             //if member - card
             if (POS.transaction.getDiscountPrice() > 0) {
-                receiptString1 += "<tr align='center'><td colspan=\"2\">Member " + POS.transaction.getMember().loyaltyCardId + "<br>"
-                        + "Teir: " + POS.transaction.getMember().loyaltyTier + "</td></tr>";
+                receiptString1 += "<tr align='center'><td colspan=\"2\">Member: " + POS.transaction.getMember().loyaltyCardId + "<br>"
+                        + "Tier: " + POS.transaction.getMember().loyaltyTier + "</td></tr>";
             }
             receiptString1 += "<tr><td colspan=\"2\">------------------------------------------</td></tr><tr><td>Description</td><td>Amount</td></tr>";
 
