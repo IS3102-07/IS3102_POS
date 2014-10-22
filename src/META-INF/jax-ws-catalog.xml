@@ -8,4 +8,6 @@
     <system systemId="http://Hello:8080/AccountManagementWebService/AccountManagementWebService?xsd=1" uri="wsdl/Hello_8080/AccountManagementWebService/AccountManagementWebService.xsd_1.xsd"/>
     <system systemId="http://Hello:8080/SalesReportingWebService/SalesReportingWebService?wsdl" uri="wsdl/Hello_8080/SalesReportingWebService/SalesReportingWebService.wsdl"/>
     <system systemId="http://Hello:8080/SalesReportingWebService/SalesReportingWebService?xsd=1" uri="wsdl/Hello_8080/SalesReportingWebService/SalesReportingWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/AccountManagementWebService/AccountManagementWebService?wsdl" uri="wsdl/localhost_8080/AccountManagementWebService/AccountManagementWebService.wsdl"/>
+    <system systemId="http://localhost:8080/AccountManagementWebService/AccountManagementWebService?xsd=1" uri="wsdl/localhost_8080/AccountManagementWebService/AccountManagementWebService.xsd_1.xsd"/>
 </catalog>

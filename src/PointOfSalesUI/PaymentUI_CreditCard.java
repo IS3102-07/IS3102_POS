@@ -12,8 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
@@ -307,11 +305,11 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
-          //  if (printerJob.printDialog()) {
-                printerJob.print();
-        //    }
+            //  if (printerJob.printDialog()) {
+            printerJob.print();
+            //    }
         } catch (PrinterException ex) {
-            Logger.getLogger(TestUI.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 

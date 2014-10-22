@@ -573,19 +573,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
-        JDialog dialog = new JDialog();
-        final Toolkit toolkit = Toolkit.getDefaultToolkit();
-        final Dimension screenSize = toolkit.getScreenSize();
-        final int x = (screenSize.width - dialog.getWidth()) / 4;
-        final int y = (screenSize.height - dialog.getHeight()) / 4;
-        dialog.setLocation(x, y);
-        dialog.setModal(true);
-        dialog.setUndecorated(true);
-        dialog.add(new QRCodeUI());
-        dialog.pack();
-        dialog.setVisible(true);
-        tblLineItem.requestFocus();
-        refreshTotalQuantityAndPrice();
+        QRCodeUI qrCodeUI = new QRCodeUI();
+        qrCodeUI.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCancel1ActionPerformed
 
     public static void main(String args[]) {

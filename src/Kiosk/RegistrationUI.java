@@ -3,14 +3,25 @@ package Kiosk;
 import java.awt.Color;
 import java.awt.Container;
 import javax.swing.border.LineBorder;
-import POS.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 public class RegistrationUI extends javax.swing.JFrame {
 
     private Container cp;
-    private Date DOB;
     private Date todayDate;
+    private String storeID;
 
     public RegistrationUI() {
         initComponents();
@@ -28,7 +39,6 @@ public class RegistrationUI extends javax.swing.JFrame {
         lblHeader2 = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         lblMessage = new javax.swing.JLabel();
         btnReturn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -53,6 +63,7 @@ public class RegistrationUI extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        lblErrorMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -100,8 +111,6 @@ public class RegistrationUI extends javax.swing.JFrame {
                 btnResetActionPerformed(evt);
             }
         });
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-small.png"))); // NOI18N
 
         lblMessage.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblMessage.setForeground(new java.awt.Color(153, 0, 0));
@@ -276,6 +285,10 @@ public class RegistrationUI extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setText("Account Login Credential");
 
+        lblErrorMessage.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblErrorMessage.setForeground(new java.awt.Color(153, 0, 0));
+        lblErrorMessage.setText("Error Message");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -283,23 +296,23 @@ public class RegistrationUI extends javax.swing.JFrame {
             .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(94, 94, 94)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblErrorMessage))
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(1, 1, 1))
-                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(1, 1, 1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(lblMessage)
                 .addContainerGap())
@@ -321,12 +334,15 @@ public class RegistrationUI extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblErrorMessage)
+                        .addGap(32, 32, 32))))
         );
 
         pack();
@@ -411,7 +427,10 @@ public class RegistrationUI extends javax.swing.JFrame {
         }
 
         if (txtPassword.getPassword().length > 0 && txtRePassword.getPassword().length > 0) {
-            if (txtPassword.getPassword() != txtRePassword.getPassword()) {
+            String passText = new String(txtPassword.getPassword());
+            String passText2 = new String(txtRePassword.getPassword());
+
+            if (!passText.equals(passText2)) {
                 txtPassword.setBackground(Color.red);
                 txtRePassword.setBackground(Color.red);
             }
@@ -432,13 +451,40 @@ public class RegistrationUI extends javax.swing.JFrame {
         }
 
         if (!txtName.getText().isEmpty() && !txtPhone.getText().isEmpty() && !txtAddress.getText().isEmpty() && !txtPostal.getText().isEmpty() && !txtCity.getText().isEmpty() && txtPassword.getPassword().length >= 0 && txtRePassword.getPassword().length >= 0) {
-            String passText = new String(txtPassword.getPassword());
-            DOB = jXDOB.getDate();
-//            if (kioskRegisterMember(txtName.getText(), txtAddress.getText(), DOB, txtEmail.getText(), txtPhone.getText(), txtCity.getText(), txtPostal.getText(), passText, POS.storeID.toString())) {
-//
-//            }
+            try {
+                String passText = new String(txtPassword.getPassword());
 
-//   public Boolean kioskRegisterMember(String name, String address, Date DOB, String email, String phone, String city, String zipCode, String password, String storeID) {
+                GregorianCalendar c = new GregorianCalendar();
+                c.setTime(jXDOB.getDate());
+                XMLGregorianCalendar date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+
+                String filePath = new File("").getAbsolutePath();
+                BufferedReader br = new BufferedReader(new FileReader(filePath.concat("\\src\\POS\\setup.txt")));
+                String data;
+
+                while ((data = br.readLine()) != null) {
+                    StringTokenizer st = new StringTokenizer(data, ",");
+                    storeID = st.nextToken();
+                }
+                br.close();
+
+                System.out.println(date2);
+                System.out.println(storeID);
+
+                //    public Boolean kioskRegisterMember(String name, String address, Date DOB, String email, String phone, String city, String zipCode, String password, String storeID) {
+                if (kioskRegisterMember(txtName.getText(), txtAddress.getText(), date2, txtEmail.getText(), txtPhone.getText(), txtCity.getText(), txtPostal.getText(), passText, Long.parseLong(storeID)) != null) {
+
+                } else {
+                    lblErrorMessage.setText("An Error has occured");
+                }
+
+            } catch (DatatypeConfigurationException ex) {
+                Logger.getLogger(RegistrationUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(RegistrationUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(RegistrationUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
@@ -478,7 +524,6 @@ public class RegistrationUI extends javax.swing.JFrame {
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -493,6 +538,7 @@ public class RegistrationUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private org.jdesktop.swingx.JXDatePicker jXDOB;
+    private javax.swing.JLabel lblErrorMessage;
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JLabel lblMessage;
     private javax.swing.JPanel pnlHader;
@@ -506,9 +552,12 @@ public class RegistrationUI extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtRePassword;
     // End of variables declaration//GEN-END:variables
 
-    private static Boolean kioskRegisterMember(java.lang.String arg0, java.lang.String arg1, javax.xml.datatype.XMLGregorianCalendar arg2, java.lang.String arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6, java.lang.String arg7, java.lang.String arg8) {
+    private static Boolean kioskRegisterMember(java.lang.String name, java.lang.String address, javax.xml.datatype.XMLGregorianCalendar dob, java.lang.String email, java.lang.String phone, java.lang.String city, java.lang.String zipCode, java.lang.String password, java.lang.Long storeID) {
         commoninfrastructure.accountmanagement.AccountManagementWebService_Service service = new commoninfrastructure.accountmanagement.AccountManagementWebService_Service();
         commoninfrastructure.accountmanagement.AccountManagementWebService port = service.getAccountManagementWebServicePort();
-        return port.kioskRegisterMember(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+        return port.kioskRegisterMember(name, address, dob, email, phone, city, zipCode, password, storeID);
     }
+
+
+
 }
