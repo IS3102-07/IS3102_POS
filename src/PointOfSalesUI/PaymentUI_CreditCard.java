@@ -153,71 +153,35 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCreditNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditNumberKeyReleased
-        //prepare to submit sales record to web service
-        POS.transactionCompleted = true;
-        List<String> SKUs = new ArrayList();
-        List<Integer> quantities = new ArrayList();
+        Boolean startCreditCardMSR1 = false;
+        String kbValue = txtCreditNumber.getText();
+        if (!startCreditCardMSR1) {
+            if (kbValue != null && kbValue.trim().length() > 0) {
+                kbValue = kbValue.trim();
 
-        lineItems = POS.transaction.getLineItems();
-        for (int i = 0; i < lineItems.size(); i++) {
-            SKUs.add(lineItems.get(i).getSKU());
-            quantities.add(lineItems.get(i).getQuantity());
-        }
-
-        int pointsDeducting = 0;
-        if (POS.transaction.getDiscountRate() == 10) {
-            pointsDeducting = 150;
-        } else if (POS.transaction.getDiscountRate() == 15) {
-            pointsDeducting = 300;
-        } else if (POS.transaction.getDiscountRate() == 20) {
-            pointsDeducting = 500;
-        }
-
-        String memberEmail = "";
-        if (POS.transaction.getMember() != null) {
-            memberEmail = POS.transaction.getMember().getEmail();
-        }
-
-        try {
-            if (POS.staffEmail != null && POS.staffPassword != null) {
-                date = new Date();
-
-                submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.name, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail, date.getTime() + "");
-
-                //print receipt
-                printReceipt();
-
-                //display pole message
-                String string1 = String.format("%20s", "Come back again!");
-                POS.displayPoleMessage("Thank you!", string1);
-
-                //done with submit sales record
-                JDialog dialog = new JDialog();
-                final Toolkit toolkit = Toolkit.getDefaultToolkit();
-                final Dimension screenSize = toolkit.getScreenSize();
-                final int x = (screenSize.width - dialog.getWidth()) / 4;
-                final int y = (screenSize.height - dialog.getHeight()) / 4;
-                dialog.setLocation(x, y);
-                dialog.setModal(true);
-                dialog.setUndecorated(true);
-                dialog.add(new ProcessPaymentUI());
-                dialog.pack();
-                dialog.setVisible(true);
+                if (kbValue.length() >= 2) {
+                    if (kbValue.startsWith("%B")) {
+                        startCreditCardMSR1 = true;
+                    }
+                }
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
+        if (startCreditCardMSR1) {
+            if (kbValue != null && kbValue.trim().length() > 0) {
+                kbValue = kbValue.trim();
 
-        //reset
-        String line2 = String.format("%20s", "Island Furniture!");
-        POS.displayPoleMessage("Welcome to", line2);
-
-        txtCreditNumber.setText("");
-        Window w = SwingUtilities.getWindowAncestor(PaymentUI_CreditCard.this);
-        w.setVisible(false);
+                if (kbValue.length() >= 2) {
+                    if (kbValue.endsWith("?")) {
+                        startCreditCardMSR1 = false;
+                        checkOut();
+                    }
+                }
+            }
+        }
 
 
     }//GEN-LAST:event_txtCreditNumberKeyReleased
+
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         txtCreditNumber.setText("");
@@ -311,6 +275,70 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         } catch (PrinterException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void checkOut() {
+        POS.transactionCompleted = true;
+        List<String> SKUs = new ArrayList();
+        List<Integer> quantities = new ArrayList();
+
+        lineItems = POS.transaction.getLineItems();
+        for (int i = 0; i < lineItems.size(); i++) {
+            SKUs.add(lineItems.get(i).getSKU());
+            quantities.add(lineItems.get(i).getQuantity());
+        }
+
+        int pointsDeducting = 0;
+        if (POS.transaction.getDiscountRate() == 10) {
+            pointsDeducting = 150;
+        } else if (POS.transaction.getDiscountRate() == 15) {
+            pointsDeducting = 300;
+        } else if (POS.transaction.getDiscountRate() == 20) {
+            pointsDeducting = 500;
+        }
+
+        String memberEmail = "";
+        if (POS.transaction.getMember() != null) {
+            memberEmail = POS.transaction.getMember().getEmail();
+        }
+
+        try {
+            if (POS.staffEmail != null && POS.staffPassword != null) {
+                date = new Date();
+
+                submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.name, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail, date.getTime() + "");
+
+                //print receipt
+                printReceipt();
+
+                //display pole message
+                String string1 = String.format("%20s", "Come back again!");
+                POS.displayPoleMessage("Thank you!", string1);
+
+                //done with submit sales record
+                JDialog dialog = new JDialog();
+                final Toolkit toolkit = Toolkit.getDefaultToolkit();
+                final Dimension screenSize = toolkit.getScreenSize();
+                final int x = (screenSize.width - dialog.getWidth()) / 4;
+                final int y = (screenSize.height - dialog.getHeight()) / 4;
+                dialog.setLocation(x, y);
+                dialog.setModal(true);
+                dialog.setUndecorated(true);
+                dialog.add(new ProcessPaymentUI());
+                dialog.pack();
+                dialog.setVisible(true);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        //reset
+        String line2 = String.format("%20s", "Island Furniture!");
+        POS.displayPoleMessage("Welcome to", line2);
+
+        txtCreditNumber.setText("");
+        Window w = SwingUtilities.getWindowAncestor(PaymentUI_CreditCard.this);
+        w.setVisible(false);
     }
 
     private static Boolean submitSalesRecord(java.lang.String staffEmail, java.lang.String password, java.lang.Long storeID, java.lang.String posName, java.util.List<java.lang.String> itemsPurchasedSKU, java.util.List<java.lang.Integer> itemsPurchasedQty, java.lang.Double amountDue, java.lang.Double amountPaid, java.lang.Double amountPaidUsingPoints, java.lang.Integer loyaltyPointsDeducted, java.lang.String memberEmail, java.lang.String receiptNo) {

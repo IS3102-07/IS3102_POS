@@ -244,10 +244,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lblTotalNet.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTotalNet.setText("0.0");
 
-        btnCancel1.setBackground(new java.awt.Color(0, 153, 0));
+        btnCancel1.setBackground(new java.awt.Color(255, 255, 255));
         btnCancel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCancel1.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancel1.setText("Phone Sync");
+        btnCancel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Sync.jpg"))); // NOI18N
         btnCancel1.setBorder(new javax.swing.border.MatteBorder(null));
         btnCancel1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,7 +260,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -543,7 +543,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
-        QRCodeUI qrCodeUI = new QRCodeUI();
+        QRCodeUI qrCodeUI = new QRCodeUI(this);
         qrCodeUI.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCancel1ActionPerformed
