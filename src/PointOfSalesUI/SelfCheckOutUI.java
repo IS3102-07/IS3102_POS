@@ -30,7 +30,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         //POS.initPartnerPoleDisplay();
         //String line2 = String.format("%20s", "Island Furniture!");
         //POS.displayPoleMessage("Welcome to", line2);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -415,11 +414,24 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
-        if (!POS.supervisorContactNo.isEmpty()) {
+        if (POS.supervisorContactNo != null && !POS.supervisorContactNo.isEmpty()) {
             System.out.println(POS.supervisorContactNo);
-            alertSupervisor(POS.name, POS.supervisorContactNo);
+            //alertSupervisor(POS.name, POS.supervisorContactNo);
+            
+            JDialog dialog = new JDialog();
+            final Toolkit toolkit = Toolkit.getDefaultToolkit();
+            final Dimension screenSize = toolkit.getScreenSize();
+            final int x = (screenSize.width - dialog.getWidth()) / 4;
+            final int y = (screenSize.height - dialog.getHeight()) / 4;
+            dialog.setLocation(x, y);
+            dialog.setModal(true);
+            dialog.setUndecorated(true);
+            dialog.add(new HelpUI());
+            dialog.pack();
+            dialog.setVisible(true);
+            tblLineItem.requestFocus();
+            refreshTotalQuantityAndPrice();
         }
-        //alertSupervisor(POS.storeName, POS.supervisorContactNo);
         tblLineItem.requestFocus();
     }//GEN-LAST:event_btnHelpActionPerformed
 
