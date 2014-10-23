@@ -38,7 +38,7 @@
                               <Component id="btnTest1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                               <Component id="btnTest2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="lblMessage" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">

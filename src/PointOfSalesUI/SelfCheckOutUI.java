@@ -269,7 +269,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                                 .addComponent(btnTest1)
                                 .addGap(5, 5, 5)
                                 .addComponent(btnTest2)
-                                .addGap(141, 141, 141)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblMessage))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblTotalItems)
