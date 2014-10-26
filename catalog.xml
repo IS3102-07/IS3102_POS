@@ -18,4 +18,6 @@
     <system systemId="http://localhost:8080/AccountManagementWebService/AccountManagementWebService?xsd=1" uri="xml-resources/web-service-references/AccountManagementWebService/wsdl/localhost_8080/AccountManagementWebService/AccountManagementWebService.xsd_1.xsd"/>
     <system systemId="http://Hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl" uri="xml-resources/web-service-references/LoyaltyAndRewardsWebService/wsdl/Hello_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl"/>
     <system systemId="http://Hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?xsd=1" uri="xml-resources/web-service-references/LoyaltyAndRewardsWebService/wsdl/Hello_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl" uri="xml-resources/web-service-references/LoyaltyAndRewardsWebService/wsdl/localhost_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl"/>
+    <system systemId="http://localhost:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?xsd=1" uri="xml-resources/web-service-references/LoyaltyAndRewardsWebService/wsdl/localhost_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.xsd_1.xsd"/>
 </catalog>

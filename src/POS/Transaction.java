@@ -3,6 +3,7 @@ package POS;
 import PointOfSalesUI.MemberEntity;
 import java.util.ArrayList;
 import java.util.List;
+;
 
 public class Transaction {
 

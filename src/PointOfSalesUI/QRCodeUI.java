@@ -61,6 +61,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                         }
                         if (memberEmail != null) {
                             System.out.println("in");
+                            break;
                             //pull shopping list
                         }
                         System.out.println("countdown" + count);
@@ -115,6 +116,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                         }
                         if (memberEmail != null) {
                             System.out.println("in");
+                            break;
                             //pull shopping list
                         }
                         System.out.println("countdown" + count);
@@ -169,6 +171,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                         }
                         if (memberEmail != null) {
                             System.out.println("in");
+                            break;
                             //pull shopping list
                         }
                         System.out.println("countdown" + count);
@@ -296,26 +299,25 @@ public class QRCodeUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMessage)
+                    .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel3)
-                            .addGap(532, 532, 532))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(centerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(506, 506, 506)))))
+                            .addGap(26, 26, 26))
+                        .addComponent(centerFrame, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(411, 411, 411))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pnlHader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150)
+                .addGap(149, 149, 149)
                 .addComponent(jLabel3)
                 .addGap(31, 31, 31)
                 .addComponent(centerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(45, 45, 45)
                 .addComponent(lblMessage)
-                .addGap(176, 176, 176)
+                .addGap(179, 179, 179)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -391,12 +393,9 @@ public class QRCodeUI extends javax.swing.JFrame {
             QRCode barcode = new QRCode();
 
             date = new Date();
-            String time = date.getTime() + "";
+            createSyncWithPhoneRequest(date.getTime() + "");
 
-            System.out.println(time);
-            createSyncWithPhoneRequest(time);
-
-            barcode.setData(time);
+            barcode.setData(date.getTime() + "");
             barcode.setDataMode(QRCode.M_AUTO);
             barcode.setVersion(10);
             barcode.setEcl(QRCode.ECL_M);
@@ -428,9 +427,10 @@ public class QRCodeUI extends javax.swing.JFrame {
         return port.createSyncWithPhoneRequest(qrCode);
     }
 
-    private static String getSyncWithPhoneStatus(java.lang.String arg0) {
+    private static String getSyncWithPhoneStatus(java.lang.String qrCode) {
         PointOfSalesUI.LoyaltyAndRewardsWebService_Service service = new PointOfSalesUI.LoyaltyAndRewardsWebService_Service();
         PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
-        return port.getSyncWithPhoneStatus(arg0);
+        return port.getSyncWithPhoneStatus(qrCode);
     }
+
 }

@@ -10,6 +10,10 @@
 
 <xs:element name="getMemberLoyaltyPointsResponse" type="tns:getMemberLoyaltyPointsResponse"/>
 
+<xs:element name="getMemberShoppingList" type="tns:getMemberShoppingList"/>
+
+<xs:element name="getMemberShoppingListResponse" type="tns:getMemberShoppingListResponse"/>
+
 <xs:element name="getMemberViaCard" type="tns:getMemberViaCard"/>
 
 <xs:element name="getMemberViaCardResponse" type="tns:getMemberViaCardResponse"/>
@@ -34,6 +38,10 @@
 
 <xs:element name="storeEntity" type="tns:storeEntity"/>
 
+<xs:element name="tieMemberToSyncRequest" type="tns:tieMemberToSyncRequest"/>
+
+<xs:element name="tieMemberToSyncRequestResponse" type="tns:tieMemberToSyncRequestResponse"/>
+
 <xs:element name="warehouseEntity" type="tns:warehouseEntity"/>
 
 <xs:complexType name="getMemberViaCard">
@@ -53,6 +61,7 @@
 <xs:element name="accountActivationStatus" type="xs:boolean" minOccurs="0"/>
 <xs:element name="accountLockStatus" type="xs:boolean" minOccurs="0"/>
 <xs:element name="address" type="xs:string" minOccurs="0"/>
+<xs:element name="age" type="xs:int" minOccurs="0"/>
 <xs:element name="city" type="xs:string" minOccurs="0"/>
 <xs:element name="country" type="tns:countryEntity" minOccurs="0"/>
 <xs:element name="cummulativeSpending" type="xs:double" minOccurs="0"/>
@@ -197,10 +206,13 @@
 
 <xs:complexType name="itemEntity" abstract="true">
 <xs:sequence>
+<xs:element name="category" type="xs:string" minOccurs="0"/>
+<xs:element name="description" type="xs:string" minOccurs="0"/>
 <xs:element name="id" type="xs:long" minOccurs="0"/>
 <xs:element name="isDeleted" type="xs:boolean" minOccurs="0"/>
 <xs:element name="itemCountryList" type="tns:itemCountryEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 <xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="stores" type="tns:storeItemEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 <xs:element name="suppliers" type="tns:supplierItemEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 <xs:element name="type" type="xs:string" minOccurs="0"/>
 <xs:element name="warehouses" type="tns:warehouseEntity" minOccurs="0"/>
@@ -214,6 +226,31 @@
 <xs:element name="isDeleted" type="xs:boolean" minOccurs="0"/>
 <xs:element name="item" type="tns:itemEntity" minOccurs="0"/>
 <xs:element name="retailPrice" type="xs:double" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="storeItemEntity">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="item" type="tns:itemEntity" minOccurs="0"/>
+<xs:element name="safeStock" type="xs:int" minOccurs="0"/>
+<xs:element name="store" type="tns:storeEntity" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="storeEntity">
+<xs:sequence>
+<xs:element name="address" type="xs:string" minOccurs="0"/>
+<xs:element name="country" type="tns:countryEntity" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="isDeleted" type="xs:boolean" minOccurs="0"/>
+<xs:element name="items" type="tns:storeItemEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="postalCode" type="xs:string" minOccurs="0"/>
+<xs:element name="regionalOffice" type="tns:regionalOfficeEntity" minOccurs="0"/>
+<xs:element name="telephone" type="xs:string" minOccurs="0"/>
+<xs:element name="warehouse" type="tns:warehouseEntity" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -244,8 +281,6 @@
 <xs:complexContent>
 <xs:extension base="tns:itemEntity">
 <xs:sequence>
-<xs:element name="category" type="xs:string" minOccurs="0"/>
-<xs:element name="description" type="xs:string" minOccurs="0"/>
 <xs:element name="imageURL" type="xs:string" minOccurs="0"/>
 <xs:element name="recipe" type="tns:recipeEntity" minOccurs="0"/>
 </xs:sequence>
@@ -285,21 +320,6 @@
 <xs:element name="workDays_secondWeek" type="xs:int" minOccurs="0"/>
 <xs:element name="workDays_thirdWeek" type="xs:int" minOccurs="0"/>
 <xs:element name="year" type="xs:int" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="storeEntity">
-<xs:sequence>
-<xs:element name="address" type="xs:string" minOccurs="0"/>
-<xs:element name="country" type="tns:countryEntity" minOccurs="0"/>
-<xs:element name="email" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="isDeleted" type="xs:boolean" minOccurs="0"/>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
-<xs:element name="postalCode" type="xs:string" minOccurs="0"/>
-<xs:element name="regionalOffice" type="tns:regionalOfficeEntity" minOccurs="0"/>
-<xs:element name="telephone" type="xs:string" minOccurs="0"/>
-<xs:element name="warehouse" type="tns:warehouseEntity" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -354,13 +374,25 @@
 
 <xs:complexType name="getSyncWithPhoneStatus">
 <xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="qrCode" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="getSyncWithPhoneStatusResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMemberShoppingList">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMemberShoppingListResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:shoppingListEntity" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -385,6 +417,19 @@
 <xs:complexType name="getMemberViaEmailResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:memberEntity" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tieMemberToSyncRequest">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="qrCode" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tieMemberToSyncRequestResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

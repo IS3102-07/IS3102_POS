@@ -1,1 +1,1 @@
-55,POS Counter 1,COM4
+59,POS Counter 1,COM4

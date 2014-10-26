@@ -245,4 +245,5 @@ public class MembershipStatusUI extends javax.swing.JFrame {
         PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
         return port.getMemberViaEmail(memberEmail);
     }
+
 }

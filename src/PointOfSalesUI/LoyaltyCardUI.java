@@ -1,7 +1,6 @@
 package PointOfSalesUI;
 
 import POS.*;
-import java.awt.Color;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
 
