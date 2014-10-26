@@ -22,7 +22,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://hello:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -58,7 +58,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/SalesReportingWebService/SalesReportingWebService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://hello:8080/SalesReportingWebService/SalesReportingWebService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -94,7 +94,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/AccountManagementWebService/AccountManagementWebService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://hello:8080/AccountManagementWebService/AccountManagementWebService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -126,7 +126,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

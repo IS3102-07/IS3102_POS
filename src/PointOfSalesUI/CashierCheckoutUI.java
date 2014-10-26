@@ -32,9 +32,9 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             lblPOSName.setText(POS.name);
         }
 
-        //POS.initPartnerPoleDisplay();
-        //String line2 = String.format("%20s", "Island Furniture!");
-        //POS.displayPoleMessage("Welcome to", line2);
+        POS.initPartnerPoleDisplay();
+        String line2 = String.format("%20s", "Island Furniture!");
+        POS.displayPoleMessage("Welcome to", line2);
     }
 
     @SuppressWarnings("unchecked")
@@ -452,7 +452,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         if (tblLineItem.getSelectedRow() != -1 && tblLineItem.getRowCount() != 0) {
             lineItems.remove(tblLineItem.getSelectedRow());
             model.removeRow(tblLineItem.getSelectedRow());
-            //POS.displayPoleMessage("Item Removed", "");
+            POS.displayPoleMessage("Item Removed", "");
         }
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
@@ -462,9 +462,8 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         if (!POS.supervisorContactNo.isEmpty()) {
             System.out.println(POS.supervisorContactNo);
-            alertSupervisor(POS.name, POS.supervisorContactNo);
+            //alertSupervisor(POS.name, POS.supervisorContactNo);
         }
-        //alertSupervisor(POS.storeName, POS.supervisorContactNo);
         tblLineItem.requestFocus();
     }//GEN-LAST:event_btnHelpActionPerformed
 
@@ -584,7 +583,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         lineItems = POS.transaction.getLineItems();
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
-        //POS.displayPoleMessage("Items cleared", "");
+        POS.displayPoleMessage("Items cleared", "");
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnPayCreditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayCreditActionPerformed
@@ -821,8 +820,8 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
         String line2 = formatLabel + formatItemSubPrice;
 
-        //System.out.println(line1 + "\n" + line2);
-        //POS.displayPoleMessage(line1, line2);
+        System.out.println(line1 + "\n" + line2);
+        POS.displayPoleMessage(line1, line2);
     }
 
     private static PointOfSalesUI.ItemHelper getItemBySKU(java.lang.String sku) {

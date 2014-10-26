@@ -27,9 +27,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
 
-        //POS.initPartnerPoleDisplay();
-        //String line2 = String.format("%20s", "Island Furniture!");
-        //POS.displayPoleMessage("Welcome to", line2);
+        POS.initPartnerPoleDisplay();
+        String line2 = String.format("%20s", "Island Furniture!");
+        POS.displayPoleMessage("Welcome to", line2);
     }
 
     @SuppressWarnings("unchecked")
@@ -406,7 +406,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         if (tblLineItem.getSelectedRow() != -1 && tblLineItem.getRowCount() != 0) {
             lineItems.remove(tblLineItem.getSelectedRow());
             model.removeRow(tblLineItem.getSelectedRow());
-            //POS.displayPoleMessage("Item Removed", "");
+            POS.displayPoleMessage("Item Removed", "");
         }
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
@@ -416,7 +416,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         if (POS.supervisorContactNo != null && !POS.supervisorContactNo.isEmpty()) {
             System.out.println(POS.supervisorContactNo);
-            //alertSupervisor(POS.name, POS.supervisorContactNo);
+            alertSupervisor(POS.name, POS.supervisorContactNo);
             
             JDialog dialog = new JDialog();
             final Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -551,7 +551,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lineItems = POS.transaction.getLineItems();
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
-        //POS.displayPoleMessage("Items cleared", "");
+        POS.displayPoleMessage("Items cleared", "");
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
@@ -721,7 +721,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
         String line2 = formatLabel + formatItemSubPrice;
 
-        //POS.displayPoleMessage(line1, line2);
+        POS.displayPoleMessage(line1, line2);
     }
 
     private static ItemHelper getItemBySKU(java.lang.String sku) {

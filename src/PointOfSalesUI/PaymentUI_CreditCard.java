@@ -269,9 +269,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
-            //  if (printerJob.printDialog()) {
-            printerJob.print();
-            //    }
+            if (printerJob.printDialog()) {
+                printerJob.print();
+            }
         } catch (PrinterException ex) {
             ex.printStackTrace();
         }
