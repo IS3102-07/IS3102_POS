@@ -4,11 +4,23 @@
 <xsd:import namespace="http://LoyaltyAndRewards.OperationalCRM/" schemaLocation="http://Hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="createSyncWithPhoneRequest">
+<part name="parameters" element="tns:createSyncWithPhoneRequest"/>
+</message>
+<message name="createSyncWithPhoneRequestResponse">
+<part name="parameters" element="tns:createSyncWithPhoneRequestResponse"/>
+</message>
 <message name="getMemberViaEmail">
 <part name="parameters" element="tns:getMemberViaEmail"/>
 </message>
 <message name="getMemberViaEmailResponse">
 <part name="parameters" element="tns:getMemberViaEmailResponse"/>
+</message>
+<message name="getSyncWithPhoneStatus">
+<part name="parameters" element="tns:getSyncWithPhoneStatus"/>
+</message>
+<message name="getSyncWithPhoneStatusResponse">
+<part name="parameters" element="tns:getSyncWithPhoneStatusResponse"/>
 </message>
 <message name="getMemberLoyaltyPoints">
 <part name="parameters" element="tns:getMemberLoyaltyPoints"/>
@@ -23,9 +35,17 @@
 <part name="parameters" element="tns:getMemberViaCardResponse"/>
 </message>
 <portType name="LoyaltyAndRewardsWebService">
+<operation name="createSyncWithPhoneRequest">
+<input wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/createSyncWithPhoneRequestRequest" message="tns:createSyncWithPhoneRequest"/>
+<output wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/createSyncWithPhoneRequestResponse" message="tns:createSyncWithPhoneRequestResponse"/>
+</operation>
 <operation name="getMemberViaEmail">
 <input wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/getMemberViaEmailRequest" message="tns:getMemberViaEmail"/>
 <output wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/getMemberViaEmailResponse" message="tns:getMemberViaEmailResponse"/>
+</operation>
+<operation name="getSyncWithPhoneStatus">
+<input wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/getSyncWithPhoneStatusRequest" message="tns:getSyncWithPhoneStatus"/>
+<output wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/getSyncWithPhoneStatusResponse" message="tns:getSyncWithPhoneStatusResponse"/>
 </operation>
 <operation name="getMemberLoyaltyPoints">
 <input wsam:Action="http://LoyaltyAndRewards.OperationalCRM/LoyaltyAndRewardsWebService/getMemberLoyaltyPointsRequest" message="tns:getMemberLoyaltyPoints"/>
@@ -38,7 +58,25 @@
 </portType>
 <binding name="LoyaltyAndRewardsWebServicePortBinding" type="tns:LoyaltyAndRewardsWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="createSyncWithPhoneRequest">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="getMemberViaEmail">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getSyncWithPhoneStatus">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

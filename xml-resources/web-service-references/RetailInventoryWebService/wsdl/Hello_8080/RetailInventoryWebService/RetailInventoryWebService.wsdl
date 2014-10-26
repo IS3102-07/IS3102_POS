@@ -16,6 +16,12 @@
 <message name="getItemCountryPriceBySKUResponse">
 <part name="parameters" element="tns:getItemCountryPriceBySKUResponse"/>
 </message>
+<message name="getItemBySKU">
+<part name="parameters" element="tns:getItemBySKU"/>
+</message>
+<message name="getItemBySKUResponse">
+<part name="parameters" element="tns:getItemBySKUResponse"/>
+</message>
 <message name="getCountryCode">
 <part name="parameters" element="tns:getCountryCode"/>
 </message>
@@ -28,12 +34,6 @@
 <message name="alertSupervisorResponse">
 <part name="parameters" element="tns:alertSupervisorResponse"/>
 </message>
-<message name="getItemBySKU">
-<part name="parameters" element="tns:getItemBySKU"/>
-</message>
-<message name="getItemBySKUResponse">
-<part name="parameters" element="tns:getItemBySKUResponse"/>
-</message>
 <portType name="RetailInventoryWebService">
 <operation name="getStoreAddressByID">
 <input wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getStoreAddressByIDRequest" message="tns:getStoreAddressByID"/>
@@ -43,6 +43,10 @@
 <input wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getItemCountryPriceBySKURequest" message="tns:getItemCountryPriceBySKU"/>
 <output wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getItemCountryPriceBySKUResponse" message="tns:getItemCountryPriceBySKUResponse"/>
 </operation>
+<operation name="getItemBySKU">
+<input wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getItemBySKURequest" message="tns:getItemBySKU"/>
+<output wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getItemBySKUResponse" message="tns:getItemBySKUResponse"/>
+</operation>
 <operation name="getCountryCode">
 <input wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getCountryCodeRequest" message="tns:getCountryCode"/>
 <output wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getCountryCodeResponse" message="tns:getCountryCodeResponse"/>
@@ -50,10 +54,6 @@
 <operation name="alertSupervisor">
 <input wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/alertSupervisorRequest" message="tns:alertSupervisor"/>
 <output wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/alertSupervisorResponse" message="tns:alertSupervisorResponse"/>
-</operation>
-<operation name="getItemBySKU">
-<input wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getItemBySKURequest" message="tns:getItemBySKU"/>
-<output wsam:Action="http://RetailInventory.StoreTransaction/RetailInventoryWebService/getItemBySKUResponse" message="tns:getItemBySKUResponse"/>
 </operation>
 </portType>
 <binding name="RetailInventoryWebServicePortBinding" type="tns:RetailInventoryWebService">
@@ -76,6 +76,15 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="getItemBySKU">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="getCountryCode">
 <soap:operation soapAction=""/>
 <input>
@@ -86,15 +95,6 @@
 </output>
 </operation>
 <operation name="alertSupervisor">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getItemBySKU">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

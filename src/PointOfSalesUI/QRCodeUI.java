@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.SwingWorker;
 
 public class QRCodeUI extends javax.swing.JFrame {
 
@@ -17,49 +18,168 @@ public class QRCodeUI extends javax.swing.JFrame {
     private JLabel _mainLabel;
     private Container cp;
     private boolean isSelfCheckoutUI;
+    private Date date;
+    private SwingWorker<Void, Void> worker;
 
     public QRCodeUI() {
         this.setSize(1280, 960);
         cp = getContentPane();
         cp.setBackground(Color.white);
-
         generateQR();
-        add(_mainLabel);
         pack();
         initComponents();
         centerFrame.add(_mainLabel);
         dispose();
         setUndecorated(true);
+
+        worker = new SwingWorker<Void, Void>() {
+
+            @Override
+            protected Void doInBackground() throws Exception {
+                try {
+                    String memberEmail = getSyncWithPhoneStatus(date.getTime() + "");
+                    int count = 0;
+                    int currentDot = 1;
+                    while (memberEmail == null) {
+                        Thread.sleep(250);
+                        count++;
+                        memberEmail = getSyncWithPhoneStatus(date.getTime() + "");
+
+                        if (count == 8) {
+                            lblMessage.setText("Waiting for phone.");
+                        } else if (count > 8) {
+                            if (currentDot == 3) {
+                                lblMessage.setText("Waiting for phone.");
+                                currentDot = 1;
+                            } else if (currentDot == 1) {
+                                lblMessage.setText("Waiting for phone..");
+                                currentDot = 2;
+                            } else if (currentDot == 2) {
+                                lblMessage.setText("Waiting for phone...");
+                                currentDot = 3;
+                            }
+                        }
+                        if (memberEmail != null) {
+                            System.out.println("in");
+                            //pull shopping list
+                        }
+                        System.out.println("countdown" + count);
+                    }
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+                return null;
+            }
+        };
+        worker.execute();
     }
 
     public QRCodeUI(SelfCheckOutUI selfCheckOutUI) {
+        isSelfCheckoutUI = true;
         this.setSize(1280, 960);
         cp = getContentPane();
         cp.setBackground(Color.white);
-
         generateQR();
-        add(_mainLabel);
         pack();
         initComponents();
         centerFrame.add(_mainLabel);
         dispose();
         setUndecorated(true);
-        isSelfCheckoutUI = true;
+
+        worker = new SwingWorker<Void, Void>() {
+
+            @Override
+            protected Void doInBackground() throws Exception {
+                try {
+                    String memberEmail = getSyncWithPhoneStatus(date.getTime() + "");
+                    int count = 0;
+                    int currentDot = 1;
+                    while (memberEmail == null) {
+                        Thread.sleep(250);
+                        count++;
+                        memberEmail = getSyncWithPhoneStatus(date.getTime() + "");
+
+                        if (count == 8) {
+                            lblMessage.setText("Waiting for phone.");
+                        } else if (count > 8) {
+                            if (currentDot == 3) {
+                                lblMessage.setText("Waiting for phone.");
+                                currentDot = 1;
+                            } else if (currentDot == 1) {
+                                lblMessage.setText("Waiting for phone..");
+                                currentDot = 2;
+                            } else if (currentDot == 2) {
+                                lblMessage.setText("Waiting for phone...");
+                                currentDot = 3;
+                            }
+                        }
+                        if (memberEmail != null) {
+                            System.out.println("in");
+                            //pull shopping list
+                        }
+                        System.out.println("countdown" + count);
+                    }
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+                return null;
+            }
+        };
+        worker.execute();
     }
 
     public QRCodeUI(CashierCheckoutUI cashierCheckoutUI) {
+        isSelfCheckoutUI = false;
         this.setSize(1280, 960);
         cp = getContentPane();
         cp.setBackground(Color.white);
-
         generateQR();
-        add(_mainLabel);
         pack();
         initComponents();
         centerFrame.add(_mainLabel);
         dispose();
         setUndecorated(true);
-        isSelfCheckoutUI = false;
+
+        worker = new SwingWorker<Void, Void>() {
+
+            @Override
+            protected Void doInBackground() throws Exception {
+                try {
+                    String memberEmail = getSyncWithPhoneStatus(date.getTime() + "");
+                    int count = 0;
+                    int currentDot = 1;
+                    while (memberEmail == null) {
+                        Thread.sleep(250);
+                        count++;
+                        memberEmail = getSyncWithPhoneStatus(date.getTime() + "");
+
+                        if (count == 8) {
+                            lblMessage.setText("Waiting for phone.");
+                        } else if (count > 8) {
+                            if (currentDot == 3) {
+                                lblMessage.setText("Waiting for phone.");
+                                currentDot = 1;
+                            } else if (currentDot == 1) {
+                                lblMessage.setText("Waiting for phone..");
+                                currentDot = 2;
+                            } else if (currentDot == 2) {
+                                lblMessage.setText("Waiting for phone...");
+                                currentDot = 3;
+                            }
+                        }
+                        if (memberEmail != null) {
+                            System.out.println("in");
+                            //pull shopping list
+                        }
+                        System.out.println("countdown" + count);
+                    }
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+                return null;
+            }
+        };
+        worker.execute();
     }
 
     @SuppressWarnings("unchecked")
@@ -74,6 +194,7 @@ public class QRCodeUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        lblMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,7 +238,7 @@ public class QRCodeUI extends javax.swing.JFrame {
         );
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel3.setText("Scan QR Code to begin");
+        jLabel3.setText("Scan QR Code");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -156,6 +277,9 @@ public class QRCodeUI extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setText("Instruction");
 
+        lblMessage.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblMessage.setText("                ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,14 +293,17 @@ public class QRCodeUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(510, 510, 510)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(centerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblMessage)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(532, 532, 532))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(centerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(506, 506, 506)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,16 +313,14 @@ public class QRCodeUI extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(31, 31, 31)
                 .addComponent(centerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(252, 252, 252)
+                .addGap(47, 47, 47)
+                .addComponent(lblMessage)
+                .addGap(176, 176, 176)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -203,18 +328,17 @@ public class QRCodeUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
         if (isSelfCheckoutUI) {
             SelfCheckOutUI selfCheckOutUI = new SelfCheckOutUI();
             selfCheckOutUI.setVisible(true);
-            this.setVisible(false);
+            worker.cancel(true);
+            dispose();
         } else {
-             CashierCheckoutUI cashierCheckoutUI = new CashierCheckoutUI();
+            CashierCheckoutUI cashierCheckoutUI = new CashierCheckoutUI();
             cashierCheckoutUI.setVisible(true);
-            this.setVisible(false);
+            worker.cancel(true);
+            dispose();
         }
-
-
     }//GEN-LAST:event_btnBackActionPerformed
 
     public static void main(String args[]) {
@@ -258,17 +382,21 @@ public class QRCodeUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblHeader1;
+    private javax.swing.JLabel lblMessage;
     private javax.swing.JPanel pnlHader;
     // End of variables declaration//GEN-END:variables
 
     private void generateQR() {
         try {
             QRCode barcode = new QRCode();
-            Date date = new Date();
 
-            System.out.println(date.getTime() + "");
-            barcode.setData(date.getTime() + "");
+            date = new Date();
+            String time = date.getTime() + "";
 
+            System.out.println(time);
+            createSyncWithPhoneRequest(time);
+
+            barcode.setData(time);
             barcode.setDataMode(QRCode.M_AUTO);
             barcode.setVersion(10);
             barcode.setEcl(QRCode.ECL_M);
@@ -287,9 +415,22 @@ public class QRCodeUI extends javax.swing.JFrame {
 
             _image1 = new ImageIcon(currentPath);
             _mainLabel = new JLabel(_image1);
+            add(_mainLabel);
+
         } catch (Exception ex) {
             Logger.getLogger(QRCodeUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    private static Boolean createSyncWithPhoneRequest(java.lang.String qrCode) {
+        PointOfSalesUI.LoyaltyAndRewardsWebService_Service service = new PointOfSalesUI.LoyaltyAndRewardsWebService_Service();
+        PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
+        return port.createSyncWithPhoneRequest(qrCode);
+    }
+
+    private static String getSyncWithPhoneStatus(java.lang.String arg0) {
+        PointOfSalesUI.LoyaltyAndRewardsWebService_Service service = new PointOfSalesUI.LoyaltyAndRewardsWebService_Service();
+        PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
+        return port.getSyncWithPhoneStatus(arg0);
+    }
 }
