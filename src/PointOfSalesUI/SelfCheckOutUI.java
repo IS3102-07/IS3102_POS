@@ -26,10 +26,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         SKUString = "";
         POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
-
-        POS.initPartnerPoleDisplay();
-        String line2 = String.format("%20s", "Island Furniture!");
-        POS.displayPoleMessage("Welcome to", line2);
     }
 
     @SuppressWarnings("unchecked")

@@ -14,6 +14,10 @@ public class MainMenuUI extends javax.swing.JFrame {
         cp = getContentPane();
         cp.setBackground(Color.white);
         this.setSize(1280, 960);
+
+        POS.initPartnerPoleDisplay();
+        String line2 = String.format("%20s", "Island Furniture!");
+        POS.displayPoleMessage("Welcome to", line2);
     }
 
     @SuppressWarnings("unchecked")
