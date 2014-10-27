@@ -22,13 +22,11 @@ public class KioskUI extends javax.swing.JFrame {
         pnlHader = new javax.swing.JPanel();
         lblHeader2 = new javax.swing.JLabel();
         btnPay = new javax.swing.JButton();
-        btnRewards = new javax.swing.JButton();
         btnMembership = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1600, 900));
 
         pnlHader.setBackground(new java.awt.Color(153, 0, 0));
 
@@ -55,7 +53,7 @@ public class KioskUI extends javax.swing.JFrame {
         );
 
         btnPay.setBackground(new java.awt.Color(255, 153, 51));
-        btnPay.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        btnPay.setFont(new java.awt.Font("Tahoma", 0, 52)); // NOI18N
         btnPay.setForeground(new java.awt.Color(255, 255, 255));
         btnPay.setText("Registration");
         btnPay.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -65,19 +63,8 @@ public class KioskUI extends javax.swing.JFrame {
             }
         });
 
-        btnRewards.setBackground(new java.awt.Color(255, 153, 51));
-        btnRewards.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        btnRewards.setForeground(new java.awt.Color(255, 255, 255));
-        btnRewards.setText("Rewards");
-        btnRewards.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnRewards.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRewardsActionPerformed(evt);
-            }
-        });
-
         btnMembership.setBackground(new java.awt.Color(255, 153, 51));
-        btnMembership.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        btnMembership.setFont(new java.awt.Font("Tahoma", 0, 52)); // NOI18N
         btnMembership.setForeground(new java.awt.Color(255, 255, 255));
         btnMembership.setText("Membership Status");
         btnMembership.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -95,28 +82,27 @@ public class KioskUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(btnRewards, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addComponent(btnMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(1192, Short.MAX_VALUE)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(170, 170, 170)
+                        .addComponent(btnMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlHader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addGap(113, 113, 113)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRewards, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(285, 285, 285)
+                    .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 549, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -130,12 +116,10 @@ public class KioskUI extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnPayActionPerformed
 
-    private void btnRewardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRewardsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRewardsActionPerformed
-
     private void btnMembershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMembershipActionPerformed
-        // TODO add your handling code here:
+        MembershipStatusUI membershipStatusUI = new MembershipStatusUI();
+        membershipStatusUI.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnMembershipActionPerformed
 
     public static void main(String args[]) {
@@ -172,7 +156,6 @@ public class KioskUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMembership;
     private javax.swing.JButton btnPay;
-    private javax.swing.JButton btnRewards;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JPanel pnlHader;

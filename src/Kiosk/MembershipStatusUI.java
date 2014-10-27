@@ -3,14 +3,10 @@ package Kiosk;
 import PointOfSalesUI.MemberEntity;
 import java.awt.Color;
 import java.awt.Container;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 public class MembershipStatusUI extends javax.swing.JFrame {
 
     private Container cp;
-    private ImageIcon _image1;
-    private JLabel _mainLabel;
 
     public MembershipStatusUI() {
         initComponents();
