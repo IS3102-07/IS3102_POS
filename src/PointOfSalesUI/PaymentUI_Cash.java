@@ -242,21 +242,22 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
 
             lineItems = POS.transaction.getLineItems();
 
-            //formating receipt
+            //Header
             String receiptString1 = "<html><table><tr align='center'><td colspan=\"2\"><b>Island Furniture<br>"
                     + "" + POS.storeAddress + "<br>"
                     + "" + POS.storeCountry + " " + POS.storePostal + "</b></td></tr>";
 
             //if member - card
-            if (POS.transaction.getDiscountPrice() > 0) {
-                receiptString1 += "<tr align='center'><td colspan=\"2\">Member " + POS.transaction.getMember().loyaltyCardId + "<br>"
-                        + "Teir: " + POS.transaction.getMember().loyaltyTier + "</td></tr>";
+            if (POS.transaction.getMember() != null) {
+                receiptString1 += "<tr align='center'><td colspan=\"2\">" + POS.transaction.getMember().getName() + "<br>"
+                        + "Tier: " + POS.transaction.getMember().loyaltyTier.getTier() + "</td></tr>";
+                System.out.println("POS.transaction.getMember().loyaltyTier " + POS.transaction.getMember().loyaltyTier.getTier());
             }
             receiptString1 += "<tr><td colspan=\"2\">------------------------------------------</td></tr><tr><td>Description</td><td>Amount</td></tr>";
 
             //loop items
             for (int i = 0; i < lineItems.size(); i++) {
-                String receipLineItem = lineItems.get(i).getQuantity() + " " + lineItems.get(i).getDescription();
+                String receipLineItem = lineItems.get(i).getQuantity() + " x " + lineItems.get(i).getDescription();
                 if (receipLineItem.length() > 15) {
                     receipLineItem = receipLineItem.substring(0, 15);
                 }
