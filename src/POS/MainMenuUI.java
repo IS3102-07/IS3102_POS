@@ -102,9 +102,6 @@ public class MainMenuUI extends javax.swing.JFrame {
         lblSelfCheckOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/selfcheckout.png"))); // NOI18N
         lblSelfCheckOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblSelfCheckOut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSelfCheckOutMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lblSelfCheckOutMousePressed(evt);
             }
@@ -113,9 +110,6 @@ public class MainMenuUI extends javax.swing.JFrame {
         lblCashierCheckout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cashiercheckout.png"))); // NOI18N
         lblCashierCheckout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCashierCheckout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCashierCheckoutMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lblCashierCheckoutMousePressed(evt);
             }
@@ -153,12 +147,6 @@ public class MainMenuUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblSelfCheckOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSelfCheckOutMouseClicked
-        SelfCheckOutUI selfCheckOutUI = new SelfCheckOutUI();
-        selfCheckOutUI.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_lblSelfCheckOutMouseClicked
-
     private void lblCashierCheckoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCashierCheckoutMousePressed
         CashierCheckoutUI cashierCheckoutUI = new CashierCheckoutUI();
         cashierCheckoutUI.setVisible(true);
@@ -170,12 +158,6 @@ public class MainMenuUI extends javax.swing.JFrame {
         selfCheckOutUI.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblSelfCheckOutMousePressed
-
-    private void lblCashierCheckoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCashierCheckoutMouseClicked
-        CashierCheckoutUI cashierCheckoutUI = new CashierCheckoutUI();
-        cashierCheckoutUI.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_lblCashierCheckoutMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

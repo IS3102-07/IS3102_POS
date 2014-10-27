@@ -152,6 +152,8 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private int prevKeyCode=0;
+    
     private void txtCreditNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditNumberKeyReleased
         Boolean startCreditCardMSR1 = false;
         String kbValue = txtCreditNumber.getText();
@@ -173,11 +175,14 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                 if (kbValue.length() >= 2) {
                     if (kbValue.endsWith("?")) {
                         startCreditCardMSR1 = false;
-                        checkOut();
                     }
                 }
             }
         }
+        if (prevKeyCode==16 && evt.getKeyCode()==47) {
+            checkOut();
+        }
+        prevKeyCode=evt.getKeyCode();
 
 
     }//GEN-LAST:event_txtCreditNumberKeyReleased
@@ -226,8 +231,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
             //if member - card
             if (POS.transaction.getMember() != null) {
-                receiptString1 += "<tr align='center'><td colspan=\"2\">Member: " + POS.transaction.getMember().loyaltyCardId + "<br>"
-                        + "Tier: " + POS.transaction.getMember().loyaltyTier + "</td></tr>";
+                receiptString1 += "<tr align='center'><td colspan=\"2\">" + POS.transaction.getMember().getName() + "<br>"
+                        + "Tier: " + POS.transaction.getMember().loyaltyTier.getTier() + "</td></tr>";
+                System.out.println("POS.transaction.getMember().loyaltyTier " + POS.transaction.getMember().loyaltyTier.getTier());
             }
             receiptString1 += "<tr><td colspan=\"2\">------------------------------------------</td></tr><tr><td>Description</td><td>Amount</td></tr>";
 
