@@ -225,7 +225,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                     + "" + POS.storeCountry + " " + POS.storePostal + "</b></td></tr>";
 
             //if member - card
-            if (POS.transaction.getDiscountPrice() > 0) {
+            if (POS.transaction.getMember() != null) {
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Member: " + POS.transaction.getMember().loyaltyCardId + "<br>"
                         + "Tier: " + POS.transaction.getMember().loyaltyTier + "</td></tr>";
             }
