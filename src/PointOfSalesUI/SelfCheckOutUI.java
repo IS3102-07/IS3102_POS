@@ -27,6 +27,17 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
     }
+    
+        public SelfCheckOutUI(commoninfrastructure.accountmanagement.ShoppingListEntity shoppingList) {
+        initComponents();
+        this.setTitle("Island Furniture Self Checkout");
+        this.setSize(1280, 960);
+        cp = getContentPane();
+        cp.setBackground(Color.white);
+        SKUString = "";
+        POS.transaction = new Transaction();
+        lineItems = POS.transaction.getLineItems();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

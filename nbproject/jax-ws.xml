@@ -74,41 +74,9 @@
         </wsimport-option>
       </wsimport-options>
     </client>
-    <client name="AccountManagementWebService">
-      <wsdl-url>http://localhost:8080/AccountManagementWebService/AccountManagementWebService?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8080/AccountManagementWebService/AccountManagementWebService.wsdl</local-wsdl-file>
-      <package-name>commoninfrastructure.accountmanagement</package-name>
-      <catalog-file>catalog.xml</catalog-file>
-      <wsimport-options>
-        <wsimport-option>
-          <wsimport-option-name>extension</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>verbose</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>fork</wsimport-option-name>
-          <wsimport-option-value>false</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://hello:8080/AccountManagementWebService/AccountManagementWebService?wsdl</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xnocompile</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xendorsed</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-      </wsimport-options>
-    </client>
     <client name="LoyaltyAndRewardsWebService">
-      <wsdl-url>http://localhost:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl</local-wsdl-file>
+      <wsdl-url>http://hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl</wsdl-url>
+      <local-wsdl-file>hello_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl</local-wsdl-file>
       <package-name forceReplace="true">PointOfSalesUI</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -139,6 +107,38 @@
         <wsimport-option>
           <wsimport-option-name>package</wsimport-option-name>
           <wsimport-option-value>PointOfSalesUI</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="AccountManagementWebService">
+      <wsdl-url>http://hello:8080/AccountManagementWebService/AccountManagementWebService?wsdl</wsdl-url>
+      <local-wsdl-file>hello_8080/AccountManagementWebService/AccountManagementWebService.wsdl</local-wsdl-file>
+      <package-name>commoninfrastructure.accountmanagement</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://hello:8080/AccountManagementWebService/AccountManagementWebService?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>
