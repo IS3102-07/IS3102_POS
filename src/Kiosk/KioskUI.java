@@ -23,7 +23,7 @@ public class KioskUI extends javax.swing.JFrame {
         lblHeader2 = new javax.swing.JLabel();
         btnPay = new javax.swing.JButton();
         btnMembership = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnMap = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -74,7 +74,16 @@ public class KioskUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        btnMap.setBackground(new java.awt.Color(255, 153, 51));
+        btnMap.setFont(new java.awt.Font("Tahoma", 0, 52)); // NOI18N
+        btnMap.setForeground(new java.awt.Color(255, 255, 255));
+        btnMap.setText("Map");
+        btnMap.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMapActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,17 +91,14 @@ public class KioskUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(159, 159, 159)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(1192, Short.MAX_VALUE)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
                         .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(170, 170, 170)
-                        .addComponent(btnMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btnMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnMap, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,9 +108,9 @@ public class KioskUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 549, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addComponent(btnMap, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105))
         );
 
         pack();
@@ -121,6 +127,10 @@ public class KioskUI extends javax.swing.JFrame {
         membershipStatusUI.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnMembershipActionPerformed
+
+    private void btnMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapActionPerformed
+       
+    }//GEN-LAST:event_btnMapActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -154,9 +164,9 @@ public class KioskUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMap;
     private javax.swing.JButton btnMembership;
     private javax.swing.JButton btnPay;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JPanel pnlHader;
     // End of variables declaration//GEN-END:variables

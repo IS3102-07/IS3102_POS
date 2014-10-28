@@ -473,9 +473,9 @@ public class RegistrationUI extends javax.swing.JFrame {
 
                 //    public Boolean kioskRegisterMember(String name, String address, Date DOB, String email, String phone, String city, String zipCode, String password, String storeID) {
                 if (kioskRegisterMember(txtName.getText(), txtAddress.getText(), date2, txtEmail.getText(), txtPhone.getText(), txtCity.getText(), txtPostal.getText(), passText, Long.parseLong(storeID)) != null) {
-
+                    lblErrorMessage.setText("Account successfully created. Thank you.");
                 } else {
-                    lblErrorMessage.setText("An Error has occured");
+                    lblErrorMessage.setText("Email already exist.");
                 }
 
             } catch (DatatypeConfigurationException ex) {
@@ -557,6 +557,5 @@ public class RegistrationUI extends javax.swing.JFrame {
         commoninfrastructure.accountmanagement.AccountManagementWebService port = service.getAccountManagementWebServicePort();
         return port.kioskRegisterMember(name, address, dob, email, phone, city, zipCode, password, storeID);
     }
-
 
 }

@@ -27,8 +27,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
     }
-    
-        public SelfCheckOutUI(ShoppingListEntity shoppingList) {
+
+    public SelfCheckOutUI(ShoppingListEntity shoppingList) {
         initComponents();
         this.setTitle("Island Furniture Self Checkout");
         this.setSize(1280, 960);
@@ -37,6 +37,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         SKUString = "";
         POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -424,7 +426,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         if (POS.supervisorContactNo != null && !POS.supervisorContactNo.isEmpty()) {
             System.out.println(POS.supervisorContactNo);
             alertSupervisor(POS.name, POS.supervisorContactNo);
-            
+
             JDialog dialog = new JDialog();
             final Toolkit toolkit = Toolkit.getDefaultToolkit();
             final Dimension screenSize = toolkit.getScreenSize();

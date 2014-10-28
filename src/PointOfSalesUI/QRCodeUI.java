@@ -2,11 +2,12 @@ package PointOfSalesUI;
 
 import com.onbarcode.barcode.IBarcode;
 import com.onbarcode.barcode.QRCode;
-import commoninfrastructure.accountmanagement.ShoppingListEntity;
+import commoninfrastructure.accountmanagement.ItemHelper;
 import java.awt.Color;
 import java.awt.Container;
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -292,8 +293,12 @@ public class QRCodeUI extends javax.swing.JFrame {
                             }
                         }
                         if (memberEmail != null) {
-                            //ShoppingListEntity shoppingList = getMemberShoppingList(memberEmail);
-                            //ShoppingListEntity shoppingList = new ShoppingListEntity();
+                            System.out.println("in");
+
+                            List<ItemHelper> shoppingList = getMemberShoppingList(memberEmail);
+
+                            System.out.println("shoppingList>>" + shoppingList);
+                            System.out.println(">>>>>" + shoppingList.get(0).getItemSKU());
 
                             //if coming from self service checkout
                             if (isSelfCheckoutUI) {
@@ -326,6 +331,7 @@ public class QRCodeUI extends javax.swing.JFrame {
             QRCode barcode = new QRCode();
 
             date = new Date();
+            System.out.println(date.getTime());
             createSyncWithPhoneRequest(date.getTime() + "");
 
             barcode.setData(date.getTime() + "");
@@ -366,10 +372,11 @@ public class QRCodeUI extends javax.swing.JFrame {
         return port.getSyncWithPhoneStatus(qrCode);
     }
 
-    private static ShoppingListEntity getMemberShoppingList(java.lang.String email) {
+    private static java.util.List<commoninfrastructure.accountmanagement.ItemHelper> getMemberShoppingList(java.lang.String email) {
         commoninfrastructure.accountmanagement.AccountManagementWebService_Service service = new commoninfrastructure.accountmanagement.AccountManagementWebService_Service();
         commoninfrastructure.accountmanagement.AccountManagementWebService port = service.getAccountManagementWebServicePort();
         return port.getMemberShoppingList(email);
     }
+
 
 }
