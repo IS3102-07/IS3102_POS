@@ -16,10 +16,27 @@
             <classpath path="${libs.jaxws21.classpath}"/>
         </taskdef>
     </target>
+    <target name="wsimport-client-AccountManagementWebService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/AccountManagementWebService"/>
+        <property name="wsdl-AccountManagementWebService" location="xml-resources/web-service-references/AccountManagementWebService/wsdl/hq-server_8080/AccountManagementWebService/AccountManagementWebService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/AccountManagementWebService" destdir="${build.generated.dir}/jax-wsCache/AccountManagementWebService" wsdl="${wsdl-AccountManagementWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://hq-server:8080/AccountManagementWebService/AccountManagementWebService?wsdl" xnocompile="true" xendorsed="true" package="POS">
+            <depends file="${wsdl-AccountManagementWebService}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/AccountManagementWebService"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/AccountManagementWebService">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-AccountManagementWebService" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/AccountManagementWebService"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/POS"/>
+    </target>
     <target name="wsimport-client-RetailInventoryWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService"/>
-        <property name="wsdl-RetailInventoryWebService" location="xml-resources/web-service-references/RetailInventoryWebService/wsdl/Hello_8080/RetailInventoryWebService/RetailInventoryWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService" destdir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService" wsdl="${wsdl-RetailInventoryWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://hello:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl" xnocompile="true" xendorsed="true" package="PointOfSalesUI">
+        <property name="wsdl-RetailInventoryWebService" location="xml-resources/web-service-references/RetailInventoryWebService/wsdl/hq-server_8080/RetailInventoryWebService/RetailInventoryWebService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService" destdir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService" wsdl="${wsdl-RetailInventoryWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://hq-server:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl" xnocompile="true" xendorsed="true" package="PointOfSalesUI">
             <depends file="${wsdl-RetailInventoryWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService"/>
         </wsimport>
@@ -35,8 +52,8 @@
     </target>
     <target name="wsimport-client-SalesReportingWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/SalesReportingWebService"/>
-        <property name="wsdl-SalesReportingWebService" location="xml-resources/web-service-references/SalesReportingWebService/wsdl/Hello_8080/SalesReportingWebService/SalesReportingWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/SalesReportingWebService" destdir="${build.generated.dir}/jax-wsCache/SalesReportingWebService" wsdl="${wsdl-SalesReportingWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://hello:8080/SalesReportingWebService/SalesReportingWebService?wsdl" xnocompile="true" xendorsed="true" package="PointOfSalesUI">
+        <property name="wsdl-SalesReportingWebService" location="xml-resources/web-service-references/SalesReportingWebService/wsdl/hq-server_8080/SalesReportingWebService/SalesReportingWebService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/SalesReportingWebService" destdir="${build.generated.dir}/jax-wsCache/SalesReportingWebService" wsdl="${wsdl-SalesReportingWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://hq-server:8080/SalesReportingWebService/SalesReportingWebService?wsdl" xnocompile="true" xendorsed="true" package="PointOfSalesUI">
             <depends file="${wsdl-SalesReportingWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/SalesReportingWebService"/>
         </wsimport>
@@ -52,8 +69,8 @@
     </target>
     <target name="wsimport-client-LoyaltyAndRewardsWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService"/>
-        <property name="wsdl-LoyaltyAndRewardsWebService" location="xml-resources/web-service-references/LoyaltyAndRewardsWebService/wsdl/hello_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService" destdir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService" wsdl="${wsdl-LoyaltyAndRewardsWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl" xnocompile="true" xendorsed="true" package="PointOfSalesUI">
+        <property name="wsdl-LoyaltyAndRewardsWebService" location="xml-resources/web-service-references/LoyaltyAndRewardsWebService/wsdl/hq-server_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService" destdir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService" wsdl="${wsdl-LoyaltyAndRewardsWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://hq-server:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl" xnocompile="true" xendorsed="true" package="PointOfSalesUI">
             <depends file="${wsdl-LoyaltyAndRewardsWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService"/>
         </wsimport>
@@ -67,22 +84,5 @@
         <delete dir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/PointOfSalesUI"/>
     </target>
-    <target name="wsimport-client-AccountManagementWebService" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/AccountManagementWebService"/>
-        <property name="wsdl-AccountManagementWebService" location="xml-resources/web-service-references/AccountManagementWebService/wsdl/hello_8080/AccountManagementWebService/AccountManagementWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/AccountManagementWebService" destdir="${build.generated.dir}/jax-wsCache/AccountManagementWebService" wsdl="${wsdl-AccountManagementWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://hello:8080/AccountManagementWebService/AccountManagementWebService?wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${wsdl-AccountManagementWebService}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/AccountManagementWebService"/>
-        </wsimport>
-        <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/AccountManagementWebService">
-                <include name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-    <target name="wsimport-client-clean-AccountManagementWebService" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/AccountManagementWebService"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/commoninfrastructure/accountmanagement"/>
-    </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-RetailInventoryWebService, wsimport-client-SalesReportingWebService, wsimport-client-LoyaltyAndRewardsWebService, wsimport-client-AccountManagementWebService"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-AccountManagementWebService, wsimport-client-RetailInventoryWebService, wsimport-client-SalesReportingWebService, wsimport-client-LoyaltyAndRewardsWebService"/>
 </project>

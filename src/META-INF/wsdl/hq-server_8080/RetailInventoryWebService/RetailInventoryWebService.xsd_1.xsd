@@ -4,6 +4,10 @@
 
 <xs:element name="alertSupervisorResponse" type="tns:alertSupervisorResponse"/>
 
+<xs:element name="checkIfCustomerNeedToWaitForPicker" type="tns:checkIfCustomerNeedToWaitForPicker"/>
+
+<xs:element name="checkIfCustomerNeedToWaitForPickerResponse" type="tns:checkIfCustomerNeedToWaitForPickerResponse"/>
+
 <xs:element name="getCountryCode" type="tns:getCountryCode"/>
 
 <xs:element name="getCountryCodeResponse" type="tns:getCountryCodeResponse"/>
@@ -75,6 +79,18 @@
 <xs:complexType name="getStoreAddressByIDResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="checkIfCustomerNeedToWaitForPicker">
+<xs:sequence>
+<xs:element name="receiptNo" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="checkIfCustomerNeedToWaitForPickerResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

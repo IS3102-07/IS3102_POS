@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingWorker;
+import POS.ShoppingListEntity;
 
 public class QRCodeUI extends javax.swing.JFrame {
 
@@ -291,8 +292,8 @@ public class QRCodeUI extends javax.swing.JFrame {
                             }
                         }
                         if (memberEmail != null) {
-                            //ShoppingListEntity shoppingList = getMemberShoppingList(memberEmail);
-                            ShoppingListEntity shoppingList = new ShoppingListEntity();
+                            ShoppingListEntity shoppingList = getMemberShoppingList(memberEmail);
+                            //ShoppingListEntity shoppingList = new ShoppingListEntity();
 
                             //if coming from self service checkout
                             if (isSelfCheckoutUI) {
@@ -363,6 +364,12 @@ public class QRCodeUI extends javax.swing.JFrame {
         PointOfSalesUI.LoyaltyAndRewardsWebService_Service service = new PointOfSalesUI.LoyaltyAndRewardsWebService_Service();
         PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
         return port.getSyncWithPhoneStatus(qrCode);
+    }
+
+    private static POS.ShoppingListEntity getMemberShoppingList(java.lang.String email) {
+        POS.AccountManagementWebService_Service service = new POS.AccountManagementWebService_Service();
+        POS.AccountManagementWebService port = service.getAccountManagementWebServicePort();
+        return port.getMemberShoppingList(email);
     }
 
 }

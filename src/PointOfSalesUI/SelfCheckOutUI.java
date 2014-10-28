@@ -28,7 +28,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lineItems = POS.transaction.getLineItems();
     }
     
-        public SelfCheckOutUI(commoninfrastructure.accountmanagement.ShoppingListEntity shoppingList) {
+        public SelfCheckOutUI(ShoppingListEntity shoppingList) {
         initComponents();
         this.setTitle("Island Furniture Self Checkout");
         this.setSize(1280, 960);

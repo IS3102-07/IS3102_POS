@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://Hello:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl" uri="wsdl/Hello_8080/RetailInventoryWebService/RetailInventoryWebService.wsdl"/>
-    <system systemId="http://Hello:8080/RetailInventoryWebService/RetailInventoryWebService?xsd=1" uri="wsdl/Hello_8080/RetailInventoryWebService/RetailInventoryWebService.xsd_1.xsd"/>
+    <system systemId="http://hq-server:8080/AccountManagementWebService/AccountManagementWebService?wsdl" uri="wsdl/hq-server_8080/AccountManagementWebService/AccountManagementWebService.wsdl"/>
+    <system systemId="http://hq-server:8080/AccountManagementWebService/AccountManagementWebService?xsd=1" uri="wsdl/hq-server_8080/AccountManagementWebService/AccountManagementWebService.xsd_1.xsd"/>
+    <system systemId="http://hq-server:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl" uri="wsdl/hq-server_8080/RetailInventoryWebService/RetailInventoryWebService.wsdl"/>
+    <system systemId="http://hq-server:8080/RetailInventoryWebService/RetailInventoryWebService?xsd=1" uri="wsdl/hq-server_8080/RetailInventoryWebService/RetailInventoryWebService.xsd_1.xsd"/>
     <system systemId="http://Hello:8080/SalesReportingWebService/SalesReportingWebService?wsdl" uri="wsdl/Hello_8080/SalesReportingWebService/SalesReportingWebService.wsdl"/>
     <system systemId="http://Hello:8080/SalesReportingWebService/SalesReportingWebService?xsd=1" uri="wsdl/Hello_8080/SalesReportingWebService/SalesReportingWebService.xsd_1.xsd"/>
+    <system systemId="http://hq-server:8080/SalesReportingWebService/SalesReportingWebService?wsdl" uri="wsdl/hq-server_8080/SalesReportingWebService/SalesReportingWebService.wsdl"/>
+    <system systemId="http://hq-server:8080/SalesReportingWebService/SalesReportingWebService?xsd=1" uri="wsdl/hq-server_8080/SalesReportingWebService/SalesReportingWebService.xsd_1.xsd"/>
     <system systemId="http://Hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl" uri="wsdl/Hello_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl"/>
     <system systemId="http://Hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?xsd=1" uri="wsdl/Hello_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.xsd_1.xsd"/>
-    <system systemId="http://Hello:8080/AccountManagementWebService/AccountManagementWebService?wsdl" uri="wsdl/Hello_8080/AccountManagementWebService/AccountManagementWebService.wsdl"/>
-    <system systemId="http://Hello:8080/AccountManagementWebService/AccountManagementWebService?xsd=1" uri="wsdl/Hello_8080/AccountManagementWebService/AccountManagementWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl" uri="wsdl/localhost_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl"/>
+    <system systemId="http://localhost:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?xsd=1" uri="wsdl/localhost_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.xsd_1.xsd"/>
+    <system systemId="http://hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl" uri="wsdl/hello_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl"/>
+    <system systemId="http://hello:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?xsd=1" uri="wsdl/hello_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.xsd_1.xsd"/>
+    <system systemId="http://hq-server:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl" uri="wsdl/hq-server_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl"/>
+    <system systemId="http://hq-server:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?xsd=1" uri="wsdl/hq-server_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.xsd_1.xsd"/>
 </catalog>
