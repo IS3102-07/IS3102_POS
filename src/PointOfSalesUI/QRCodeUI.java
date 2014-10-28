@@ -2,6 +2,7 @@ package PointOfSalesUI;
 
 import com.onbarcode.barcode.IBarcode;
 import com.onbarcode.barcode.QRCode;
+import commoninfrastructure.accountmanagement.ShoppingListEntity;
 import java.awt.Color;
 import java.awt.Container;
 import java.io.File;
@@ -11,7 +12,6 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingWorker;
-import POS.ShoppingListEntity;
 
 public class QRCodeUI extends javax.swing.JFrame {
 
@@ -292,7 +292,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                             }
                         }
                         if (memberEmail != null) {
-                            ShoppingListEntity shoppingList = getMemberShoppingList(memberEmail);
+                            //ShoppingListEntity shoppingList = getMemberShoppingList(memberEmail);
                             //ShoppingListEntity shoppingList = new ShoppingListEntity();
 
                             //if coming from self service checkout
@@ -366,9 +366,9 @@ public class QRCodeUI extends javax.swing.JFrame {
         return port.getSyncWithPhoneStatus(qrCode);
     }
 
-    private static POS.ShoppingListEntity getMemberShoppingList(java.lang.String email) {
-        POS.AccountManagementWebService_Service service = new POS.AccountManagementWebService_Service();
-        POS.AccountManagementWebService port = service.getAccountManagementWebServicePort();
+    private static ShoppingListEntity getMemberShoppingList(java.lang.String email) {
+        commoninfrastructure.accountmanagement.AccountManagementWebService_Service service = new commoninfrastructure.accountmanagement.AccountManagementWebService_Service();
+        commoninfrastructure.accountmanagement.AccountManagementWebService port = service.getAccountManagementWebServicePort();
         return port.getMemberShoppingList(email);
     }
 

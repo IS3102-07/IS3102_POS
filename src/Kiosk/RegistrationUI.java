@@ -559,5 +559,4 @@ public class RegistrationUI extends javax.swing.JFrame {
     }
 
 
-
 }
