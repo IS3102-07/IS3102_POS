@@ -8,8 +8,6 @@ import java.awt.Container;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingWorker;
@@ -356,7 +354,7 @@ public class QRCodeUI extends javax.swing.JFrame {
             add(_mainLabel);
 
         } catch (Exception ex) {
-            Logger.getLogger(QRCodeUI.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 
@@ -377,6 +375,5 @@ public class QRCodeUI extends javax.swing.JFrame {
         commoninfrastructure.accountmanagement.AccountManagementWebService port = service.getAccountManagementWebServicePort();
         return port.getMemberShoppingList(email);
     }
-
 
 }

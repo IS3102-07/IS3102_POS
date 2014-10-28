@@ -2,6 +2,10 @@ package Kiosk;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.StringTokenizer;
 
 public class KioskUI extends javax.swing.JFrame {
 
@@ -13,6 +17,7 @@ public class KioskUI extends javax.swing.JFrame {
         this.setSize(1600, 900);
         cp = getContentPane();
         cp.setBackground(Color.white);
+        readFile();
     }
 
     @SuppressWarnings("unchecked")
@@ -129,7 +134,9 @@ public class KioskUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMembershipActionPerformed
 
     private void btnMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapActionPerformed
-       
+        MapUI mapUI = new MapUI();
+        mapUI.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnMapActionPerformed
 
     public static void main(String args[]) {
@@ -170,4 +177,22 @@ public class KioskUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JPanel pnlHader;
     // End of variables declaration//GEN-END:variables
+
+    private void readFile() {
+        try {
+            String filePath = new File("").getAbsolutePath();
+            BufferedReader br = new BufferedReader(new FileReader(filePath.concat("\\src\\Kiosk\\setup.txt")));
+            String data;
+
+            while ((data = br.readLine()) != null) {
+                StringTokenizer st = new StringTokenizer(data, ",");
+                Kiosk.storeID = Long.parseLong(st.nextToken());
+                Kiosk.mapURL = st.nextToken();
+            }
+
+            br.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }

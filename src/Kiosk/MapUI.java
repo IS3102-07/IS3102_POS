@@ -2,17 +2,35 @@ package Kiosk;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class MapUI extends javax.swing.JFrame {
 
+    private ImageIcon _image1;
+    private JLabel _mainLabel;
     private Container cp;
 
     public MapUI() {
-        initComponents();
         this.setTitle("Island Furniture - Kiosk");
         this.setSize(1600, 900);
         cp = getContentPane();
         cp.setBackground(Color.white);
+
+        String filePath = new File("").getAbsolutePath();
+
+        System.out.println(Kiosk.mapURL);
+
+        String currentPath = filePath.concat("\\src\\images\\" + Kiosk.mapURL);
+
+        System.out.println(currentPath);
+
+        _image1 = new ImageIcon(currentPath);
+        _mainLabel = new JLabel(_image1);
+        add(_mainLabel);
+        initComponents();
+        centerFrame.add(_mainLabel);
     }
 
     @SuppressWarnings("unchecked")
@@ -21,9 +39,8 @@ public class MapUI extends javax.swing.JFrame {
 
         pnlHader = new javax.swing.JPanel();
         lblHeader2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         btnReturn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        centerFrame = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -52,8 +69,6 @@ public class MapUI extends javax.swing.JFrame {
                 .addGap(45, 45, 45))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/islandFurnitureStoreMap.jpg"))); // NOI18N
-
         btnReturn.setBackground(new java.awt.Color(153, 0, 0));
         btnReturn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnReturn.setForeground(new java.awt.Color(255, 255, 255));
@@ -64,10 +79,18 @@ public class MapUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Return to Main Menu");
+        centerFrame.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout centerFrameLayout = new javax.swing.GroupLayout(centerFrame);
+        centerFrame.setLayout(centerFrameLayout);
+        centerFrameLayout.setHorizontalGroup(
+            centerFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1391, Short.MAX_VALUE)
+        );
+        centerFrameLayout.setVerticalGroup(
+            centerFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 485, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,34 +98,21 @@ public class MapUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1091, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(centerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(666, 666, 666)
-                    .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(666, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlHader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(93, 93, 93))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(549, 549, 549)
-                    .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(516, Short.MAX_VALUE)))
+                .addGap(36, 36, 36)
+                .addComponent(centerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         pack();
@@ -148,8 +158,7 @@ public class MapUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel centerFrame;
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JPanel pnlHader;
     // End of variables declaration//GEN-END:variables

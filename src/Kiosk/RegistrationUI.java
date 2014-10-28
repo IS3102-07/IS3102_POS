@@ -3,17 +3,8 @@ package Kiosk;
 import java.awt.Color;
 import java.awt.Container;
 import javax.swing.border.LineBorder;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -21,7 +12,6 @@ public class RegistrationUI extends javax.swing.JFrame {
 
     private Container cp;
     private Date todayDate;
-    private String storeID;
 
     public RegistrationUI() {
         initComponents();
@@ -458,32 +448,15 @@ public class RegistrationUI extends javax.swing.JFrame {
                 c.setTime(jXDOB.getDate());
                 XMLGregorianCalendar date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
 
-                String filePath = new File("").getAbsolutePath();
-                BufferedReader br = new BufferedReader(new FileReader(filePath.concat("\\src\\POS\\setup.txt")));
-                String data;
 
-                while ((data = br.readLine()) != null) {
-                    StringTokenizer st = new StringTokenizer(data, ",");
-                    storeID = st.nextToken();
-                }
-                br.close();
-
-                System.out.println(date2);
-                System.out.println(storeID);
-
-                //    public Boolean kioskRegisterMember(String name, String address, Date DOB, String email, String phone, String city, String zipCode, String password, String storeID) {
-                if (kioskRegisterMember(txtName.getText(), txtAddress.getText(), date2, txtEmail.getText(), txtPhone.getText(), txtCity.getText(), txtPostal.getText(), passText, Long.parseLong(storeID)) != null) {
+                if (kioskRegisterMember(txtName.getText(), txtAddress.getText(), date2, txtEmail.getText(), txtPhone.getText(), txtCity.getText(), txtPostal.getText(), passText, Kiosk.storeID) != null) {
                     lblErrorMessage.setText("Account successfully created. Thank you.");
                 } else {
                     lblErrorMessage.setText("Email already exist.");
                 }
 
-            } catch (DatatypeConfigurationException ex) {
-                Logger.getLogger(RegistrationUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(RegistrationUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(RegistrationUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
