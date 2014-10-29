@@ -291,7 +291,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                 barcode.drawBarcode(currentPath);
 
                 System.out.println("");
-                receiptString1 += "<tr align='center'><td colspan=\"2\"><img src='file:" + currentPath + "'></img></td></tr>";
+                receiptString1 += "<tr align='center'><td colspan=\"2\"><img width='180px' src='file:" + currentPath + "'></img></td></tr>";
 
                 String converTimetoString = date.getTime() + "";
                 String queueNo = converTimetoString.substring(converTimetoString.length() - 4, converTimetoString.length());
