@@ -284,14 +284,14 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
                 Code128 barcode = new Code128();
                 barcode.setData("Barcode-in-Java");
-                barcode.setX(1);
+                barcode.setX(0.5f);
 
                 String filePath = new File("").getAbsolutePath();
                 String currentPath = filePath.concat("\\src\\images\\barcode-code128.png");
                 barcode.drawBarcode(currentPath);
 
                 System.out.println("");
-                receiptString1 += "<tr align='center'><td colspan=\"2\"><img width='180px' src='file:" + currentPath + "'></img></td></tr>";
+                receiptString1 += "<tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr>";
 
                 String converTimetoString = date.getTime() + "";
                 String queueNo = converTimetoString.substring(converTimetoString.length() - 4, converTimetoString.length());
