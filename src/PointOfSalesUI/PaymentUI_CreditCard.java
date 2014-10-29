@@ -283,7 +283,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Please proceed<br>to the collection point.</td></tr>";
 
                 Code128 barcode = new Code128();
-                barcode.setData("Barcode-in-Java");
+                barcode.setData(date.getTime() + "");
                 barcode.setX(0.5f);
 
                 String filePath = new File("").getAbsolutePath();
@@ -301,9 +301,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
             }
 
             receiptString1 += "</table></html>";
-            
+
             System.out.println(receiptString1);
-            
+
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
             if (printerJob.printDialog()) {
