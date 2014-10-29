@@ -1,1 +1,1 @@
-55,islandFurnitureStoreMap.png
+59,islandFurnitureStoreMap.png
