@@ -1,6 +1,7 @@
 package PointOfSalesUI;
 
 import POS.*;
+import com.onbarcode.barcode.Code128;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.Window;
@@ -8,10 +9,13 @@ import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
@@ -152,8 +156,8 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private int prevKeyCode=0;
-    
+    private int prevKeyCode = 0;
+
     private void txtCreditNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditNumberKeyReleased
 //        Boolean startCreditCardMSR1 = false;
 //        String kbValue = txtCreditNumber.getText();
@@ -180,7 +184,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 //            }
 //        }
 //        if (prevKeyCode==16 && evt.getKeyCode()==47) {
-            checkOut();
+        checkOut();
 //        }
 //        prevKeyCode=evt.getKeyCode();
 
@@ -270,9 +274,35 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
             //POS name and cashier
             receiptString1 += "" + POS.name + "<br>"
                     + "Cashier: " + POS.staffName + "</td></tr>"
-                    + "<tr><td colspan=\"2\">------------------------------------------</td></tr>"
-                    + "<tr align='center'><td colspan=\"2\">Thank you for <br>Shopping at Island Furniture!</td></tr></table></html>";
+                    + "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
 
+            //check if need to print barcode
+            //            if (checkIfCustomerNeedToWaitForPicker(date.getTime() + "")) {
+            if (true) {
+                receiptString1 += "<tr align='center'><td colspan=\"2\">Please proceed<br>to the collection point.</td></tr>";
+
+                Code128 barcode = new Code128();
+                barcode.setData("Barcode-in-Java");
+                barcode.setX(1);
+
+                String filePath = new File("").getAbsolutePath();
+                String currentPath = filePath.concat("\\src\\images\\barcode-code128.png");
+                barcode.drawBarcode(currentPath);
+
+                System.out.println("");
+                receiptString1 += "<tr align='center'><td colspan=\"2\"><img src='" + currentPath + "' ></td></tr>";
+
+                String converTimetoString = date.getTime() + "";
+                String queueNo = converTimetoString.substring(converTimetoString.length() - 4, converTimetoString.length());
+                receiptString1 += "<tr align='center'><td colspan=\"2\">" + queueNo + "</td></tr>";
+            } else {
+                receiptString1 += "<tr align='center'><td colspan=\"2\">Thank you for<br>Shopping at Island Furniture!</td></tr>";
+            }
+
+            receiptString1 += "</table></html>";
+            
+            System.out.println(receiptString1);
+            
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
             if (printerJob.printDialog()) {
@@ -280,6 +310,8 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
             }
         } catch (PrinterException ex) {
             ex.printStackTrace();
+        } catch (Exception ex) {
+            Logger.getLogger(PaymentUI_CreditCard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -351,6 +383,12 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         PointOfSalesUI.SalesReportingWebService_Service service = new PointOfSalesUI.SalesReportingWebService_Service();
         PointOfSalesUI.SalesReportingWebService port = service.getSalesReportingWebServicePort();
         return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchasedSKU, itemsPurchasedQty, amountDue, amountPaid, amountPaidUsingPoints, loyaltyPointsDeducted, memberEmail, receiptNo);
+    }
+
+    private static Boolean checkIfCustomerNeedToWaitForPicker(java.lang.String receiptNo) {
+        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
+        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+        return port.checkIfCustomerNeedToWaitForPicker(receiptNo);
     }
 
 }

@@ -11,14 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.SwingWorker;
 
 public class testBarCode extends javax.swing.JFrame {
-
+    
     private ImageIcon _image1;
     private JLabel _mainLabel;
     private Container cp;
     private boolean isSelfCheckoutUI;
     private Date date;
     private SwingWorker<Void, Void> worker;
-
+    
     public testBarCode() {
         this.setSize(1280, 960);
         cp = getContentPane();
@@ -29,9 +29,11 @@ public class testBarCode extends javax.swing.JFrame {
         //centerFrame.add(_mainLabel);
         dispose();
         setUndecorated(true);
-
+        
+        String test = "123123131123123abcd";
+        System.out.println("" + test.substring(test.length() - 4, test.length()));
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -162,12 +164,11 @@ public class testBarCode extends javax.swing.JFrame {
 
     private void generateQR() {
         try {
-
-            Code128 barcode = new Code128(); 
+            
+            Code128 barcode = new Code128();            
             barcode.setData("Barcode-in-Java");
-            barcode.setX(1); 
-            barcode.drawBarcode("C://barcode-code128.gif"); 
-            barcode.drawBarcode("C://barcode-code128.jpg"); 
+            barcode.setX(1);            
+            barcode.drawBarcode("C://barcode-code128.jpg");
 //            EAN13 barcode = new EAN13();
 //            barcode.setData("Barcode-in-Java");
 //            barcode.setUom(IBarcode.UOM_PIXEL);
@@ -218,17 +219,17 @@ public class testBarCode extends javax.swing.JFrame {
             Logger.getLogger(testBarCode.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private static Boolean createSyncWithPhoneRequest(java.lang.String qrCode) {
         PointOfSalesUI.LoyaltyAndRewardsWebService_Service service = new PointOfSalesUI.LoyaltyAndRewardsWebService_Service();
         PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
         return port.createSyncWithPhoneRequest(qrCode);
     }
-
+    
     private static String getSyncWithPhoneStatus(java.lang.String qrCode) {
         PointOfSalesUI.LoyaltyAndRewardsWebService_Service service = new PointOfSalesUI.LoyaltyAndRewardsWebService_Service();
         PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
         return port.getSyncWithPhoneStatus(qrCode);
     }
-
+    
 }
