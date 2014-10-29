@@ -7,6 +7,10 @@ public class LineItem {
     private int quantity;
     private Double price;
 
+    public LineItem() {
+
+    }
+
     public LineItem(String SKU, String description, Double price, int quantity) {
         this.SKU = SKU;
         this.description = description;

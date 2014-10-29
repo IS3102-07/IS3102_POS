@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
@@ -24,21 +25,40 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         cp = getContentPane();
         cp.setBackground(Color.white);
         SKUString = "";
-        POS.transaction = new Transaction();
-        lineItems = POS.transaction.getLineItems();
+
+        try {
+            lineItems = POS.transaction.getLineItems();
+            refreshTable();
+        } catch (Exception ex) {
+            POS.transaction = new Transaction();
+        }
+        tblLineItem.requestFocus();
     }
 
-    public SelfCheckOutUI(ShoppingListEntity shoppingList) {
+    public SelfCheckOutUI(List<commoninfrastructure.accountmanagement.ItemHelper> shoppingList) {
         initComponents();
         this.setTitle("Island Furniture Self Checkout");
         this.setSize(1280, 960);
         cp = getContentPane();
         cp.setBackground(Color.white);
         SKUString = "";
-        POS.transaction = new Transaction();
         lineItems = POS.transaction.getLineItems();
-        
-        
+
+        try {
+            lineItems = POS.transaction.getLineItems();
+        } catch (Exception ex) {
+            POS.transaction = new Transaction();
+        }
+
+        for (int i = 0; i < shoppingList.size(); i++) {
+            for (int j = 0; j < shoppingList.get(i).getQty(); j++) {
+                submitSKU(shoppingList.get(i).getItemSKU());
+            }
+        }
+
+        refreshTable();
+        refreshTotalQuantityAndPrice();
+        tblLineItem.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -68,7 +88,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         lblDiscount = new javax.swing.JLabel();
         lblTotalNet = new javax.swing.JLabel();
-        btnCancel1 = new javax.swing.JButton();
+        btnPhoneSync = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -252,14 +272,14 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lblTotalNet.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTotalNet.setText("0.0");
 
-        btnCancel1.setBackground(new java.awt.Color(255, 255, 255));
-        btnCancel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnCancel1.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Sync.jpg"))); // NOI18N
-        btnCancel1.setBorder(new javax.swing.border.MatteBorder(null));
-        btnCancel1.addActionListener(new java.awt.event.ActionListener() {
+        btnPhoneSync.setBackground(new java.awt.Color(255, 255, 255));
+        btnPhoneSync.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnPhoneSync.setForeground(new java.awt.Color(255, 255, 255));
+        btnPhoneSync.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Sync.jpg"))); // NOI18N
+        btnPhoneSync.setBorder(new javax.swing.border.MatteBorder(null));
+        btnPhoneSync.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancel1ActionPerformed(evt);
+                btnPhoneSyncActionPerformed(evt);
             }
         });
 
@@ -310,7 +330,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                                 .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                                 .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(btnCancel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPhoneSync, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnPay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
@@ -334,7 +354,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                             .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCancel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPhoneSync, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnPay, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -415,7 +435,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         if (tblLineItem.getSelectedRow() != -1 && tblLineItem.getRowCount() != 0) {
             lineItems.remove(tblLineItem.getSelectedRow());
             model.removeRow(tblLineItem.getSelectedRow());
-            POS.displayPoleMessage("Item Removed", "");
+            // POS.displayPoleMessage("Item Removed", "");
         }
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
@@ -480,7 +500,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tblLineItemKeyReleased
 
     private void btnTest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest1ActionPerformed
-        //hard code can delete when done
+        System.out.println("btnTest1ActionPerformed");
         String SKU = "F1";
         double itemCountryPrice;
 
@@ -491,20 +511,25 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
                 itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
                 //check arraylist if this lineitem exist, if have increase quantity, 
-                for (int i = 0; i < lineItems.size(); i++) {
-                    if (lineItems.get(i).getSKU().equals(SKU)) {
-                        int quantity = lineItems.get(i).getQuantity();
-                        lineItems.get(i).setQuantity(++quantity);
-                        isExist = true;
+                try {
+                    for (int i = 0; i < lineItems.size(); i++) {
+                        if (lineItems.get(i).getSKU().equals(SKU)) {
+                            int quantity = lineItems.get(i).getQuantity();
+                            lineItems.get(i).setQuantity(++quantity);
+                            isExist = true;
+                        }
                     }
+                } catch (NullPointerException ex) {
+                    lineItems = new ArrayList();
                 }
+
                 //else add new lineitem to the list
                 if (!isExist) {
                     lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
 
-                //done with adding to List, update the table
+                POS.transaction.setLineItems(lineItems);
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
@@ -516,7 +541,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTest1ActionPerformed
 
     private void btnTest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest2ActionPerformed
-        //hard code can delete when done
+        System.out.println("btnTest2ActionPerformed");
         String SKU = "F2";
         double itemCountryPrice;
 
@@ -524,22 +549,28 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         try {
             itemHelper = getItemBySKU(SKU);
             if (itemHelper != null) {
+
                 itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
                 //check arraylist if this lineitem exist, if have increase quantity, 
-                for (int i = 0; i < lineItems.size(); i++) {
-                    if (lineItems.get(i).getSKU().equals(SKU)) {
-                        int quantity = lineItems.get(i).getQuantity();
-                        lineItems.get(i).setQuantity(++quantity);
-                        isExist = true;
+                try {
+                    for (int i = 0; i < lineItems.size(); i++) {
+                        if (lineItems.get(i).getSKU().equals(SKU)) {
+                            int quantity = lineItems.get(i).getQuantity();
+                            lineItems.get(i).setQuantity(++quantity);
+                            isExist = true;
+                        }
                     }
+                } catch (NullPointerException ex) {
+                    lineItems = new ArrayList();
                 }
+
                 //else add new lineitem to the list
                 if (!isExist) {
                     lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
 
-                //done with adding to List, update the table
+                POS.transaction.setLineItems(lineItems);
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
@@ -560,14 +591,15 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lineItems = POS.transaction.getLineItems();
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
-        POS.displayPoleMessage("Items cleared", "");
+        //POS.displayPoleMessage("Items cleared", "");
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
+    private void btnPhoneSyncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhoneSyncActionPerformed
         QRCodeUI qrCodeUI = new QRCodeUI(this);
         qrCodeUI.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnCancel1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnPhoneSyncActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -606,11 +638,11 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnCancel1;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnLoyaltyCard;
     private javax.swing.JButton btnPay;
+    private javax.swing.JButton btnPhoneSync;
     private javax.swing.JButton btnTest1;
     private javax.swing.JButton btnTest2;
     private javax.swing.JButton btnUpdateQuantity;
@@ -641,12 +673,16 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             if (itemHelper != null) {
                 itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
                 //check arraylist if this lineitem exist, if have increase quantity, 
-                for (int i = 0; i < lineItems.size(); i++) {
-                    if (lineItems.get(i).getSKU().equals(SKU)) {
-                        int quantity = lineItems.get(i).getQuantity();
-                        lineItems.get(i).setQuantity(++quantity);
-                        isExist = true;
+                try {
+                    for (int i = 0; i < lineItems.size(); i++) {
+                        if (lineItems.get(i).getSKU().equals(SKU)) {
+                            int quantity = lineItems.get(i).getQuantity();
+                            lineItems.get(i).setQuantity(++quantity);
+                            isExist = true;
+                        }
                     }
+                } catch (NullPointerException ex) {
+                    lineItems = new ArrayList();
                 }
                 //else add new lineitem to the list
                 if (!isExist) {
@@ -654,7 +690,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                     lineItems.add(lineItem);
                 }
 
-                //done with adding to List, update the table
+                POS.transaction.setLineItems(lineItems);
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
@@ -730,7 +766,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
         String line2 = formatLabel + formatItemSubPrice;
 
-        POS.displayPoleMessage(line1, line2);
+        //POS.displayPoleMessage(line1, line2);
     }
 
     private static ItemHelper getItemBySKU(java.lang.String sku) {

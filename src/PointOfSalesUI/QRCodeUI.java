@@ -22,16 +22,6 @@ public class QRCodeUI extends javax.swing.JFrame {
     private SwingWorker<Void, Void> worker;
 
     public QRCodeUI() {
-        this.setSize(1280, 960);
-        cp = getContentPane();
-        cp.setBackground(Color.white);
-        generateQR();
-        pack();
-        initComponents();
-        centerFrame.add(_mainLabel);
-        dispose();
-        setUndecorated(true);
-        swingWorker();
     }
 
     public QRCodeUI(SelfCheckOutUI selfCheckOutUI) {
@@ -277,46 +267,39 @@ public class QRCodeUI extends javax.swing.JFrame {
                         memberEmail = getSyncWithPhoneStatus(date.getTime() + "");
 
                         if (count == 8) {
-                            lblMessage.setText("Synchronising for phone.");
+                            lblMessage.setText("     Waiting for phone.");
                         } else if (count > 8) {
                             if (currentDot == 3) {
-                                lblMessage.setText("Synchronising for phone.");
+                                lblMessage.setText("     Waiting for phone.");
                                 currentDot = 1;
                             } else if (currentDot == 1) {
-                                lblMessage.setText("Synchronising for phone..");
+                                lblMessage.setText("     Waiting for phone..");
                                 currentDot = 2;
                             } else if (currentDot == 2) {
-                                lblMessage.setText("Synchronising for phone...");
+                                lblMessage.setText("     Waiting for phone...");
                                 currentDot = 3;
                             }
                         }
                         if (memberEmail != null) {
-                            System.out.println("in");
 
                             List<ItemHelper> shoppingList = getMemberShoppingList(memberEmail);
-
-                            System.out.println("shoppingList>>" + shoppingList);
-                            System.out.println(">>>>>" + shoppingList.get(0).getItemSKU());
-
-                            //if coming from self service checkout
                             if (isSelfCheckoutUI) {
-                                //SelfCheckOutUI selfCheckOutUI = new SelfCheckOutUI(shoppingList);
-//                                selfCheckOutUI.setVisible(true);
-//                                worker.cancel(true);
-//                                dispose();
-
+                                lblMessage.setText("Synchronising for phone...");
+                                SelfCheckOutUI selfCheckOutUI = new SelfCheckOutUI(shoppingList);
+                                selfCheckOutUI.setVisible(true);
+                                worker.cancel(true);
+                                dispose();
                             } else {
-                                //if coming from cashier checkout
 
                             }
 
                             break;
 
                         }
-                        System.out.println("countdown" + count);
+                        //System.out.println("countdown" + count);
                     }
                 } catch (InterruptedException ex) {
-                    ex.printStackTrace();
+
                 }
                 return null;
             }
