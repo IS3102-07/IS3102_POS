@@ -282,11 +282,8 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
             if (true) {
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Please proceed<br>to the collection point.</td></tr>";
 
-                String converTimetoString = date.getTime() + "";
-                String queueNo = converTimetoString.substring(converTimetoString.length() - 4, converTimetoString.length());
-
                 Code128 barcode = new Code128();
-                barcode.setData(queueNo);
+                barcode.setData(date.getTime() + "");
                 barcode.setX(0.5f);
 
                 String filePath = new File("").getAbsolutePath();
@@ -296,6 +293,8 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                 System.out.println("");
                 receiptString1 += "<tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr>";
 
+                String converTimetoString = date.getTime() + "";
+                String queueNo = converTimetoString.substring(converTimetoString.length() - 4, converTimetoString.length());
                 receiptString1 += "<tr align='center'><td colspan=\"2\">" + queueNo + "</td></tr>";
             } else {
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Thank you for<br>Shopping at Island Furniture!</td></tr>";
