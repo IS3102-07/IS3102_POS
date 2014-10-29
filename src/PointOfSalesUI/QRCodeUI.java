@@ -290,7 +290,11 @@ public class QRCodeUI extends javax.swing.JFrame {
                                 worker.cancel(true);
                                 dispose();
                             } else {
-
+                                lblMessage.setText("Synchronising for phone...");
+                                CashierCheckoutUI cashierCheckoutUI = new CashierCheckoutUI(shoppingList);
+                                cashierCheckoutUI.setVisible(true);
+                                worker.cancel(true);
+                                dispose();
                             }
 
                             break;

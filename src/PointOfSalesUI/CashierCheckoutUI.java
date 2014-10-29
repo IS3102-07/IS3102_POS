@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
@@ -24,14 +25,50 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         cp = getContentPane();
         cp.setBackground(Color.white);
         SKUString = "";
-        POS.transaction = new Transaction();
-        lineItems = POS.transaction.getLineItems();
 
         if (POS.staffEmail != null && POS.name != null) {
             lblDuty.setText("Cashier  : " + POS.staffEmail);
             lblPOSName.setText(POS.name);
         }
 
+        try {
+            lineItems = POS.transaction.getLineItems();
+            refreshTable();
+        } catch (Exception ex) {
+            POS.transaction = new Transaction();
+        }
+        tblLineItem.requestFocus();
+    }
+
+    public CashierCheckoutUI(List<commoninfrastructure.accountmanagement.ItemHelper> shoppingList) {
+        initComponents();
+        this.setTitle("Island Furniture Cashier Checkout");
+        this.setSize(1280, 960);
+        cp = getContentPane();
+        cp.setBackground(Color.white);
+        SKUString = "";
+
+        if (POS.staffEmail != null && POS.name != null) {
+            lblDuty.setText("Cashier  : " + POS.staffEmail);
+            lblPOSName.setText(POS.name);
+        }
+
+        try {
+            lineItems = POS.transaction.getLineItems();
+            refreshTable();
+        } catch (Exception ex) {
+            POS.transaction = new Transaction();
+        }
+
+        for (int i = 0; i < shoppingList.size(); i++) {
+            for (int j = 0; j < shoppingList.get(i).getQty(); j++) {
+                submitSKU(shoppingList.get(i).getItemSKU());
+            }
+        }
+
+        refreshTable();
+        refreshTotalQuantityAndPrice();
+        tblLineItem.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -500,7 +537,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tblLineItemKeyReleased
 
     private void btnTest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest1ActionPerformed
-        //hard code can delete when done
+        System.out.println("btnTest1ActionPerformed");
         String SKU = "F1";
         double itemCountryPrice;
 
@@ -511,32 +548,37 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
 
                 itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
                 //check arraylist if this lineitem exist, if have increase quantity, 
-                for (int i = 0; i < lineItems.size(); i++) {
-                    if (lineItems.get(i).getSKU().equals(SKU)) {
-                        int quantity = lineItems.get(i).getQuantity();
-                        lineItems.get(i).setQuantity(++quantity);
-                        isExist = true;
+                try {
+                    for (int i = 0; i < lineItems.size(); i++) {
+                        if (lineItems.get(i).getSKU().equals(SKU)) {
+                            int quantity = lineItems.get(i).getQuantity();
+                            lineItems.get(i).setQuantity(++quantity);
+                            isExist = true;
+                        }
                     }
+                } catch (NullPointerException ex) {
+                    lineItems = new ArrayList();
                 }
+
                 //else add new lineitem to the list
                 if (!isExist) {
                     lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
 
-                //done with adding to List, update the table
+                POS.transaction.setLineItems(lineItems);
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
                 printLineItemPoleMessage(itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {
-            lblMessage.setText("Item not available for checkout, contact customer service for assistance.");
+            lblMessage.setText("Test 1:  Item not available for checkout, contact customer service for assistance.");
         }
     }//GEN-LAST:event_btnTest1ActionPerformed
 
     private void btnTest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest2ActionPerformed
-        //hard code can delete when done
+        System.out.println("btnTest2ActionPerformed");
         String SKU = "F2";
         double itemCountryPrice;
 
@@ -544,29 +586,35 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         try {
             itemHelper = getItemBySKU(SKU);
             if (itemHelper != null) {
+
                 itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
                 //check arraylist if this lineitem exist, if have increase quantity, 
-                for (int i = 0; i < lineItems.size(); i++) {
-                    if (lineItems.get(i).getSKU().equals(SKU)) {
-                        int quantity = lineItems.get(i).getQuantity();
-                        lineItems.get(i).setQuantity(++quantity);
-                        isExist = true;
+                try {
+                    for (int i = 0; i < lineItems.size(); i++) {
+                        if (lineItems.get(i).getSKU().equals(SKU)) {
+                            int quantity = lineItems.get(i).getQuantity();
+                            lineItems.get(i).setQuantity(++quantity);
+                            isExist = true;
+                        }
                     }
+                } catch (NullPointerException ex) {
+                    lineItems = new ArrayList();
                 }
+
                 //else add new lineitem to the list
                 if (!isExist) {
                     lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
                     lineItems.add(lineItem);
                 }
 
-                //done with adding to List, update the table
+                POS.transaction.setLineItems(lineItems);
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
                 printLineItemPoleMessage(itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {
-            lblMessage.setText("Item not available for checkout, contact customer service for assistance.");
+            lblMessage.setText("Test 2:  Item not available for checkout, contact customer service for assistance.");
         }
     }//GEN-LAST:event_btnTest2ActionPerformed
 
@@ -728,12 +776,16 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             if (itemHelper != null) {
                 itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
                 //check arraylist if this lineitem exist, if have increase quantity, 
-                for (int i = 0; i < lineItems.size(); i++) {
-                    if (lineItems.get(i).getSKU().equals(SKU)) {
-                        int quantity = lineItems.get(i).getQuantity();
-                        lineItems.get(i).setQuantity(++quantity);
-                        isExist = true;
+                try {
+                    for (int i = 0; i < lineItems.size(); i++) {
+                        if (lineItems.get(i).getSKU().equals(SKU)) {
+                            int quantity = lineItems.get(i).getQuantity();
+                            lineItems.get(i).setQuantity(++quantity);
+                            isExist = true;
+                        }
                     }
+                } catch (NullPointerException ex) {
+                    lineItems = new ArrayList();
                 }
                 //else add new lineitem to the list
                 if (!isExist) {
@@ -741,7 +793,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                     lineItems.add(lineItem);
                 }
 
-                //done with adding to List, update the table
+                POS.transaction.setLineItems(lineItems);
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
@@ -821,7 +873,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         POS.displayPoleMessage(line1, line2);
     }
 
-    private static PointOfSalesUI.ItemHelper getItemBySKU(java.lang.String sku) {
+    private static ItemHelper getItemBySKU(java.lang.String sku) {
         PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
         PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
         return port.getItemBySKU(sku);
