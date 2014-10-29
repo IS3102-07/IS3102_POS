@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JEditorPane;
 import javax.swing.SwingUtilities;
 
 public class PaymentUI_CreditCard extends javax.swing.JPanel {
@@ -290,7 +291,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                 barcode.drawBarcode(currentPath);
 
                 System.out.println("");
-                receiptString1 += "<tr align='center'><td colspan=\"2\"><img src='" + currentPath + "' ></td></tr>";
+                receiptString1 += "<tr align='center'><td colspan=\"2\"><img src='file:" + currentPath + "'></img></td></tr>";
 
                 String converTimetoString = date.getTime() + "";
                 String queueNo = converTimetoString.substring(converTimetoString.length() - 4, converTimetoString.length());
