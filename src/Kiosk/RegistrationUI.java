@@ -277,7 +277,7 @@ public class RegistrationUI extends javax.swing.JFrame {
 
         lblErrorMessage.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblErrorMessage.setForeground(new java.awt.Color(153, 0, 0));
-        lblErrorMessage.setText("Error Message");
+        lblErrorMessage.setText("  ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -400,6 +400,9 @@ public class RegistrationUI extends javax.swing.JFrame {
 
         if (txtEmail.getText().isEmpty()) {
             txtEmail.setBackground(Color.yellow);
+        } else if (!isValidEmailAddress(txtEmail.getText())) {
+            txtEmail.setBackground(Color.red);
+            lblErrorMessage.setText("Invalid Email");
         } else {
             txtEmail.setBackground(Color.white);
         }
@@ -423,10 +426,12 @@ public class RegistrationUI extends javax.swing.JFrame {
             if (!passText.equals(passText2)) {
                 txtPassword.setBackground(Color.red);
                 txtRePassword.setBackground(Color.red);
+                lblErrorMessage.setText("Password not match");
             }
         }
 
-        if (jXDOB.getDate() == null) {
+        if (jXDOB.getDate()
+                == null) {
             jXDOB.setBorder(new LineBorder(Color.YELLOW));
         } else {
             //check if date is later than today. if later no go
@@ -440,14 +445,14 @@ public class RegistrationUI extends javax.swing.JFrame {
 
         }
 
-        if (!txtName.getText().isEmpty() && !txtPhone.getText().isEmpty() && !txtAddress.getText().isEmpty() && !txtPostal.getText().isEmpty() && !txtCity.getText().isEmpty() && txtPassword.getPassword().length >= 0 && txtRePassword.getPassword().length >= 0) {
+        if (!txtName.getText()
+                .isEmpty() && !txtPhone.getText().isEmpty() && !txtAddress.getText().isEmpty() && !txtPostal.getText().isEmpty() && !txtCity.getText().isEmpty() && txtPassword.getPassword().length >= 0 && txtRePassword.getPassword().length >= 0) {
             try {
                 String passText = new String(txtPassword.getPassword());
 
                 GregorianCalendar c = new GregorianCalendar();
                 c.setTime(jXDOB.getDate());
                 XMLGregorianCalendar date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-
 
                 if (kioskRegisterMember(txtName.getText(), txtAddress.getText(), date2, txtEmail.getText(), txtPhone.getText(), txtCity.getText(), txtPostal.getText(), passText, Kiosk.storeID) != null) {
                     lblErrorMessage.setText("Account successfully created. Thank you.");
@@ -472,16 +477,21 @@ public class RegistrationUI extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrationUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrationUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrationUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrationUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrationUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrationUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrationUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrationUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -531,4 +541,10 @@ public class RegistrationUI extends javax.swing.JFrame {
         return port.kioskRegisterMember(name, address, dob, email, phone, city, zipCode, password, storeID);
     }
 
+    public boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
 }
