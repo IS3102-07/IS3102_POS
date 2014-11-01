@@ -228,7 +228,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
             //Header
             String filePath = new File("").getAbsolutePath();
-            String currentPath = filePath.concat("\\src\\images\\LKView.bmp");
+            String currentPath = filePath.concat("\\src\\images\\LKView.jpg");
 
             String receiptString1 = "<html><table><tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr><tr align='center'><td colspan=\"2\"><b>Island Furniture<br>"
                     + "" + POS.storeAddress + "<br>"
@@ -295,7 +295,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
                 String converTimetoString = date.getTime() + "";
                 String queueNo = converTimetoString.substring(converTimetoString.length() - 4, converTimetoString.length());
-                receiptString1 += "<tr align='center'><td colspan=\"2\">" + queueNo + "</td></tr>";
+                receiptString1 += "<tr align='center'><td colspan=\"2\">Queue No: " + queueNo + "</td></tr>";
             } else {
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Thank you for<br>Shopping at Island Furniture!</td></tr>";
             }
@@ -306,9 +306,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
-            if (printerJob.printDialog()) {
+            //if (printerJob.printDialog()) {
                 printerJob.print();
-            }
+            //}
         } catch (PrinterException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {

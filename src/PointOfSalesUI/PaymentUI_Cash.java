@@ -48,6 +48,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
         btnComplete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtReceiptMessage = new javax.swing.JTextPane();
+        btnBack = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -94,6 +95,16 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
         txtReceiptMessage.setContentType("text/html"); // NOI18N
         jScrollPane1.setViewportView(txtReceiptMessage);
 
+        btnBack.setBackground(new java.awt.Color(204, 204, 204));
+        btnBack.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        btnBack.setText("Back");
+        btnBack.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,17 +113,18 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConpute, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel3))
-                        .addGap(40, 40, 40)
+                            .addComponent(jLabel3)
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnConpute, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtChange)
-                            .addComponent(txtReceived, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtReceived, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -129,7 +141,9 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                     .addComponent(txtReceived, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(btnConpute)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnConpute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -138,7 +152,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(btnComplete)
-                        .addContainerGap(21, Short.MAX_VALUE))
+                        .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,8 +229,17 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCompleteActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        txtChange.setText("");
+        txtPrice.setText("");
+        txtReceived.setText("");
+        Window w = SwingUtilities.getWindowAncestor(PaymentUI_Cash.this);
+        w.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnComplete;
     private javax.swing.JButton btnConpute;
     private javax.swing.JLabel jLabel1;
@@ -231,7 +254,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
 
     private void printReceipt() {
         try {
-            Double margin = 1.0;
+            Double margin = 1.5;
             Integer lines = 50;
             PrinterJob printerJob = PrinterJob.getPrinterJob();
             PageFormat pageFormat = printerJob.defaultPage();
@@ -245,7 +268,10 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
             lineItems = POS.transaction.getLineItems();
 
             //Header
-            String receiptString1 = "<html><table><tr align='center'><td colspan=\"2\"><b>Island Furniture<br>"
+            String filePath = new File("").getAbsolutePath();
+            String currentPath = filePath.concat("\\src\\images\\LKView.jpg");
+
+            String receiptString1 = "<html><table><tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr><tr align='center'><td colspan=\"2\"><b>Island Furniture<br>"
                     + "" + POS.storeAddress + "<br>"
                     + "" + POS.storeCountry + " " + POS.storePostal + "</b></td></tr>";
 
@@ -301,8 +327,8 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                 barcode.setData(date.getTime() + "");
                 barcode.setX(0.5f);
 
-                String filePath = new File("").getAbsolutePath();
-                String currentPath = filePath.concat("\\src\\images\\barcode-code128.png");
+                filePath = new File("").getAbsolutePath();
+                currentPath = filePath.concat("\\src\\images\\barcode-code128.png");
                 barcode.drawBarcode(currentPath);
 
                 System.out.println("");
@@ -310,7 +336,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
 
                 String converTimetoString = date.getTime() + "";
                 String queueNo = converTimetoString.substring(converTimetoString.length() - 4, converTimetoString.length());
-                receiptString1 += "<tr align='center'><td colspan=\"2\">" + queueNo + "</td></tr>";
+                receiptString1 += "<tr align='center'><td colspan=\"2\">Queue No: " + queueNo + "</td></tr>";
             } else {
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Thank you for<br>Shopping at Island Furniture!</td></tr>";
             }
@@ -321,9 +347,9 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
 
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
-            // if (printerJob.printDialog()) {
+            //if (printerJob.printDialog()) {
             printerJob.print();
-            //     }
+            //}
         } catch (PrinterException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {

@@ -228,9 +228,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkout_background.png"))); // NOI18N
 
-        lblMessage.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblMessage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblMessage.setForeground(new java.awt.Color(153, 0, 0));
-        lblMessage.setText("Label");
+        lblMessage.setText(" ");
 
         btnCancel.setBackground(new java.awt.Color(153, 0, 0));
         btnCancel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -276,30 +276,31 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
                                 .addComponent(lblTotalItems)
                                 .addGap(0, 0, 0)
                                 .addComponent(jLabel7))
-                            .addComponent(lblMessage))
+                            .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDiscount, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblTotalPrice, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTotalNet, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(19, 19, 19))
+                            .addComponent(lblTotalNet, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -326,6 +327,27 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblTotalItems)
+                                .addComponent(jLabel7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(lblTotalPrice))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(lblDiscount))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(lblTotalNet)
+                                    .addComponent(lblMessage)))))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,26 +362,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                             .addComponent(btnPhoneSync, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnPay, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(lblTotalPrice)
-                            .addComponent(lblTotalItems)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(lblDiscount))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(lblMessage)
-                            .addComponent(lblTotalNet))))
-                .addGap(15, 15, 15))
+                        .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))))
         );
 
         pack();
@@ -379,6 +383,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             dialog.pack();
             dialog.setVisible(true);
             tblLineItem.requestFocus();
+            lblMessage.setText("");
 
             if (POS.transactionCompleted) {
                 DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
@@ -408,6 +413,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         dialog.pack();
         dialog.setVisible(true);
         tblLineItem.requestFocus();
+        lblMessage.setText("");
         refreshTotalQuantityAndPrice();
     }//GEN-LAST:event_btnLoyaltyCardActionPerformed
 
@@ -420,7 +426,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         }
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
-
+        lblMessage.setText("");
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
@@ -441,8 +447,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             dialog.setVisible(true);
             tblLineItem.requestFocus();
             refreshTotalQuantityAndPrice();
+            lblMessage.setText("");
         }
         tblLineItem.requestFocus();
+        lblMessage.setText("");
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnUpdateQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateQuantityActionPerformed
@@ -491,6 +499,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
         POS.displayPoleMessage("Items cleared", "");
+        lblMessage.setText("");
+        lblMessage.setText("");
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnPhoneSyncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhoneSyncActionPerformed
@@ -602,7 +612,9 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                 POS.transaction.setLineItems(lineItems);
                 refreshTable();
                 refreshTotalQuantityAndPrice();
+                lblMessage.setText("");
                 tblLineItem.requestFocus();
+
                 printLineItemPoleMessage(itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {

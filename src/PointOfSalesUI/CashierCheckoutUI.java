@@ -91,8 +91,6 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         btnHelp = new javax.swing.JButton();
         btnUpdateQuantity = new javax.swing.JButton();
         lblMessage = new javax.swing.JLabel();
-        btnTest1 = new javax.swing.JButton();
-        btnTest2 = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -231,23 +229,9 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             }
         });
 
-        lblMessage.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblMessage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblMessage.setForeground(new java.awt.Color(153, 0, 0));
-        lblMessage.setText("Label");
-
-        btnTest1.setText("test add F1");
-        btnTest1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTest1ActionPerformed(evt);
-            }
-        });
-
-        btnTest2.setText("test add F2");
-        btnTest2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTest2ActionPerformed(evt);
-            }
-        });
+        lblMessage.setText(" ");
 
         btnCancel.setBackground(new java.awt.Color(153, 0, 0));
         btnCancel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -356,20 +340,16 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblTotalItems)
                                 .addGap(0, 0, 0)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnTest1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnTest2))))
-                            .addComponent(lblMessage))
-                        .addGap(379, 379, 379)
+                                .addComponent(jLabel7))
+                            .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -432,21 +412,11 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTotalItems)
                             .addComponent(jLabel7))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(23, 23, 23))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(lblMessage)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnTest1)
-                                    .addComponent(btnTest2))
-                                .addGap(13, 13, 13))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -456,13 +426,13 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
-                                    .addComponent(lblDiscount))
-                                .addGap(32, 32, 32))
+                                    .addComponent(lblDiscount)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel5)
-                                    .addComponent(lblTotalNet))))
+                                    .addComponent(lblTotalNet)
+                                    .addComponent(lblMessage))))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -482,6 +452,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         dialog.pack();
         dialog.setVisible(true);
         tblLineItem.requestFocus();
+        lblMessage.setText("");
         refreshTotalQuantityAndPrice();
     }//GEN-LAST:event_btnLoyaltyCardActionPerformed
 
@@ -494,7 +465,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         }
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
-
+        lblMessage.setText("");
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
@@ -503,6 +474,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             //alertSupervisor(POS.name, POS.supervisorContactNo);
         }
         tblLineItem.requestFocus();
+        lblMessage.setText("");
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnUpdateQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateQuantityActionPerformed
@@ -521,9 +493,9 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         }
 
         refreshTotalQuantityAndPrice();
-        //printLineItemPoleMessage(lineItems.get(tblLineItem.getSelectedRow()).getDescription(), lineItems.get(tblLineItem.getSelectedRow()).getPrice());
+        printLineItemPoleMessage(lineItems.get(tblLineItem.getSelectedRow()).getDescription(), lineItems.get(tblLineItem.getSelectedRow()).getPrice());
         tblLineItem.requestFocus();
-
+        lblMessage.setText("");
     }//GEN-LAST:event_btnUpdateQuantityActionPerformed
 
 
@@ -540,112 +512,6 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblLineItemKeyReleased
 
-    private void btnTest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest1ActionPerformed
-        System.out.println("btnTest1ActionPerformed");
-        String SKU = "F1";
-        double itemCountryPrice;
-
-        boolean isExist = false;
-        try {
-            itemHelper = getItemBySKU(SKU);
-            if (itemHelper != null) {
-
-                itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
-
-                GregorianCalendar c = new GregorianCalendar();
-                c.setTime(new Date());
-                XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-
-                Double promotRate = getPromotionRate(SKU, POS.storeID, date);
-
-                if (promotRate != 0.0) {
-                    promotRate = (100 - promotRate) / 100;
-                    itemCountryPrice = itemCountryPrice * promotRate;
-                }
-
-                //check arraylist if this lineitem exist, if have increase quantity, 
-                try {
-                    for (int i = 0; i < lineItems.size(); i++) {
-                        if (lineItems.get(i).getSKU().equals(SKU)) {
-                            int quantity = lineItems.get(i).getQuantity();
-                            lineItems.get(i).setQuantity(++quantity);
-                            isExist = true;
-                        }
-                    }
-                } catch (NullPointerException ex) {
-                    lineItems = new ArrayList();
-                }
-
-                //else add new lineitem to the list
-                if (!isExist) {
-                    lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
-                    lineItems.add(lineItem);
-                }
-
-                POS.transaction.setLineItems(lineItems);
-                refreshTable();
-                refreshTotalQuantityAndPrice();
-                tblLineItem.requestFocus();
-                printLineItemPoleMessage(itemHelper.getItemName(), itemCountryPrice);
-            }
-        } catch (Exception ex) {
-            lblMessage.setText("Test 1:  Item not available for checkout, contact customer service for assistance.");
-        }
-    }//GEN-LAST:event_btnTest1ActionPerformed
-
-    private void btnTest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest2ActionPerformed
-        System.out.println("btnTest2ActionPerformed");
-        String SKU = "F2";
-        double itemCountryPrice;
-
-        boolean isExist = false;
-        try {
-            itemHelper = getItemBySKU(SKU);
-            if (itemHelper != null) {
-
-                itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
-
-                GregorianCalendar c = new GregorianCalendar();
-                c.setTime(new Date());
-                XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-
-                Double promotRate = getPromotionRate(SKU, POS.storeID, date);
-
-                if (promotRate != 0.0) {
-                    promotRate = (100 - promotRate) / 100;
-                    itemCountryPrice = itemCountryPrice * promotRate;
-                }
-
-                //check arraylist if this lineitem exist, if have increase quantity, 
-                try {
-                    for (int i = 0; i < lineItems.size(); i++) {
-                        if (lineItems.get(i).getSKU().equals(SKU)) {
-                            int quantity = lineItems.get(i).getQuantity();
-                            lineItems.get(i).setQuantity(++quantity);
-                            isExist = true;
-                        }
-                    }
-                } catch (NullPointerException ex) {
-                    lineItems = new ArrayList();
-                }
-
-                //else add new lineitem to the list
-                if (!isExist) {
-                    lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
-                    lineItems.add(lineItem);
-                }
-
-                POS.transaction.setLineItems(lineItems);
-                refreshTable();
-                refreshTotalQuantityAndPrice();
-                tblLineItem.requestFocus();
-                printLineItemPoleMessage(itemHelper.getItemName(), itemCountryPrice);
-            }
-        } catch (Exception ex) {
-            lblMessage.setText("Test 2:  Item not available for checkout, contact customer service for assistance.");
-        }
-    }//GEN-LAST:event_btnTest2ActionPerformed
-
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
         int rows = model.getRowCount();
@@ -656,6 +522,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         lineItems = POS.transaction.getLineItems();
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
+        lblMessage.setText("");
         POS.displayPoleMessage("Items cleared", "");
     }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -673,6 +540,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             dialog.pack();
             dialog.setVisible(true);
             tblLineItem.requestFocus();
+            lblMessage.setText("");
 
             if (POS.transactionCompleted) {
                 DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
@@ -702,6 +570,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             dialog.add(new PaymentUI_Cash());
             dialog.pack();
             dialog.setVisible(true);
+            lblMessage.setText("");
             tblLineItem.requestFocus();
 
             if (POS.transactionCompleted) {
@@ -726,6 +595,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
         QRCodeUI qrCodeUI = new QRCodeUI(this);
         qrCodeUI.setVisible(true);
+        lblMessage.setText("");
         this.setVisible(false);
     }//GEN-LAST:event_btnCancel1ActionPerformed
 
@@ -773,8 +643,6 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private javax.swing.JButton btnLoyaltyCard;
     private javax.swing.JButton btnPayCash;
     private javax.swing.JButton btnPayCredit;
-    private javax.swing.JButton btnTest1;
-    private javax.swing.JButton btnTest2;
     private javax.swing.JButton btnUpdateQuantity;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -836,6 +704,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                 refreshTable();
                 refreshTotalQuantityAndPrice();
                 tblLineItem.requestFocus();
+                lblMessage.setText("");
                 printLineItemPoleMessage(itemHelper.getItemName(), itemCountryPrice);
             }
         } catch (Exception ex) {
