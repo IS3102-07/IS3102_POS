@@ -6,31 +6,29 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class MapUI extends javax.swing.JFrame {
+public class StoreMapUI extends javax.swing.JFrame {
 
-    private ImageIcon _image1;
-    private JLabel _mainLabel;
     private Container cp;
 
-    public MapUI() {
+    public StoreMapUI() {
         this.setTitle("Island Furniture - Kiosk");
         this.setSize(1600, 900);
         cp = getContentPane();
         cp.setBackground(Color.white);
 
         String filePath = new File("").getAbsolutePath();
-
-        System.out.println(Kiosk.mapURL);
-
         String currentPath = filePath.concat("\\src\\images\\" + Kiosk.mapURL);
 
         System.out.println(currentPath);
 
-        _image1 = new ImageIcon(currentPath);
-        _mainLabel = new JLabel(_image1);
+        ImageIcon _image1 = new ImageIcon(currentPath);
+        JLabel _mainLabel = new JLabel(_image1);
         add(_mainLabel);
+        pack();
         initComponents();
         centerFrame.add(_mainLabel);
+        dispose();
+        setUndecorated(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -39,11 +37,10 @@ public class MapUI extends javax.swing.JFrame {
 
         pnlHader = new javax.swing.JPanel();
         lblHeader2 = new javax.swing.JLabel();
-        btnReturn = new javax.swing.JButton();
         centerFrame = new javax.swing.JPanel();
+        btnReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         pnlHader.setBackground(new java.awt.Color(153, 0, 0));
 
@@ -69,6 +66,19 @@ public class MapUI extends javax.swing.JFrame {
                 .addGap(45, 45, 45))
         );
 
+        centerFrame.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout centerFrameLayout = new javax.swing.GroupLayout(centerFrame);
+        centerFrame.setLayout(centerFrameLayout);
+        centerFrameLayout.setHorizontalGroup(
+            centerFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1148, Short.MAX_VALUE)
+        );
+        centerFrameLayout.setVerticalGroup(
+            centerFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 516, Short.MAX_VALUE)
+        );
+
         btnReturn.setBackground(new java.awt.Color(153, 0, 0));
         btnReturn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnReturn.setForeground(new java.awt.Color(255, 255, 255));
@@ -79,29 +89,18 @@ public class MapUI extends javax.swing.JFrame {
             }
         });
 
-        centerFrame.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout centerFrameLayout = new javax.swing.GroupLayout(centerFrame);
-        centerFrame.setLayout(centerFrameLayout);
-        centerFrameLayout.setHorizontalGroup(
-            centerFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1142, Short.MAX_VALUE)
-        );
-        centerFrameLayout.setVerticalGroup(
-            centerFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 514, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(centerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(197, 197, 197))
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(centerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(640, 640, 640)
+                .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -110,7 +109,7 @@ public class MapUI extends javax.swing.JFrame {
                 .addComponent(pnlHader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(centerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -138,20 +137,20 @@ public class MapUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MapUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StoreMapUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MapUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StoreMapUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MapUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StoreMapUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MapUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StoreMapUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MapUI().setVisible(true);
+                new StoreMapUI().setVisible(true);
             }
         });
     }
@@ -162,4 +161,5 @@ public class MapUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JPanel pnlHader;
     // End of variables declaration//GEN-END:variables
+
 }

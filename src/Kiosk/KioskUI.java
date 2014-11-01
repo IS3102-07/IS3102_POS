@@ -29,6 +29,7 @@ public class KioskUI extends javax.swing.JFrame {
         btnPay = new javax.swing.JButton();
         btnMembership = new javax.swing.JButton();
         btnMap = new javax.swing.JButton();
+        btnPromotion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -69,7 +70,7 @@ public class KioskUI extends javax.swing.JFrame {
         });
 
         btnMembership.setBackground(new java.awt.Color(255, 153, 51));
-        btnMembership.setFont(new java.awt.Font("Tahoma", 0, 52)); // NOI18N
+        btnMembership.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         btnMembership.setForeground(new java.awt.Color(255, 255, 255));
         btnMembership.setText("Membership Status");
         btnMembership.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -90,32 +91,47 @@ public class KioskUI extends javax.swing.JFrame {
             }
         });
 
+        btnPromotion.setBackground(new java.awt.Color(255, 153, 51));
+        btnPromotion.setFont(new java.awt.Font("Tahoma", 0, 52)); // NOI18N
+        btnPromotion.setForeground(new java.awt.Color(255, 255, 255));
+        btnPromotion.setText("Promotion");
+        btnPromotion.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnPromotion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPromotionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(170, 170, 170)
-                        .addComponent(btnMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnMap, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(88, 88, 88)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMembership, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addComponent(btnMap, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(btnPromotion, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlHader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                .addComponent(btnMap, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlHader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(356, 356, 356)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMap, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPromotion, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(btnMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(248, 248, 248))
         );
 
         pack();
@@ -134,10 +150,14 @@ public class KioskUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMembershipActionPerformed
 
     private void btnMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapActionPerformed
-        MapUI mapUI = new MapUI();
+        StoreMapUI mapUI = new StoreMapUI();
         mapUI.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnMapActionPerformed
+
+    private void btnPromotionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromotionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPromotionActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -174,6 +194,7 @@ public class KioskUI extends javax.swing.JFrame {
     private javax.swing.JButton btnMap;
     private javax.swing.JButton btnMembership;
     private javax.swing.JButton btnPay;
+    private javax.swing.JButton btnPromotion;
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JPanel pnlHader;
     // End of variables declaration//GEN-END:variables
