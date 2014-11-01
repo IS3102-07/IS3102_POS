@@ -279,7 +279,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
             //check if need to print barcode
             //            if (checkIfCustomerNeedToWaitForPicker(date.getTime() + "")) {
-            if (true) {
+            if (checkIfCustomerNeedToWaitForPicker(date.getTime() + "")) {
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Please proceed<br>to the collection point.</td></tr>";
 
                 Code128 barcode = new Code128();
@@ -312,7 +312,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         } catch (PrinterException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
-            Logger.getLogger(PaymentUI_CreditCard.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 

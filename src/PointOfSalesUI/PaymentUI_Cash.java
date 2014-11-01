@@ -1,16 +1,20 @@
 package PointOfSalesUI;
 
 import POS.*;
+import com.onbarcode.barcode.Code128;
 import java.awt.Color;
 import java.awt.Window;
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
 public class PaymentUI_Cash extends javax.swing.JPanel {
@@ -288,8 +292,34 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
             //POS name and cashier
             receiptString1 += "" + POS.name + "<br>"
                     + "Cashier: " + POS.staffName + "</td></tr>"
-                    + "<tr><td colspan=\"2\">------------------------------------------</td></tr>"
-                    + "<tr align='center'><td colspan=\"2\">Thank you for <br>Shopping at Island Furniture!</td></tr></table></html>";
+                    + "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
+
+            //check if need to print barcode
+            //            if (checkIfCustomerNeedToWaitForPicker(date.getTime() + "")) {
+            if (checkIfCustomerNeedToWaitForPicker(date.getTime() + "")) {
+                receiptString1 += "<tr align='center'><td colspan=\"2\">Please proceed<br>to the collection point.</td></tr>";
+
+                Code128 barcode = new Code128();
+                barcode.setData(date.getTime() + "");
+                barcode.setX(0.5f);
+
+                String filePath = new File("").getAbsolutePath();
+                String currentPath = filePath.concat("\\src\\images\\barcode-code128.png");
+                barcode.drawBarcode(currentPath);
+
+                System.out.println("");
+                receiptString1 += "<tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr>";
+
+                String converTimetoString = date.getTime() + "";
+                String queueNo = converTimetoString.substring(converTimetoString.length() - 4, converTimetoString.length());
+                receiptString1 += "<tr align='center'><td colspan=\"2\">" + queueNo + "</td></tr>";
+            } else {
+                receiptString1 += "<tr align='center'><td colspan=\"2\">Thank you for<br>Shopping at Island Furniture!</td></tr>";
+            }
+
+            receiptString1 += "</table></html>";
+
+            System.out.println(receiptString1);
 
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
@@ -298,6 +328,8 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
             }
         } catch (PrinterException ex) {
             ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -305,6 +337,12 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
         PointOfSalesUI.SalesReportingWebService_Service service = new PointOfSalesUI.SalesReportingWebService_Service();
         PointOfSalesUI.SalesReportingWebService port = service.getSalesReportingWebServicePort();
         return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchasedSKU, itemsPurchasedQty, amountDue, amountPaid, amountPaidUsingPoints, loyaltyPointsDeducted, memberEmail, receiptNo);
+    }
+
+    private static Boolean checkIfCustomerNeedToWaitForPicker(java.lang.String receiptNo) {
+        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
+        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+        return port.checkIfCustomerNeedToWaitForPicker(receiptNo);
     }
 
 }
