@@ -7,7 +7,7 @@
 <xs:complexType name="getPromotionRate">
 <xs:sequence>
 <xs:element name="SKU" type="xs:string" minOccurs="0"/>
-<xs:element name="countryID" type="xs:long" minOccurs="0"/>
+<xs:element name="storeID" type="xs:long" minOccurs="0"/>
 <xs:element name="date" type="xs:dateTime" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>

@@ -828,10 +828,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         return port.alertSupervisor(posName, supervisorTel);
     }
 
-    private static Double getPromotionRate(java.lang.String sku, java.lang.Long countryID, javax.xml.datatype.XMLGregorianCalendar date) {
+    private static Double getPromotionRate(java.lang.String sku, java.lang.Long storeID, javax.xml.datatype.XMLGregorianCalendar date) {
         PointOfSalesUI.PromotionalSalesWebService_Service service = new PointOfSalesUI.PromotionalSalesWebService_Service();
         PointOfSalesUI.PromotionalSalesWebService port = service.getPromotionalSalesWebServicePort();
-        return port.getPromotionRate(sku, countryID, date);
+        return port.getPromotionRate(sku, storeID, date);
     }
 
 }
