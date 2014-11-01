@@ -234,14 +234,14 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lblMessage.setForeground(new java.awt.Color(153, 0, 0));
         lblMessage.setText("Label");
 
-        btnTest1.setText("test add F1");
+        btnTest1.setText("CB1");
         btnTest1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTest1ActionPerformed(evt);
             }
         });
 
-        btnTest2.setText("test add F2");
+        btnTest2.setText("RP1");
         btnTest2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTest2ActionPerformed(evt);
@@ -505,7 +505,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
     private void btnTest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest1ActionPerformed
         System.out.println("btnTest1ActionPerformed");
-        String SKU = "F1";
+        String SKU = "CB1";
         double itemCountryPrice;
 
         boolean isExist = false;
@@ -559,7 +559,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
     private void btnTest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest2ActionPerformed
         System.out.println("btnTest2ActionPerformed");
-        String SKU = "F2";
+        String SKU = "CP1";
         double itemCountryPrice;
 
         boolean isExist = false;

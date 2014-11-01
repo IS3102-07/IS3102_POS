@@ -406,7 +406,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnTest1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="test add F1"/>
+        <Property name="text" type="java.lang.String" value="CB1"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTest1ActionPerformed"/>
@@ -414,7 +414,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnTest2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="test add F2"/>
+        <Property name="text" type="java.lang.String" value="RP1"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTest2ActionPerformed"/>
