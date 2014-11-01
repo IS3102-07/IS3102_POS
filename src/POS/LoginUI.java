@@ -263,7 +263,8 @@ public class LoginUI extends javax.swing.JFrame {
             } catch (NumberFormatException ex) {
                 lblMessage.setText("Invalid Phone number");
             } catch (Exception ex) {
-                lblMessage.setText("Error: Unable to connect to server.");
+                ex.printStackTrace();
+                lblMessage.setText("Error: Unable to initalize POS.");
             }
         }
 
