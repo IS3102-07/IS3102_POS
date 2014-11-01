@@ -84,8 +84,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         btnUpdateQuantity = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblMessage = new javax.swing.JLabel();
-        btnTest1 = new javax.swing.JButton();
-        btnTest2 = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -234,20 +232,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lblMessage.setForeground(new java.awt.Color(153, 0, 0));
         lblMessage.setText("Label");
 
-        btnTest1.setText("CB1");
-        btnTest1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTest1ActionPerformed(evt);
-            }
-        });
-
-        btnTest2.setText("RP1");
-        btnTest2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTest2ActionPerformed(evt);
-            }
-        });
-
         btnCancel.setBackground(new java.awt.Color(153, 0, 0));
         btnCancel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
@@ -292,21 +276,16 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnTest1)
-                                .addGap(5, 5, 5)
-                                .addComponent(btnTest2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblMessage))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
                                 .addComponent(lblTotalItems)
                                 .addGap(0, 0, 0)
-                                .addComponent(jLabel7)))
+                                .addComponent(jLabel7))
+                            .addComponent(lblMessage))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -378,8 +357,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(btnTest1)
-                            .addComponent(btnTest2)
                             .addComponent(lblMessage)
                             .addComponent(lblTotalNet))))
                 .addGap(15, 15, 15))
@@ -503,113 +480,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblLineItemKeyReleased
 
-    private void btnTest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest1ActionPerformed
-        System.out.println("btnTest1ActionPerformed");
-        String SKU = "CB1";
-        double itemCountryPrice;
-
-        boolean isExist = false;
-        try {
-            itemHelper = getItemBySKU(SKU);
-            if (itemHelper != null) {
-
-                itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
-
-                GregorianCalendar c = new GregorianCalendar();
-                c.setTime(new Date());
-                XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-
-                Double promotRate = getPromotionRate(SKU, POS.storeID, date);
-
-                if (promotRate != 0.0) {
-                    promotRate = (100 - promotRate) / 100;
-                    itemCountryPrice = itemCountryPrice * promotRate;
-                }
-
-                //    private static Double getPromotionRate(java.lang.String sku, java.lang.Long countryID, javax.xml.datatype.XMLGregorianCalendar date) {
-                //check arraylist if this lineitem exist, if have increase quantity, 
-                try {
-                    for (int i = 0; i < lineItems.size(); i++) {
-                        if (lineItems.get(i).getSKU().equals(SKU)) {
-                            int quantity = lineItems.get(i).getQuantity();
-                            lineItems.get(i).setQuantity(++quantity);
-                            isExist = true;
-                        }
-                    }
-                } catch (NullPointerException ex) {
-                    lineItems = new ArrayList();
-                }
-
-                //else add new lineitem to the list
-                if (!isExist) {
-                    lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
-                    lineItems.add(lineItem);
-                }
-
-                POS.transaction.setLineItems(lineItems);
-                refreshTable();
-                refreshTotalQuantityAndPrice();
-                tblLineItem.requestFocus();
-                printLineItemPoleMessage(itemHelper.getItemName(), itemCountryPrice);
-            }
-        } catch (Exception ex) {
-            lblMessage.setText("Test 1:  Item not available for checkout, contact customer service for assistance.");
-        }
-    }//GEN-LAST:event_btnTest1ActionPerformed
-
-    private void btnTest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest2ActionPerformed
-        System.out.println("btnTest2ActionPerformed");
-        String SKU = "CP1";
-        double itemCountryPrice;
-
-        boolean isExist = false;
-        try {
-            itemHelper = getItemBySKU(SKU);
-            if (itemHelper != null) {
-
-                itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
-
-                GregorianCalendar c = new GregorianCalendar();
-                c.setTime(new Date());
-                XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-
-                Double promotRate = getPromotionRate(SKU, POS.storeID, date);
-
-                if (promotRate != 0.0) {
-                    promotRate = (100 - promotRate) / 100;
-                    itemCountryPrice = itemCountryPrice * promotRate;
-                }
-
-                //check arraylist if this lineitem exist, if have increase quantity, 
-                try {
-                    for (int i = 0; i < lineItems.size(); i++) {
-                        if (lineItems.get(i).getSKU().equals(SKU)) {
-                            int quantity = lineItems.get(i).getQuantity();
-                            lineItems.get(i).setQuantity(++quantity);
-                            isExist = true;
-                        }
-                    }
-                } catch (NullPointerException ex) {
-                    lineItems = new ArrayList();
-                }
-
-                //else add new lineitem to the list
-                if (!isExist) {
-                    lineItem = new LineItem(SKU, itemHelper.getItemName(), itemCountryPrice, 1);
-                    lineItems.add(lineItem);
-                }
-
-                POS.transaction.setLineItems(lineItems);
-                refreshTable();
-                refreshTotalQuantityAndPrice();
-                tblLineItem.requestFocus();
-                printLineItemPoleMessage(itemHelper.getItemName(), itemCountryPrice);
-            }
-        } catch (Exception ex) {
-            lblMessage.setText("Test 2:  Item not available for checkout, contact customer service for assistance.");
-        }
-    }//GEN-LAST:event_btnTest2ActionPerformed
-
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblLineItem.getModel();
         int rows = model.getRowCount();
@@ -672,8 +542,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private javax.swing.JButton btnLoyaltyCard;
     private javax.swing.JButton btnPay;
     private javax.swing.JButton btnPhoneSync;
-    private javax.swing.JButton btnTest1;
-    private javax.swing.JButton btnTest2;
     private javax.swing.JButton btnUpdateQuantity;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

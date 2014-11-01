@@ -181,10 +181,10 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                 }
             }
         }
-        if (prevKeyCode==16 && evt.getKeyCode()==47) {
-        checkOut();
+        if (prevKeyCode == 16 && evt.getKeyCode() == 47) {
+            checkOut();
         }
-        prevKeyCode=evt.getKeyCode();
+        prevKeyCode = evt.getKeyCode();
 
 
     }//GEN-LAST:event_txtCreditNumberKeyReleased
@@ -213,7 +213,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
     private void printReceipt() {
         try {
-            Double margin = 1.0;
+            Double margin = 1.5;
             Integer lines = 50;
             PrinterJob printerJob = PrinterJob.getPrinterJob();
             PageFormat pageFormat = printerJob.defaultPage();
@@ -227,7 +227,10 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
             lineItems = POS.transaction.getLineItems();
 
             //Header
-            String receiptString1 = "<html><table><tr align='center'><td colspan=\"2\"><b>Island Furniture<br>"
+            String filePath = new File("").getAbsolutePath();
+            String currentPath = filePath.concat("\\src\\images\\LKView.bmp");
+
+            String receiptString1 = "<html><table><tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr><tr align='center'><td colspan=\"2\"><b>Island Furniture<br>"
                     + "" + POS.storeAddress + "<br>"
                     + "" + POS.storeCountry + " " + POS.storePostal + "</b></td></tr>";
 
@@ -283,8 +286,8 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                 barcode.setData(date.getTime() + "");
                 barcode.setX(0.5f);
 
-                String filePath = new File("").getAbsolutePath();
-                String currentPath = filePath.concat("\\src\\images\\barcode-code128.png");
+                filePath = new File("").getAbsolutePath();
+                currentPath = filePath.concat("\\src\\images\\barcode-code128.png");
                 barcode.drawBarcode(currentPath);
 
                 System.out.println("");
@@ -303,9 +306,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
-          //  if (printerJob.printDialog()) {
+            if (printerJob.printDialog()) {
                 printerJob.print();
-         //   }
+            }
         } catch (PrinterException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
