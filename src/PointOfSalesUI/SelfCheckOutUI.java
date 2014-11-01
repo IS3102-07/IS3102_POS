@@ -6,9 +6,13 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 public class SelfCheckOutUI extends javax.swing.JFrame {
 
@@ -510,6 +514,19 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             if (itemHelper != null) {
 
                 itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
+
+                GregorianCalendar c = new GregorianCalendar();
+                c.setTime(new Date());
+                XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+
+                Double promotRate = getPromotionRate(SKU, POS.storeID, date);
+
+                if (promotRate != 0.0) {
+                    promotRate = (100 - promotRate) / 100;
+                    itemCountryPrice = itemCountryPrice * promotRate;
+                }
+
+                //    private static Double getPromotionRate(java.lang.String sku, java.lang.Long countryID, javax.xml.datatype.XMLGregorianCalendar date) {
                 //check arraylist if this lineitem exist, if have increase quantity, 
                 try {
                     for (int i = 0; i < lineItems.size(); i++) {
@@ -551,6 +568,18 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             if (itemHelper != null) {
 
                 itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
+
+                GregorianCalendar c = new GregorianCalendar();
+                c.setTime(new Date());
+                XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+
+                Double promotRate = getPromotionRate(SKU, POS.storeID, date);
+
+                if (promotRate != 0.0) {
+                    promotRate = (100 - promotRate) / 100;
+                    itemCountryPrice = itemCountryPrice * promotRate;
+                }
+
                 //check arraylist if this lineitem exist, if have increase quantity, 
                 try {
                     for (int i = 0; i < lineItems.size(); i++) {
@@ -672,6 +701,18 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             itemHelper = getItemBySKU(SKU);
             if (itemHelper != null) {
                 itemCountryPrice = getItemCountryPriceBySKU(SKU, POS.storeID);
+
+                GregorianCalendar c = new GregorianCalendar();
+                c.setTime(new Date());
+                XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+
+                Double promotRate = getPromotionRate(SKU, POS.storeID, date);
+
+                if (promotRate != 0.0) {
+                    promotRate = (100 - promotRate) / 100;
+                    itemCountryPrice = itemCountryPrice * promotRate;
+                }
+
                 //check arraylist if this lineitem exist, if have increase quantity, 
                 try {
                     for (int i = 0; i < lineItems.size(); i++) {
@@ -785,6 +826,12 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
         PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
         return port.alertSupervisor(posName, supervisorTel);
+    }
+
+    private static Double getPromotionRate(java.lang.String sku, java.lang.Long countryID, javax.xml.datatype.XMLGregorianCalendar date) {
+        PointOfSalesUI.PromotionalSalesWebService_Service service = new PointOfSalesUI.PromotionalSalesWebService_Service();
+        PointOfSalesUI.PromotionalSalesWebService port = service.getPromotionalSalesWebServicePort();
+        return port.getPromotionRate(sku, countryID, date);
     }
 
 }

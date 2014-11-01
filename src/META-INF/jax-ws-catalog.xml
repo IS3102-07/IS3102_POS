@@ -8,4 +8,6 @@
     <system systemId="http://hq-server:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?xsd=1" uri="wsdl/hq-server_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.xsd_1.xsd"/>
     <system systemId="http://hq-server:8080/AccountManagementWebService/AccountManagementWebService?wsdl" uri="wsdl/hq-server_8080/AccountManagementWebService/AccountManagementWebService.wsdl"/>
     <system systemId="http://hq-server:8080/AccountManagementWebService/AccountManagementWebService?xsd=1" uri="wsdl/hq-server_8080/AccountManagementWebService/AccountManagementWebService.xsd_1.xsd"/>
+    <system systemId="http://hq-server:8080/PromotionalSalesWebService/PromotionalSalesWebService?wsdl" uri="wsdl/hq-server_8080/PromotionalSalesWebService/PromotionalSalesWebService.wsdl"/>
+    <system systemId="http://hq-server:8080/PromotionalSalesWebService/PromotionalSalesWebService?xsd=1" uri="wsdl/hq-server_8080/PromotionalSalesWebService/PromotionalSalesWebService.xsd_1.xsd"/>
 </catalog>
