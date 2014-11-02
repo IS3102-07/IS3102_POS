@@ -307,7 +307,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
             //if (printerJob.printDialog()) {
-                printerJob.print();
+            printerJob.print();
             //}
         } catch (PrinterException ex) {
             ex.printStackTrace();
@@ -328,7 +328,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         }
 
         int pointsDeducting = 0;
-        if (POS.transaction.getDiscountRate() == 10) {
+        if (POS.transaction.getDiscountRate() == 5) {
+            pointsDeducting = 50;
+        } else if (POS.transaction.getDiscountRate() == 10) {
             pointsDeducting = 150;
         } else if (POS.transaction.getDiscountRate() == 15) {
             pointsDeducting = 300;
