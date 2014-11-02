@@ -26,6 +26,7 @@ public class QRCodeUI extends javax.swing.JFrame {
 
     public QRCodeUI(SelfCheckOutUI selfCheckOutUI) {
         isSelfCheckoutUI = true;
+        dispose();
         this.setSize(1280, 960);
         cp = getContentPane();
         cp.setBackground(Color.white);
@@ -40,6 +41,7 @@ public class QRCodeUI extends javax.swing.JFrame {
 
     public QRCodeUI(CashierCheckoutUI cashierCheckoutUI) {
         isSelfCheckoutUI = false;
+        dispose();
         this.setSize(1280, 960);
         cp = getContentPane();
         cp.setBackground(Color.white);
@@ -169,7 +171,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,6 +258,7 @@ public class QRCodeUI extends javax.swing.JFrame {
             protected Void doInBackground() throws Exception {
                 try {
                     String memberEmail = getSyncWithPhoneStatus(date.getTime() + "");
+                    System.out.println("starting memberEmail: " + memberEmail + " | " + date.getTime());
                     int count = 0;
                     int currentDot = 1;
                     while (memberEmail == null) {
@@ -263,6 +266,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                         count++;
                         memberEmail = getSyncWithPhoneStatus(date.getTime() + "");
 
+                        System.out.println("memberEmail: " + memberEmail + " | " + date.getTime());
                         if (count == 8) {
                             lblMessage.setText("     Waiting for phone.");
                         } else if (count > 8) {
