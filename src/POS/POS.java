@@ -27,6 +27,8 @@ public class POS {
     public static String tmpTime;
     public static boolean transactionCompleted;
 
+    public static boolean qrIsPressed = false;
+
     public static String PORT_Pole;
 
     public static OutputStream partnerPoleDisplayOutputStream;

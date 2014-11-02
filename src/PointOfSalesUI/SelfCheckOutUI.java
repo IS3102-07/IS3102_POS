@@ -21,9 +21,12 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private LineItem lineItem;
     private String SKUString;
     private ItemHelper itemHelper;
+    private QRCodeUI qrCodeUI;
 
     public SelfCheckOutUI() {
         initComponents();
+        qrCodeUI = new QRCodeUI(this);
+        qrCodeUI.setVisible(false);
         this.setTitle("Island Furniture Self Checkout");
         this.setSize(1280, 960);
         cp = getContentPane();
@@ -500,13 +503,13 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         tblLineItem.requestFocus();
         POS.displayPoleMessage("Items cleared", "");
         lblMessage.setText("");
-        lblMessage.setText("");
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnPhoneSyncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhoneSyncActionPerformed
-        QRCodeUI qrCodeUI = new QRCodeUI(this);
+        qrCodeUI.generateQR();
+        POS.qrIsPressed = true;
+        qrCodeUI.swingWorker();
         qrCodeUI.setVisible(true);
-        this.setVisible(false);
         dispose();
     }//GEN-LAST:event_btnPhoneSyncActionPerformed
 

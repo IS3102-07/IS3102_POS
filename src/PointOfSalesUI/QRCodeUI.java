@@ -1,5 +1,6 @@
 package PointOfSalesUI;
 
+import POS.*;
 import com.onbarcode.barcode.IBarcode;
 import com.onbarcode.barcode.QRCode;
 import commoninfrastructure.accountmanagement.ItemHelper;
@@ -14,26 +15,27 @@ import javax.swing.SwingWorker;
 
 public class QRCodeUI extends javax.swing.JFrame {
 
-    private ImageIcon _image1;
-    private JLabel _mainLabel;
+    private JLabel imageLabel;
     private Container cp;
     private boolean isSelfCheckoutUI;
     private Date date;
     private SwingWorker<Void, Void> worker;
+    private SelfCheckOutUI selfCheckOutUI;
+    private CashierCheckoutUI cashierCheckoutUI;
 
     public QRCodeUI() {
-        isSelfCheckoutUI = true;
-        generateQR();
     }
 
     public QRCodeUI(SelfCheckOutUI selfCheckOutUI) {
+        this.selfCheckOutUI = selfCheckOutUI;
         isSelfCheckoutUI = true;
-        generateQR();
+        initFrame();
     }
 
     public QRCodeUI(CashierCheckoutUI cashierCheckoutUI) {
+        this.cashierCheckoutUI = cashierCheckoutUI;
         isSelfCheckoutUI = false;
-        generateQR();
+        initFrame();
     }
 
     @SuppressWarnings("unchecked")
@@ -42,7 +44,7 @@ public class QRCodeUI extends javax.swing.JFrame {
 
         pnlHader = new javax.swing.JPanel();
         lblHeader1 = new javax.swing.JLabel();
-        centerFrame = new javax.swing.JPanel();
+        qrCodePanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -75,18 +77,18 @@ public class QRCodeUI extends javax.swing.JFrame {
                 .addGap(45, 45, 45))
         );
 
-        centerFrame.setBackground(new java.awt.Color(255, 255, 255));
-        centerFrame.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
-        centerFrame.setName(""); // NOI18N
+        qrCodePanel.setBackground(new java.awt.Color(255, 255, 255));
+        qrCodePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
+        qrCodePanel.setName(""); // NOI18N
 
-        javax.swing.GroupLayout centerFrameLayout = new javax.swing.GroupLayout(centerFrame);
-        centerFrame.setLayout(centerFrameLayout);
-        centerFrameLayout.setHorizontalGroup(
-            centerFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout qrCodePanelLayout = new javax.swing.GroupLayout(qrCodePanel);
+        qrCodePanel.setLayout(qrCodePanelLayout);
+        qrCodePanelLayout.setHorizontalGroup(
+            qrCodePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 192, Short.MAX_VALUE)
         );
-        centerFrameLayout.setVerticalGroup(
-            centerFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        qrCodePanelLayout.setVerticalGroup(
+            qrCodePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 192, Short.MAX_VALUE)
         );
 
@@ -143,7 +145,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(26, 26, 26))
-                            .addComponent(centerFrame, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(qrCodePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(535, 535, 535))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,7 +164,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                 .addGap(149, 149, 149)
                 .addComponent(jLabel3)
                 .addGap(31, 31, 31)
-                .addComponent(centerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(qrCodePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(lblMessage)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
@@ -177,18 +179,18 @@ public class QRCodeUI extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         if (isSelfCheckoutUI) {
-            SelfCheckOutUI selfCheckOutUI = new SelfCheckOutUI();
             selfCheckOutUI.setVisible(true);
-            worker.cancel(true);
-            centerFrame.removeAll();
-            dispose();
+            this.setVisible(false);
         } else {
-            CashierCheckoutUI cashierCheckoutUI = new CashierCheckoutUI();
             cashierCheckoutUI.setVisible(true);
-            worker.cancel(true);
-            centerFrame.removeAll();
-            dispose();
+            this.setVisible(false);
         }
+
+        if (POS.qrIsPressed) {
+            worker.cancel(true);
+            POS.qrIsPressed = false;
+        }
+
     }//GEN-LAST:event_btnBackActionPerformed
 
     public static void main(String args[]) {
@@ -226,31 +228,31 @@ public class QRCodeUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JPanel centerFrame;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblHeader1;
     private javax.swing.JLabel lblMessage;
     private javax.swing.JPanel pnlHader;
+    private javax.swing.JPanel qrCodePanel;
     // End of variables declaration//GEN-END:variables
 
-    private void swingWorker() {
+    public void swingWorker() {
         worker = new SwingWorker<Void, Void>() {
 
             @Override
             protected Void doInBackground() throws Exception {
                 try {
                     String memberEmail = getSyncWithPhoneStatus(date.getTime() + "");
-                    System.out.println("starting memberEmail: " + memberEmail + " | " + date.getTime());
+                    System.out.println("memberEmail: " + memberEmail + " | " + date.getTime());
                     int count = 0;
                     int currentDot = 1;
                     while (memberEmail == null) {
+                        //System.out.println("swingWorker memberEmail: " + memberEmail + " | " + date.getTime());
                         Thread.sleep(250);
                         count++;
                         memberEmail = getSyncWithPhoneStatus(date.getTime() + "");
 
-                        System.out.println("memberEmail: " + memberEmail + " | " + date.getTime());
                         if (count == 8) {
                             lblMessage.setText("     Waiting for phone.");
                         } else if (count > 8) {
@@ -266,29 +268,25 @@ public class QRCodeUI extends javax.swing.JFrame {
                             }
                         }
                         if (memberEmail != null) {
-
                             List<ItemHelper> shoppingList = getMemberShoppingList(memberEmail);
                             if (isSelfCheckoutUI) {
                                 lblMessage.setText("Synchronising for phone...");
                                 SelfCheckOutUI selfCheckOutUI = new SelfCheckOutUI(shoppingList);
                                 selfCheckOutUI.setVisible(true);
-                                worker.cancel(true);
-                                dispose();
                             } else {
                                 lblMessage.setText("Synchronising for phone...");
                                 CashierCheckoutUI cashierCheckoutUI = new CashierCheckoutUI(shoppingList);
                                 cashierCheckoutUI.setVisible(true);
-                                worker.cancel(true);
-                                dispose();
                             }
-
+                            worker.cancel(true);
+                            setVisible(false);
+                            POS.qrIsPressed = false;
                             break;
-
                         }
                         //System.out.println("countdown" + count);
                     }
                 } catch (InterruptedException ex) {
-
+                    //ignore
                 }
                 return null;
             }
@@ -296,17 +294,35 @@ public class QRCodeUI extends javax.swing.JFrame {
         worker.execute();
     }
 
-    private void generateQR() {
+    private void initFrame() {
+        this.setSize(1280, 960);
+        cp = getContentPane();
+        cp.setBackground(Color.white);
+
+        String filePath = new File("").getAbsolutePath();
+        String currentPath = filePath.concat("\\src\\images\\qrcode.gif");
+
+        imageLabel = new JLabel(new ImageIcon(currentPath));
+        add(imageLabel);
+        pack();
+
+        initComponents();
+        qrCodePanel.add(imageLabel);
+        dispose();
+        setUndecorated(true);
+    }
+
+    public void generateQR() {
         try {
-            this.setSize(1280, 960);
-            cp = getContentPane();
-            cp.setBackground(Color.white);
+
+            revalidate();
+            repaint();
+            dispose();
 
             QRCode barcode = new QRCode();
-
             date = new Date();
-            System.out.println(date.getTime());
-            createSyncWithPhoneRequest(date.getTime() + "");
+            System.out.println("generateQR  " + date.getTime());
+            //createSyncWithPhoneRequest(date.getTime() + "");
 
             barcode.setData(date.getTime() + "");
             barcode.setDataMode(QRCode.M_AUTO);
@@ -323,20 +339,8 @@ public class QRCodeUI extends javax.swing.JFrame {
 
             String filePath = new File("").getAbsolutePath();
             String currentPath = filePath.concat("\\src\\images\\qrcode.gif");
+
             barcode.drawBarcode(currentPath);
-
-            _image1 = new ImageIcon(currentPath);
-            _mainLabel = new JLabel(_image1);
-            add(_mainLabel);
-            centerFrame.revalidate();
-
-            pack();
-            initComponents();
-            centerFrame.add(_mainLabel);
-            dispose();
-            setUndecorated(true);
-            swingWorker();
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
