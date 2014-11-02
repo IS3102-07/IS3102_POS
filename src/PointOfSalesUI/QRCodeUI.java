@@ -22,36 +22,18 @@ public class QRCodeUI extends javax.swing.JFrame {
     private SwingWorker<Void, Void> worker;
 
     public QRCodeUI() {
+        isSelfCheckoutUI = true;
+        generateQR();
     }
 
     public QRCodeUI(SelfCheckOutUI selfCheckOutUI) {
         isSelfCheckoutUI = true;
-        dispose();
-        this.setSize(1280, 960);
-        cp = getContentPane();
-        cp.setBackground(Color.white);
         generateQR();
-        pack();
-        initComponents();
-        centerFrame.add(_mainLabel);
-        dispose();
-        setUndecorated(true);
-        swingWorker();
     }
 
     public QRCodeUI(CashierCheckoutUI cashierCheckoutUI) {
         isSelfCheckoutUI = false;
-        dispose();
-        this.setSize(1280, 960);
-        cp = getContentPane();
-        cp.setBackground(Color.white);
         generateQR();
-        pack();
-        initComponents();
-        centerFrame.add(_mainLabel);
-        dispose();
-        setUndecorated(true);
-        swingWorker();
     }
 
     @SuppressWarnings("unchecked")
@@ -198,11 +180,13 @@ public class QRCodeUI extends javax.swing.JFrame {
             SelfCheckOutUI selfCheckOutUI = new SelfCheckOutUI();
             selfCheckOutUI.setVisible(true);
             worker.cancel(true);
+            centerFrame.removeAll();
             dispose();
         } else {
             CashierCheckoutUI cashierCheckoutUI = new CashierCheckoutUI();
             cashierCheckoutUI.setVisible(true);
             worker.cancel(true);
+            centerFrame.removeAll();
             dispose();
         }
     }//GEN-LAST:event_btnBackActionPerformed
@@ -314,6 +298,10 @@ public class QRCodeUI extends javax.swing.JFrame {
 
     private void generateQR() {
         try {
+            this.setSize(1280, 960);
+            cp = getContentPane();
+            cp.setBackground(Color.white);
+
             QRCode barcode = new QRCode();
 
             date = new Date();
@@ -340,6 +328,14 @@ public class QRCodeUI extends javax.swing.JFrame {
             _image1 = new ImageIcon(currentPath);
             _mainLabel = new JLabel(_image1);
             add(_mainLabel);
+            centerFrame.revalidate();
+
+            pack();
+            initComponents();
+            centerFrame.add(_mainLabel);
+            dispose();
+            setUndecorated(true);
+            swingWorker();
 
         } catch (Exception ex) {
             ex.printStackTrace();
