@@ -386,6 +386,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         btn20.setEnabled(false);
     }//GEN-LAST:event_btnClearActionPerformed
 
+            
     private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
         lblRedeem.setText(150 + "");
         pointsDeducting = 150;

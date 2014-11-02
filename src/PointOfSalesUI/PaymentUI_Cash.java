@@ -182,7 +182,9 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                 }
 
                 int pointsDeducting = 0;
-                if (POS.transaction.getDiscountRate() == 10) {
+                if (POS.transaction.getDiscountRate() == 5) {
+                    pointsDeducting = 50;
+                } else if (POS.transaction.getDiscountRate() == 10) {
                     pointsDeducting = 150;
                 } else if (POS.transaction.getDiscountRate() == 15) {
                     pointsDeducting = 300;
