@@ -52,6 +52,7 @@ public class QRCodeUI extends javax.swing.JFrame {
         lblMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         pnlHader.setBackground(new java.awt.Color(153, 0, 0));
 
@@ -95,7 +96,7 @@ public class QRCodeUI extends javax.swing.JFrame {
         qrCodePanelLayout.setVerticalGroup(
             qrCodePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(qrCodePanelLayout.createSequentialGroup()
-                .addComponent(lblQRcode, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblQRcode, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -159,8 +160,8 @@ public class QRCodeUI extends javax.swing.JFrame {
                         .addGap(551, 551, 551)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(452, 452, 452)
-                        .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(482, 482, 482)
+                        .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -173,7 +174,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                 .addComponent(qrCodePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(lblMessage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -208,6 +209,7 @@ public class QRCodeUI extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     public static void main(String args[]) {
@@ -301,7 +303,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                             POS.qrIsPressed = false;
 
                             String line2 = String.format("%20s", "synchronized!");
-                            POS.displayPoleMessage("Mobile Sync", line2);
+                            //POS.displayPoleMessage("Mobile Sync", line2);
 
                             try {
                                 String currentPath = filePath.concat("\\src\\images\\" + POS.qrImageName + ".png");
@@ -314,6 +316,8 @@ public class QRCodeUI extends javax.swing.JFrame {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
+
+                            dispose();
                             break;
                         }
                     }
@@ -331,8 +335,8 @@ public class QRCodeUI extends javax.swing.JFrame {
         cp = getContentPane();
         cp.setBackground(Color.white);
         initComponents();
-        dispose();
-        setUndecorated(true);
+//        dispose();
+//        setUndecorated(true);
     }
 
     public void generateQR() {
@@ -357,6 +361,7 @@ public class QRCodeUI extends javax.swing.JFrame {
 
             POS.qrImageName = date.getTime() + "";
             String currentPath = filePath.concat("\\src\\images\\" + POS.qrImageName + ".png");
+            System.out.println(currentPath);
             barcode.drawBarcode(currentPath);
 
             lblQRcode.setIcon(new ImageIcon(currentPath));

@@ -25,8 +25,6 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
     public SelfCheckOutUI() {
         initComponents();
-        qrCodeUI = new QRCodeUI(this);
-        qrCodeUI.setVisible(false);
         this.setTitle("Island Furniture Self Checkout");
         this.setSize(1280, 960);
         cp = getContentPane();
@@ -425,7 +423,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         if (tblLineItem.getSelectedRow() != -1 && tblLineItem.getRowCount() != 0) {
             lineItems.remove(tblLineItem.getSelectedRow());
             model.removeRow(tblLineItem.getSelectedRow());
-            POS.displayPoleMessage("Item Removed", "");
+            // POS.displayPoleMessage("Item Removed", "");
         }
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
@@ -501,14 +499,15 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lineItems = POS.transaction.getLineItems();
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
-        POS.displayPoleMessage("Items cleared", "");
+        // POS.displayPoleMessage("Items cleared", "");
         lblMessage.setText("");
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnPhoneSyncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhoneSyncActionPerformed
+        qrCodeUI = new QRCodeUI(this);
+        qrCodeUI.swingWorker();
         qrCodeUI.generateQR();
         POS.qrIsPressed = true;
-        qrCodeUI.swingWorker();
         qrCodeUI.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnPhoneSyncActionPerformed
@@ -690,7 +689,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
         String line2 = formatLabel + formatItemSubPrice;
 
-        POS.displayPoleMessage(line1, line2);
+        // POS.displayPoleMessage(line1, line2);
     }
 
     private static ItemHelper getItemBySKU(java.lang.String sku) {
