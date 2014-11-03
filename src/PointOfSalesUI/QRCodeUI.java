@@ -207,7 +207,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                 System.out.println(file.getName() + " Delete operation is failed.!");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         dispose();
     }//GEN-LAST:event_btnBackActionPerformed
@@ -314,7 +314,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                                     System.out.println(file.getName() + " Delete operation is failed.!");
                                 }
                             } catch (Exception e) {
-                                e.printStackTrace();
+                                //e.printStackTrace();
                             }
 
                             dispose();
@@ -368,7 +368,7 @@ public class QRCodeUI extends javax.swing.JFrame {
             revalidate();
             repaint();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
         }
     }
 
