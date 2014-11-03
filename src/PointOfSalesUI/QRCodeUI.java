@@ -10,12 +10,10 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.SwingWorker;
 
 public class QRCodeUI extends javax.swing.JFrame {
 
-    private JLabel imageLabel;
     private Container cp;
     private boolean isSelfCheckoutUI;
     private Date date;
@@ -45,6 +43,7 @@ public class QRCodeUI extends javax.swing.JFrame {
         pnlHader = new javax.swing.JPanel();
         lblHeader1 = new javax.swing.JLabel();
         qrCodePanel = new javax.swing.JPanel();
+        lblQRcode = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -81,15 +80,17 @@ public class QRCodeUI extends javax.swing.JFrame {
         qrCodePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
         qrCodePanel.setName(""); // NOI18N
 
+        lblQRcode.setText(" ");
+
         javax.swing.GroupLayout qrCodePanelLayout = new javax.swing.GroupLayout(qrCodePanel);
         qrCodePanel.setLayout(qrCodePanelLayout);
         qrCodePanelLayout.setHorizontalGroup(
             qrCodePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 192, Short.MAX_VALUE)
+            .addComponent(lblQRcode, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
         );
         qrCodePanelLayout.setVerticalGroup(
             qrCodePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 192, Short.MAX_VALUE)
+            .addComponent(lblQRcode, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
         );
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -137,25 +138,24 @@ public class QRCodeUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(26, 26, 26))
-                            .addComponent(qrCodePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(535, 535, 535))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(454, 454, 454))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(561, 561, 561))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(454, 454, 454))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(qrCodePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(540, 540, 540))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,11 +163,11 @@ public class QRCodeUI extends javax.swing.JFrame {
                 .addComponent(pnlHader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(149, 149, 149)
                 .addComponent(jLabel3)
-                .addGap(31, 31, 31)
+                .addGap(34, 34, 34)
                 .addComponent(qrCodePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(42, 42, 42)
                 .addComponent(lblMessage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -191,6 +191,16 @@ public class QRCodeUI extends javax.swing.JFrame {
             POS.qrIsPressed = false;
         }
 
+        try {
+            File file = new File("C:\\QRcode\\" + POS.qrImageName + ".png");
+            if (file.delete()) {
+                System.out.println(file.getName() + " is deleted!");
+            } else {
+                System.out.println(file.getName() + " Delete operation is failed.!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
     public static void main(String args[]) {
@@ -233,6 +243,7 @@ public class QRCodeUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblHeader1;
     private javax.swing.JLabel lblMessage;
+    private javax.swing.JLabel lblQRcode;
     private javax.swing.JPanel pnlHader;
     private javax.swing.JPanel qrCodePanel;
     // End of variables declaration//GEN-END:variables
@@ -281,6 +292,16 @@ public class QRCodeUI extends javax.swing.JFrame {
                             worker.cancel(true);
                             setVisible(false);
                             POS.qrIsPressed = false;
+                            try {
+                                File file = new File("C:\\QRcode\\" + POS.qrImageName + ".png");
+                                if (file.delete()) {
+                                    System.out.println(file.getName() + " is deleted!");
+                                } else {
+                                    System.out.println(file.getName() + " Delete operation is failed.!");
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             break;
                         }
                         //System.out.println("countdown" + count);
@@ -298,31 +319,17 @@ public class QRCodeUI extends javax.swing.JFrame {
         this.setSize(1280, 960);
         cp = getContentPane();
         cp.setBackground(Color.white);
-
-        String filePath = new File("").getAbsolutePath();
-        String currentPath = filePath.concat("\\src\\images\\qrcode.gif");
-
-        imageLabel = new JLabel(new ImageIcon(currentPath));
-        add(imageLabel);
-        pack();
-
         initComponents();
-        qrCodePanel.add(imageLabel);
         dispose();
         setUndecorated(true);
     }
 
     public void generateQR() {
         try {
-
-            revalidate();
-            repaint();
-            dispose();
-
             QRCode barcode = new QRCode();
             date = new Date();
             System.out.println("generateQR  " + date.getTime());
-            //createSyncWithPhoneRequest(date.getTime() + "");
+            createSyncWithPhoneRequest(date.getTime() + "");
 
             barcode.setData(date.getTime() + "");
             barcode.setDataMode(QRCode.M_AUTO);
@@ -337,10 +344,13 @@ public class QRCodeUI extends javax.swing.JFrame {
             barcode.setBottomMargin(10f);
             barcode.setResolution(72);
 
-            String filePath = new File("").getAbsolutePath();
-            String currentPath = filePath.concat("\\src\\images\\qrcode.gif");
+            POS.qrImageName = date.getTime() + "";
+            String qrPath = "C:\\QRcode\\" + POS.qrImageName + ".png";
+            barcode.drawBarcode(qrPath);
 
-            barcode.drawBarcode(currentPath);
+            lblQRcode.setIcon(new ImageIcon(qrPath));
+            revalidate();
+            repaint();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -28,6 +28,7 @@ public class POS {
     public static boolean transactionCompleted;
 
     public static boolean qrIsPressed = false;
+    public static String qrImageName = "";
 
     public static String PORT_Pole;
 
