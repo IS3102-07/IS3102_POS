@@ -156,7 +156,9 @@ public class KioskUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMapActionPerformed
 
     private void btnPromotionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromotionActionPerformed
-        // TODO add your handling code here:
+        PromotionUI promotionUI = new PromotionUI();
+        promotionUI.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnPromotionActionPerformed
 
     public static void main(String args[]) {
