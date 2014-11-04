@@ -158,36 +158,34 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
     private int prevKeyCode = 0;
 
     private void txtCreditNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditNumberKeyReleased
-        Boolean startCreditCardMSR1 = false;
-        String kbValue = txtCreditNumber.getText();
-        if (!startCreditCardMSR1) {
-            if (kbValue != null && kbValue.trim().length() > 0) {
-                kbValue = kbValue.trim();
-
-                if (kbValue.length() >= 2) {
-                    if (kbValue.startsWith("%B")) {
-                        startCreditCardMSR1 = true;
-                    }
-                }
-            }
-        }
-        if (startCreditCardMSR1) {
-            if (kbValue != null && kbValue.trim().length() > 0) {
-                kbValue = kbValue.trim();
-
-                if (kbValue.length() >= 2) {
-                    if (kbValue.endsWith("?")) {
-                        startCreditCardMSR1 = false;
-                    }
-                }
-            }
-        }
-        if (prevKeyCode == 16 && evt.getKeyCode() == 47) {
+//        Boolean startCreditCardMSR1 = false;
+//        String kbValue = txtCreditNumber.getText();
+//        if (!startCreditCardMSR1) {
+//            if (kbValue != null && kbValue.trim().length() > 0) {
+//                kbValue = kbValue.trim();
+//
+//                if (kbValue.length() >= 2) {
+//                    if (kbValue.startsWith("%B")) {
+//                        startCreditCardMSR1 = true;
+//                    }
+//                }
+//            }
+//        }
+//        if (startCreditCardMSR1) {
+//            if (kbValue != null && kbValue.trim().length() > 0) {
+//                kbValue = kbValue.trim();
+//
+//                if (kbValue.length() >= 2) {
+//                    if (kbValue.endsWith("?")) {
+//                        startCreditCardMSR1 = false;
+//                    }
+//                }
+//            }
+//        }
+//        if (prevKeyCode == 16 && evt.getKeyCode() == 47) {
             checkOut();
-        }
-        prevKeyCode = evt.getKeyCode();
-
-
+    //    }
+   //     prevKeyCode = evt.getKeyCode();
     }//GEN-LAST:event_txtCreditNumberKeyReleased
 
 
@@ -308,7 +306,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
             //if (printerJob.printDialog()) {
-            printerJob.print();
+            //printerJob.print();
             //}
         } catch (PrinterException ex) {
             ex.printStackTrace();
