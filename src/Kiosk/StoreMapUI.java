@@ -2,6 +2,10 @@ package Kiosk;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -10,22 +14,26 @@ public class StoreMapUI extends javax.swing.JFrame {
     private Container cp;
 
     public StoreMapUI() {
-        this.setTitle("Island Furniture - Kiosk");
-        this.setSize(1600, 900);
-        cp = getContentPane();
-        cp.setBackground(Color.white);
+        try {
+            this.setTitle("Island Furniture - Kiosk");
+            this.setSize(1600, 900);
+            cp = getContentPane();
+            cp.setBackground(Color.white);
 
-        String imagePath = getStoreMap(Kiosk.storeID);
-        System.out.println(imagePath);
+            String imagePath = getStoreMap(Kiosk.storeID);
+            URL url = new URL("http://192.168.1.200:8080" + imagePath);
 
-        ImageIcon _image1 = new ImageIcon(imagePath);
-        JLabel _mainLabel = new JLabel(_image1);
-        add(_mainLabel);
-        pack();
-        initComponents();
-        centerFrame.add(_mainLabel);
-        dispose();
-        setUndecorated(true);
+            ImageIcon _image1 = new ImageIcon(url);
+            JLabel _mainLabel = new JLabel(_image1);
+            add(_mainLabel);
+            pack();
+            initComponents();
+            centerFrame.add(_mainLabel);
+            dispose();
+            setUndecorated(true);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(StoreMapUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")

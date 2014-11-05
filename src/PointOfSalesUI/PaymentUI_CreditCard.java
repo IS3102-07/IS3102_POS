@@ -214,10 +214,6 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
     private javax.swing.JTextPane txtReceiptMessage;
     // End of variables declaration//GEN-END:variables
 
-    private void logging() {
-
-    }
-
     private void printReceipt() {
         try {
             Double margin = 1.5;

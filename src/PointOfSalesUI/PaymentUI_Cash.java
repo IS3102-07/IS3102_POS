@@ -8,7 +8,10 @@ import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +22,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
 
     private List<LineItem> lineItems;
     private Date date;
+    final String filePath = new File("").getAbsolutePath();
 
     public PaymentUI_Cash() {
         initComponents();
@@ -164,6 +168,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
         try {
             double received = Integer.parseInt(txtReceived.getText());
             double change = POS.transaction.getNetPrice() - received;
+            String skuQty = "";
 
             if (received < POS.transaction.getNetPrice()) {
                 txtReceived.setForeground(Color.red);
@@ -179,6 +184,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                 for (int i = 0; i < lineItems.size(); i++) {
                     SKUs.add(lineItems.get(i).getSKU());
                     quantities.add(lineItems.get(i).getQuantity());
+                    skuQty += lineItems.get(i).getSKU() + "," + lineItems.get(i).getQuantity() + ",";
                 }
 
                 int pointsDeducting = 0;
@@ -202,6 +208,13 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                         date = new Date();
 
                         submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.name, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail, date.getTime() + "");
+
+                        //sales log
+                        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath.concat("\\src\\POS\\saleslog.txt"), true)));
+                        String salesLog = date.toString() + "," + POS.staffEmail + "," + POS.name + "," + memberEmail + "," + POS.transaction.getTotalPrice() + "," + POS.transaction.getNetPrice() + "," + POS.transaction.getDiscountPrice() + "," + pointsDeducting + ",";
+                        salesLog += skuQty;
+                        out.println(salesLog);
+                        out.close();
 
                         //print receipt
                         printReceipt();

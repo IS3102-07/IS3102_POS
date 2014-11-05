@@ -2,7 +2,11 @@ package Kiosk;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 public class PromotionUI extends javax.swing.JFrame {
@@ -10,20 +14,27 @@ public class PromotionUI extends javax.swing.JFrame {
     private Container cp;
     private int currentPos;
     private List<String> images;
+    private URL url;
 
     public PromotionUI() {
-        this.setTitle("Island Furniture - Kiosk");
-        this.setSize(1600, 900);
-        cp = getContentPane();
-        cp.setBackground(Color.white);
-        initComponents();
-        dispose();
-        setUndecorated(true);
+        try {
+            this.setTitle("Island Furniture - Kiosk");
+            this.setSize(1600, 900);
+            cp = getContentPane();
+            cp.setBackground(Color.white);
+            initComponents();
+            dispose();
+            setUndecorated(true);
 
-        //call webservice
-        images = getActivePromotionInCountry(Kiosk.storeID);
-        currentPos = 0;
-        imageLabel.setIcon(new ImageIcon("" + images.get(currentPos)));
+            //call webservice
+            images = getActivePromotionInCountry(Kiosk.storeID);
+            currentPos = 0;
+
+            url = new URL("http://192.168.1.200:8080" + images.get(currentPos));
+            imageLabel.setIcon(new ImageIcon(url));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(PromotionUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -131,19 +142,19 @@ public class PromotionUI extends javax.swing.JFrame {
                 .addComponent(pnlHader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(40, 40, 40)
                         .addComponent(centerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGap(30, 30, 30)
                         .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(210, 210, 210)
                         .addComponent(lblRight)
-                        .addContainerGap(328, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblLeft)
-                .addGap(328, 328, 328))
+                .addGap(327, 327, 327))
         );
 
         pack();
@@ -156,20 +167,31 @@ public class PromotionUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void lblRightMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRightMousePressed
-        if (currentPos < images.size()) {
-            currentPos++;
-            imageLabel.setIcon(new ImageIcon("" + images.get(currentPos)));
-            revalidate();
-            repaint();
+        if (currentPos < images.size() - 1) {
+            try {
+                currentPos++;
+                url = new URL("http://192.168.1.200:8080" + images.get(currentPos));
+                                System.out.println(url);
+                imageLabel.setIcon(new ImageIcon(url));
+                revalidate();
+                repaint();
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(PromotionUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_lblRightMousePressed
 
     private void lblLeftMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLeftMousePressed
         if (currentPos > 0) {
-            currentPos--;
-            imageLabel.setIcon(new ImageIcon("" + images.get(currentPos)));
-            revalidate();
-            repaint();
+            try {
+                currentPos--;
+                url = new URL("http://192.168.1.200:8080" + images.get(currentPos));
+                imageLabel.setIcon(new ImageIcon(url));
+                revalidate();
+                repaint();
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(PromotionUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_lblLeftMousePressed
 
