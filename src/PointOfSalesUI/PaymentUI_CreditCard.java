@@ -9,7 +9,10 @@ import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,6 +24,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
     private List<LineItem> lineItems;
     private Date date;
+    final String filePath = new File("").getAbsolutePath();
 
     public PaymentUI_CreditCard() {
         initComponents();
@@ -183,9 +187,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 //            }
 //        }
 //        if (prevKeyCode == 16 && evt.getKeyCode() == 47) {
-            checkOut();
-    //    }
-   //     prevKeyCode = evt.getKeyCode();
+        checkOut();
+        //    }
+        //     prevKeyCode = evt.getKeyCode();
     }//GEN-LAST:event_txtCreditNumberKeyReleased
 
 
@@ -209,6 +213,10 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
     private javax.swing.JTextField txtCreditNumber;
     private javax.swing.JTextPane txtReceiptMessage;
     // End of variables declaration//GEN-END:variables
+
+    private void logging() {
+
+    }
 
     private void printReceipt() {
         try {
@@ -319,11 +327,13 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         POS.transactionCompleted = true;
         List<String> SKUs = new ArrayList();
         List<Integer> quantities = new ArrayList();
+        String skuQty = "";
 
         lineItems = POS.transaction.getLineItems();
         for (int i = 0; i < lineItems.size(); i++) {
             SKUs.add(lineItems.get(i).getSKU());
             quantities.add(lineItems.get(i).getQuantity());
+            skuQty += lineItems.get(i).getSKU() + "," + lineItems.get(i).getQuantity() + ",";
         }
 
         int pointsDeducting = 0;
@@ -347,6 +357,13 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                 date = new Date();
 
                 submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.name, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail, date.getTime() + "");
+
+                //sales log
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath.concat("\\src\\POS\\saleslog.txt"), true)));
+                String salesLog = date.toString() + "," + POS.staffEmail + "," + POS.name + "," + memberEmail + "," + POS.transaction.getTotalPrice() + "," + POS.transaction.getNetPrice() + "," + POS.transaction.getDiscountPrice() + "," + pointsDeducting + ",";
+                salesLog += skuQty;
+                out.println(salesLog);
+                out.close();
 
                 //print receipt
                 printReceipt();
@@ -374,7 +391,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
         //reset
         String line2 = String.format("%20s", "Island Furniture!");
-       // POS.displayPoleMessage("Welcome to", line2);
+        // POS.displayPoleMessage("Welcome to", line2);
 
         txtCreditNumber.setText("");
         Window w = SwingUtilities.getWindowAncestor(PaymentUI_CreditCard.this);

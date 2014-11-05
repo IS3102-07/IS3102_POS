@@ -210,7 +210,6 @@ public class KioskUI extends javax.swing.JFrame {
             while ((data = br.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(data, ",");
                 Kiosk.storeID = Long.parseLong(st.nextToken());
-                Kiosk.mapURL = st.nextToken();
             }
 
             br.close();

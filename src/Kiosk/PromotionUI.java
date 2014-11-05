@@ -2,14 +2,14 @@ package Kiosk;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 
 public class PromotionUI extends javax.swing.JFrame {
 
     private Container cp;
     private int currentPos;
-    private ArrayList images;
+    private List<String> images;
 
     public PromotionUI() {
         this.setTitle("Island Furniture - Kiosk");
@@ -21,7 +21,7 @@ public class PromotionUI extends javax.swing.JFrame {
         setUndecorated(true);
 
         //call webservice
-        // images = 
+        images = getActivePromotionInCountry(Kiosk.storeID);
         currentPos = 0;
         imageLabel.setIcon(new ImageIcon("" + images.get(currentPos)));
     }
@@ -220,5 +220,11 @@ public class PromotionUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblRight;
     private javax.swing.JPanel pnlHader;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<java.lang.String> getActivePromotionInCountry(java.lang.Long storeID) {
+        PointOfSalesUI.PromotionalSalesWebService_Service service = new PointOfSalesUI.PromotionalSalesWebService_Service();
+        PointOfSalesUI.PromotionalSalesWebService port = service.getPromotionalSalesWebServicePort();
+        return port.getActivePromotionInCountry(storeID);
+    }
 
 }

@@ -2,7 +2,6 @@ package Kiosk;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -16,12 +15,10 @@ public class StoreMapUI extends javax.swing.JFrame {
         cp = getContentPane();
         cp.setBackground(Color.white);
 
-        String filePath = new File("").getAbsolutePath();
-        String currentPath = filePath.concat("\\src\\images\\" + Kiosk.mapURL);
+        String imagePath = getStoreMap(Kiosk.storeID);
+        System.out.println(imagePath);
 
-        System.out.println(currentPath);
-
-        ImageIcon _image1 = new ImageIcon(currentPath);
+        ImageIcon _image1 = new ImageIcon(imagePath);
         JLabel _mainLabel = new JLabel(_image1);
         add(_mainLabel);
         pack();
@@ -161,5 +158,11 @@ public class StoreMapUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JPanel pnlHader;
     // End of variables declaration//GEN-END:variables
+
+    private static String getStoreMap(java.lang.Long storeID) {
+        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
+        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+        return port.getStoreMap(storeID);
+    }
 
 }

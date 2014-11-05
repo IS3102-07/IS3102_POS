@@ -24,6 +24,10 @@
 
 <xs:element name="getStoreAddressByIDResponse" type="tns:getStoreAddressByIDResponse"/>
 
+<xs:element name="getStoreMap" type="tns:getStoreMap"/>
+
+<xs:element name="getStoreMapResponse" type="tns:getStoreMapResponse"/>
+
 <xs:complexType name="alertSupervisor">
 <xs:sequence>
 <xs:element name="posName" type="xs:string" minOccurs="0"/>
@@ -71,6 +75,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getStoreAddressByID">
+<xs:sequence>
+<xs:element name="storeID" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getStoreAddressByIDResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="checkIfCustomerNeedToWaitForPicker">
 <xs:sequence>
 <xs:element name="receiptNo" type="xs:string" minOccurs="0"/>
@@ -83,15 +99,15 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getStoreAddressByID">
+<xs:complexType name="getStoreMap">
 <xs:sequence>
 <xs:element name="storeID" type="xs:long" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getStoreAddressByIDResponse">
+<xs:complexType name="getStoreMapResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

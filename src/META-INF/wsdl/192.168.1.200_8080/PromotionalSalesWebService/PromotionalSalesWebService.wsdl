@@ -10,15 +10,34 @@
 <message name="getPromotionRateResponse">
 <part name="parameters" element="tns:getPromotionRateResponse"/>
 </message>
+<message name="getActivePromotionInCountry">
+<part name="parameters" element="tns:getActivePromotionInCountry"/>
+</message>
+<message name="getActivePromotionInCountryResponse">
+<part name="parameters" element="tns:getActivePromotionInCountryResponse"/>
+</message>
 <portType name="PromotionalSalesWebService">
 <operation name="getPromotionRate">
 <input wsam:Action="http://PromotionalSales.OperationalCRM/PromotionalSalesWebService/getPromotionRateRequest" message="tns:getPromotionRate"/>
 <output wsam:Action="http://PromotionalSales.OperationalCRM/PromotionalSalesWebService/getPromotionRateResponse" message="tns:getPromotionRateResponse"/>
 </operation>
+<operation name="getActivePromotionInCountry">
+<input wsam:Action="http://PromotionalSales.OperationalCRM/PromotionalSalesWebService/getActivePromotionInCountryRequest" message="tns:getActivePromotionInCountry"/>
+<output wsam:Action="http://PromotionalSales.OperationalCRM/PromotionalSalesWebService/getActivePromotionInCountryResponse" message="tns:getActivePromotionInCountryResponse"/>
+</operation>
 </portType>
 <binding name="PromotionalSalesWebServicePortBinding" type="tns:PromotionalSalesWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 <operation name="getPromotionRate">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getActivePromotionInCountry">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
