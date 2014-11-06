@@ -111,3 +111,4 @@ Thu Nov 06 22:06:50 SGT 2014,cashier1@if.com, Counter 1,,10.0,10.0,0.0,0,RP_CF_7
 Thu Nov 06 22:06:55 SGT 2014,cashier1@if.com, Counter 1,,5.0,5.0,0.0,0,RP_BR_17,1,
 Thu Nov 06 22:07:02 SGT 2014,cashier1@if.com, Counter 1,,7.0,7.0,0.0,0,K_MI_04,1,
 Thu Nov 06 22:07:07 SGT 2014,cashier1@if.com, Counter 1,,2.0,2.0,0.0,0,K_MI_17,1,
+Thu Nov 06 23:30:22 SGT 2014,cashier1@if.com, Counter 1,,5400.0,5400.0,0.0,0,F_BM_21,20,
