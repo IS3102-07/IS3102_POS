@@ -2,6 +2,7 @@ package POS;
 
 import PointOfSalesUI.CashierCheckoutUI;
 import PointOfSalesUI.SelfCheckOutUI;
+import PointOfSalesUI.TestUI;
 import java.awt.Color;
 import java.awt.Container;
 
@@ -17,7 +18,7 @@ public class MainMenuUI extends javax.swing.JFrame {
 
         //POS.initPartnerPoleDisplay();
         String line2 = String.format("%20s", "Island Furniture!");
-       // POS.displayPoleMessage("Welcome to", line2);
+        // POS.displayPoleMessage("Welcome to", line2);
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +33,7 @@ public class MainMenuUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblSelfCheckOut = new javax.swing.JLabel();
         lblCashierCheckout = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -115,20 +117,34 @@ public class MainMenuUI extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Developer mode");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlHader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(241, 241, 241)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCashierCheckout)
-                    .addComponent(lblSelfCheckOut))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(241, 241, 241)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCashierCheckout)
+                                    .addComponent(lblSelfCheckOut)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(269, 269, 269)
+                                .addComponent(jButton1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -139,7 +155,9 @@ public class MainMenuUI extends javax.swing.JFrame {
                 .addComponent(lblSelfCheckOut)
                 .addGap(85, 85, 85)
                 .addComponent(lblCashierCheckout)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(68, 68, 68)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -158,6 +176,12 @@ public class MainMenuUI extends javax.swing.JFrame {
         selfCheckOutUI.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblSelfCheckOutMousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TestUI testUI = new TestUI();
+        testUI.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -195,6 +219,7 @@ public class MainMenuUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
