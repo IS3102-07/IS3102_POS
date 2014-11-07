@@ -210,7 +210,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                         submitSalesRecord(POS.staffEmail, new String(POS.staffPassword), POS.storeID, POS.name, SKUs, quantities, POS.transaction.getTotalPrice(), POS.transaction.getNetPrice(), POS.transaction.getDiscountPrice(), pointsDeducting, memberEmail, date.getTime() + "");
 
                         //sales log
-                        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath.concat("\\src\\POS\\saleslog.txt"), true)));
+                        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath.concat("\\src\\POS\\saleslog.csv"), true)));
                         String salesLog = date.toString() + "," + POS.staffEmail + "," + POS.name + "," + memberEmail + "," + POS.transaction.getTotalPrice() + "," + POS.transaction.getNetPrice() + "," + POS.transaction.getDiscountPrice() + "," + pointsDeducting + ",";
                         salesLog += skuQty;
                         out.println(salesLog);
