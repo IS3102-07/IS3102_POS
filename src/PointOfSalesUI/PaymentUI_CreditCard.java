@@ -240,7 +240,13 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
             //if member - card
             if (POS.transaction.getMember() != null) {
-                receiptString1 += "<tr align='center'><td colspan=\"2\">" + POS.transaction.getMember().getName() + "<br>"
+
+                String name = POS.transaction.getMember().getName();
+                if (name == null) {
+                    name = "";
+                }
+
+                receiptString1 += "<tr align='center'><td colspan=\"2\">" + name + "<br>"
                         + "Tier: " + POS.transaction.getMember().loyaltyTier.getTier() + "</td></tr>";
                 System.out.println("POS.transaction.getMember().loyaltyTier " + POS.transaction.getMember().loyaltyTier.getTier());
             }
@@ -291,7 +297,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
                 currentPath = filePath.concat("\\src\\images\\barcode-code128.png");
                 barcode.drawBarcode(currentPath);
-                
+
                 receiptString1 += "<tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr>";
 
                 String converTimetoString = date.getTime() + "";

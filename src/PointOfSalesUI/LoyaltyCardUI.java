@@ -386,7 +386,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
         btn20.setEnabled(false);
     }//GEN-LAST:event_btnClearActionPerformed
 
-            
+
     private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
         lblRedeem.setText(150 + "");
         pointsDeducting = 150;
@@ -432,8 +432,17 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
             } else {
                 member = getMemberViaCard(cardReader.getCardUID());
 
-                txtMemberName.setText(member.getName());
-                lblCurrentPoints.setText(member.getLoyaltyPoints() + "");
+                if (member.getName() == null || member.getName().equals("")) {
+                    txtMemberName.setText(member.getEmail());
+                } else {
+                    txtMemberName.setText(member.getName());
+                }
+
+                double points = member.getLoyaltyPoints();
+
+                System.out.println("points " + points);
+                
+                lblCurrentPoints.setText(points + "");
                 lblRedeem.setText(pointsDeducting + "");
 
                 if (member.getLoyaltyPoints() >= 500) {

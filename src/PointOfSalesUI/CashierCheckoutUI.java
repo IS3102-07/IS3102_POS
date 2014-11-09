@@ -504,7 +504,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private void tblLineItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblLineItemKeyReleased
         //----------barcode scanner--------------
         char c = evt.getKeyChar();
-        if (Character.isLetterOrDigit(c)) {
+        if (Character.isLetterOrDigit(c) || evt.getKeyCode() == 45) {
             SKUString += evt.getKeyChar() + "";
         } else if (evt.getKeyCode() == 10) {
             submitSKU(SKUString);
@@ -747,7 +747,11 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
 
         //sub total label
         POS.transaction.setTotalPrice(totalPrice);
-        lblTotalPrice.setText(df.format(totalPrice));
+        if (totalPrice > 0) {
+            lblTotalPrice.setText(df.format(totalPrice));
+        } else {
+            lblTotalPrice.setText("0.00");
+        }
 
         //discount label
         discountRate = POS.transaction.getDiscountRate();
@@ -766,7 +770,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             POS.transaction.setNetPrice(netPrice);
             lblTotalNet.setText(df.format(netPrice));
         } else {
-            lblTotalNet.setText(df.format(totalPrice));
+            lblTotalNet.setText("0.00");
         }
     }
 
