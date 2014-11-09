@@ -439,12 +439,9 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                 }
 
                 double points = member.getLoyaltyPoints();
-
-                System.out.println("points " + points);
-                
                 lblCurrentPoints.setText(points + "");
-                lblRedeem.setText(pointsDeducting + "");
 
+                lblRedeem.setText(pointsDeducting + "");
                 if (member.getLoyaltyPoints() >= 500) {
                     btn5.setEnabled(true);
                     btn10.setEnabled(true);
@@ -478,11 +475,16 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                     string2 = String.format("%10s", member.getLoyaltyTier().getTier());
                 }
                 String line2 = string1 + string2;
-                POS.displayPoleMessage(member.getName(), line2);
+                if (member.getName() == null || member.getName() == "") {
+                    POS.displayPoleMessage("Member", line2);
+                } else {
+                    POS.displayPoleMessage(member.getName(), line2);
+                }
             }
         } catch (Exception ex) {
             lblCurrentPoints.setText("-");
             lblRedeem.setText("-");
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnScanActionPerformed
 
