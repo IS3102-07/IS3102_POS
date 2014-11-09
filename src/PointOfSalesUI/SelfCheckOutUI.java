@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -660,10 +661,13 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lblTotalPrice.setText(totalPrice + "");
 
         //discount label
+        DecimalFormat df = new DecimalFormat("#.00");
+
         discountRate = POS.transaction.getDiscountRate();
         if (discountRate > 0) {
             discounPrice = totalPrice * (discountRate / 100);
             discounPrice = Math.round(discounPrice * 100.0) / 100.0;
+            
             POS.transaction.setDiscountPrice(discounPrice);
             lblDiscount.setText(discounPrice + "");
         } else {

@@ -471,7 +471,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         if (!POS.supervisorContactNo.isEmpty()) {
             System.out.println(POS.supervisorContactNo);
-            //alertSupervisor(POS.name, POS.supervisorContactNo);
+            alertSupervisor(POS.name, POS.supervisorContactNo);
         }
         tblLineItem.requestFocus();
         lblMessage.setText("");
