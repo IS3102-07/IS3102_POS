@@ -21,7 +21,7 @@ public class StoreMapUI extends javax.swing.JFrame {
             cp.setBackground(Color.white);
 
             String imagePath = getStoreMap(Kiosk.storeID);
-            URL url = new URL("http://192.168.1.200:8080" + imagePath);
+            URL url = new URL("https://192.168.1.200:8181" + imagePath);
 
             ImageIcon _image1 = new ImageIcon(url);
             JLabel _mainLabel = new JLabel(_image1);
