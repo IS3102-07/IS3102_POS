@@ -285,7 +285,6 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
             lineItems = POS.transaction.getLineItems();
 
             //Header
-            String filePath = new File("").getAbsolutePath();
             String currentPath = filePath.concat("\\src\\images\\LKView.jpg");
 
             String receiptString1 = "<html><table><tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr><tr align='center'><td colspan=\"2\"><b>Island Furniture<br>"
@@ -343,23 +342,23 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                 barcode.setData(date.getTime() + "");
                 barcode.setX(0.5f);
 
-                filePath = new File("").getAbsolutePath();
                 currentPath = filePath.concat("\\src\\images\\barcode-code128.png");
                 barcode.drawBarcode(currentPath);
-
-                System.out.println("");
+                
                 receiptString1 += "<tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr>";
 
                 String converTimetoString = date.getTime() + "";
                 String queueNo = converTimetoString.substring(converTimetoString.length() - 4, converTimetoString.length());
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Queue No: " + queueNo + "</td></tr>";
+                
+                if (POS.transaction.getMember().getPhone() != null && POS.transaction.getMember().getPhone().equals("")) {
+                    receiptString1 += "<tr align='center'><td colspan=\"2\">You will be notify via SMS for the collection.";
+                }
             } else {
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Thank you for<br>Shopping at Island Furniture!</td></tr>";
             }
 
             receiptString1 += "</table></html>";
-
-            System.out.println(receiptString1);
 
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
