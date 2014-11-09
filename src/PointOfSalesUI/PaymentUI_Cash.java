@@ -12,6 +12,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,17 +24,18 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
     private List<LineItem> lineItems;
     private Date date;
     final String filePath = new File("").getAbsolutePath();
+    private DecimalFormat df = new DecimalFormat("#.00");
 
     public PaymentUI_Cash() {
         initComponents();
         txtPrice.setText(POS.transaction.getNetPrice() + "");
 
         String string1 = String.format("%-9s", "Sub Total");
-        String string2 = String.format("%9s", POS.transaction.getTotalPrice());
+        String string2 = String.format("%9s", df.format(POS.transaction.getTotalPrice()));
         String line1 = string1 + string2;
 
-        String string11 = String.format("%-9s", POS.transaction.getDiscountRate() + "%");
-        String string22 = String.format("%10s", "[" + POS.transaction.getNetPrice() + "]");
+        String string11 = String.format("%-9s", df.format(POS.transaction.getDiscountRate()) + "%");
+        String string22 = String.format("%10s", "[" + df.format(POS.transaction.getNetPrice()) + "]");
         String line2 = string11 + string22;
         POS.displayPoleMessage(line1, line2);
     }
@@ -305,20 +307,20 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                     receipLineItem = receipLineItem.substring(0, 15);
                 }
 
-                receiptString1 += "<tr><td>" + receipLineItem + "</td><td>" + lineItems.get(i).getPrice() + "</td></tr>";
+                receiptString1 += "<tr><td>" + receipLineItem + "</td><td>" + df.format(lineItems.get(i).getPrice()) + "</td></tr>";
             }
 
             receiptString1 += "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
 
             //if member - disc
             if (POS.transaction.getDiscountPrice() > 0) {
-                receiptString1 += "<tr><td>Subtotal </td><td>" + POS.transaction.getTotalPrice() + "</td></tr>";
-                receiptString1 += "<tr><td>&nbsp Member Disc</td>" + "<td>- " + POS.transaction.getDiscountPrice() + "</td></tr>";
+                receiptString1 += "<tr><td>Subtotal </td><td>" + df.format(POS.transaction.getTotalPrice()) + "</td></tr>";
+                receiptString1 += "<tr><td>&nbsp Member Disc</td>" + "<td>- " + df.format(POS.transaction.getDiscountPrice()) + "</td></tr>";
             }
 
             //total price
-            receiptString1 += "<tr><td>Total</td><td>" + POS.transaction.getNetPrice() + "</td></tr><tr>"
-                    + "<td>Item Count</td><td>" + POS.transaction.getTotalItems() + "</td></tr>"
+            receiptString1 += "<tr><td>Total</td><td>" + df.format(POS.transaction.getNetPrice()) + "</td></tr><tr>"
+                    + "<td>Item Count</td><td>" + df.format(POS.transaction.getTotalItems()) + "</td></tr>"
                     + "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
 
             //receipt no
@@ -334,7 +336,6 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                     + "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
 
             //check if need to print barcode
-            //            if (checkIfCustomerNeedToWaitForPicker(date.getTime() + "")) {
             if (checkIfCustomerNeedToWaitForPicker(date.getTime() + "")) {
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Please proceed<br>to the collection point.</td></tr>";
 

@@ -13,6 +13,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +26,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
     private List<LineItem> lineItems;
     private Date date;
     final String filePath = new File("").getAbsolutePath();
+    private DecimalFormat df = new DecimalFormat("#.00");
 
     public PaymentUI_CreditCard() {
         initComponents();
@@ -230,7 +232,6 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
             lineItems = POS.transaction.getLineItems();
 
             //Header
-            String filePath = new File("").getAbsolutePath();
             String currentPath = filePath.concat("\\src\\images\\LKView.jpg");
 
             String receiptString1 = "<html><table><tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr><tr align='center'><td colspan=\"2\"><b>Island Furniture<br>"
@@ -252,19 +253,19 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                     receipLineItem = receipLineItem.substring(0, 15);
                 }
 
-                receiptString1 += "<tr><td>" + receipLineItem + "</td><td>" + lineItems.get(i).getPrice() + "</td></tr>";
+                receiptString1 += "<tr><td>" + receipLineItem + "</td><td>" + df.format(lineItems.get(i).getPrice()) + "</td></tr>";
             }
 
             receiptString1 += "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
 
             //if member - disc
             if (POS.transaction.getDiscountPrice() > 0) {
-                receiptString1 += "<tr><td>Subtotal </td><td>" + POS.transaction.getTotalPrice() + "</td></tr>";
-                receiptString1 += "<tr><td>&nbsp Member Disc</td>" + "<td>- " + POS.transaction.getDiscountPrice() + "</td></tr>";
+                receiptString1 += "<tr><td>Subtotal </td><td>" + df.format(POS.transaction.getTotalPrice()) + "</td></tr>";
+                receiptString1 += "<tr><td>&nbsp Member Disc</td>" + "<td>- " + df.format(POS.transaction.getDiscountPrice()) + "</td></tr>";
             }
 
             //total price
-            receiptString1 += "<tr><td>Total</td><td>" + POS.transaction.getNetPrice() + "</td></tr><tr>"
+            receiptString1 += "<tr><td>Total</td><td>" + df.format(POS.transaction.getNetPrice()) + "</td></tr><tr>"
                     + "<td>Item Count</td><td>" + POS.transaction.getTotalItems() + "</td></tr>"
                     + "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
 
@@ -281,7 +282,6 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                     + "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
 
             //check if need to print barcode
-            //            if (checkIfCustomerNeedToWaitForPicker(date.getTime() + "")) {
             if (checkIfCustomerNeedToWaitForPicker(date.getTime() + "")) {
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Please proceed<br>to the collection point.</td></tr>";
 
@@ -289,11 +289,9 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                 barcode.setData(date.getTime() + "");
                 barcode.setX(0.5f);
 
-                filePath = new File("").getAbsolutePath();
                 currentPath = filePath.concat("\\src\\images\\barcode-code128.png");
                 barcode.drawBarcode(currentPath);
-
-                System.out.println("");
+                
                 receiptString1 += "<tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr>";
 
                 String converTimetoString = date.getTime() + "";
@@ -304,8 +302,6 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
             }
 
             receiptString1 += "</table></html>";
-
-            System.out.println(receiptString1);
 
             txtReceiptMessage.setText(receiptString1);
             printerJob.setPrintable(txtReceiptMessage.getPrintable(null, null), pageFormat);
@@ -387,7 +383,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
         //reset
         String line2 = String.format("%20s", "Island Furniture!");
-         POS.displayPoleMessage("Welcome to", line2);
+        POS.displayPoleMessage("Welcome to", line2);
 
         txtCreditNumber.setText("");
         Window w = SwingUtilities.getWindowAncestor(PaymentUI_CreditCard.this);

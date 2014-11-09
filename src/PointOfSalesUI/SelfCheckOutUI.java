@@ -23,6 +23,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private String SKUString;
     private ItemHelper itemHelper;
     private QRCodeUI qrCodeUI;
+    private DecimalFormat df = new DecimalFormat("#.00");
 
     public SelfCheckOutUI() {
         initComponents();
@@ -140,7 +141,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         lblTotalPrice.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblTotalPrice.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTotalPrice.setText("0.0");
+        lblTotalPrice.setText("0.00");
 
         tblLineItem.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tblLineItem.setModel(new javax.swing.table.DefaultTableModel(
@@ -256,11 +257,11 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         lblDiscount.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblDiscount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDiscount.setText("0.0");
+        lblDiscount.setText("0.00");
 
         lblTotalNet.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblTotalNet.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTotalNet.setText("0.0");
+        lblTotalNet.setText("0.00");
 
         btnPhoneSync.setBackground(new java.awt.Color(255, 255, 255));
         btnPhoneSync.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -289,9 +290,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                             .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel5))
+                            .addComponent(jLabel5)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addGap(27, 27, 27)
@@ -658,29 +657,27 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         //sub total label
         POS.transaction.setTotalPrice(totalPrice);
-        lblTotalPrice.setText(totalPrice + "");
+        lblTotalPrice.setText(df.format(totalPrice));
 
         //discount label
-        DecimalFormat df = new DecimalFormat("#.00");
-
         discountRate = POS.transaction.getDiscountRate();
         if (discountRate > 0) {
             discounPrice = totalPrice * (discountRate / 100);
             discounPrice = Math.round(discounPrice * 100.0) / 100.0;
-            
+
             POS.transaction.setDiscountPrice(discounPrice);
-            lblDiscount.setText(discounPrice + "");
+            lblDiscount.setText(df.format(discounPrice));
         } else {
-            lblDiscount.setText("0.0");
+            lblDiscount.setText("0.00");
         }
 
         //total price label
         if (totalPrice > 0) {
             netPrice = totalPrice - discounPrice;
             POS.transaction.setNetPrice(netPrice);
-            lblTotalNet.setText(netPrice + "");
+            lblTotalNet.setText(df.format(netPrice));
         } else {
-            lblTotalNet.setText(totalPrice + "");
+            lblTotalNet.setText(df.format(totalPrice));
         }
     }
 
@@ -690,7 +687,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         String line1 = formatItemName + formatItemPrice;
 
         String formatLabel = String.format("%-9s", "SUB-TOTAL");
-        String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
+        String formatItemSubPrice = String.format("%10s", "[" + df.format(POS.transaction.getTotalPrice()) + "]");
         String line2 = formatLabel + formatItemSubPrice;
 
         POS.displayPoleMessage(line1, line2);
