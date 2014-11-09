@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -21,6 +22,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private LineItem lineItem;
     private String SKUString;
     private ItemHelper itemHelper;
+    private DecimalFormat df = new DecimalFormat("#.00");
 
     public CashierCheckoutUI() {
         initComponents();
@@ -141,7 +143,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
 
         lblTotalPrice.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblTotalPrice.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTotalPrice.setText("0.0");
+        lblTotalPrice.setText("0.00");
 
         tblLineItem.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tblLineItem.setModel(new javax.swing.table.DefaultTableModel(
@@ -255,11 +257,11 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
 
         lblDiscount.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblDiscount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDiscount.setText("0.0");
+        lblDiscount.setText("0.00");
 
         lblTotalNet.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblTotalNet.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTotalNet.setText("0.0");
+        lblTotalNet.setText("0.00");
 
         btnPayCredit.setBackground(new java.awt.Color(255, 153, 51));
         btnPayCredit.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -471,7 +473,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         if (!POS.supervisorContactNo.isEmpty()) {
             System.out.println(POS.supervisorContactNo);
-            //alertSupervisor(POS.name, POS.supervisorContactNo);
+            alertSupervisor(POS.name, POS.supervisorContactNo);
         }
         tblLineItem.requestFocus();
         lblMessage.setText("");
@@ -502,7 +504,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private void tblLineItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblLineItemKeyReleased
         //----------barcode scanner--------------
         char c = evt.getKeyChar();
-        if (Character.isLetterOrDigit(c)) {
+        if (Character.isLetterOrDigit(c) || evt.getKeyCode() == 45) {
             SKUString += evt.getKeyChar() + "";
         } else if (evt.getKeyCode() == 10) {
             submitSKU(SKUString);
@@ -745,7 +747,11 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
 
         //sub total label
         POS.transaction.setTotalPrice(totalPrice);
-        lblTotalPrice.setText(totalPrice + "");
+        if (totalPrice > 0) {
+            lblTotalPrice.setText(df.format(totalPrice));
+        } else {
+            lblTotalPrice.setText("0.00");
+        }
 
         //discount label
         discountRate = POS.transaction.getDiscountRate();
@@ -753,7 +759,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             discounPrice = totalPrice * (discountRate / 100);
             discounPrice = Math.round(discounPrice * 100.0) / 100.0;
             POS.transaction.setDiscountPrice(totalPrice);
-            lblDiscount.setText(discounPrice + "");
+            lblDiscount.setText(df.format(discounPrice));
         } else {
             lblDiscount.setText("0.0");
         }
@@ -762,9 +768,9 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         if (totalPrice > 0) {
             netPrice = totalPrice - discounPrice;
             POS.transaction.setNetPrice(netPrice);
-            lblTotalNet.setText(netPrice + "");
+            lblTotalNet.setText(df.format(netPrice));
         } else {
-            lblTotalNet.setText(totalPrice + "");
+            lblTotalNet.setText("0.00");
         }
     }
 
@@ -774,7 +780,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         String line1 = formatItemName + formatItemPrice;
 
         String formatLabel = String.format("%-9s", "SUB-TOTAL");
-        String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
+        String formatItemSubPrice = String.format("%10s", "[" + df.format(POS.transaction.getTotalPrice()) + "]");
         String line2 = formatLabel + formatItemSubPrice;
 
         System.out.println(line1 + "\n" + line2);

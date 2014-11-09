@@ -1,11 +1,11 @@
-package PointOfSalesUI;
+package Kiosk;
 
 import java.awt.Window;
 import javax.swing.SwingUtilities;
 
-public class ProcessPaymentUI extends javax.swing.JPanel {
+public class RegisteredUI extends javax.swing.JPanel {
 
-    public ProcessPaymentUI() {
+    public RegisteredUI() {
         initComponents();
         this.setSize(607, 400);
     }
@@ -29,13 +29,13 @@ public class ProcessPaymentUI extends javax.swing.JPanel {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-small.png"))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Thank you for shopping at");
+        jLabel4.setText("Thank you for registratiion to");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel5.setText("Island Furniture!");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("Please come back again!");
+        jLabel7.setText("Successfully Completed");
 
         btnBack.setBackground(new java.awt.Color(153, 0, 0));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -51,6 +51,12 @@ public class ProcessPaymentUI extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -61,15 +67,9 @@ public class ProcessPaymentUI extends javax.swing.JPanel {
                         .addComponent(jLabel5)))
                 .addContainerGap(129, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(23, 195, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(199, 199, 199))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(23, 23, 23))
+                .addGap(185, 185, 185))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,7 +89,7 @@ public class ProcessPaymentUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        Window w = SwingUtilities.getWindowAncestor(ProcessPaymentUI.this);
+        Window w = SwingUtilities.getWindowAncestor(RegisteredUI.this);
         w.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 

@@ -1,10 +1,14 @@
 package Kiosk;
 
+import PointOfSalesUI.ProcessPaymentUI;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.border.LineBorder;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javax.swing.JDialog;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -430,8 +434,7 @@ public class RegistrationUI extends javax.swing.JFrame {
             }
         }
 
-        if (jXDOB.getDate()
-                == null) {
+        if (jXDOB.getDate() == null) {
             jXDOB.setBorder(new LineBorder(Color.YELLOW));
         } else {
             //check if date is later than today. if later no go
@@ -445,8 +448,8 @@ public class RegistrationUI extends javax.swing.JFrame {
 
         }
 
-        if (!txtName.getText()
-                .isEmpty() && !txtPhone.getText().isEmpty() && !txtAddress.getText().isEmpty() && !txtPostal.getText().isEmpty() && !txtCity.getText().isEmpty() && txtPassword.getPassword().length >= 0 && txtRePassword.getPassword().length >= 0) {
+        if (!txtName.getText().isEmpty() && !txtPhone.getText().isEmpty() && !txtAddress.getText().isEmpty() && !txtPostal.getText().isEmpty() && !txtCity.getText().isEmpty() && txtPassword.getPassword().length >= 0 && txtRePassword.getPassword().length >= 0) {
+
             try {
                 String passText = new String(txtPassword.getPassword());
 
@@ -454,10 +457,24 @@ public class RegistrationUI extends javax.swing.JFrame {
                 c.setTime(jXDOB.getDate());
                 XMLGregorianCalendar date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
 
-                if (kioskRegisterMember(txtName.getText(), txtAddress.getText(), date2, txtEmail.getText(), txtPhone.getText(), txtCity.getText(), txtPostal.getText(), passText, Kiosk.storeID) != null) {
-                    lblErrorMessage.setText("Account successfully created. Thank you.");
+                if (kioskRegisterMember(txtName.getText(), txtAddress.getText(), date2, txtEmail.getText(), txtPhone.getText(), txtCity.getText(), txtPostal.getText(), passText, Kiosk.storeID)) {
+                    JDialog dialog = new JDialog();
+                    final Toolkit toolkit = Toolkit.getDefaultToolkit();
+                    final Dimension screenSize = toolkit.getScreenSize();
+                    final int x = (screenSize.width - dialog.getWidth()) / 4;
+                    final int y = (screenSize.height - dialog.getHeight()) / 4;
+                    dialog.setLocation(x, y);
+                    dialog.setModal(true);
+                    dialog.setUndecorated(true);
+                    dialog.add(new RegisteredUI());
+                    dialog.pack();
+                    dialog.setVisible(true);
+
+                    KioskUI kioskUI = new KioskUI();
+                    kioskUI.setVisible(true);
+                    this.setVisible(false);
                 } else {
-                    lblErrorMessage.setText("Email already exist.");
+                    lblErrorMessage.setText("Registration failed. Email already exist.");
                 }
 
             } catch (Exception ex) {

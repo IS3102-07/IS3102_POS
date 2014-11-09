@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -22,6 +23,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private String SKUString;
     private ItemHelper itemHelper;
     private QRCodeUI qrCodeUI;
+    private DecimalFormat df = new DecimalFormat("#.00");
 
     public SelfCheckOutUI() {
         initComponents();
@@ -139,7 +141,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         lblTotalPrice.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblTotalPrice.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTotalPrice.setText("0.0");
+        lblTotalPrice.setText("0.00");
 
         tblLineItem.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tblLineItem.setModel(new javax.swing.table.DefaultTableModel(
@@ -255,11 +257,11 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         lblDiscount.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblDiscount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDiscount.setText("0.0");
+        lblDiscount.setText("0.00");
 
         lblTotalNet.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblTotalNet.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTotalNet.setText("0.0");
+        lblTotalNet.setText("0.00");
 
         btnPhoneSync.setBackground(new java.awt.Color(255, 255, 255));
         btnPhoneSync.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -286,14 +288,12 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
                                 .addGap(0, 0, 0)
                                 .addComponent(jLabel7))
                             .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel5))
+                            .addComponent(jLabel5)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
-                        .addGap(27, 27, 27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDiscount, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblTotalPrice, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -423,7 +423,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         if (tblLineItem.getSelectedRow() != -1 && tblLineItem.getRowCount() != 0) {
             lineItems.remove(tblLineItem.getSelectedRow());
             model.removeRow(tblLineItem.getSelectedRow());
-            // POS.displayPoleMessage("Item Removed", "");
+            POS.displayPoleMessage("Item Removed", "");
         }
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
@@ -479,7 +479,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
     private void tblLineItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblLineItemKeyReleased
         //----------barcode scanner--------------
         char c = evt.getKeyChar();
-        if (Character.isLetterOrDigit(c)) {
+        //System.out.println(evt.getKeyCode() +"!!!"+evt.getKeyChar() );
+        if (Character.isLetterOrDigit(c) || evt.getKeyCode() == 45) {
             SKUString += evt.getKeyChar() + "";
         } else if (evt.getKeyCode() == 10) {
             submitSKU(SKUString);
@@ -499,7 +500,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lineItems = POS.transaction.getLineItems();
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
-        // POS.displayPoleMessage("Items cleared", "");
+        POS.displayPoleMessage("Items cleared", "");
         lblMessage.setText("");
     }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -657,7 +658,11 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
         //sub total label
         POS.transaction.setTotalPrice(totalPrice);
-        lblTotalPrice.setText(totalPrice + "");
+        if (totalPrice > 0) {
+            lblTotalPrice.setText(df.format(totalPrice));
+        } else {
+            lblTotalPrice.setText("0.00");
+        }
 
         //discount label
         discountRate = POS.transaction.getDiscountRate();
@@ -665,18 +670,18 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
             discounPrice = totalPrice * (discountRate / 100);
             discounPrice = Math.round(discounPrice * 100.0) / 100.0;
             POS.transaction.setDiscountPrice(discounPrice);
-            lblDiscount.setText(discounPrice + "");
+            lblDiscount.setText(df.format(discounPrice));
         } else {
-            lblDiscount.setText("0.0");
+            lblDiscount.setText("0.00");
         }
 
         //total price label
         if (totalPrice > 0) {
             netPrice = totalPrice - discounPrice;
             POS.transaction.setNetPrice(netPrice);
-            lblTotalNet.setText(netPrice + "");
+            lblTotalNet.setText(df.format(netPrice));
         } else {
-            lblTotalNet.setText(totalPrice + "");
+            lblTotalNet.setText("0.00");
         }
     }
 
@@ -686,10 +691,10 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         String line1 = formatItemName + formatItemPrice;
 
         String formatLabel = String.format("%-9s", "SUB-TOTAL");
-        String formatItemSubPrice = String.format("%10s", "[" + POS.transaction.getTotalPrice() + "]");
+        String formatItemSubPrice = String.format("%10s", "[" + df.format(POS.transaction.getTotalPrice()) + "]");
         String line2 = formatLabel + formatItemSubPrice;
 
-        // POS.displayPoleMessage(line1, line2);
+        POS.displayPoleMessage(line1, line2);
     }
 
     private static ItemHelper getItemBySKU(java.lang.String sku) {

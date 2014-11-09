@@ -1,1 +1,0 @@
-Date & Time,Logged in Staff Email,Counter,Member,Amount Due,Amount Paid,Discount Amount,Points Deducted,SKU,Quantity
