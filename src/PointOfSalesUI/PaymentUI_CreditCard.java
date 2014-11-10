@@ -304,7 +304,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                 String queueNo = converTimetoString.substring(converTimetoString.length() - 4, converTimetoString.length());
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Queue No: " + queueNo + "</td></tr>";
 
-                if (POS.transaction.getMember() != null && POS.transaction.getMember().getPhone() != null && POS.transaction.getMember().getPhone().equals("")) {
+                if (POS.transaction.getMember() != null && POS.transaction.getMember().getPhone() != null && !POS.transaction.getMember().getPhone().equals("")) {
                     receiptString1 += "<tr align='center'><td colspan=\"2\">You will be notify via SMS for the collection.";
                 }
             } else {
