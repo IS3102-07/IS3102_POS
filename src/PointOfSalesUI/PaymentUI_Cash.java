@@ -220,6 +220,8 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
 
                         //print receipt
                         printReceipt();
+                        
+                        btnConpute.setEnabled(false);
 
                         //display pole message
                         String string1 = String.format("%20s", "Come back again!");
