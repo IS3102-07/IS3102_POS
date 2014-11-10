@@ -30,7 +30,7 @@ public class PromotionUI extends javax.swing.JFrame {
             images = getActivePromotionInCountry(Kiosk.storeID);
             currentPos = 0;
 
-            url = new URL("https://192.168.1.200:8181" + images.get(currentPos));
+            url = new URL("http://192.168.1.200:8080" + images.get(currentPos));
             imageLabel.setIcon(new ImageIcon(url));
         } catch (MalformedURLException ex) {
             Logger.getLogger(PromotionUI.class.getName()).log(Level.SEVERE, null, ex);
