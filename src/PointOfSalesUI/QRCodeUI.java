@@ -288,7 +288,9 @@ public class QRCodeUI extends javax.swing.JFrame {
                             }
                         }
                         if (memberEmail != null) {
+                            System.out.println("memberEmail " + memberEmail);
                             List<ItemHelper> shoppingList = getMemberShoppingList(memberEmail);
+                            System.out.println("shoppingList " + shoppingList.size());
                             if (isSelfCheckoutUI) {
                                 lblMessage.setText("Synchronising for phone...");
                                 SelfCheckOutUI selfCheckOutUI = new SelfCheckOutUI(shoppingList);

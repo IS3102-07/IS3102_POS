@@ -287,9 +287,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
             lineItems = POS.transaction.getLineItems();
 
             //Header
-            String currentPath = filePath.concat("\\src\\images\\LKView.jpg");
-
-            String receiptString1 = "<html><table><tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr><tr align='center'><td colspan=\"2\"><b>Island Furniture<br>"
+            String receiptString1 = "<html><table><tr align='center'><td colspan=\"2\"><b>Island Furniture<br>"
                     + "" + POS.storeAddress + "<br>"
                     + "" + POS.storeCountry + " " + POS.storePostal + "</b></td></tr>";
 
@@ -350,7 +348,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
                 barcode.setData(date.getTime() + "");
                 barcode.setX(0.5f);
 
-                currentPath = filePath.concat("\\src\\images\\barcode-code128.png");
+                String currentPath = filePath.concat("\\src\\images\\barcode-code128.png");
                 barcode.drawBarcode(currentPath);
 
                 receiptString1 += "<tr align='center'><td colspan=\"2\"><img width='160' src='file:" + currentPath + "'></img></td></tr>";

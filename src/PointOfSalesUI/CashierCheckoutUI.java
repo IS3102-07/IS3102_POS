@@ -23,6 +23,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private String SKUString;
     private ItemHelper itemHelper;
     private DecimalFormat df = new DecimalFormat("#.00");
+    private QRCodeUI qrCodeUI;
 
     public CashierCheckoutUI() {
         initComponents();
@@ -595,10 +596,12 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
-        QRCodeUI qrCodeUI = new QRCodeUI(this);
+        qrCodeUI = new QRCodeUI(this);
+        qrCodeUI.swingWorker();
+        qrCodeUI.generateQR();
+        POS.qrIsPressed = true;
         qrCodeUI.setVisible(true);
-        lblMessage.setText("");
-        this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnCancel1ActionPerformed
 
     public static void main(String args[]) {
