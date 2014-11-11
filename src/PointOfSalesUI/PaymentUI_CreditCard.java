@@ -305,7 +305,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Queue No: " + queueNo + "</td></tr>";
 
                 if (POS.transaction.getMember() != null && POS.transaction.getMember().getPhone() != null && !POS.transaction.getMember().getPhone().equals("")) {
-                    receiptString1 += "<tr align='center'><td colspan=\"2\">You will be notify via SMS for the collection.";
+                    receiptString1 += "<tr align='center'><td colspan=\"2\">You will be notified via SMS for the collection.";
                 }
             } else {
                 receiptString1 += "<tr align='center'><td colspan=\"2\">Thank you for<br>Shopping at Island Furniture!</td></tr>";
