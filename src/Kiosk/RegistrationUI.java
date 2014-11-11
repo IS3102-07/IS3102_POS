@@ -449,36 +449,46 @@ public class RegistrationUI extends javax.swing.JFrame {
         }
 
         if (!txtName.getText().isEmpty() && !txtPhone.getText().isEmpty() && !txtAddress.getText().isEmpty() && !txtPostal.getText().isEmpty() && !txtCity.getText().isEmpty() && txtPassword.getPassword().length >= 0 && txtRePassword.getPassword().length >= 0) {
-
-            try {
+            if (txtPassword.getPassword().length > 0 && txtRePassword.getPassword().length > 0) {
                 String passText = new String(txtPassword.getPassword());
+                String passText2 = new String(txtRePassword.getPassword());
 
-                GregorianCalendar c = new GregorianCalendar();
-                c.setTime(jXDOB.getDate());
-                XMLGregorianCalendar date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-
-                if (kioskRegisterMember(txtName.getText(), txtAddress.getText(), date2, txtEmail.getText(), txtPhone.getText(), txtCity.getText(), txtPostal.getText(), passText, Kiosk.storeID)) {
-                    JDialog dialog = new JDialog();
-                    final Toolkit toolkit = Toolkit.getDefaultToolkit();
-                    final Dimension screenSize = toolkit.getScreenSize();
-                    final int x = (screenSize.width - dialog.getWidth()) / 4;
-                    final int y = (screenSize.height - dialog.getHeight()) / 4;
-                    dialog.setLocation(x, y);
-                    dialog.setModal(true);
-                    dialog.setUndecorated(true);
-                    dialog.add(new RegisteredUI());
-                    dialog.pack();
-                    dialog.setVisible(true);
-
-                    KioskUI kioskUI = new KioskUI();
-                    kioskUI.setVisible(true);
-                    this.setVisible(false);
+                if (!passText.equals(passText2)) {
+                    txtPassword.setBackground(Color.red);
+                    txtRePassword.setBackground(Color.red);
+                    lblErrorMessage.setText("Password not match");
                 } else {
-                    lblErrorMessage.setText("Registration failed. Email already exist.");
-                }
+                    try {
+                        passText = new String(txtPassword.getPassword());
 
-            } catch (Exception ex) {
-                ex.printStackTrace();
+                        GregorianCalendar c = new GregorianCalendar();
+                        c.setTime(jXDOB.getDate());
+                        XMLGregorianCalendar date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+
+                        if (kioskRegisterMember(txtName.getText(), txtAddress.getText(), date2, txtEmail.getText(), txtPhone.getText(), txtCity.getText(), txtPostal.getText(), passText, Kiosk.storeID)) {
+                            JDialog dialog = new JDialog();
+                            final Toolkit toolkit = Toolkit.getDefaultToolkit();
+                            final Dimension screenSize = toolkit.getScreenSize();
+                            final int x = (screenSize.width - dialog.getWidth()) / 4;
+                            final int y = (screenSize.height - dialog.getHeight()) / 4;
+                            dialog.setLocation(x, y);
+                            dialog.setModal(true);
+                            dialog.setUndecorated(true);
+                            dialog.add(new RegisteredUI());
+                            dialog.pack();
+                            dialog.setVisible(true);
+
+                            KioskUI kioskUI = new KioskUI();
+                            kioskUI.setVisible(true);
+                            this.setVisible(false);
+                        } else {
+                            lblErrorMessage.setText("Registration failed. Email already exist.");
+                        }
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
