@@ -325,7 +325,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
 
             //total price
             receiptString1 += "<tr><td>Total</td><td>" + df.format(POS.transaction.getNetPrice()) + "</td></tr><tr>"
-                    + "<td>Item Count</td><td>" + df.format(POS.transaction.getTotalItems()) + "</td></tr>"
+                    + "<td>Item Count</td><td>" + POS.transaction.getTotalItems() + "</td></tr>"
                     + "<tr><td colspan=\"2\">------------------------------------------</td></tr>";
 
             //receipt no
