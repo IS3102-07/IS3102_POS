@@ -63,7 +63,6 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
 
         try {
             lineItems = POS.transaction.getLineItems();
-            refreshTable();
         } catch (Exception ex) {
             POS.transaction = new Transaction();
         }
@@ -598,8 +597,8 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
 
     private void btnPhoneSyncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhoneSyncActionPerformed
         qrCodeUI = new QRCodeUI(this);
-        qrCodeUI.swingWorker();
         qrCodeUI.generateQR();
+        qrCodeUI.swingWorker();
         POS.qrIsPressed = true;
         qrCodeUI.setVisible(true);
         dispose();

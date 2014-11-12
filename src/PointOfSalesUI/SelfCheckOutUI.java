@@ -506,8 +506,8 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
 
     private void btnPhoneSyncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhoneSyncActionPerformed
         qrCodeUI = new QRCodeUI(this);
-        qrCodeUI.swingWorker();
         qrCodeUI.generateQR();
+        qrCodeUI.swingWorker();
         POS.qrIsPressed = true;
         qrCodeUI.setVisible(true);
         dispose();

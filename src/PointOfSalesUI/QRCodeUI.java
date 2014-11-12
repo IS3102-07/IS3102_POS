@@ -263,6 +263,7 @@ public class QRCodeUI extends javax.swing.JFrame {
             @Override
             protected Void doInBackground() throws Exception {
                 try {
+                    System.out.println("swingworker doInBackground");
                     String memberEmail = getSyncWithPhoneStatus(date.getTime() + "");
                     System.out.println("memberEmail: " + memberEmail + " | " + date.getTime());
                     int count = 0;
@@ -324,7 +325,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                         }
                     }
                 } catch (InterruptedException ex) {
-                    //ignore
+                    ex.printStackTrace();
                 }
                 return null;
             }
