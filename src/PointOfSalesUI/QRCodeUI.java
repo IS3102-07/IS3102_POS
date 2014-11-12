@@ -268,7 +268,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                     int count = 0;
                     int currentDot = 1;
                     while (memberEmail == null) {
-                        //System.out.println("swingWorker memberEmail: " + memberEmail + " | " + date.getTime());
+                        System.out.println("swingWorker memberEmail: " + memberEmail + " | " + date.getTime());
                         Thread.sleep(250);
                         count++;
                         memberEmail = getSyncWithPhoneStatus(date.getTime() + "");

@@ -22,8 +22,8 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     private LineItem lineItem;
     private String SKUString;
     private ItemHelper itemHelper;
-    private DecimalFormat df = new DecimalFormat("#.00");
     private QRCodeUI qrCodeUI;
+    private DecimalFormat df = new DecimalFormat("#.00");
 
     public CashierCheckoutUI() {
         initComponents();
@@ -54,6 +54,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         cp = getContentPane();
         cp.setBackground(Color.white);
         SKUString = "";
+        lineItems = POS.transaction.getLineItems();
 
         if (POS.staffEmail != null && POS.name != null) {
             lblDuty.setText("Cashier  : " + POS.staffEmail);
@@ -106,7 +107,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         lblPOSName = new javax.swing.JLabel();
         lblDuty = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        btnCancel1 = new javax.swing.JButton();
+        btnPhoneSync = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -326,14 +327,14 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
             }
         });
 
-        btnCancel1.setBackground(new java.awt.Color(255, 255, 255));
-        btnCancel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnCancel1.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Sync.jpg"))); // NOI18N
-        btnCancel1.setBorder(new javax.swing.border.MatteBorder(null));
-        btnCancel1.addActionListener(new java.awt.event.ActionListener() {
+        btnPhoneSync.setBackground(new java.awt.Color(255, 255, 255));
+        btnPhoneSync.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnPhoneSync.setForeground(new java.awt.Color(255, 255, 255));
+        btnPhoneSync.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Sync.jpg"))); // NOI18N
+        btnPhoneSync.setBorder(new javax.swing.border.MatteBorder(null));
+        btnPhoneSync.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancel1ActionPerformed(evt);
+                btnPhoneSyncActionPerformed(evt);
             }
         });
 
@@ -373,7 +374,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                         .addComponent(btnUpdateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnCancel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPhoneSync, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnHelp)
@@ -403,7 +404,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
                             .addComponent(btnLoyaltyCard, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPhoneSync, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnPayCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -595,14 +596,14 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
+    private void btnPhoneSyncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhoneSyncActionPerformed
         qrCodeUI = new QRCodeUI(this);
         qrCodeUI.swingWorker();
         qrCodeUI.generateQR();
         POS.qrIsPressed = true;
         qrCodeUI.setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnCancel1ActionPerformed
+    }//GEN-LAST:event_btnPhoneSyncActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -642,12 +643,12 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnCancel1;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnLoyaltyCard;
     private javax.swing.JButton btnPayCash;
     private javax.swing.JButton btnPayCredit;
+    private javax.swing.JButton btnPhoneSync;
     private javax.swing.JButton btnUpdateQuantity;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
