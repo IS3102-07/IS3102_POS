@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.SwingWorker;
+import operationalcrm.loyaltyandrewards.LoyaltyAndRewardsWebService;
+import operationalcrm.loyaltyandrewards.LoyaltyAndRewardsWebService_Service;
 
 public class QRCodeUI extends javax.swing.JFrame {
 
@@ -376,14 +378,14 @@ public class QRCodeUI extends javax.swing.JFrame {
     }
 
     private static Boolean createSyncWithPhoneRequest(java.lang.String qrCode) {
-        PointOfSalesUI.LoyaltyAndRewardsWebService_Service service = new PointOfSalesUI.LoyaltyAndRewardsWebService_Service();
-        PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
+        LoyaltyAndRewardsWebService_Service service = new LoyaltyAndRewardsWebService_Service();
+        LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
         return port.createSyncWithPhoneRequest(qrCode);
     }
 
     private static String getSyncWithPhoneStatus(java.lang.String qrCode) {
-        PointOfSalesUI.LoyaltyAndRewardsWebService_Service service = new PointOfSalesUI.LoyaltyAndRewardsWebService_Service();
-        PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
+        LoyaltyAndRewardsWebService_Service service = new LoyaltyAndRewardsWebService_Service();
+        LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
         return port.getSyncWithPhoneStatus(qrCode);
     }
 

@@ -3,6 +3,8 @@ package POS;
 import java.awt.Color;
 import java.awt.Container;
 import java.util.List;
+import storetransaction.retailinventory.RetailInventoryWebService;
+import storetransaction.retailinventory.RetailInventoryWebService_Service;
 
 public class LoginUI extends javax.swing.JFrame {
 
@@ -324,14 +326,14 @@ public class LoginUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static String getCountryCode(java.lang.Long storeID) {
-        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
-        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+        RetailInventoryWebService_Service service = new RetailInventoryWebService_Service();
+        RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
         return port.getCountryCode(storeID);
     }
 
     private static java.util.List<java.lang.String> getStoreAddressByID(java.lang.Long storeID) {
-        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
-        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+        RetailInventoryWebService_Service service = new RetailInventoryWebService_Service();
+        RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
         return port.getStoreAddressByID(storeID);
     }
 

@@ -3,6 +3,9 @@ package PointOfSalesUI;
 import POS.*;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
+import operationalcrm.loyaltyandrewards.LoyaltyAndRewardsWebService;
+import operationalcrm.loyaltyandrewards.LoyaltyAndRewardsWebService_Service;
+import operationalcrm.loyaltyandrewards.MemberEntity;
 
 public class LoyaltyCardUI extends javax.swing.JPanel {
 
@@ -13,7 +16,7 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     public LoyaltyCardUI() {
         initComponents();
 
-        POS.displayPoleMessage("Scan Loyalty Card", "");
+       // POS.displayPoleMessage("Scan Loyalty Card", "");
         member = POS.transaction.getMember();
 
         if (member != null && member.getEmail() != null) {
@@ -476,9 +479,9 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
                 }
                 String line2 = string1 + string2;
                 if (member.getName() == null || member.getName() == "") {
-                    POS.displayPoleMessage("Member", line2);
+                   // POS.displayPoleMessage("Member", line2);
                 } else {
-                    POS.displayPoleMessage(member.getName(), line2);
+                  //  POS.displayPoleMessage(member.getName(), line2);
                 }
             }
         } catch (Exception ex) {
@@ -516,8 +519,8 @@ public class LoyaltyCardUI extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private static MemberEntity getMemberViaCard(java.lang.String memberCard) {
-        PointOfSalesUI.LoyaltyAndRewardsWebService_Service service = new PointOfSalesUI.LoyaltyAndRewardsWebService_Service();
-        PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
+        LoyaltyAndRewardsWebService_Service service = new LoyaltyAndRewardsWebService_Service();
+        LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
         return port.getMemberViaCard(memberCard);
     }
 

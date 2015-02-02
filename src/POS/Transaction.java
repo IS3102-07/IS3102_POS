@@ -1,6 +1,6 @@
 package POS;
 
-import PointOfSalesUI.MemberEntity;
+import operationalcrm.loyaltyandrewards.MemberEntity;
 import java.util.ArrayList;
 import java.util.List;
 

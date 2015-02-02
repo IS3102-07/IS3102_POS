@@ -20,6 +20,10 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
+import storetransaction.retailinventory.RetailInventoryWebService;
+import storetransaction.retailinventory.RetailInventoryWebService_Service;
+import storetransaction.salesreporting.SalesReportingWebService;
+import storetransaction.salesreporting.SalesReportingWebService_Service;
 
 public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
@@ -245,8 +249,8 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
                 }
 
                 receiptString1 += "<tr align='center'><td colspan=\"2\">" + name + "<br>"
-                        + "Tier: " + POS.transaction.getMember().loyaltyTier.getTier() + "</td></tr>";
-                System.out.println("POS.transaction.getMember().loyaltyTier " + POS.transaction.getMember().loyaltyTier.getTier());
+                        + "Tier: " + POS.transaction.getMember().getLoyaltyTier() + "</td></tr>";
+                System.out.println("POS.transaction.getMember().loyaltyTier " + POS.transaction.getMember().getLoyaltyTier());
             }
             receiptString1 += "<tr><td colspan=\"2\">------------------------------------------</td></tr><tr><td>Description</td><td>Amount</td></tr>";
 
@@ -399,14 +403,14 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
     }
 
     private static Boolean submitSalesRecord(java.lang.String staffEmail, java.lang.String password, java.lang.Long storeID, java.lang.String posName, java.util.List<java.lang.String> itemsPurchasedSKU, java.util.List<java.lang.Integer> itemsPurchasedQty, java.lang.Double amountDue, java.lang.Double amountPaid, java.lang.Double amountPaidUsingPoints, java.lang.Integer loyaltyPointsDeducted, java.lang.String memberEmail, java.lang.String receiptNo) {
-        PointOfSalesUI.SalesReportingWebService_Service service = new PointOfSalesUI.SalesReportingWebService_Service();
-        PointOfSalesUI.SalesReportingWebService port = service.getSalesReportingWebServicePort();
+        SalesReportingWebService_Service service = new SalesReportingWebService_Service();
+        SalesReportingWebService port = service.getSalesReportingWebServicePort();
         return port.submitSalesRecord(staffEmail, password, storeID, posName, itemsPurchasedSKU, itemsPurchasedQty, amountDue, amountPaid, amountPaidUsingPoints, loyaltyPointsDeducted, memberEmail, receiptNo);
     }
 
     private static Boolean checkIfCustomerNeedToWaitForPicker(java.lang.String receiptNo) {
-        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
-        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+        RetailInventoryWebService_Service service = new RetailInventoryWebService_Service();
+        RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
         return port.checkIfCustomerNeedToWaitForPicker(receiptNo);
     }
 

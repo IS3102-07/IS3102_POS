@@ -8,6 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import storetransaction.retailinventory.RetailInventoryWebService;
+import storetransaction.retailinventory.RetailInventoryWebService_Service;
 
 public class StoreMapUI extends javax.swing.JFrame {
 
@@ -172,8 +174,8 @@ public class StoreMapUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static String getStoreMap(java.lang.Long storeID) {
-        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
-        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+        RetailInventoryWebService_Service service = new RetailInventoryWebService_Service();
+        RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
         return port.getStoreMap(storeID);
     }
 

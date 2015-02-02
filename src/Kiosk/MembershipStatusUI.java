@@ -1,6 +1,6 @@
 package Kiosk;
 
-import PointOfSalesUI.MemberEntity;
+/////import PointOfSalesUI.MemberEntity;
 import java.awt.Color;
 import java.awt.Container;
 
@@ -177,30 +177,30 @@ public class MembershipStatusUI extends javax.swing.JFrame {
 
     private void btnRetrieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrieveActionPerformed
         if (!txtEmail.getText().isEmpty()) {
-            MemberEntity member = getMemberViaEmail(txtEmail.getText());
-
-            if (member == null) {
-                lblMessage.setText("Member does not exist");
-            } else {
-                lblMessage.setText("");
-                String tier = member.getLoyaltyTier().getTier() + "";
-
-                if (tier.equals("Gold")) {
-                    lblStatus.setForeground(Color.orange);
-                    lblStatus.setText(tier);
-                } else if (tier.equals("Silver")) {
-                    lblStatus.setForeground(Color.gray);
-                    lblStatus.setText(tier);
-                } else if (tier.equals("Bronze")) {
-                    lblStatus.setForeground(Color.getHSBColor(204, 102, 0));
-                    lblStatus.setText(tier);
-                } else if (tier.equals("Classic")) {
-                    lblStatus.setForeground(Color.MAGENTA);
-                    lblStatus.setText(tier);
-                }
-
-                lblPoints.setText(member.getLoyaltyPoints() + "");
-            }
+            /////MemberEntity member = getMemberViaEmail(txtEmail.getText());
+//
+//            if (member == null) {
+//                lblMessage.setText("Member does not exist");
+//            } else {
+//                lblMessage.setText("");
+//                String tier = member.getLoyaltyTier().getTier() + "";
+//
+//                if (tier.equals("Gold")) {
+//                    lblStatus.setForeground(Color.orange);
+//                    lblStatus.setText(tier);
+//                } else if (tier.equals("Silver")) {
+//                    lblStatus.setForeground(Color.gray);
+//                    lblStatus.setText(tier);
+//                } else if (tier.equals("Bronze")) {
+//                    lblStatus.setForeground(Color.getHSBColor(204, 102, 0));
+//                    lblStatus.setText(tier);
+//                } else if (tier.equals("Classic")) {
+//                    lblStatus.setForeground(Color.MAGENTA);
+//                    lblStatus.setText(tier);
+//                }
+//
+//                lblPoints.setText(member.getLoyaltyPoints() + "");
+//            }
 
         }
     }//GEN-LAST:event_btnRetrieveActionPerformed
@@ -264,10 +264,10 @@ public class MembershipStatusUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     // End of variables declaration//GEN-END:variables
 
-    private static MemberEntity getMemberViaEmail(java.lang.String memberEmail) {
-        PointOfSalesUI.LoyaltyAndRewardsWebService_Service service = new PointOfSalesUI.LoyaltyAndRewardsWebService_Service();
-        PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
-        return port.getMemberViaEmail(memberEmail);
-    }
+//    private static MemberEntity getMemberViaEmail(java.lang.String memberEmail) {
+//        PointOfSalesUI.LoyaltyAndRewardsWebService_Service service = new PointOfSalesUI.LoyaltyAndRewardsWebService_Service();
+//        PointOfSalesUI.LoyaltyAndRewardsWebService port = service.getLoyaltyAndRewardsWebServicePort();
+//        return port.getMemberViaEmail(memberEmail);
+//    }
 
 }

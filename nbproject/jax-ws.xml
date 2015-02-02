@@ -2,9 +2,41 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services/>
   <clients>
+    <client name="LoyaltyAndRewardsWebService">
+      <wsdl-url>http://localhost:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl</local-wsdl-file>
+      <package-name>operationalcrm.loyaltyandrewards</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://localhost:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
     <client name="AccountManagementWebService">
-      <wsdl-url>http://192.168.1.200:8080/AccountManagementWebService/AccountManagementWebService?wsdl</wsdl-url>
-      <local-wsdl-file>192.168.1.200_8080/AccountManagementWebService/AccountManagementWebService.wsdl</local-wsdl-file>
+      <wsdl-url>http://localhost:8080/AccountManagementWebService/AccountManagementWebService?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/AccountManagementWebService/AccountManagementWebService.wsdl</local-wsdl-file>
       <package-name>commoninfrastructure.accountmanagement</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -22,7 +54,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://192.168.1.200:8080/AccountManagementWebService/AccountManagementWebService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/AccountManagementWebService/AccountManagementWebService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -35,9 +67,9 @@
       </wsimport-options>
     </client>
     <client name="RetailInventoryWebService">
-      <wsdl-url>http://192.168.1.200:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl</wsdl-url>
-      <local-wsdl-file>192.168.1.200_8080/RetailInventoryWebService/RetailInventoryWebService.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">PointOfSalesUI</package-name>
+      <wsdl-url>http://localhost:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/RetailInventoryWebService/RetailInventoryWebService.wsdl</local-wsdl-file>
+      <package-name>storetransaction.retailinventory</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -54,7 +86,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://192.168.1.200:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -63,17 +95,13 @@
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>PointOfSalesUI</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>
     <client name="SalesReportingWebService">
-      <wsdl-url>http://192.168.1.200:8080/SalesReportingWebService/SalesReportingWebService?wsdl</wsdl-url>
-      <local-wsdl-file>192.168.1.200_8080/SalesReportingWebService/SalesReportingWebService.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">PointOfSalesUI</package-name>
+      <wsdl-url>http://localhost:8080/SalesReportingWebService/SalesReportingWebService?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/SalesReportingWebService/SalesReportingWebService.wsdl</local-wsdl-file>
+      <package-name>storetransaction.salesreporting</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -90,7 +118,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://192.168.1.200:8080/SalesReportingWebService/SalesReportingWebService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/SalesReportingWebService/SalesReportingWebService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -99,53 +127,13 @@
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>PointOfSalesUI</wsimport-option-value>
-        </wsimport-option>
-      </wsimport-options>
-    </client>
-    <client name="LoyaltyAndRewardsWebService">
-      <wsdl-url>http://192.168.1.200:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl</wsdl-url>
-      <local-wsdl-file>192.168.1.200_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">PointOfSalesUI</package-name>
-      <catalog-file>catalog.xml</catalog-file>
-      <wsimport-options>
-        <wsimport-option>
-          <wsimport-option-name>extension</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>verbose</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>fork</wsimport-option-name>
-          <wsimport-option-value>false</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://192.168.1.200:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xnocompile</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xendorsed</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>PointOfSalesUI</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>
     <client name="PromotionalSalesWebService">
-      <wsdl-url>http://192.168.1.200:8080/PromotionalSalesWebService/PromotionalSalesWebService?wsdl</wsdl-url>
-      <local-wsdl-file>192.168.1.200_8080/PromotionalSalesWebService/PromotionalSalesWebService.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">PointOfSalesUI</package-name>
+      <wsdl-url>http://localhost:8080/PromotionalSalesWebService/PromotionalSalesWebService?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/PromotionalSalesWebService/PromotionalSalesWebService.wsdl</local-wsdl-file>
+      <package-name>operationalcrm.promotionalsales</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -162,7 +150,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://192.168.1.200:8080/PromotionalSalesWebService/PromotionalSalesWebService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/PromotionalSalesWebService/PromotionalSalesWebService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -171,10 +159,6 @@
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>PointOfSalesUI</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

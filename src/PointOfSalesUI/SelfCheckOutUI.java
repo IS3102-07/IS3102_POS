@@ -1,6 +1,7 @@
 package PointOfSalesUI;
 
 import POS.*;
+import storetransaction.retailinventory.ItemHelper;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -14,6 +15,10 @@ import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import operationalcrm.promotionalsales.PromotionalSalesWebService;
+import operationalcrm.promotionalsales.PromotionalSalesWebService_Service;
+import storetransaction.retailinventory.RetailInventoryWebService;
+import storetransaction.retailinventory.RetailInventoryWebService_Service;
 
 public class SelfCheckOutUI extends javax.swing.JFrame {
 
@@ -697,27 +702,27 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         POS.displayPoleMessage(line1, line2);
     }
 
-    private static ItemHelper getItemBySKU(java.lang.String sku) {
-        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
-        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+    private static storetransaction.retailinventory.ItemHelper getItemBySKU(java.lang.String sku) {
+       RetailInventoryWebService_Service service = new RetailInventoryWebService_Service();
+        RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
         return port.getItemBySKU(sku);
     }
 
     private static Double getItemCountryPriceBySKU(java.lang.String sku, java.lang.Long storeID) {
-        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
-        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+        RetailInventoryWebService_Service service = new RetailInventoryWebService_Service();
+        RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
         return port.getItemCountryPriceBySKU(sku, storeID);
     }
 
     private static Boolean alertSupervisor(java.lang.String posName, java.lang.String supervisorTel) {
-        PointOfSalesUI.RetailInventoryWebService_Service service = new PointOfSalesUI.RetailInventoryWebService_Service();
-        PointOfSalesUI.RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
+        RetailInventoryWebService_Service service = new RetailInventoryWebService_Service();
+        RetailInventoryWebService port = service.getRetailInventoryWebServicePort();
         return port.alertSupervisor(posName, supervisorTel);
     }
 
     private static Double getPromotionRate(java.lang.String sku, java.lang.Long storeID, javax.xml.datatype.XMLGregorianCalendar date) {
-        PointOfSalesUI.PromotionalSalesWebService_Service service = new PointOfSalesUI.PromotionalSalesWebService_Service();
-        PointOfSalesUI.PromotionalSalesWebService port = service.getPromotionalSalesWebServicePort();
+        PromotionalSalesWebService_Service service = new PromotionalSalesWebService_Service();
+        PromotionalSalesWebService port = service.getPromotionalSalesWebServicePort();
         return port.getPromotionRate(sku, storeID, date);
     }
 

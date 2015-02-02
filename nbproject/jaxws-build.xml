@@ -16,10 +16,27 @@
             <classpath path="${libs.jaxws21.classpath}"/>
         </taskdef>
     </target>
+    <target name="wsimport-client-LoyaltyAndRewardsWebService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService"/>
+        <property name="wsdl-LoyaltyAndRewardsWebService" location="xml-resources/web-service-references/LoyaltyAndRewardsWebService/wsdl/localhost_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService" destdir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService" wsdl="${wsdl-LoyaltyAndRewardsWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-LoyaltyAndRewardsWebService}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-LoyaltyAndRewardsWebService" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/operationalcrm/loyaltyandrewards"/>
+    </target>
     <target name="wsimport-client-AccountManagementWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/AccountManagementWebService"/>
-        <property name="wsdl-AccountManagementWebService" location="xml-resources/web-service-references/AccountManagementWebService/wsdl/192.168.1.200_8080/AccountManagementWebService/AccountManagementWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/AccountManagementWebService" destdir="${build.generated.dir}/jax-wsCache/AccountManagementWebService" wsdl="${wsdl-AccountManagementWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://192.168.1.200:8080/AccountManagementWebService/AccountManagementWebService?wsdl" xnocompile="true" xendorsed="true">
+        <property name="wsdl-AccountManagementWebService" location="xml-resources/web-service-references/AccountManagementWebService/wsdl/localhost_8080/AccountManagementWebService/AccountManagementWebService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/AccountManagementWebService" destdir="${build.generated.dir}/jax-wsCache/AccountManagementWebService" wsdl="${wsdl-AccountManagementWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/AccountManagementWebService/AccountManagementWebService?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-AccountManagementWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/AccountManagementWebService"/>
         </wsimport>
@@ -35,8 +52,8 @@
     </target>
     <target name="wsimport-client-RetailInventoryWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService"/>
-        <property name="wsdl-RetailInventoryWebService" location="xml-resources/web-service-references/RetailInventoryWebService/wsdl/192.168.1.200_8080/RetailInventoryWebService/RetailInventoryWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService" destdir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService" wsdl="${wsdl-RetailInventoryWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://192.168.1.200:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl" xnocompile="true" xendorsed="true" package="PointOfSalesUI">
+        <property name="wsdl-RetailInventoryWebService" location="xml-resources/web-service-references/RetailInventoryWebService/wsdl/localhost_8080/RetailInventoryWebService/RetailInventoryWebService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService" destdir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService" wsdl="${wsdl-RetailInventoryWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/RetailInventoryWebService/RetailInventoryWebService?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-RetailInventoryWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService"/>
         </wsimport>
@@ -48,12 +65,12 @@
     </target>
     <target name="wsimport-client-clean-RetailInventoryWebService" depends="-init-project">
         <delete dir="${build.generated.dir}/jax-wsCache/RetailInventoryWebService"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/PointOfSalesUI"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/storetransaction/retailinventory"/>
     </target>
     <target name="wsimport-client-SalesReportingWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/SalesReportingWebService"/>
-        <property name="wsdl-SalesReportingWebService" location="xml-resources/web-service-references/SalesReportingWebService/wsdl/192.168.1.200_8080/SalesReportingWebService/SalesReportingWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/SalesReportingWebService" destdir="${build.generated.dir}/jax-wsCache/SalesReportingWebService" wsdl="${wsdl-SalesReportingWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://192.168.1.200:8080/SalesReportingWebService/SalesReportingWebService?wsdl" xnocompile="true" xendorsed="true" package="PointOfSalesUI">
+        <property name="wsdl-SalesReportingWebService" location="xml-resources/web-service-references/SalesReportingWebService/wsdl/localhost_8080/SalesReportingWebService/SalesReportingWebService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/SalesReportingWebService" destdir="${build.generated.dir}/jax-wsCache/SalesReportingWebService" wsdl="${wsdl-SalesReportingWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/SalesReportingWebService/SalesReportingWebService?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-SalesReportingWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/SalesReportingWebService"/>
         </wsimport>
@@ -65,29 +82,12 @@
     </target>
     <target name="wsimport-client-clean-SalesReportingWebService" depends="-init-project">
         <delete dir="${build.generated.dir}/jax-wsCache/SalesReportingWebService"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/PointOfSalesUI"/>
-    </target>
-    <target name="wsimport-client-LoyaltyAndRewardsWebService" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService"/>
-        <property name="wsdl-LoyaltyAndRewardsWebService" location="xml-resources/web-service-references/LoyaltyAndRewardsWebService/wsdl/192.168.1.200_8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService" destdir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService" wsdl="${wsdl-LoyaltyAndRewardsWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://192.168.1.200:8080/LoyaltyAndRewardsWebService/LoyaltyAndRewardsWebService?wsdl" xnocompile="true" xendorsed="true" package="PointOfSalesUI">
-            <depends file="${wsdl-LoyaltyAndRewardsWebService}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService"/>
-        </wsimport>
-        <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService">
-                <include name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-    <target name="wsimport-client-clean-LoyaltyAndRewardsWebService" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/LoyaltyAndRewardsWebService"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/PointOfSalesUI"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/storetransaction/salesreporting"/>
     </target>
     <target name="wsimport-client-PromotionalSalesWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/PromotionalSalesWebService"/>
-        <property name="wsdl-PromotionalSalesWebService" location="xml-resources/web-service-references/PromotionalSalesWebService/wsdl/192.168.1.200_8080/PromotionalSalesWebService/PromotionalSalesWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/PromotionalSalesWebService" destdir="${build.generated.dir}/jax-wsCache/PromotionalSalesWebService" wsdl="${wsdl-PromotionalSalesWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://192.168.1.200:8080/PromotionalSalesWebService/PromotionalSalesWebService?wsdl" xnocompile="true" xendorsed="true" package="PointOfSalesUI">
+        <property name="wsdl-PromotionalSalesWebService" location="xml-resources/web-service-references/PromotionalSalesWebService/wsdl/localhost_8080/PromotionalSalesWebService/PromotionalSalesWebService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/PromotionalSalesWebService" destdir="${build.generated.dir}/jax-wsCache/PromotionalSalesWebService" wsdl="${wsdl-PromotionalSalesWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/PromotionalSalesWebService/PromotionalSalesWebService?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-PromotionalSalesWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/PromotionalSalesWebService"/>
         </wsimport>
@@ -99,7 +99,7 @@
     </target>
     <target name="wsimport-client-clean-PromotionalSalesWebService" depends="-init-project">
         <delete dir="${build.generated.dir}/jax-wsCache/PromotionalSalesWebService"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/PointOfSalesUI"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/operationalcrm/promotionalsales"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-AccountManagementWebService, wsimport-client-RetailInventoryWebService, wsimport-client-SalesReportingWebService, wsimport-client-LoyaltyAndRewardsWebService, wsimport-client-PromotionalSalesWebService"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-LoyaltyAndRewardsWebService, wsimport-client-AccountManagementWebService, wsimport-client-RetailInventoryWebService, wsimport-client-SalesReportingWebService, wsimport-client-PromotionalSalesWebService"/>
 </project>

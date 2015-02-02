@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import operationalcrm.promotionalsales.PromotionalSalesWebService;
+import operationalcrm.promotionalsales.PromotionalSalesWebService_Service;
 
 public class PromotionUI extends javax.swing.JFrame {
 
@@ -244,8 +246,8 @@ public class PromotionUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static java.util.List<java.lang.String> getActivePromotionInCountry(java.lang.Long storeID) {
-        PointOfSalesUI.PromotionalSalesWebService_Service service = new PointOfSalesUI.PromotionalSalesWebService_Service();
-        PointOfSalesUI.PromotionalSalesWebService port = service.getPromotionalSalesWebServicePort();
+        PromotionalSalesWebService_Service service = new PromotionalSalesWebService_Service();
+        PromotionalSalesWebService port = service.getPromotionalSalesWebServicePort();
         return port.getActivePromotionInCountry(storeID);
     }
 
