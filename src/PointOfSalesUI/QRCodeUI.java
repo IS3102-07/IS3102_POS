@@ -308,7 +308,7 @@ public class QRCodeUI extends javax.swing.JFrame {
                             POS.qrIsPressed = false;
 
                             String line2 = String.format("%20s", "synchronized!");
-                            POS.displayPoleMessage("Mobile Sync", line2);
+                            //POS.displayPoleMessage("Mobile Sync", line2);
 
                             try {
                                 String currentPath = filePath.concat("\\src\\images\\" + POS.qrImageName + ".png");

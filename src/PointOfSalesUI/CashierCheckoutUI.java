@@ -467,7 +467,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         if (tblLineItem.getSelectedRow() != -1 && tblLineItem.getRowCount() != 0) {
             lineItems.remove(tblLineItem.getSelectedRow());
             model.removeRow(tblLineItem.getSelectedRow());
-            POS.displayPoleMessage("Item Removed", "");
+            //POS.displayPoleMessage("Item Removed", "");
         }
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
@@ -791,7 +791,7 @@ public class CashierCheckoutUI extends javax.swing.JFrame {
         String line2 = formatLabel + formatItemSubPrice;
 
         System.out.println(line1 + "\n" + line2);
-        POS.displayPoleMessage(line1, line2);
+        //POS.displayPoleMessage(line1, line2);
     }
 
     private static ItemHelper getItemBySKU(java.lang.String sku) {

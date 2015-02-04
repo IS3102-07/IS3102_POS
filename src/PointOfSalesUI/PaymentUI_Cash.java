@@ -229,7 +229,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
 
                         //display pole message
                         String string1 = String.format("%20s", "Come back again!");
-                        POS.displayPoleMessage("Thank you!", string1);
+                        //POS.displayPoleMessage("Thank you!", string1);
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -243,7 +243,7 @@ public class PaymentUI_Cash extends javax.swing.JPanel {
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
         if (!txtChange.getText().isEmpty()) {
             String line2 = String.format("%20s", "Island Furniture!");
-            POS.displayPoleMessage("Welcome to", line2);
+            //POS.displayPoleMessage("Welcome to", line2);
             txtChange.setText("");
             txtPrice.setText("");
             txtReceived.setText("");

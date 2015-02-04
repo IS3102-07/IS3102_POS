@@ -428,7 +428,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         if (tblLineItem.getSelectedRow() != -1 && tblLineItem.getRowCount() != 0) {
             lineItems.remove(tblLineItem.getSelectedRow());
             model.removeRow(tblLineItem.getSelectedRow());
-            POS.displayPoleMessage("Item Removed", "");
+            //POS.displayPoleMessage("Item Removed", "");
         }
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
@@ -505,7 +505,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         lineItems = POS.transaction.getLineItems();
         refreshTotalQuantityAndPrice();
         tblLineItem.requestFocus();
-        POS.displayPoleMessage("Items cleared", "");
+        //POS.displayPoleMessage("Items cleared", "");
         lblMessage.setText("");
     }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -699,7 +699,7 @@ public class SelfCheckOutUI extends javax.swing.JFrame {
         String formatItemSubPrice = String.format("%10s", "[" + df.format(POS.transaction.getTotalPrice()) + "]");
         String line2 = formatLabel + formatItemSubPrice;
 
-        POS.displayPoleMessage(line1, line2);
+        //POS.displayPoleMessage(line1, line2);
     }
 
     private static storetransaction.retailinventory.ItemHelper getItemBySKU(java.lang.String sku) {

@@ -47,7 +47,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
         String string11 = String.format("%-9s", POS.transaction.getDiscountRate() + "%");
         String string22 = String.format("%10s", "[" + POS.transaction.getNetPrice() + "]");
         String line2 = string11 + string22;
-        POS.displayPoleMessage(line1, line2);
+        //POS.displayPoleMessage(line1, line2);
     }
 
     @SuppressWarnings("unchecked")
@@ -374,7 +374,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
                 //display pole message
                 String string1 = String.format("%20s", "Come back again!");
-                POS.displayPoleMessage("Thank you!", string1);
+                //POS.displayPoleMessage("Thank you!", string1);
 
                 //done with submit sales record
                 JDialog dialog = new JDialog();
@@ -395,7 +395,7 @@ public class PaymentUI_CreditCard extends javax.swing.JPanel {
 
         //reset
         String line2 = String.format("%20s", "Island Furniture!");
-        POS.displayPoleMessage("Welcome to", line2);
+        //POS.displayPoleMessage("Welcome to", line2);
 
         txtCreditNumber.setText("");
         Window w = SwingUtilities.getWindowAncestor(PaymentUI_CreditCard.this);
